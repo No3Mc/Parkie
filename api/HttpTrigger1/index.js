@@ -3,3 +3,4 @@ module.exports = async function (context, req) {
         text: "Hello from the API"
     });
 };
+
