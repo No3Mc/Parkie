@@ -1,4 +1,3 @@
-
 var button = document.getElementById("my-button");
 var text = document.getElementById("my-text");
 
