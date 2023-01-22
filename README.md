@@ -1,12 +1,14 @@
 # Parkie
 
+## Chamber Of Secrets
+
 Syed Naqvi
 P2652259
 
 Team Development Methods
 Parkie Customer Management
 
-# Core Functionality
+### Core Functionality
 
 Account management
 Billing and payment methods
