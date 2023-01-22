@@ -8,7 +8,7 @@ P2652259
 Team Development Methods </br>
 Parkie Customer Management
 
-### Core Functionality
+## Core Functionality
 
 </br>
 Account management </br>
