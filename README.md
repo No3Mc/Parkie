@@ -10,7 +10,7 @@ Parkie Customer Management
 
 ## Core Functionality
 
-Account management </br>
+Account management (Login, ) </br>
 Billing and payment methods </br>
 Customer support. (Documentation and FAQs) </br>
 Customer Communications. (Email and online chatbot) </br>
