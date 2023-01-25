@@ -2,12 +2,18 @@ body {
     background-color: rgb(204, 218, 204);
   }
   
-  h1 {
+  /* h1 {
     color: rgb(13, 26, 16);
     margin-left: 20px;
-  }
+  } */
   
   #my-text {
     color: rgb(26, 34, 3);
   }
   
+  .header img {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background: rgb(82, 49, 49);
+  }
