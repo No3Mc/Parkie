@@ -1,9 +1,22 @@
 {
     
     "scripts": {
+    
+        
     "dev": "webpack --config=Scripts/config/webpack.dev.js --watch",
+    
+        
     "build": "webpack --config=Scripts/config/webpack.prod.js",
+    
+        
     "test": "echo \"Error: no test specified\" && exit 1"
-  }
-
+    
+    },
+    
+    "devDependencies": {
+    
+        
+    "webpack-cli": "^5.0.1"
+    
+    }
 }
