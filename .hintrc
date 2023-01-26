@@ -1,5 +1,9 @@
 {
   "extends": [
-    "development"
-  ]
+    "web-recommended"
+  ],
+  "hints": {
+    "html-checker": "off",
+    "axe/language": "off"
+  }
 }
