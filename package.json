@@ -9,6 +9,7 @@
         "webpack-cli": "^5.0.1"
     },
     "dependencies": {
+        "@microsoft/applicationinsights-web": "^2.8.9",
         "bootstrap": "^5.2.3",
         "cli": "^1.0.1",
         "loader": "^2.1.1",
