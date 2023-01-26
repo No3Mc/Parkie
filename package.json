@@ -12,9 +12,12 @@
         "@microsoft/applicationinsights-web": "^2.8.9",
         "applicationinsights-native-metrics": "^0.0.8",
         "bootstrap": "^5.2.3",
+        "build": "^0.1.4",
         "cli": "^1.0.1",
+        "js-yaml": "^4.1.0",
         "loader": "^2.1.1",
         "webpack": "^5.75.0",
+        "yaml-js": "^0.3.1",
         "yarn": "^1.22.19"
     },
     "name": "Parkie",
