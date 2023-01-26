@@ -52,8 +52,9 @@ body {
 
 
 #footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
-  height: 2.5rem;            /* Footer height */
+  height: 60px;   /* Height of the footer */
+  /* background: rgb(255, 255, 255); */
 }
