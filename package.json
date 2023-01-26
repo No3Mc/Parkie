@@ -1,38 +1,21 @@
 {
-    
     "scripts": {
-    
-        
-    "dev": "webpack --config=Scripts/config/webpack.dev.js --watch",
-    
-        
-    "build": "webpack --config=Scripts/config/webpack.prod.js",
-    
-        
-    "test": "echo \"Error: no test specified\" && exit 1"
-    
+        "dev": "webpack --config=Scripts/config/webpack.dev.js --watch",
+        "build": "webpack --config=Scripts/config/webpack.prod.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
-    
     "devDependencies": {
-    
-        
-    "webpack-cli": "^5.0.1"
-    
+        "lerna": "^6.4.1",
+        "webpack-cli": "^5.0.1"
     },
-    
     "dependencies": {
-    
-        
-    "bootstrap": "^5.2.3",
-    
-        
-    "cli": "^1.0.1",
-    
-        
-    "loader": "^2.1.1",
-    
-        
-    "webpack": "^5.75.0"
-    
-    }
+        "bootstrap": "^5.2.3",
+        "cli": "^1.0.1",
+        "loader": "^2.1.1",
+        "webpack": "^5.75.0"
+    },
+    "name": "Parkie",
+    "workspaces": [
+        "packages/*"
+    ]
 }
