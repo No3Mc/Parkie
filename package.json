@@ -12,7 +12,8 @@
         "bootstrap": "^5.2.3",
         "cli": "^1.0.1",
         "loader": "^2.1.1",
-        "webpack": "^5.75.0"
+        "webpack": "^5.75.0",
+        "yarn": "^1.22.19"
     },
     "name": "Parkie",
     "workspaces": [
