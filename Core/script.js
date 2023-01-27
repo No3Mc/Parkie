@@ -1,4 +1,9 @@
-var button = document.getElementById("my-button");
+// var button = document.getElementById("my-button");
+
+
+var button = document.getElementById("testingbut");
+
+
 var text = document.getElementById("my-text");
 import { ApplicationInsights } from '@microsoft/applicationinsights-web'
 
@@ -14,6 +19,10 @@ appInsights
   .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
   .start()
 
+// button.addEventListener("click", function() {
+//   text.innerHTML = "Multani Sohan Halwa";
+// });
+
 button.addEventListener("click", function() {
-  text.innerHTML = "Multani Sohan Halwa";
+  // text.innerHTML = "Multani Sohan Halwa";
 });
