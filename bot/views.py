@@ -2,14 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def bot_view(request):
-    # Get the user's input from the request
-    user_input = request.POST.get('user_input')
-
-    # Process the user's input here
-    bot_response = process_input(user_input)
-
-    # Return the bot's response to the user
+    bot_response = None
+    if request.method == 'POST':
+        user_input = request.POST.get('user_input')
+        bot_response = process_input(user_input)
     return render(request, 'bot/bot.html', {'bot_response': bot_response})
+
 
 def process_input(user_input):
     # logic for processing the user's input here
