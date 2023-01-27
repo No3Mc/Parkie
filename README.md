@@ -19,7 +19,7 @@ P2652259 </br>
 Parkie</b></br>
 
 
-
+# The following are draft and will be removed in the final submission and will be moved to indiv readmes
 <details>
 <summary><b>Client Management</b></summary><br/>
 </details>
@@ -44,8 +44,7 @@ Customer engagement (page for promotions) </br>
 
 
 
-
-
+# Directory Structure
 <details>
 <summary><b>Directory structure:</b></summary><br/>
 
