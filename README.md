@@ -21,18 +21,18 @@ Parkie</b></br>
 
 
 <details>
-<summary> 🙆 <b>Client Management</b></summary><br/>
+<summary><b>Client Management</b></summary><br/>
 </details>
 
 
 <details>
-<summary> 🙆 <b>Parking Management</b></summary><br/>
+<summary><b>Parking Management</b></summary><br/>
 
 </details>
 
 
 <details>
-<summary> 🙆 <b>Customer Management</b></summary><br/>
+<summary><b>Customer Management</b></summary>
 Account management (Login, ) </br>
 Billing and payment methods </br>
 Customer support. (Documentation and FAQs) </br>
