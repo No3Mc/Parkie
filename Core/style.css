@@ -58,3 +58,8 @@ body {
   height: 60px;   /* Height of the footer */
   /* background: rgb(255, 255, 255); */
 }
+
+
+.hide-iframe {
+  display: none;
+}

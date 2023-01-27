@@ -34,13 +34,22 @@
     <input type="text" id="state" name="state">
     <label for="date">Date:</label>
     <input type="date" id="date" name="date">
-    <button type="submit" id="testingbut">Search</button>
+    <button type="submit" id="submit">Search</button>
+    <a href="{% url 'bot' %}" id="botBT">Help Bot</a>
   </form>
 </section>
 
 <div id="footer">
   Copyright ©2023 Parkie
 </div>
+<script>
+  var link = document.getElementById("bot-link");
+  var iframe = document.getElementById("bot-iframe");
+
+  link.addEventListener("click", function() {
+      iframe.classList.toggle("hide-iframe");
+  });
+</script>
 
     <script src="script.js"></script>
   </body>

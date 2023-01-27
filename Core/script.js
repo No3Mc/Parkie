@@ -1,7 +1,16 @@
 // var button = document.getElementById("my-button");
 
 
-var button = document.getElementById("testingbut");
+document.getElementById("open-bot-button").addEventListener("click", function(event) {
+  event.preventDefault(); // prevent the link from redirecting
+  var botUrl = this.getAttribute("href");
+  var iframe = document.createElement('iframe');
+  iframe.src = botUrl;
+  iframe.height = "500";
+  iframe.width = "400";
+  document.body.appendChild(iframe);
+});
+
 
 
 var text = document.getElementById("my-text");
@@ -23,6 +32,3 @@ appInsights
 //   text.innerHTML = "Multani Sohan Halwa";
 // });
 
-button.addEventListener("click", function() {
-  // text.innerHTML = "Multani Sohan Halwa";
-});
