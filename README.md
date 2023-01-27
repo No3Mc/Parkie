@@ -17,7 +17,6 @@ P2652259 </br>
 
 <b>Team Development Methods </br>
 Parkie</b></br>
-Syed, Umar, Nav
 
 
 
