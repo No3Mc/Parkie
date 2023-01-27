@@ -27,3 +27,6 @@
 #learn-more:hover {
     background-color: #45a049;
 }
+#hidden {
+    display: none;
+}
