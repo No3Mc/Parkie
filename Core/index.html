@@ -7,7 +7,18 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="Parkie.ico" />
     <script  type="module" src="script.js"></script>
-    
+    <script>
+        function changeIframe(iframeId, src) {
+            var iframes = document.getElementsByTagName("iframe");
+            for (var i = 0; i < iframes.length; i++) {
+                iframes[i].style.display = "none";
+            }
+            document.getElementById(iframeId).src = src;
+            document.getElementById(iframeId).style.display = "block";
+          }
+    </script>
+
+
   </head>
 
   <body>
@@ -34,22 +45,39 @@
           <a href="#logout">Logout</a>
         </div>
       </div>
-
     </header>
+
+
     <section id="search">
-      <h2>Search for Parking Slots</h2>
-      <form>
-        <label for="location">location:</label>
-        <input type="text" id="location" name="location">
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date">
-        <button type="submit" id="submit">Search</button>
+
         <a href="{% url 'bot' %}" id="botBT">Help Bot</a>
-      </form>
-    </section>
+
+      </section>
+
+      <button type="submit" onclick="changeIframe('Abtframe', 'routes/CustDev/AboutUs/AboutUs.html')">About Us</button>
+      <button type="submit" onclick="changeIframe('Logframe', 'routes/CustDev/Login/login.html')">Login</button>
+      <button type="submit" onclick="changeIframe('Regframe', 'routes/CustDev/Register/Register.html')">Register</button>
+      
+      <iframe id="Abtframe" class="center-frame"></iframe>
+      <iframe id="Logframe" class="center-frame"></iframe>
+      <iframe id="Regframe" class="center-frame"></iframe>
+      
+      
+
+
+
+
+ 
+
+
+
+
     
-    <div id="footer">
+
+    <!-- <div id="footer">
       Copyright ©2023 Parkie
-    </div>
+    </div> -->
+  
+  
   </body>
 </html>
