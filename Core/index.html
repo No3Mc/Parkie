@@ -30,9 +30,9 @@
         </a>
       </div>
       <div class="topnav">
-        <a href="#FAQ">FAQ</a>
-        <a href="#company">Company</a>
-        <a href="#about">About</a>
+        <button type="submit" onclick="changeIframe('Abtframe', 'routes/CustDev/AboutUs/AboutUs.html')">About Us</button>
+        <button type="submit" onclick="changeIframe('Logframe', 'routes/CustDev/Login/login.html')">Login</button>
+        <button type="submit" onclick="changeIframe('Regframe', 'routes/CustDev/Register/Register.html')">Register</button>
         
       </div>
       <div class="dropdown">
@@ -46,37 +46,16 @@
         </div>
       </div>
     </header>
-
-
     <section id="search">
-
         <a href="{% url 'bot' %}" id="botBT">Help Bot</a>
-
       </section>
-
-      <button type="submit" onclick="changeIframe('Abtframe', 'routes/CustDev/AboutUs/AboutUs.html')">About Us</button>
-      <button type="submit" onclick="changeIframe('Logframe', 'routes/CustDev/Login/login.html')">Login</button>
-      <button type="submit" onclick="changeIframe('Regframe', 'routes/CustDev/Register/Register.html')">Register</button>
-      
       <iframe id="Abtframe" class="center-frame"></iframe>
       <iframe id="Logframe" class="center-frame"></iframe>
       <iframe id="Regframe" class="center-frame"></iframe>
-      
-      
 
-
-
-
- 
-
-
-
-
-    
-
-    <!-- <div id="footer">
+    <div id="footer">
       Copyright ©2023 Parkie
-    </div> -->
+    </div>
   
   
   </body>
