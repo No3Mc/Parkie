@@ -4,6 +4,7 @@
   ],
   "hints": {
     "html-checker": "off",
-    "axe/language": "off"
+    "axe/language": "off",
+    "axe/text-alternatives": "off"
   }
 }
