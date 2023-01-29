@@ -6,6 +6,7 @@
     <title>Login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='login.css'>
+
 </head>
 <body>
     <div class="container">
@@ -16,8 +17,12 @@
           <label for="password">Password:</label>
           <input type="password" id="password" name="password">
           <button type="submit" id="submit-btn">Submit</button>
+          <fb:login-button 
+            scope="public_profile,email"
+            onlogin="checkLoginState();">
+          </fb:login-button>
           <script src='login.js'></script>
         </form>
-      </div>
+    </div>
 </body>
 </html>
