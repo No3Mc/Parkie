@@ -160,7 +160,7 @@ header {
   position: absolute;
   transform: translateX(-100%);
   background-color: #6cc921; 
-  
+  transition: all 0.5s ease-in-out;
 }
 
 
