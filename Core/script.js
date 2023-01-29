@@ -3,23 +3,9 @@
 
 
 
-const menuDrawer = document.getElementById("menu-drawer");
-const screenWidth = window.innerWidth;
 
-if (screenWidth < 600) {
-  menuDrawer.style.display = "block";
-} else {
-  menuDrawer.style.display = "none";
-}
-window.addEventListener("resize", function() {
-  const screenWidth = window.innerWidth;
 
-  if (screenWidth < 600) {
-    menuDrawer.style.display = "block";
-  } else {
-    menuDrawer.style.display = "none";
-  }
-});
+
 
 
 
@@ -27,6 +13,27 @@ window.addEventListener("resize", function() {
 
 
 // test code
+
+
+
+const menuIcon = document.querySelector(".menu-icon");
+const menuDrawer = document.querySelector("#menu-drawer");
+
+
+window.addEventListener("resize", function() {
+  if (window.innerWidth <= 600) {
+    menuIcon.style.display = "block";
+  } else {
+    menuIcon.style.display = "none";
+  }
+});
+
+
+menuIcon.addEventListener("click", function() {
+  console.log("Menu icon clicked"); 
+  // testing the event listener bc work hi nahein kar raha.
+  menuDrawer.classList.toggle("visible");
+});
 
 
 const profileCircle = document.querySelector(".profile-circle");

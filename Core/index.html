@@ -7,6 +7,9 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="Parkie.ico" />
     <script  type="module" src="script.js"></script>
+
+
+
     <script>
         function changeIframe(iframeId, src) {
             var iframes = document.getElementsByTagName("iframe");
@@ -24,6 +27,10 @@
   <body>
 
     <header>
+     <div class="menu-icon"><img src="ico/menu.png" alt="menu icon"></div>
+
+
+      
       <div class="logo-container">
         <a draggable="false" href="https://www.parkie.app/">
           <img draggable="false" src="Parkie.ico" alt="Parkieimg" class="logoimg">
@@ -65,7 +72,7 @@
       </div>
 
 
-      
+
     </header>
     <section id="search">
         <a href="{% url 'bot' %}" id="botBT">Help Bot</a>

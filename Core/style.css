@@ -114,16 +114,57 @@ header {
 }
 
 
+
+
+
 /* Hide header buttons on phone */
 @media screen and (max-width: 600px) {
   .topnav button {
     display: none;
   }
+  .menu-icon {
+    display: block;
+  }
 }
-
 /* Show header buttons on desktop */
 @media screen and (min-width: 600px) {
   .topnav button {
     display: block;
   }
+  .menu-icon {
+    display: none;
+  }
+}
+
+/* Show the menu drawer when the screen is less than 600px wide */
+@media (max-width: 600px) {
+  #menu-drawer {
+    display: block;
+    position: absolute;
+    transform: translateX(-100%);
+  }
+}
+/* Hide the menu drawer when the screen is more than 600px wide */
+@media (min-width: 600px) {
+  #menu-drawer {
+    display: none;
+  }
+}
+
+.menu-icon img {
+  width: 30px;
+  height: 30px; 
+}
+
+#menu-drawer {
+  position: absolute;
+  transform: translateX(-100%);
+  background-color: #6cc921; 
+  
+}
+
+
+/* When the .visible class is applied, move the drawer into the viewport */
+#menu-drawer.visible {
+  transform: translateX(0);
 }
