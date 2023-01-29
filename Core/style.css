@@ -78,36 +78,16 @@ header {
   display: block;
 }
 
-/* search section */
-#search {
-  text-align: center;
-  padding: 50px;
-}
 
-#search label {
-  margin-right: 10px;
-}
 
-#search input {
-  margin-bottom: 10px;
-}
-
-#search #submit {
+#botBT {
   background-color: #4CAF50;
   color: white;
   padding: 12px 20px;
   border: none;
   cursor: pointer;
-}
-
-#search #botBT {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  cursor: pointer;
-  margin-left: 10px;
-  margin-right: 500px;
+  margin-left: 100px;
+  margin-right: 20px;
 }
 
 /* footer */
@@ -131,4 +111,19 @@ header {
   transform: translate(-50%, -50%);
   width: 300px;
   height: 400px;
+}
+
+
+/* Hide header buttons on phone */
+@media screen and (max-width: 600px) {
+  .topnav button {
+    display: none;
+  }
+}
+
+/* Show header buttons on desktop */
+@media screen and (min-width: 600px) {
+  .topnav button {
+    display: block;
+  }
 }

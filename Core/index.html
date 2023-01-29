@@ -35,6 +35,24 @@
         <button type="submit" onclick="changeIframe('Regframe', 'routes/CustDev/Register/Register.html')">Register</button>
         
       </div>
+
+      <!-- for phone -->
+      <div id="menu-drawer">
+        <nav>
+          <ul>
+            <li>
+            <button type="submit" onclick="changeIframe('Abtframe', 'routes/CustDev/AboutUs/AboutUs.html')">About Us</button>
+          </li>
+        <li>  
+          <button type="submit" onclick="changeIframe('Logframe', 'routes/CustDev/Login/login.html')">Login</button>
+        </li>  
+      <li>  
+        <button type="submit" onclick="changeIframe('Regframe', 'routes/CustDev/Register/Register.html')">Register</button>
+    </li>    
+      </ul>
+        </nav>
+      </div>
+      
       <div class="dropdown">
         <div class="profile-circle">
           <img src="profile.png" alt="profile" width="20" height="20">
@@ -45,6 +63,9 @@
           <a href="#logout">Logout</a>
         </div>
       </div>
+
+
+      
     </header>
     <section id="search">
         <a href="{% url 'bot' %}" id="botBT">Help Bot</a>

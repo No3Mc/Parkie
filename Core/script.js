@@ -3,6 +3,23 @@
 
 
 
+const menuDrawer = document.getElementById("menu-drawer");
+const screenWidth = window.innerWidth;
+
+if (screenWidth < 600) {
+  menuDrawer.style.display = "block";
+} else {
+  menuDrawer.style.display = "none";
+}
+window.addEventListener("resize", function() {
+  const screenWidth = window.innerWidth;
+
+  if (screenWidth < 600) {
+    menuDrawer.style.display = "block";
+  } else {
+    menuDrawer.style.display = "none";
+  }
+});
 
 
 
