@@ -48,87 +48,9 @@ Customer engagement (page for promotions) </br>
 <details>
 <summary><b>Directory structure:</b></summary><br/>
 
-
-        PARKIE\CORE
-        │   index.html
-        │   Parkie.ico
-        │   script.js
-        │   style.css
-        │
-        └───routes
-            ├───ClientDev
-            │       README.md
-            │
-            ├───CustDev
-            │   │   README.md
-            │   │
-            │   ├───AboutUs
-            │   │       AboutUs.css
-            │   │       AboutUs.html
-            │   │       AboutUs.js
-            │   │
-            │   ├───LogReg
-            │   │       login.css
-            │   │       login.html
-            │   │       login.js
-            │   │
-            │   ├───PayMeths
-            │   │       PayMeths.css
-            │   │       PayMeths.html
-            │   │       PayMeths.js
-            │   │
-            │   ├───Profile
-            │   │       profile.css
-            │   │       profile.html
-            │   │       profile.js
-            │   │
-            │   ├───Promos
-            │   │       Promos.css
-            │   │       Promos.html
-            │   │       Promos.js
-            │   │
-            │   └───VulRep
-            │           VulRep.css
-            │           VulRep.html
-            │           VulRep.js
-            │
-            └───ParkDev
-                    README.md
-        PARKIE\BOT
-        │   admin.py
-        │   apps.py
-        │   bot.py
-        │   models.py
-        │   tests.py
-        │   urls.py
-        │   views.py
-        │   __init__.py
-        │
-        ├───migrations
-        │       __init__.py
-        │
-        └───templates
-            └───bot
-                    bot.html
-        PARKIE\HELPBOT
-        │   manage.py
-        │
-        └───helpbot
-            │   asgi.py
-            │   settings.py
-            │   urls.py
-            │   wsgi.py
-            │   __init__.py
-            │
-            └───__pycache__
-                    settings.cpython-311.pyc
-                    urls.cpython-311.pyc
-                    __init__.cpython-311.pyc
-        PARKIE\TEST4CORE
-            test.css
-            test.html
-            test.js
-
-
+Will be updated
 
 </details>
+
+Documentation for this project: https://github.com/P4RKI3/.github/wiki
+# Note: IT IS PUBLIC SO AVOID POSTING CODE THERE
