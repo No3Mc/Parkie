@@ -53,3 +53,4 @@ Will be updated
 </details>
 
 Documentation for this project: https://github.com/P4RKI3/.github/wiki
+# Note: IT IS PUBLIC SO AVOID POSTING CODE THERE
