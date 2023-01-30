@@ -168,3 +168,62 @@ header {
 #menu-drawer.visible {
   transform: translateX(0);
 }
+
+
+
+
+
+
+
+
+
+.notification-icon {
+  position: relative;
+}
+
+.notification-icon img {
+  width: 30px;
+  height: 30px; 
+  float: right;
+}
+
+.notification-dropdown {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 30px;
+  right: 0;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification-header h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.notification-body {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#notifications {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#notifications li {
+  cursor: pointer;
+}
+
+#notifications li:hover {
+  background-color: #ddd;
+}

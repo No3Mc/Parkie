@@ -1,0 +1,8 @@
+{
+    "notifications": [
+      { "title": "Notification 1", "url": "/notification/1" },
+      { "title": "Notification 2", "url": "/notification/2" },
+      { "title": "Notification 3", "url": "/notification/3" }
+    ]
+  }
+  

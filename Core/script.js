@@ -1,9 +1,39 @@
 // test code
 
 
+const notificationIcon = document.querySelector('.notification-icon');
+const notificationDropdown = document.querySelector('.notification-dropdown');
+const notifications = document.querySelector('#notifications');
+
+notificationIcon.addEventListener('click', function() {
+  if (notificationDropdown.style.display === 'block') {
+    notificationDropdown.style.display = 'none';
+  } else {
+    notificationDropdown.style.display = 'block';
+  }
+});
 
 
+const getNotifications = async () => {
+  const response = await fetch('/Core/routes/CustDev/Noifs/Notifs.json');
+  const notificationsList = await response.json();
+  return notificationsList.notifications;
+};
 
+
+const renderNotifications = async () => {
+  const notificationsList = await getNotifications();
+  notificationsList.forEach((notification) => {
+    const li = document.createElement('li');
+    li.innerHTML = notification.title;
+    li.addEventListener('click', function() {
+      window.location.href = notification.url;
+    });
+    notifications.appendChild(li);
+  });
+};
+
+renderNotifications();
 
 
 

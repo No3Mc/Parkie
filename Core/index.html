@@ -26,7 +26,26 @@
 
   <body>
 
+
+
+
+
     <header>
+      <div class="notification-icon">
+        <img src="/Core/ICO/notification.png" alt="notification icon">
+        <div class="notification-dropdown">
+          <div class="notification-header">
+            <h4>Notifications</h4>
+          </div>
+          <div class="notification-body">
+            <ul id="notifications">
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+
       <div class="menu-icon"><img src="ico/menu.png" alt="menu icon"></div> 
 
       <!-- for phone -->
@@ -55,7 +74,7 @@
 
       <div class="dropdown">
         <div class="profile-circle">
-          <img src="profile.png" alt="profile" width="20" height="20">
+          <img src="/Core/ico/profile.png" alt="profile" width="20" height="20">
         </div>
         <div class="dropdown-content">
           <a href="#feedback">Feedback</a>
@@ -71,6 +90,7 @@
         
       </div>
 
+
     </header>
 
       <iframe id="Abtframe" class="center-frame"></iframe>
@@ -81,6 +101,12 @@
       Copyright ©2023 Parkie
       <a href="{% url 'bot' %}" id="botBT">Help Bot</a>
     </div>
+
+
+
+
+
+
 
   
   </body>
