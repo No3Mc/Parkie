@@ -1,0 +1,33 @@
+name: Publish Release
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "release*"
+
+jobs:
+  publish_release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check for "release" in commit message
+      id: check_commit
+      run: |
+        echo "Checking commit message for keyword 'release'..."
+        if ! grep -q "release" <<< "$GITHUB_EVENT_NAME"; then
+          echo "Commit does not contain keyword 'release'. Exiting."
+          exit 78
+        fi
+
+    - name: Create Release
+      uses: actions/create-release@v6
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ env.TAG_NAME }}
+        release_name: Release ${{ env.TAG_NAME }}
+        draft: false
+        prerelease: false
+
