@@ -10,21 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check commit message for keyword "release"
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Check commit message for keyword 'release'
       run: |
         echo "Checking commit message for keyword 'release'..."
-        commit_message=$(git log --format=%B -n 1 $GITHUB_SHA)
-        if ! grep -i "release" <<< "$commit_message"; then
+        if ! grep -i "release" <<< "$(git log --pretty=format:"%s" -1)"; then
           echo "Commit does not contain keyword 'release'. Exiting."
           exit 78
         fi
-
-    - name: Publish Release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v1.0
-        release_name: Release v1.0
-        draft: false
-        prerelease: false
+    
+    - name: Publish release
+      run: echo "Publishing release"
