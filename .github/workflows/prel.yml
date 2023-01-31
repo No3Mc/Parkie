@@ -1,4 +1,4 @@
-name: Release on Commit
+name: Publish Release
 
 on:
   push:
@@ -6,23 +6,25 @@ on:
       - main
 
 jobs:
-  release_job:
+  publish_release:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check commit message
+    - name: Check commit message for keyword "release"
       run: |
         echo "Checking commit message for keyword 'release'..."
-        if ! grep -i "release" <<< "$GITHUB_SHA"; then
+        commit_message=$(git log --format=%B -n 1 $GITHUB_SHA)
+        if ! grep -i "release" <<< "$commit_message"; then
           echo "Commit does not contain keyword 'release'. Exiting."
           exit 78
         fi
+
     - name: Publish Release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: "v$(date +'%Y%m%d%H%M%S')"
-        release_name: "Automatic Release $(date +'%Y-%m-%d %H:%M:%S')"
+        tag_name: v1.0
+        release_name: Release v1.0
         draft: false
         prerelease: false
