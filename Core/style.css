@@ -80,16 +80,6 @@ header {
 
 
 
-#botBT {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  cursor: pointer;
-  margin-left: 100px;
-  margin-right: 20px;
-}
-
 /* footer */
 #footer {
   background-color: #333;
@@ -227,3 +217,16 @@ header {
 #notifications li:hover {
   background-color: #ddd;
 }
+
+
+
+
+/* #botBT {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  margin-left: 100px;
+  margin-right: 20px;
+} */

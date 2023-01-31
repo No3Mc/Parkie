@@ -81,15 +81,15 @@ dropdownContent.addEventListener("mouseout", function() {
   dropdownContent.classList.remove("show");
 });
 
-document.getElementById("botBT").addEventListener("click", function(event) {
-  event.preventDefault(); 
-  var botUrl = this.getAttribute("href");
-  var iframe = document.createElement('iframe');
-  iframe.src = botUrl;
-  iframe.height = "500";
-  iframe.width = "400";
-  document.body.appendChild(iframe);
-});
+// document.getElementById("botBT").addEventListener("click", function(event) {
+//   event.preventDefault(); 
+//   var botUrl = this.getAttribute("href");
+//   var iframe = document.createElement('iframe');
+//   iframe.src = botUrl;
+//   iframe.height = "500";
+//   iframe.width = "400";
+//   document.body.appendChild(iframe);
+// });
 
 
 // "Multani Sohan Halwa";
