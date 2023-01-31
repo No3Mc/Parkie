@@ -12,13 +12,13 @@ jobs:
     - name: Install dependencies
       run: npm install @octokit/rest
     - name: Comment on Pull Request
-      uses: actions/github-script@v6
+      uses: actions/github-script@v3
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         script: |
-          const core = require("@actions/core");
           const octokit = require("@octokit/rest")();
+          const core = require("@actions/core");
           octokit.authenticate({
             type: "token",
             token: core.getInput("GITHUB_TOKEN"),
