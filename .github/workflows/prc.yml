@@ -25,5 +25,5 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             issue_number: context.issue.number,
-            body: "Nice work!"
+            body: "Nice work, @" + context.payload.pull_request.user.login + "!"
           });
