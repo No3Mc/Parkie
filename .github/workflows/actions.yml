@@ -17,10 +17,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         script: |
+          const core = require("@actions/core");
           const octokit = require("@octokit/rest")();
           octokit.authenticate({
             type: "token",
-            token: process.env.GITHUB_TOKEN,
+            token: core.getInput("GITHUB_TOKEN"),
           });
           octokit.issues.createComment({
             owner: context.repo.owner,
