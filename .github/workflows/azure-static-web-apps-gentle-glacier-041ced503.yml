@@ -34,6 +34,21 @@ jobs:
           output_location: "output" # Built app content directory - optional
           
           ###### End of Repository/Build Configurations ######
+      - name: Post success comment
+        if: success()
+        uses: actions/github-script@0.9.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const payload = {
+              body: "Deployment to Azure Static Web Apps successful 🚀"
+            };
+            const pr = context.payload.pull_request;
+            if (pr) {
+              await github.issues.createComment({...payload, issue_number: pr.number});
+            }
+
+
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
