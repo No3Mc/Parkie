@@ -1,0 +1,47 @@
+name: Label Pull Request
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  label_job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install dependencies
+      run: npm install @octokit/rest
+
+    - name: Label Pull Request
+      uses: actions/github-script@v3
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        script: |
+          const octokit = require("@octokit/rest")();
+          octokit.authenticate({
+            type: "token",
+            token: process.env.GITHUB_TOKEN,
+          });
+          
+          const commitMessage = octokit.pulls.listCommits({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number
+          }).data[0].commit.message.toLowerCase();
+          
+          let label = "";
+          if (commitMessage.includes("wont fix")) {
+            label = "wontfix";
+          } else if (commitMessage.includes("in progress")) {
+            label = "in progress";
+          }
+          
+          if (label) {
+            octokit.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: [label]
+            });
+          }
