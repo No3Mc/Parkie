@@ -1,0 +1,36 @@
+name: Assign Reviewer
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  assign_reviewer_job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install dependencies
+      run: npm install @octokit/rest
+
+    - name: Assign Reviewer
+      uses: actions/github-script@v6
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        script: |
+          const Octokit = require("@octokit/rest");
+          const octokit = new Octokit();
+          
+          octokit.authenticate({
+            type: "token",
+            token: process.env.GITHUB_TOKEN,
+          });
+          
+          octokit.pulls.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            head: context.sha,
+            base: "master",
+            maintainer_can_modify: true,
+            reviewers: ["No3Mc"]
+          });
