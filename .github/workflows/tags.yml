@@ -9,8 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
     - name: Install dependencies
-      run: npm install @octokit/rest
+      run: npm ci
 
     - name: Label Pull Request
       uses: actions/github-script@v3
@@ -24,11 +27,13 @@ jobs:
             token: process.env.GITHUB_TOKEN,
           });
           
-          const commitMessage = octokit.pulls.listCommits({
+          const { data } = await octokit.pulls.listCommits({
             owner: context.repo.owner,
             repo: context.repo.repo,
             pull_number: context.issue.number
-          }).data[0].commit.message.toLowerCase();
+          });
+
+          const commitMessage = data[0].commit.message.toLowerCase();
           
           let label = "";
           if (commitMessage.includes("wont fix")) {
