@@ -10,8 +10,7 @@ jobs:
 
     steps:
     - name: Install dependencies
-      run: |
-        npm install @octokit/rest
+      run: npm install @octokit/rest
 
     - name: Label Pull Request
       uses: actions/github-script@v3
