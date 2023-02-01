@@ -34,7 +34,21 @@ jobs:
           if (commitMessage.includes("wont fix")) {
             label = "wontfix";
           } else if (commitMessage.includes("in progress")) {
-            label = "in progress";
+            label = "In progress";
+          } else if (commitMessage.includes("backlog")) {
+            label = "backlog";
+          } else if (commitMessage.includes("bug")) {
+            label = "bug";
+          } else if (commitMessage.includes("documentation")) {
+            label = "documentation";
+          } else if (commitMessage.includes("Done")) {
+            label = "done";
+          } else if (commitMessage.includes("help wanted")) {
+            label = "help wanted";
+          } else if (commitMessage.includes("in review")) {
+            label = "in review";
+          } else if (commitMessage.includes("question")) {
+            label = "question";
           }
           
           if (label) {
