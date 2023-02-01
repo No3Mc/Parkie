@@ -28,7 +28,7 @@ jobs:
           })).data[0].commit.message.toLowerCase();
           
           let label = "";
-          if (commitMessage.includes("wont fix")) {
+          if (commitMessage.includes("won't fix")) {
             label = "wontfix";
           } else if (commitMessage.includes("in progress")) {
             label = "In progress";
