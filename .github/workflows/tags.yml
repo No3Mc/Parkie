@@ -13,7 +13,7 @@ jobs:
       run: npm install @octokit/rest
 
     - name: Label Pull Request
-      uses: actions/github-script@v3
+      uses: actions/github-script@v6
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
