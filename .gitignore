@@ -1,2 +1,8 @@
-node_modules/
+
+
 db.env
+
+node_modules
+
+env
+
