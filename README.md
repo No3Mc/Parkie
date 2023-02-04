@@ -7,6 +7,7 @@ Chamber Of Secrets
 | [Umar](https://github.com/itsumarsoomro) | Pnumber | [Park slot Booking Component](https://github.com/P4RKI3/Parkie#park-slot-booking) |
 | [Nav](https://github.com/navnoor1) | Pnumber | [Client Management Component](https://github.com/P4RKI3/Parkie#client-management) |
 | [Syed](https://github.com/No3Mc) | P2652259 | [Customer Managment Component](https://github.com/P4RKI3/Parkie#customer-management) |
+
 Documentation for this project: <https://github.com/P4RKI3/.github/wiki>
 
 **Note:** It is public so `AVOID POSTING CODE THERE`.
