@@ -18,9 +18,9 @@ Documentation for this project: <https://github.com/P4RKI3/.github/wiki>
 
 ## Customer Management
 
-Account management (Login, )
-Billing and payment methods
-Customer support. (Documentation and FAQs)
-Customer Communications. (Email and online chatbot)
-Customer Feedback (form to fill out to get customer feedback)
-Customer engagement (page for promotions)
+1. Account management (Login, Register, Logout, Profile, Password reset, etc.)
+2. Billing and payment methods ()
+3. Customer support. (Documentation and FAQs)
+4. Customer Communications. (Email and online chatbot)
+5. Customer Feedback (form to fill out to get customer feedback)
+6. Customer engagement (page for promotions)
