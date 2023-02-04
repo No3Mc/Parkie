@@ -5,8 +5,8 @@ Chamber Of Secrets
 | Name | Component | Component |
 | ----------- | ----------- | ----------- |
 | [Umar](https://github.com/itsumarsoomro) | Pnumber | [Park slot Booking Component](https://github.com/P4RKI3/Parkie#park-slot-booking) |
-| [Nav](https://github.com/navnoor1) | Pnumber | [Client Management Component](https://github.com/P4RKI3/Parkie#client-management) |
-| [Syed](https://github.com/No3Mc) | P2652259 | [Customer Managment Component](https://github.com/P4RKI3/Parkie#customer-management) |
+| [Nav](https://github.com/navnoor1) | Pnumber | [Client Management Component](https://github.com/P4RKI3/Parkie#client-management-component) |
+| [Syed](https://github.com/No3Mc) | P2652259 | [Customer Managment Component](https://github.com/P4RKI3/Parkie#customer-management-component) |
 
 Documentation for this project: <https://github.com/P4RKI3/.github/wiki>
 
@@ -16,7 +16,7 @@ Documentation for this project: <https://github.com/P4RKI3/.github/wiki>
 
 ## Client Management Component
 
-## Customer Management
+## Customer Management Component
 
 1. Account management (Login, Register, Logout, Profile, Password reset, etc.)
 2. Billing and payment methods ()
