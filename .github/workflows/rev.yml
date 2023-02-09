@@ -1,8 +1,10 @@
 name: Assign Reviewer
 
 on:
+  pull_request:
+    types: [opened, synchronize]
   push:
-    branches: [master]
+    branches: [master, develop, feature/*]
 
 jobs:
   assign_reviewer_job:
@@ -26,11 +28,14 @@ jobs:
             token: process.env.GITHUB_TOKEN,
           });
           
-          octokit.pulls.create({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            head: context.sha,
-            base: "master",
-            maintainer_can_modify: true,
-            reviewers: ["No3Mc"]
-          });
+          const context = require("@actions/github").context;
+          const pullNumber = context.payload.pull_request ? context.payload.pull_request.number : null;
+          
+          if (pullNumber) {
+            octokit.pulls.createReviewRequest({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pullNumber,
+              reviewers: ["No3Mc"],
+            });
+          }

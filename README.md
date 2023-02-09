@@ -18,7 +18,7 @@ Documentation for this project: <https://github.com/P4RKI3/.github/wiki>
 
 ## Customer Management Component
 
-1. Account management ([Rgister](Core/routes/CustDev/Register), [Login](Core/routes/CustDev/Login), [Profile](Core/routes/CustDev/Profile))
+1. Account management ([Register](Core/routes/CustDev/Register), [Login](Core/routes/CustDev/Login), [Profile](Core/routes/CustDev/Profile))
 2. Billing and payment methods ([Payment Methods](Core/routes/CustDev/PayMeths), )
 3. Customer support. ([Documentation and FAQs](Core/routes/CustDev/DocnFAQ))
 4. Customer Communications. (Email and [chatbot](django_helpbot))
