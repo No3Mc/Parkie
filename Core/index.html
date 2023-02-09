@@ -2,107 +2,116 @@
 <html lang="en">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <head>
+    <!-- Meta Information for the webpage -->
     <meta charset="utf-8">
     <title>Parkie</title>
+    <!-- Link the CSS file -->
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="Parkie.ico" />
-    <script  type="module" src="script.js"></script>
-<script>
-var connectionstring = "";
-</script>
-
+    <!-- Import the JavaScript file -->
+    <script type="module" src="script.js"></script>
+    <!-- Variable to store the connection string -->
     <script>
-        function changeIframe(iframeId, src) {
-            var iframes = document.getElementsByTagName("iframe");
-            for (var i = 0; i < iframes.length; i++) {
-                iframes[i].style.display = "none";
-            }
-            document.getElementById(iframeId).src = src;
-            document.getElementById(iframeId).style.display = "block";
-          }
+      var connectionstring = "";
+    </script>
+    <!-- Function to change the iframe -->
+    <script>
+      function changeIframe(iframeId, src) {
+        // Hide all iframes
+        var iframes = document.getElementsByTagName("iframe");
+        for (var i = 0; i < iframes.length; i++) {
+          iframes[i].style.display = "none";
+        }
+        // Show the iframe with the specified ID and set its source
+        document.getElementById(iframeId).src = src;
+        document.getElementById(iframeId).style.display = "block";
+      }
     </script>
   </head>
 
   <body>
-
-    
-
-
-
-
+    <!-- Header section of the page -->
     <header>
-      
+      <!-- Notification Icon -->
       <div class="notification-icon">
         <img src="/Core/ico/notification.png" alt="notification icon">
+        <!-- Notification Dropdown -->
         <div class="notification-dropdown">
+          <!-- Notification Header -->
           <div class="notification-header">
             <h4>Notifications</h4>
           </div>
+          <!-- Notification Body -->
           <div class="notification-body">
-            <ul id="notifications">
-            </ul>
+            <ul id="notifications"></ul>
           </div>
         </div>
       </div>
-
-
-
-      <div class="menu-icon"><img src="ico/menu.png" alt="menu icon"></div> 
-
-      <!-- for phone -->
+      <!-- Menu Icon -->
+      <div class="menu-icon">
+        <img src="ico/menu.png" alt="menu icon">
+      </div>
+      <!-- Menu Drawer for phone -->
       <div id="menu-drawer">
         <nav>
           <ul>
             <li>
-            <button type="submit" onclick="changeIframe('Abtframe', 'routes/CustDev/AboutUs/AboutUs.html')">About Us</button>
-          </li>
-        <li>  
-          <button type="submit" onclick="changeIframe('Logframe', 'routes/CustDev/Login/login.html')">Login</button>
-        </li>  
-      <li>  
-        <button type="submit" onclick="changeIframe('Regframe', 'routes/CustDev/Register/Register.html')">Register</button>
-    </li>    
-      </ul>
+              <!-- About Us button -->
+              <button type="submit" onclick="changeIframe('Abtframe', 'routes/CustDev/AboutUs/AboutUs.html')">About Us</button>
+            </li>
+            <li>
+              <!-- Login button -->
+              <button type="submit" onclick="changeIframe('Logframe', 'routes/CustDev/Login/login.html')">Login</button>
+            </li>
+            <li>
+              <!-- Register button -->
+              <button type="submit" onclick="changeIframe('Regframe', 'routes/CustDev/Register/Register.html')">Register</button>
+            </li>
+          </ul>
         </nav>
       </div>
+<!-- Logo -->
+<div class="logo-container">
+  <a draggable="false" href="https://www.parkie.app/">
+    <img draggable="false" src="Parkie.ico" alt="Parkieimg" class="logoimg">
+  </a>
+</div>
 
-      <div class="logo-container">
-        <a draggable="false" href="https://www.parkie.app/">
-          <img draggable="false" src="Parkie.ico" alt="Parkieimg" class="logoimg">
-        </a>
-      </div>
-      
+<!-- Dropdown Menu -->
+<div class="dropdown">
+  <!-- Profile Icon -->
+  <div class="profile-circle">
+    <img src="/Core/ico/profile.png" alt="profile" width="20" height="20">
+  </div>
+  <!-- Dropdown Content -->
+  <div class="dropdown-content">
+    <a href="#feedback">Feedback</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#logout">Logout</a>
+  </div>
+</div>
+<br><br><br><br>
 
-      <div class="dropdown">
-        <div class="profile-circle">
-          <img src="/Core/ico/profile.png" alt="profile" width="20" height="20">
-        </div>
-        <div class="dropdown-content">
-          <a href="#feedback">Feedback</a>
-          <a href="#dashboard">Dashboard</a>
-          <a href="#logout">Logout</a>
-        </div>
-      </div>
-      <br><br><br><br>
-      <div class="topnav">
-        <button type="submit" onclick="changeIframe('Abtframe', 'routes/CustDev/AboutUs/AboutUs.html')">About Us</button>
-        <button type="submit" onclick="changeIframe('Logframe', 'routes/CustDev/Login/login.html')">Login</button>
-        <button type="submit" onclick="changeIframe('Regframe', 'routes/CustDev/Register/Register.html')">Register</button>
-        
-      </div>
+<!-- Navigation Menu for Desktop -->
+<div class="topnav">
+  <button type="submit" onclick="changeIframe('Abtframe', 'routes/CustDev/AboutUs/AboutUs.html')">About Us</button>
+  <button type="submit" onclick="changeIframe('Logframe', 'routes/CustDev/Login/login.html')">Login</button>
+  <button type="submit" onclick="changeIframe('Regframe', 'routes/CustDev/Register/Register.html')">Register</button>
+</div>
+<!-- Main Content -->
+</header>
 
-    </header>
+<button>Help Bot</button>
 
-    <button>Help Bot</button>
-    
-      <iframe id="Abtframe" class="center-frame"></iframe>
-      <iframe id="Logframe" class="center-frame"></iframe>
-      <iframe id="Regframe" class="center-frame"></iframe>
+  <iframe id="Abtframe" class="center-frame"></iframe>
+  <iframe id="Logframe" class="center-frame"></iframe>
+  <iframe id="Regframe" class="center-frame"></iframe>
 
-    <div id="footer">
-      Copyright ©2023 Parkie
-      <!-- <a href="{% url 'bot' %}" id="botBT">Help Bot</a> -->
-    </div>
+<div id="footer">
+  Copyright ©2023 Parkie
+  <!-- <a href="{% url 'bot' %}" id="botBT">Help Bot</a> -->
+</div>
 
 
 
@@ -112,6 +121,6 @@ var connectionstring = "";
 
 
 
-  
-  </body>
+
+</body>
 </html>
