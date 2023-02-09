@@ -2,7 +2,7 @@ name: Assign Reviewer
 
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   assign_reviewer_job:
@@ -19,16 +19,11 @@ jobs:
       with:
         script: |
           const Octokit = require("@octokit/rest");
-          const octokit = new Octokit();
+          const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
           
-          octokit.authenticate({
-            type: "token",
-            token: process.env.GITHUB_TOKEN,
-          });
-          
-          octokit.pulls.createReviewRequest({
+          octokit.pulls.requestReview({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            pull_number: context.payload.pull_request.number,
+            pull_request_number: context.payload.pull_request.number,
             reviewers: ["No3Mc"]
           });
