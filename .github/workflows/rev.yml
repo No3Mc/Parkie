@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Install dependencies
+      run: npm install
+
     - name: Add Pull Request Reviewer
       uses: AveryCameronUofR/add-reviewer-gh-action@1.0.4
       with: 
