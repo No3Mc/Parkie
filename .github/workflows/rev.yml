@@ -29,12 +29,13 @@ jobs:
           });
           
           const { context } = require("@actions/github");
-          const pullNumber = context.payload.pull_request ? context.payload.pull_request.number : null;
+          const githubContext = context;
+          const pullNumber = githubContext.payload.pull_request ? githubContext.payload.pull_request.number : null;
           
           if (pullNumber) {
             octokit.pulls.createReviewRequest({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+              owner: githubContext.repo.owner,
+              repo: githubContext.repo.repo,
               pull_number: pullNumber,
               reviewers: ["No3Mc"],
             });
