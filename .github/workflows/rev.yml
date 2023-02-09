@@ -9,21 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install dependencies
-      run: npm install @octokit/rest
-
-    - name: Assign Reviewer
-      uses: actions/github-script@v6
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        script: |
-          const { Octokit } = require("@octokit/rest");
-          const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-          
-          octokit.pulls.requestReview({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            pull_request_number: context.payload.pull_request.number,
-            reviewers: ["No3Mc"]
-          });
+    - name: Add Pull Request Reviewer
+      uses: AveryCameronUofR/add-reviewer-gh-action@1.0.4
+      with: 
+        reviewers: "No3Mc"
+        token: ${{ secrets.GITHUB_TOKEN }}
