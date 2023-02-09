@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install dependencies
+    - name: Install npm dependencies
       run: npm install
 
     - name: Add Pull Request Reviewer
