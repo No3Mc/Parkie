@@ -31,3 +31,82 @@
 * [Discussion on shared functionality](https://github.com/P4RKI3/.github/wiki/Documentation#discussion-on-shared-functionality)
 
 This folder has main files which are used to run the [static site](www.parkie.app) on azure.
+
+Directory Structure:
+
+        CORE
+        │   index.html (main html)
+        │   Parkie.ico (icon for the site)
+        │   README.md 
+        │   script.js (main js)
+        │   style.css (main css)
+        │
+        ├───database (db files mongodb)
+        │       Custdb.js (customer db file) (create own db file for each department)
+        │       README.md
+        │
+        ├───ico (icon files for the index.html)
+        │       menu.png
+        │       notification.png
+        │       profile.png
+        │       README.md
+        │
+        └───routes(routes for the sites) (e.g CustDev, ParkDev, ClientDeb)
+            │   README.md
+            │
+            ├───ClientDev (client development)
+            │       README.md (readme for client dev)
+            │
+            ├───CustDev (customer development)
+            │   │   README.md (readme for cust dev)
+            │   │
+            │   ├───AboutUs (about us)
+            │   │       AboutUs.css (css for about us)
+            │   │       AboutUs.html (html for about us)
+            │   │       AboutUs.js (js for about us)
+            │   │
+            │   ├───DocnFAQ (documentation and faq)
+            │   │       DocnFAQ.css (css for docnfaq)
+            │   │       DocnFAQ.html (html for docnfaq)
+            │   │       DocnFAQ.js (js for docnfaq)
+            │   │
+            │   ├───Login (login page)
+            │   │       login.css (css for login)
+            │   │       login.html (html for login)
+            │   │       login.js (js for login)
+            │   │
+            │   ├───Notifs (notifications)
+            │   │       Notifs.json (json for notifs bar)
+            │   │
+            │   ├───PayMeths (payment methods)
+            │   │       PayMeths.css (css for paymeths)
+            │   │       PayMeths.html (html for paymeths)
+            │   │       PayMeths.js (js for paymeths)
+            │   │
+            │   ├───Profile (profile page)
+            │   │       profile.css (css for profile)
+            │   │       profile.html (html for profile)
+            │   │       profile.js (js for profile)
+            │   │
+            │   ├───Promos (promotions page)
+            │   │       Promos.css (css for promos)
+            │   │       Promos.html (html for promos)
+            │   │       Promos.js (js for promos)
+            │   │
+            │   ├───Register (register page)
+            │   │       Register.css (css for register)
+            │   │       Register.html (html for register)
+            │   │       Register.js (js for register)
+            │   │
+            │   └───VulRep (vulnerability reports page)
+            │           VulRep.css (css for vulrep)
+            │           VulRep.html (html for vulrep)
+            │           VulRep.js (js for vulrep)
+            │
+            └───ParkDev (park development)
+                │   README.md
+                │
+                └───MainPg (main page for park dev)
+                        index.html
+                        script.js
+                        style.css
