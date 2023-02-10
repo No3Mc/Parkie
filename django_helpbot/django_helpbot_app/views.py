@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from chatterbot import ChatBot
 from chatterbot.ext.django_chatterbot import DjangoChatBot
 
@@ -17,11 +17,19 @@ bot = ChatBot(
     ]
 )
 
-
 django_bot = DjangoChatBot(bot)
 
 def chatbot(request):
-    context = {
-        'bot': django_bot
-    }
-    return render(request, 'chatbot.html', context)
+    if request.method == 'POST':
+        message = request.POST.get('message')
+        response = django_bot.get_response(message)
+        context = {
+            'bot': django_bot,
+            'response': response
+        }
+        return render(request, 'chatbot.html', context)
+    else:
+        context = {
+            'bot': django_bot
+        }
+        return render(request, 'chatbot.html', context)

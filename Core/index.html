@@ -114,8 +114,15 @@
 </div>
 
 
-
-
+<h1>Chat with the Help Bot</h1>
+<form method="post">
+    {% csrf_token %}
+    <input1 type="text" name="message">
+    <input type="submit" value="Send">
+</form>
+{% if response %}
+    <p>{{ response }}</p>
+{% endif %}
 
 </script>
 
