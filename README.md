@@ -8,7 +8,7 @@ Chamber Of Secrets
 | ----------- | ----------- | ----------- |
 | [Umar](https://github.com/itsumarsoomro) | [P2630030](mailto:P2630030@my365.dmu.ac.uk) | [Park slot Booking Component](https://github.com/P4RKI3/Parkie#park-slot-booking) |
 | [Nav](https://github.com/navnoor1) | [P2630965](mailto:P2630965@my365.dmu.ac.uk) | [Client Management Component](https://github.com/P4RKI3/Parkie#client-management-component) |
-| [Syed](https://github.com/No3Mc) | [P2652259](mailto:P2652259@my365.dmu.ac.uk) | [Customer Managment Component](https://github.com/P4RKI3/Parkie#customer-management-component) |
+| [Syed](https://github.com/No3Mc) | [P2652259](mailto:syed.naqvi3@my365.dmu.ac.uk) | [Customer Managment Component](https://github.com/P4RKI3/Parkie#customer-management-component) |
 
 ## Park Slot Booking Component
 
