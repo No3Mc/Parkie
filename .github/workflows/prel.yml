@@ -1,31 +1,31 @@
-# name: Release
+name: Release
 
-# on:
-#   push:
-#     branches:
-#       - main
+on:
+  push:
+    branches:
+      - main
 
-# jobs:
-#   publish_release_job:
-#     runs-on: ubuntu-latest
+jobs:
+  publish_release_job:
+    runs-on: ubuntu-latest
 
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-#     - name: Checking commit message for keyword 'release'...
-#       run: |
-#         if ! git log -1 --pretty=%B | grep -q "release"; then
-#           echo "Commit does not contain keyword 'release'. Exiting."
-#           exit 78
-#         fi
+    - name: Checking commit message for keyword 'release'...
+      run: |
+        if ! git log -1 --pretty=%B | grep -q "release"; then
+          echo "Commit does not contain keyword 'release'. Exiting."
+          exit 78
+        fi
 
-#     - name: Create a Release
-#       uses: actions/create-release@v1
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#         tag_name: v${{ env.TAG_NAME }}
-#         release_name: Release ${{ env.TAG_NAME }}
-#         draft: false
-#         prerelease: true
+    - name: Create a Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ env.TAG_NAME }}
+        release_name: Release ${{ env.TAG_NAME }}
+        draft: false
+        prerelease: true
