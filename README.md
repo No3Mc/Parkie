@@ -2,9 +2,6 @@
 
 **Note:** Wiki is public so `AVOID POSTING CODE THERE`.
 
-<div style="display: flex;">
-<div style="width: 50%;">
-
 Chamber Of Secrets
 
 | Name | Component | Component |
@@ -39,44 +36,3 @@ Chamber Of Secrets
 4. Customer Communications. (Email and [chatbot](django_helpbot))
 5. Customer Feedback ([Vulnerability Reporting](Core/routes/CustDev/VulRep))
 6. Customer engagement ([Promotions](Core/routes/CustDev/Promos))
-
-
-
-</div>
-<div style="width: 50%; padding-left: 10px;">
-
-
-<h3>F.A.Q</h3>
-<ul>
-<li><a href="https://github.com/P4RKI3/.github/wiki#faq-general">FAQ General</a></li>
-</ul>
-
-<h3>Company</h3>
-<ul>
-<li><a href="https://github.com/P4RKI3/.github/wiki/Company#vision-and-values">Vision and Values</a></li>
-<li><a href="https://github.com/P4RKI3/.github/wiki/Company#company-overview">Company Overview</a></li>
-<li><a href="https://github.com/P4RKI3/.github/wiki/Company#product-and-services">Product and services</a></li>
-</ul>
-
-
-<h3>Information</h3>
-<ul>
-<li><a href="https://github.com/P4RKI3/.github/wiki/Information#client-information">Client Information</a></li>
-<li><a href="https://github.com/P4RKI3/.github/wiki/Information#customer-information">Customer Information</a></li>
-<li><a href="https://github.com/P4RKI3/.github/wiki/Information#park-slots-information">Park Slots Information</a></li>
-</ul>
-
-
-<h3>Documentation</h3>
-<ul>
-<li><a href="https://github.com/P4RKI3/.github/wiki/Documentation#backlog">Backlog</a></li>
-<li><a href="https://github.com/P4RKI3/.github/wiki/Documentation#code-explanation">Code Explanation</a></li>
-<li><a href="https://github.com/P4RKI3/.github/wiki/Documentation#core-functionality">Core Functionality</a></li>
-<li><a href="https://github.com/P4RKI3/.github/wiki/Documentation#use-case-descriptions">Use Case Descriptions</a></li>
-<li><a href="https://github.com/P4RKI3/.github/wiki/Documentation#examples-of-implemented-testing">Examples of implemented Testing</a></li>
-<li><a href="https://github.com/P4RKI3/.github/wiki/Documentation#examples-of-implemented-security">Examples of implemented Security</a></li>
-<li><a href="https://github.com/P4RKI3/.github/wiki/Documentation#discussion-on-shared-functionality">Discussion on shared functionality</a></li>
-</ul>
-
-</div>
-</div>
