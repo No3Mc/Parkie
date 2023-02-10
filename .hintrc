@@ -5,6 +5,10 @@
   "hints": {
     "html-checker": "off",
     "axe/language": "off",
-    "axe/text-alternatives": "off"
+    "axe/text-alternatives": "off",
+    "markdown-lint/no-inline-html": "off",
+    "hints": {
+      "no-inline-styles": "error"
+  }
   }
 }

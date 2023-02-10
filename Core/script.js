@@ -2,6 +2,7 @@
 
 
 
+<button onclick="window.open('http://localhost:8000/chat/')">Help Bot</button>
 
 
 
