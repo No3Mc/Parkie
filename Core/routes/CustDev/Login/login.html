@@ -1,32 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='login.css'>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="container">
-    <form id="login-form" class="login-form">
-        <h1>Login</h1>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter kar bey apna usrnm" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter kar bey apna pswd" required>
-        <button type="submit" id="submit-btn">Submit</button>
-        <div class="fb-login-container">
-            <fb:login-button 
-                scope="public_profile,email"
-                onlogin="checkLoginState();">
-            </fb:login-button>
+  </head>
+  <body>
+    <div class="container">
+      <form id="login-form" class="login-form">
+        <h1>Welcome Back!</h1>
+        <h2>Log in</h2>
+        <div class="login-options">
+          <div class="option" style="display: flex;">
+            <a href="https://www.facebook.com/v12.0/dialog/oauth?client_id=YOUR_APP_ID&redirect_uri=YOUR_REDIRECT_URI&scope=email"><img src="https://img.icons8.com/color/48/000000/facebook-new.png"/></a>
+            <div class="option-heading" style="margin-left: 10px;">Use Facebook Account</div>
+          </div>
+          <div class="option" style="display: flex;">
+            <a href="https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&scope=email%20profile&response_type=code"><img src="https://img.icons8.com/color/48/000000/google-logo.png"/></a>
+            <div class="option-heading" style="margin-left: 10px;">Use Google Account</div>
+          </div>
+          <div class="option" style="text-align: center;">
+            <hr style="border-top: 1px solid #ccc; width: 40%; margin-top: 5px; margin-bottom: 10px;">
+            <div class="option-heading">or</div>
+          </div>
+          <div class="option">
+            <div class="option-heading">Email</div>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          </div>
         </div>
-        <div id="message"></div>
+        <div class="input-field">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" id="submit-btn">Login</button>
+        <div class="login-options">
+          <div class="option">
+            <a href="#">Forgot Password?</a>
+          </div>
+          <div class="option">
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+          </div>
+        </div>
         <script src='login.js'></script>
-    </form>
-</div>
-
-</body>
+      </form>
+    </div>
+  </body>
 </html>
