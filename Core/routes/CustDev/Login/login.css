@@ -53,28 +53,36 @@ input {
   transition: all 0.2s ease-in-out;
 }
 
-#submit-btn:hover {
-  background-color: #388E3C;
+.fb-login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-/* bc yaar ye kaam hi nahein kar ke de raha login button */
+.fb-login-button span {
+  display: inline-block;
+  margin-left: 5px;
+}
 
-#fb-login-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
+.fb-login-button {
+  display: inline-block;
   background-color: #3b5998;
-  color: white;
-  border: none;
+  color: #fff;
+  padding: 10px 20px;
   border-radius: 5px;
+  text-align: center;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.fb-login-button:hover {
+  background-color: #2d4373;
 }
 
 #message {
   margin-top: 10px;
   color: red;
   font-weight: bold;
-}
-
-#fb-login-btn:hover {
-  background-color: #2d4373;
 }
