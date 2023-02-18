@@ -1,51 +1,88 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 100px;
-    border: 2px solid #ccc;
-    border-radius: 20px;
-  }
-  
-  label {
-    margin-top: 10px;
-  }
-  
-  input {
-    margin-top: 5px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  #submit-btn {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  #submit-btn:hover {
-    background-color: #3e8e41;
-  }
-  
-  #message {
-    margin-top: 10px;
-    color: red;
-    font-weight: bold;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f1f1f1;
+}
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
 
+h1 {
+  margin-bottom: 30px;
+  color: #333;
+  text-align: center;
+}
+
+label {
+  margin-top: 10px;
+  color: #555;
+  font-weight: bold;
+}
+
+input {
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f1f1f1;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+#submit-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.fb-login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.fb-login-button span {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.fb-login-button {
+  display: inline-block;
+  background-color: #3b5998;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.fb-login-button:hover {
+  background-color: #2d4373;
+}
+
+#message {
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
+}

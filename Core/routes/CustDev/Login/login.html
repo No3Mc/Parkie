@@ -6,24 +6,27 @@
     <title>Login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='login.css'>
-
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <form id="login-form">
-          <h1>Login</h1>
-          
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password">
-          <button type="submit" id="submit-btn">Submit</button>
-          <fb:login-button 
-            scope="public_profile,email"
-            onlogin="checkLoginState();">
-          </fb:login-button>
-          <script src='login.js'></script>
-        </form>
-    </div>
+  <div class="container">
+    <form id="login-form" class="login-form">
+        <h1>Login</h1>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter kar bey apna usrnm" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter kar bey apna pswd" required>
+        <button type="submit" id="submit-btn">Submit</button>
+        <div class="fb-login-container">
+            <fb:login-button 
+                scope="public_profile,email"
+                onlogin="checkLoginState();">
+            </fb:login-button>
+        </div>
+        <div id="message"></div>
+        <script src='login.js'></script>
+    </form>
+</div>
+
 </body>
 </html>
