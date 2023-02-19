@@ -1,28 +1,43 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Profile</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='PayMeths.css'>
+<html lang="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <!-- Meta Information for the webpage -->
+    <meta charset="utf-8">
+
+
+    <title>Payment Method Manager</title>
+    <link rel="stylesheet" href="PayMeths.css">
 </head>
 <body>
-<div id="payment-methods">
-    <h2>Payment Methods</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Number</th>
-          <th>Expiration Date</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-
-    </table>
-    <button type="button" onclick="addPaymentMethod()">Add Payment Method</button>
-  </div>
-  <script src='PayMeths.js'></script>
+    <h1>Payment Method Manager</h1>
+    
+    <div id="payment-methods">
+        <h2>Payment Methods</h2>
+        <ul id="payment-methods-list">
+            <!-- Payment methods will be dynamically added here -->
+        </ul>
+        <button id="add-payment-method-btn">Add Payment Method</button>
+    </div>
+    
+    <div id="add-payment-method-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Payment Method</h2>
+            <form id="add-payment-method-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+                <label for="number">Number:</label>
+                <input type="text" id="number" name="number">
+                <label for="expiry">Expiry:</label>
+                <input type="text" id="expiry" name="expiry">
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv">
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="PayMeths.js"></script>
 </body>
 </html>
