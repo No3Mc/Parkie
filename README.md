@@ -36,3 +36,7 @@ Chamber Of Secrets
 4. Customer Communications. (Email and [chatbot](django_helpbot))
 5. Customer Feedback ([Vulnerability Reporting](Core/routes/CustDev/VulRep))
 6. Customer engagement ([Promotions](Core/routes/CustDev/Promos))
+
+
+          cd Parkie/django_helpbot
+          └─$ python manage.py runserver
