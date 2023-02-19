@@ -58,7 +58,9 @@ h2 {
   margin-bottom: 20px;
 }
 
-label {
+.input-field label {
+  display: block;
+  text-align: left;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   font-weight: bold;
@@ -76,28 +78,40 @@ input[type="password"] {
   margin-bottom: 10px;
 }
 
-button[type="submit"] {
-  padding: 10px 20px;
-  background-color: #007bff;
+button {
+  padding: 10px;
+  background-color: #4CAF50;
   color: white;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
+  font-weight: bold;
   border: none;
   border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: all 0.3s ease;
+  margin-bottom: 20px;
 }
 
-button[type="submit"]:hover {
-  background-color: #0062cc;
+button:hover {
+  background-color: #3e8e41;
 }
 
 a {
-  color: #007bff;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  color: #666;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: #000;
+}
+
+@media screen and (max-width: 600px) {
+  .login-form {
+    padding: 20px;
+  }
+  h1 {
+    font-size: 28px;
+  }
+  h2 {
+    font-size: 20px;
+  }
 }
