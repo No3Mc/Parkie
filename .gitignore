@@ -4,8 +4,8 @@ db.env
 
 node_modules
 
-# env
-# .env
+env
+.env
 # added the git token to the .env file
 node_modules
 node_modules
