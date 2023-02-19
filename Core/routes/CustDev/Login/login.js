@@ -1,17 +1,11 @@
-// Initialize the Facebook SDK
-window.fbAsyncInit = function() {
-  FB.init({
-    appId: '875175060267333',
-    cookie: true,
-    xfbml: true,
-    version: 'v8.0'
+// Initialize the Google API
+function init() {
+  gapi.load('auth2', function() {
+    gapi.auth2.init({
+      client_id: '300363373850-okp895hrqjoie27jptut02nljknelgfl.apps.googleusercontent.com'
+    });
   });
-
-  FB.AppEvents.logPageView();
-
-  // Check the user's login status
-  FB.getLoginStatus(statusChangeCallback);
-};
+}
 
 // Load the Facebook SDK asynchronously
 (function(d, s, id) {
@@ -23,14 +17,8 @@ window.fbAsyncInit = function() {
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-// Handle the user's login status
-function statusChangeCallback(response) {
-  if (response.status === 'connected') {
-    console.log('User is logged in and has authorized your app.');
-  } else {
-    console.log('User is not logged in or has not authorized your app.');
-  }
-}
+// Initialize the Google API
+init();
 
 // Handle form submission
 const form = document.getElementById('login-form');
@@ -50,3 +38,38 @@ form.addEventListener('submit', function(event) {
   // Submit the form
   form.submit();
 });
+
+// Handle Google login
+const optionHeadings = document.querySelectorAll('.option-heading');
+optionHeadings.forEach(function(heading) {
+  if (heading.textContent.includes('Use Google Account')) {
+    heading.addEventListener('click', function(event) {
+      event.preventDefault();
+      gapi.auth2.getAuthInstance().signIn();
+    });
+  }
+});
+
+// Handle the user's login status for Facebook
+function statusChangeCallback(response) {
+  if (response.status === 'connected') {
+    console.log('User is logged in and has authorized your app.');
+  } else {
+    console.log('User is not logged in or has not authorized your app.');
+  }
+}
+
+// Initialize the Facebook SDK
+window.fbAsyncInit = function() {
+  FB.init({
+    appId: '875175060267333',
+    cookie: true,
+    xfbml: true,
+    version: 'v8.0'
+  });
+  
+  FB.AppEvents.logPageView();
+  
+  // Check the user's login status
+  FB.getLoginStatus(statusChangeCallback);
+};

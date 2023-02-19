@@ -1,88 +1,119 @@
 .container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 100vh;
-  background-color: #f1f1f1;
 }
 
-form {
+.login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: white;
   padding: 50px;
   border-radius: 10px;
-  background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  margin-bottom: 30px;
-  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
   text-align: center;
 }
 
-label {
-  margin-top: 10px;
-  color: #555;
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
   font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-input {
-  margin-top: 5px;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #f1f1f1;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 16px;
-}
-
-#submit-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.2s ease-in-out;
-}
-
-.fb-login-container {
+.login-options {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.fb-login-button span {
-  display: inline-block;
-  margin-left: 5px;
+.option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-.fb-login-button {
-  display: inline-block;
-  background-color: #3b5998;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.fb-login-button:hover {
-  background-color: #2d4373;
-}
-
-#message {
-  margin-top: 10px;
-  color: red;
+.option-heading {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
   font-weight: bold;
+  margin-left: 10px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.input-field label {
+  display: block;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+a {
+  color: #666;
+}
+
+a:hover {
+  color: #000;
+}
+
+@media screen and (max-width: 600px) {
+  .login-form {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 28px;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
 }
