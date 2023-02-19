@@ -32,3 +32,10 @@ toggleButton.addEventListener('click', () => {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
       })
+
+      function openChatbot() {
+        window.open("http://127.0.0.1:8000/chatbot/", "Chatbot", "width=400,height=400");
+      }
+      
+      
+      
