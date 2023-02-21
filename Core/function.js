@@ -33,7 +33,8 @@ toggleButton.addEventListener('click', () => {
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
       })
 
-
-      
+      function openChatbot() {
+        window.open("routes/CustDev/bot/bot.html");
+      }
       
       
