@@ -413,3 +413,10 @@
     .hero-btns {
         display: flex;
     }
+
+    #chatBtn {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+      }
+      

@@ -34,8 +34,7 @@ toggleButton.addEventListener('click', () => {
       })
 
       function openChatbot() {
-        window.open("http://127.0.0.1:8000/chatbot/", "Chatbot", "width=400,height=400");
+        window.open("routes/CustDev/bot/bot.html");
       }
-      
       
       
