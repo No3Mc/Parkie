@@ -1,58 +1,58 @@
-name: Label Pull Request
+# name: Label Pull Request
 
-on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+# on:
+#   pull_request:
+#     types: [opened, reopened, synchronize]
 
-jobs:
-  label_job:
-    runs-on: ubuntu-latest
+# jobs:
+#   label_job:
+#     runs-on: ubuntu-latest
 
-    steps:
-    - name: Install dependencies
-      run: npm install @octokit/rest
+#     steps:
+#     - name: Install dependencies
+#       run: npm install @octokit/rest
 
-    - name: Label Pull Request
-      uses: actions/github-script@v6
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        script: |
-          const { Octokit } = require("@octokit/rest");
-          const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+#     - name: Label Pull Request
+#       uses: actions/github-script@v6
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       with:
+#         script: |
+#           const { Octokit } = require("@octokit/rest");
+#           const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
           
-          const commitMessage = (await octokit.pulls.listCommits({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            pull_number: context.issue.number
-          })).data[0].commit.message.toLowerCase();
+#           const commitMessage = (await octokit.pulls.listCommits({
+#             owner: context.repo.owner,
+#             repo: context.repo.repo,
+#             pull_number: context.issue.number
+#           })).data[0].commit.message.toLowerCase();
           
-          let label = "";
-          if (commitMessage.includes("won't fix")) {
-            label = "wontfix";
-          } else if (commitMessage.includes("in progress")) {
-            label = "In progress";
-          } else if (commitMessage.includes("backlog")) {
-            label = "backlog";
-          } else if (commitMessage.includes("bug")) {
-            label = "bug";
-          } else if (commitMessage.includes("documentation")) {
-            label = "documentation";
-          } else if (commitMessage.includes("done")) {
-            label = "Done";
-          } else if (commitMessage.includes("help wanted")) {
-            label = "help wanted";
-          } else if (commitMessage.includes("in review")) {
-            label = "in review";
-          } else if (commitMessage.includes("question")) {
-            label = "question";
-          }
+#           let label = "";
+#           if (commitMessage.includes("won't fix")) {
+#             label = "wontfix";
+#           } else if (commitMessage.includes("in progress")) {
+#             label = "In progress";
+#           } else if (commitMessage.includes("backlog")) {
+#             label = "backlog";
+#           } else if (commitMessage.includes("bug")) {
+#             label = "bug";
+#           } else if (commitMessage.includes("documentation")) {
+#             label = "documentation";
+#           } else if (commitMessage.includes("done")) {
+#             label = "Done";
+#           } else if (commitMessage.includes("help wanted")) {
+#             label = "help wanted";
+#           } else if (commitMessage.includes("in review")) {
+#             label = "in review";
+#           } else if (commitMessage.includes("question")) {
+#             label = "question";
+#           }
           
-          if (label) {
-            await octokit.issues.addLabels({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              labels: [label]
-            });
-          }
+#           if (label) {
+#             await octokit.issues.addLabels({
+#               owner: context.repo.owner,
+#               repo: context.repo.repo,
+#               issue_number: context.issue.number,
+#               labels: [label]
+#             });
+#           }
