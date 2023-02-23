@@ -1,60 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Login</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='login.css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
-  
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Login</title>
   </head>
   <body>
-    <div class='container'>
-      <form id='login-form' class='login-form'>
-        <h1>Welcome Back!</h1>
-        <h2>Log in</h2>
-        <div class='login-options'>
-          <div class='option'>
-            <a href='https://www.facebook.com/v12.0/dialog/oauth?client_id=875175060267333&redirect_uri=http://www.parkie.app/&scope=email' title='Log in with Facebook'>
-              <img src='https://img.icons8.com/color/48/000000/facebook-new.png'/>
-            </a>
-            <div class='option-heading'>Use Facebook Account</div>
-          </div>
-          <div class='option'>
-            <a href='https://accounts.google.com/o/oauth2/auth?client_id=300363373850-okp895hrqjoie27jptut02nljknelgfl.apps.googleusercontent.com&redirect_uri=http://www.parkie.app/&scope=email%20profile&response_type=code' title='Log in with Google'>
-              <img src='https://img.icons8.com/color/48/000000/google-logo.png'/>
-            </a>
-            <div class='option-heading'>Use Google Account</div>
-          </div>
-          <div class='option'>
-            <div class="or-container">
-              <hr class="or-line">
-              <div class='option-heading or-text'>or</div>
-              <hr class="or-line">
-            </div>
-          </div>
-          <div class='option'>
-            <label for='email' class='option-heading'>Email</label>
-            <input type='email' id='email' name='email' placeholder='Enter your email' required>
-          </div>
+    <div>
+      <form>
+        <div>
+          <a href='https://www.facebook.com/v12.0/dialog/oauth?client_id=875175060267333&redirect_uri=http://www.parkie.app/&scope=email' title='Log in with Facebook'>
+            <img src='https://img.icons8.com/color/48/000000/facebook-new.png'/>
+          </a>
         </div>
-        <div class='input-field'>
-          <label for='password' class='option-heading'>Password</label>
-          <input type='password' id='password' name='password' placeholder='Enter your password' required>
-        </div>
-        <button type='submit' id='submit-btn'>Login</button>
-        <div class='login-options'>
-          <div class='option'>
-            <a href='#'>Forgot Password?</a>
-          </div>
-          <div class='option'>
-            <p>Don't have an account? <a href='../Register/Register.html'>Sign Up</a></p>
-          </div>
+        <div>
+          <a href='https://accounts.google.com/o/oauth2/auth?client_id=300363373850-okp895hrqjoie27jptut02nljknelgfl.apps.googleusercontent.com&redirect_uri=http://www.parkie.app/&scope=email%20profile&response_type=code' title='Log in with Google'>
+            <img src='https://img.icons8.com/color/48/000000/google-logo.png'/>
+          </a>
         </div>
       </form>
     </div>
-    <script src='login.js'></script>
-    <script src='Core/database/Custdb.js'></script>
   </body>
 </html>
