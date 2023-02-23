@@ -1,20 +1,11 @@
-const facebookLoginButton = document.getElementById('facebook-login-button');
-facebookLoginButton.addEventListener('click', function() {
-  FB.login(function(response) {
-    if (response.authResponse) {
-      console.log('User is logged in and has authorized your app.');
-    } else {
-      console.log('User is not logged in or has not authorized your app.');
-    }
-  }, {scope: 'email'});
-});
+document.addEventListener('DOMContentLoaded', function() {
+  const facebookLoginButton = document.getElementById('facebook-login-button');
+  facebookLoginButton.addEventListener('click', function() {
+    window.location.href = 'https://www.facebook.com/v12.0/dialog/oauth?client_id=875175060267333&redirect_uri=http://www.parkie.app/&scope=email';
+  });
 
-
-const googleLoginButton = document.getElementById('google-login-button');
-googleLoginButton.addEventListener('click', function() {
-  gapi.auth2.getAuthInstance().signIn().then(function(response) {
-    console.log('User is logged in and has authorized your app.');
-  }).catch(function(error) {
-    console.log('User is not logged in or has not authorized your app.');
+  const googleLoginButton = document.getElementById('google-login-button');
+  googleLoginButton.addEventListener('click', function() {
+    window.location.href = 'https://accounts.google.com/o/oauth2/auth?client_id=300363373850&redirect_uri=http://www.parkie.app/&scope=email%20profile&response_type=code';
   });
 });

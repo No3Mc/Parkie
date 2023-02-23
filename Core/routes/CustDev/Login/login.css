@@ -1,5 +1,35 @@
 button {
-  cursor: pointer;
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+  background-color: #007bff;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  width: 200px; /* Add a fixed width to the button element */
+}
+
+button:hover {
+  background-color: #a9a9a9; /* Change the background color on hover */
+}
+
+button img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+#facebook-login-button {
+  background-color: #ffffff;
+}
+
+#google-login-button {
+  background-color: #ffffff;
 }

@@ -5,21 +5,42 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <title>Login</title>
-  </head>
-  <body>
-    <div>
-      <form>
-        <div>
-          <a href='https://www.facebook.com/v12.0/dialog/oauth?client_id=875175060267333&redirect_uri=http://www.parkie.app/&scope=email' title='Log in with Facebook'>
-            <img src='https://img.icons8.com/color/48/000000/facebook-new.png'/>
-          </a>
-        </div>
-        <div>
-          <a href='https://accounts.google.com/o/oauth2/auth?client_id=300363373850-okp895hrqjoie27jptut02nljknelgfl.apps.googleusercontent.com&redirect_uri=http://www.parkie.app/&scope=email%20profile&response_type=code' title='Log in with Google'>
-            <img src='https://img.icons8.com/color/48/000000/google-logo.png'/>
-          </a>
-        </div>
-      </form>
-    </div>
-  </body>
+  <link rel="stylesheet" href="login.css">
+  <script src="login.js"></script>
+    <!-- Facebook JavaScript SDK -->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+  <!-- Google Platform API library -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</head>
+<body>
+  <div>
+    <form>
+      <div class="input-container">
+        
+        <button id='facebook-login-button'>
+          <img src='https://img.icons8.com/color/48/000000/facebook-new.png'/>
+          Log in with Facebook
+        </button>
+        
+        <button id='google-login-button'>
+          <img src='https://img.icons8.com/color/48/000000/google-logo.png'/>
+          Log in with Google
+        </button>
+
+
+        <label for="email" class="input-label">Email</label>
+        <input type="email" id="email" name="email" class="input-field">
+        <!-- if email is zaroori hoyei toh ye line uncomment kar doon ga -->
+        <!-- <input type="email" id="email" name="email" class="input-field" required> -->
+      </div>
+      
+
+      
+    </form>
+  </div>
+
+
+</body>
 </html>
