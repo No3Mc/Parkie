@@ -1,4 +1,42 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 200px;
+}
+
+.button-container button {
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-label {
+  text-align: center;
+}
+
+.input-field {
+  text-align: center;
+}
+
 button {
+  margin: 0 auto;
+  display: block;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,11 +51,11 @@ button {
   transition: background-color 0.2s ease-in-out;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
-  width: 200px; /* Add a fixed width to the button element */
+  width: 200px;
 }
 
 button:hover {
-  background-color: #a9a9a9; /* Change the background color on hover */
+  background-color: #a9a9a9;
 }
 
 button img {

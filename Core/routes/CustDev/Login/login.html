@@ -14,25 +14,26 @@
 <!-- Google Platform API library -->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
-
-
 </head>
 <body>
+  <div class="container">
   <div>
     <form>
-      <div class="input-container">
-        
-        <button id='facebook-login-button'>
+      
+
+      <div class="button-container">
+        <button id='facebook-login-button' type="button">
           <img src='https://img.icons8.com/color/48/000000/facebook-new.png'/>
           Log in with Facebook
         </button>
-        
-        <button id='google-login-button'>
+        <button id='google-login-button' type="button">
           <img src='https://img.icons8.com/color/48/000000/google-logo.png'/>
           Log in with Google
         </button>
-
-
+      </div>
+      
+      <div class="input-container">
+        
         <label for="email" class="input-label">Email</label>
         <input type="email" id="email" name="email" class="input-field">
         <!-- if email is zaroori hoyei toh ye line uncomment kar doon ga -->
