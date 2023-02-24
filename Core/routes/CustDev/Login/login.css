@@ -1,45 +1,50 @@
 .container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-}
-
-.button-container {
+  }
+  
+  .button-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  width: 200px;
-}
-
-.button-container button {
+  max-width: 200px;
+  margin-bottom: 20px;
+  }
+  
+  .button-container button {
   margin-bottom: 10px;
-  width: 200px;
-}
-
-.input-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  }
+  
+  .input-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.input-label {
+  max-width: 400px;
+  }
+  
+  .input-label {
   text-align: center;
-}
-
-.input-field {
+  margin-bottom: 5px;
+  }
+  
+  .input-field {
   text-align: center;
-}
-
-button {
+  margin-bottom: 10px;
+  width: 100%;
+  }
+  
+  button {
   margin: 0 auto;
   display: block;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -51,12 +56,12 @@ button {
   transition: background-color 0.2s ease-in-out;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
-  width: 200px;
-}
-
-button:hover {
+  width: 100%;
+  }
+  
+  button:hover {
   background-color: #a9a9a9;
-}
+  }
 
 button img {
   width: 24px;
@@ -70,4 +75,22 @@ button img {
 
 #google-login-button {
   background-color: #ffffff;
+}
+
+.button-login {
+  display: inline-block;
+  background-color: #4CAF50;
+  border-radius: 4px;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+  margin-right: 10px;
+  width: 100%; /* Use the full width available */
+}
+
+.button-login:hover {
+  background-color: #2E8B57;
 }
