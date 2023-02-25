@@ -152,8 +152,8 @@
     transform: translateY(-50%);
     width: 10px;
     height: 10px;
-    border-left: 1px solid #000;
-    border-bottom: 1px solid #000;
+    border-left: 1px solid #9d9d9d;
+    border-bottom: 1px solid #9d9d9d;
     transition: transform 0.3s ease;
   }
   
