@@ -141,10 +141,43 @@
    udhar se .reg-btn kar dia To bro just kuch stuff ki wajah se isko hata dia
    Kuin ke apne sath keera ho raha tha but tumhara code bht next level tha no doubt */
 
- .login-iframe {
-  width: 400px;
-  height: 600px;
-}
+   .login-button {
+    position: relative;
+  }
+  
+  .dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-left: 1px solid #000;
+    border-bottom: 1px solid #000;
+    transition: transform 0.3s ease;
+  }
+  
+  .dropdown-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 400px;
+    height: 600px;
+    background-color: #fff;
+    border: 1px solid #000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 1;
+  }
+  
+  .login-button:hover .dropdown-icon {
+    transform: translateY(-50%) rotate(-45deg);
+  }
+  
+  .login-button:hover .dropdown-content {
+    display: block;
+  }
+  
   
 
 

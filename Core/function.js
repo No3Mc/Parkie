@@ -43,15 +43,8 @@ toggleButton.addEventListener('click', () => {
 // Get the login button element
 const loginButton = document.getElementById('login-button');
 
-// Get the iframe element
-const iframe = loginButton.querySelector('iframe');
-
-// Add an event listener to the login button to show/hide the iframe
+// Add an event listener to the login button to prevent default behavior
 loginButton.addEventListener('click', (event) => {
   event.preventDefault();
-  if (iframe.style.display === 'none') {
-    iframe.style.display = 'block';
-  } else {
-    iframe.style.display = 'none';
-  }
 });
+
