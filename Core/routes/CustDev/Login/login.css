@@ -1,6 +1,7 @@
 body {
   background-color: #ffffff;
   color: #000000;
+  font-family: Arial, sans-serif;
 }
 
 .container {
@@ -10,26 +11,50 @@ body {
   justify-content: center;
   height: 100vh;
 }
-  
+
 .button-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  max-width: 200px;
+  max-width: 220px;
   margin-bottom: 20px;
+  min-height: 80px;
 }
-  
+
 .button-container button {
   margin-bottom: 10px;
   width: 100%;
   display: flex;
   align-items: center;
+  background-color: #ffffff;
+  border: 2px solid #4CAF50;
+  border-radius: 5px;
+  color: #4CAF50;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+#facebook-login-button {
+  width: 100%;
+}
+
+#google-login-button {
+  width: 100%;
+}
+
+.button-container button:hover {
+  background-color: #4CAF50;
+  color: #ffffff;
 }
 
 .button-container button img {
-  /* filter: brightness(0.5) hue-rotate(120deg); */
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
 }
 
 .input-container {
@@ -39,76 +64,53 @@ body {
   justify-content: center;
   max-width: 400px;
 }
-  
+
 .input-label {
-  text-align: center;
+  text-align: left;
   margin-bottom: 5px;
+  font-weight: bold;
+  color: #4CAF50;
 }
-  
+
 .input-field {
-  text-align: center;
+  text-align: left;
   margin-bottom: 10px;
   width: 100%;
   border: 2px solid #4CAF50;
   border-radius: 5px;
-  padding: 5px;
-}
-  
-button {
-  margin: 0 auto;
-  display: block;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #000000;
-  background-color: #007bff;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  margin-bottom: 10px;
-  width: 100%;
-}
-  
-button:hover {
-  background-color: #a9a9a9;
+  padding: 10px;
 }
 
-#facebook-login-button {
-  background-color: #ffffff;
-}
-
-#google-login-button {
-  background-color: #ffffff;
-}
-
-.button-login {
+button.button-login {
   display: inline-block;
   background-color: #4CAF50;
-  border-radius: 4px;
+  border-radius: 5px;
   padding: 10px 20px;
-  color: #fff;
+  color: #ffffff;
   font-size: 16px;
   font-weight: bold;
   text-decoration: none;
-  transition: background-color 0.3s ease-in-out;
-  margin-right: 10px;
-  width: 100%; /* Use the full width available */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 20px;
+  width: 100%;
 }
 
-.button-login:hover {
+button.button-login:hover {
   background-color: #2E8B57;
-}
-
-#facebook-login-button:hover, #google-login-button:hover {
-  background-color: #a9a9a9;
 }
 
 a {
   color: #4CAF50;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
 }
 
 a:hover {
+  color: #2E8B57;
   text-decoration: underline;
 }
+
+
+
