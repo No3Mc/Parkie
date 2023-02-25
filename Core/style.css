@@ -141,6 +141,14 @@
    udhar se .reg-btn kar dia To bro just kuch stuff ki wajah se isko hata dia
    Kuin ke apne sath keera ho raha tha but tumhara code bht next level tha no doubt */
 
+   .login-iframe {
+    width: 400px;
+    height: 600px;
+  }
+  
+
+
+
    /* login btn */
    /* .log-btn{ */
     /* background-color: white; */
@@ -161,8 +169,6 @@
     
     transition: all 1s;
     } */
-
-
 
 
     /* login btn */
@@ -186,7 +192,7 @@
     transition: all 1s;
     }
 
-    .log-btn:hover{
+    .reg-btn:hover{
     /* padding: 5px 30px; */
     /* background-image: url("https://cdn-icons-png.flaticon.com/512/2989/2989981.png"); */
     /* From https://css.glass */

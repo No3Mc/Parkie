@@ -62,4 +62,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     document.head.appendChild(googleApiScript);
   });
-  
+
+
+const loginButton = document.getElementById("login-button");
+const loginIframe = document.getElementById("login-iframe");
+
+loginButton.addEventListener("click", function () {
+  if (loginIframe.style.display === "block") {
+    loginIframe.style.display = "none";
+  } else {
+    loginIframe.style.display = "block";
+  }
+});
+
+loginIframe.addEventListener("load", function () {
+  const loginForm = loginIframe.contentWindow.document.getElementById("login-form");
+
+  loginForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    // handle login form submission
+  });
+});

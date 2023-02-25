@@ -36,5 +36,11 @@ toggleButton.addEventListener('click', () => {
       function openChatbot() {
         window.open("routes/CustDev/bot/bot.html");
       }
-      
+
+
+
+
+
+
+
       
