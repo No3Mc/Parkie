@@ -2,6 +2,8 @@ body {
   background-color: #ffffff;
   color: #000000;
   font-family: Arial, sans-serif;
+  margin: 0;
+
 }
 
 .container {
@@ -10,6 +12,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  
 }
 
 .button-container {
