@@ -1,12 +1,17 @@
+body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  }
+}
   
-  .button-container {
+.button-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,35 +19,42 @@
   margin: 0 auto;
   max-width: 200px;
   margin-bottom: 20px;
-  }
+}
   
-  .button-container button {
+.button-container button {
   margin-bottom: 10px;
   width: 100%;
   display: flex;
   align-items: center;
-  }
-  
-  .input-container {
+}
+
+.button-container button img {
+  /* filter: brightness(0.5) hue-rotate(120deg); */
+}
+
+.input-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   max-width: 400px;
-  }
+}
   
-  .input-label {
+.input-label {
   text-align: center;
   margin-bottom: 5px;
-  }
+}
   
-  .input-field {
+.input-field {
   text-align: center;
   margin-bottom: 10px;
   width: 100%;
-  }
+  border: 2px solid #4CAF50;
+  border-radius: 5px;
+  padding: 5px;
+}
   
-  button {
+button {
   margin: 0 auto;
   display: block;
   padding: 10px 20px;
@@ -57,16 +69,10 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
   width: 100%;
-  }
+}
   
-  button:hover {
+button:hover {
   background-color: #a9a9a9;
-  }
-
-button img {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
 }
 
 #facebook-login-button {
@@ -93,4 +99,16 @@ button img {
 
 .button-login:hover {
   background-color: #2E8B57;
+}
+
+#facebook-login-button:hover, #google-login-button:hover {
+  background-color: #a9a9a9;
+}
+
+a {
+  color: #4CAF50;
+}
+
+a:hover {
+  text-decoration: underline;
 }
