@@ -4,44 +4,64 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-// connect to the MongoDB database
-mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true });
+// connect to your MongoDB database
+mongoose.connect('mongodb://localhost/mydatabase');
 
-// create a schema for the customer data
-const customerSchema = new mongoose.Schema({
+// define a schema for the user data
+const userSchema = new mongoose.Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   phone: { type: String, required: true }
 });
 
-// create a model for the customer data
-const Customer = mongoose.model('Customer', customerSchema);
+// create a Mongoose model for the user data
+const User = mongoose.model('User', userSchema);
 
-app.use(bodyParser.urlencoded({ extended: true }));
+// parse incoming requests with JSON payloads
+app.use(bodyParser.json());
 
-// set up the route to handle the form submission
+// handle POST requests to /register
 app.post('/register', (req, res) => {
+  // extract the user data from the request body
   const { email, password, phone } = req.body;
 
-  // validate the form data
-  if (!email || !password || !phone) {
-    return res.status(400).json({ error: 'Please fill in all required fields' });
-  }
+  // create a new User object with the extracted data
+  const user = new User({ email, password, phone });
 
-  // create a new customer document
-  const customer = new Customer({ email, password, phone });
-
-  // save the customer to the database
-  customer.save((err, customer) => {
+  // save the new user object to the database
+  user.save((err, savedUser) => {
     if (err) {
       console.error(err);
-      return res.status(500).json({ error: 'Internal server error' });
+      res.status(500).send('An error occurred while registering the user.');
+    } else {
+      console.log(`User ${savedUser.email} registered successfully.`);
+      res.status(200).send('User registered successfully.');
     }
-    res.status(200).json({ message: 'Registration successful' });
   });
 });
 
-// start the server
+// start the server and handle requests
 app.listen(3000, () => {
-  console.log('Server started on port 3000');
+  console.log('Server listening on port 3000.');
+
+  // handle POST requests to /login
+  app.post('/login', (req, res) => {
+    // extract the email and password from the request body
+    const { email, password } = req.body;
+
+    // find the user with the provided email in the database
+    User.findOne({ email }, (err, user) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('An error occurred while logging in.');
+      } else if (!user) {
+        res.status(401).send('User not found.');
+      } else if (user.password !== password) {
+        res.status(401).send('Incorrect password.');
+      } else {
+        console.log(`User ${user.email} logged in successfully.`);
+        res.status(200).send('User logged in successfully.');
+      }
+    });
+  });
 });
