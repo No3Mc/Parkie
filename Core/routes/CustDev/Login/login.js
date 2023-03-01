@@ -69,6 +69,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+  const Custdb = require('../../../database/Custdb.js');
+
+  const loginForm = document.querySelector('form');
+  loginForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('pass').value;
+  
+    Custdb.loginUser(email, password, function(err, success) {
+      if (err) {
+        console.log('An error occurred while logging in');
+        return;
+      }
+  
+      if (success) {
+        console.log('Login successful');
+        // Redirect to the main page or do something else
+      } else {
+        console.log('Invalid email or password');
+        // Display an error message or do something else
+      }
+    });
+  });
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
