@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
   // Facebook login button click handler
   document.getElementById('facebook-login-button').addEventListener('click', function() {
@@ -61,29 +62,22 @@ document.addEventListener('DOMContentLoaded', function() {
     initGoogleAuth();
   });
   document.head.appendChild(googleApiScript);
-});
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  const loginButton = document.querySelector('.button-login');
-  const loginIframe = document.getElementById("login-iframe");
 
-  loginButton.addEventListener("click", function () {
-    if (loginIframe.style.display === "block") {
-      loginIframe.style.display = "none";
-    } else {
-      loginIframe.style.display = "block";
-    }
-  });
 
-  if (loginIframe) {
-    loginIframe.addEventListener("load", function () {
-      const loginForm = loginIframe.contentWindow.document.getElementById("login-form");
 
-      loginForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        // handle login form submission
-      });
-    });
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
