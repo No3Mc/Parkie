@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 const url = 'mongodb://localhost:27017';
 
 // Database name
-const dbName = 'mydb';
+const dbName = 'USER_DB';
 
 // Routes
 app.post('/register', (req, res) => {
