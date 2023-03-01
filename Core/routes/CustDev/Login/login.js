@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
+//LET IT BE AS IT IS @No3Mc is working on it
 
   const form = document.querySelector('form');
   form.addEventListener('submit', function(event) {
