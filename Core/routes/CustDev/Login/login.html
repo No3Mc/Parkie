@@ -6,14 +6,14 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Login</title>
     <link rel="stylesheet" href="login.css">
-    <script src="login.js"></script>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script src="../../../database/Custdb.js"></script>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
     <div class="container">
       <div>
-        <form id="login-form">
+        <form id="login-form" action="/login" method="POST">
 
           <div class="button-container">
             <button id='facebook-login-button' type="button">
@@ -37,6 +37,6 @@
       </div>
       <a href="../Register/Register.html">Don't have an account? Sign up</a>
     </div>
-    <script src='../../../database/Custdb.js'></script>
+    <script src="login.js"></script>
   </body>
 </html>
