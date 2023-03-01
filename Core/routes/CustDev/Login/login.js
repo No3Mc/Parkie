@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
   // Facebook login button click handler
   document.getElementById('facebook-login-button').addEventListener('click', function() {
@@ -61,29 +62,59 @@ document.addEventListener('DOMContentLoaded', function() {
     initGoogleAuth();
   });
   document.head.appendChild(googleApiScript);
-});
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  const loginButton = document.querySelector('.button-login');
-  const loginIframe = document.getElementById("login-iframe");
 
-  loginButton.addEventListener("click", function () {
-    if (loginIframe.style.display === "block") {
-      loginIframe.style.display = "none";
-    } else {
-      loginIframe.style.display = "block";
-    }
+
+
+
+
+
+//LET IT BE AS IT IS @No3Mc is working on it
+
+  const form = document.querySelector('form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('pass').value;
+
+    fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, password: password })
+    })
+    .then(function(response) {
+      if (response.ok) {
+        console.log('Login successful');
+      } else {
+        console.log('Login failed');
+      }
+    });
   });
 
-  if (loginIframe) {
-    loginIframe.addEventListener("load", function () {
-      const loginForm = loginIframe.contentWindow.document.getElementById("login-form");
 
-      loginForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        // handle login form submission
-      });
-    });
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
+
+
