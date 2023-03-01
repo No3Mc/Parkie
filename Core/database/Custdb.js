@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // connect to your MongoDB database
-mongoose.connect('mongodb://localhost/mydatabase');
+mongoose.connect('mongodb://localhost/USER_DB');
 
 // define a schema for the user data
 const userSchema = new mongoose.Schema({
