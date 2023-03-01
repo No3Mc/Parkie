@@ -86,27 +86,16 @@ loginIframe.addEventListener("load", function () {
 
 
 
-const loginForm = document.querySelector('#login-form');
 
-loginForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
 
-  // extract the email and password from the form
-  const email = document.querySelector('#email').value;
-  const password = document.querySelector('#pass').value;
 
-  // send an HTTP POST request to the /login endpoint
-  const response = await fetch('/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password })
-  });
 
-  // handle the response from the server
-  if (response.ok) {
-    // redirect to the dashboard page or perform some other action
-  } else {
-    const error = await response.text();
-    alert(`Error logging in: ${error}`);
-  }
-});
+
+
+
+
+
+
+
+
+
