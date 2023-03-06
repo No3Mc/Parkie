@@ -1,45 +1,26 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const mongodb = require('mongodb');
+const app = express();
+const port = 3000;
+
 const { loginUser } = require('./logindb');
 
-const app = express();
-app.use(bodyParser.json());
+app.use(express.static('public'));
+app.use(express.json());
 
-const uri = 'mongodb://localhost:27017/USER_DB';
-const client = new mongodb.MongoClient(uri, { useNewUrlParser: true });
-
-app.post('/login', function(req, res) {
-  const email = req.body.email;
-  const password = req.body.password;
-
-  client.connect(function(err) {
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  loginUser(email, password, (err, result) => {
     if (err) {
-      console.log('Failed to connect to MongoDB:', err);
-      res.status(500).send('Failed to connect to database');
-      return;
+      console.log(err);
+      res.status(500).send('Internal server error');
+    } else if (result) {
+      res.status(200).send('Login successful');
+    } else {
+      res.status(401).send('Login failed');
     }
-
-    console.log('Connected to MongoDB');
-
-    const db = client.db();
-    const users = db.collection('users');
-
-    loginUser(email, password, function(err, success) {
-      if (err) {
-        console.log('Failed to authenticate user:', err);
-        res.status(500).send('Failed to authenticate user');
-      } else if (success) {
-        console.log('Login successful');
-        res.status(200).send('Login successful');
-      } else {
-        console.log('Invalid email or password');
-        res.status(401).send('Invalid email or password');
-      }
-
-      client.close();
-    });
   });
 });
 
-app.listen(3000, () => console.log('Server started on port 3000'));
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
