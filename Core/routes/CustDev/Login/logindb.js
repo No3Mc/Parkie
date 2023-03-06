@@ -1,34 +1,49 @@
-// logindb.js
-import mongodb from 'mongodb';
+// Import required packages
+const express = require('express');
+const bodyParser = require('body-parser');
+const MongoClient = require('mongodb').MongoClient;
 
+// Set up the express app
+const app = express();
 
+// Use bodyParser middleware to parse incoming request bodies
+app.use(bodyParser.json());
 
-const uri = 'mongodb://localhost:27017/USER_DB';
-const client = new mongodb.MongoClient(uri, { useNewUrlParser: true });
+// Connect to the MongoDB database
+const url = 'mongodb://localhost:27017';
+const dbName = 'USER_DB';
+MongoClient.connect(url, (err, client) => {
+  if (err) {
+    console.log('Failed to connect to the database:', err);
+    return;
+  }
+  console.log('Connected to the database successfully');
+  const db = client.db(dbName);
 
-const loginUser = function(email, password, callback) {
-  client.connect((err) => {
-    if (err) {
-      console.log('Failed to connect to MongoDB:', err);
-      callback(err);
-      return;
-    }
-
-    console.log('Connected to MongoDB');
-
-    const db = client.db();
-    const users = db.collection('users');
-
-    users.findOne({ email: email, password: password }, function(err, user) {
+  // Define the login endpoint
+  app.post('/login', (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const collection = db.collection('users');
+    collection.findOne({ email: email, password: password }, (err, user) => {
       if (err) {
-        callback(err);
-      } else if (user) {
-        callback(null, true);
-      } else {
-        callback(null, false);
+        console.log('Failed to find user:', err);
+        res.status(500).send('Failed to find user');
+        return;
       }
+      if (!user) {
+        console.log('Invalid email or password');
+        res.status(401).send('Invalid email or password');
+        return;
+      }
+      console.log('User logged in successfully');
+      res.send('User logged in successfully');
     });
   });
-};
 
-export { loginUser };
+  // Start the server
+  const port = 3000;
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+});
