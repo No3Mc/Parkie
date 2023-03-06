@@ -1,21 +1,22 @@
-const mongodb = require('mongodb');
+// logindb.js
+import mongodb from 'mongodb';
 
 const uri = 'mongodb://localhost:27017/USER_DB';
 const client = new mongodb.MongoClient(uri, { useNewUrlParser: true });
 
-client.connect((err) => {
-  if (err) {
-    console.log('Failed to connect to MongoDB:', err);
-    return;
-  }
+const loginUser = function(email, password, callback) {
+  client.connect((err) => {
+    if (err) {
+      console.log('Failed to connect to MongoDB:', err);
+      callback(err);
+      return;
+    }
 
-  console.log('Connected to MongoDB');
+    console.log('Connected to MongoDB');
 
-  const db = client.db();
-  const users = db.collection('users');
+    const db = client.db();
+    const users = db.collection('users');
 
-  // Add login authentication code here
-  function loginUser(email, password, callback) {
     users.findOne({ email: email, password: password }, function(err, user) {
       if (err) {
         callback(err);
@@ -25,7 +26,7 @@ client.connect((err) => {
         callback(null, false);
       }
     });
-  }
+  });
+};
 
-  module.exports = { loginUser };
-});
+export { loginUser };
