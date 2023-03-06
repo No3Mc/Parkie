@@ -9,42 +9,35 @@ app.use(bodyParser.json());
 const uri = 'mongodb://localhost:27017/USER_DB';
 const client = new mongodb.MongoClient(uri, { useNewUrlParser: true });
 
-client.connect((err) => {
-  if (err) {
-    console.log('Failed to connect to MongoDB:', err);
-    return;
-  }
+app.post('/login', function(req, res) {
+  const email = req.body.email;
+  const password = req.body.password;
 
-  console.log('Connected to MongoDB');
+  client.connect(function(err) {
+    if (err) {
+      console.log('Failed to connect to MongoDB:', err);
+      res.status(500).send('Failed to connect to database');
+      return;
+    }
 
-  const db = client.db();
-  const users = db.collection('users');
+    console.log('Connected to MongoDB');
 
-  // Add login authentication code here
-  function loginUser(email, password, callback) {
-    users.findOne({ email: email, password: password }, function(err, user) {
-      if (err) {
-        callback(err);
-      } else if (user) {
-        callback(null, true);
-      } else {
-        callback(null, false);
-      }
-    });
-  }
-
-  app.post('/login', function(req, res) {
-    const email = req.body.email;
-    const password = req.body.password;
+    const db = client.db();
+    const users = db.collection('users');
 
     loginUser(email, password, function(err, success) {
       if (err) {
+        console.log('Failed to authenticate user:', err);
         res.status(500).send('Failed to authenticate user');
       } else if (success) {
+        console.log('Login successful');
         res.status(200).send('Login successful');
       } else {
+        console.log('Invalid email or password');
         res.status(401).send('Invalid email or password');
       }
+
+      client.close();
     });
   });
 });
