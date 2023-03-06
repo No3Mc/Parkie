@@ -1,25 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const form = document.querySelector('form');
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('pass').value;
-
-    fetch('/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, password: password })
-    })
-    .then(function(response) {
-      if (response.ok) {
-        console.log('Login successful');
-      } else {
-        console.log('Login failed');
-      }
-    });
-  });
-});
-
 
 // document.addEventListener('DOMContentLoaded', function() {
 //   // Facebook login button click handler
