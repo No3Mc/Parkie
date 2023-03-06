@@ -1,9 +1,4 @@
-const express = require('express');
-const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
-
-const app = express();
-app.use(bodyParser.json());
 
 const uri = 'mongodb://localhost:27017/USER_DB';
 const client = new mongodb.MongoClient(uri, { useNewUrlParser: true });
@@ -34,4 +29,3 @@ client.connect((err) => {
 
   module.exports = { loginUser };
 });
-
