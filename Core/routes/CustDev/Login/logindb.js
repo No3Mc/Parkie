@@ -1,5 +1,6 @@
 // logindb.js
-import mongodb from 'mongodb';
+import mongodb from './node_modules/mongodb/index.js';
+
 
 const uri = 'mongodb://localhost:27017/USER_DB';
 const client = new mongodb.MongoClient(uri, { useNewUrlParser: true });
