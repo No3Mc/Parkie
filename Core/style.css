@@ -135,8 +135,82 @@
        }
    }
 
+
+      /* bro(@itsumarsoomro) is ko comment is lie kia hai kuin ke ye keera kar raha tha and main bhool gaya tha
+   ke isko comment kar ke apna keera apply kar skta. Waise to name bhei change kar skta tha but html main mein ne pher 
+   udhar se .reg-btn kar dia To bro just kuch stuff ki wajah se isko hata dia
+   Kuin ke apne sath keera ho raha tha but tumhara code bht next level tha no doubt */
+
+   .login-button {
+    position: relative;
+  }
+  
+  .dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-left: 1px solid #9d9d9d;
+    border-bottom: 1px solid #9d9d9d;
+    transition: transform 0.3s ease;
+  }
+  
+  .dropdown-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 400px;
+    height: 600px;
+    background-color: #fff;
+    border: 1px solid #000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 1;
+  }
+  
+  .login-button:hover .dropdown-icon {
+    transform: translateY(-50%) rotate(-45deg);
+  }
+  
+  .login-button:hover .dropdown-content {
+    display: block;
+  }
+  
+  .login-iframe {
+    width: 100%;
+    height: 100%;
+  }
+  
+
+
+
+
+   /* login btn */
+   /* .log-btn{ */
+    /* background-color: white; */
+    /* color: #3CAD4F;
+    padding: 7px 26px;
+    border-radius: 16px;
+    border: 1px solid;
+    border-color: black; */
+
+
+    /* From https://css.glass */
+    /* background: rgba(255, 255, 255, 1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgb(245, 244, 244);
+    
+    transition: all 1s;
+    } */
+
+
     /* login btn */
-    .log-btn{
+    .reg-btn{
     /* background-color: white; */
     color: #3CAD4F;
     padding: 7px 26px;
@@ -156,7 +230,7 @@
     transition: all 1s;
     }
 
-    .log-btn:hover{
+    .reg-btn:hover{
     /* padding: 5px 30px; */
     /* background-image: url("https://cdn-icons-png.flaticon.com/512/2989/2989981.png"); */
     /* From https://css.glass */
@@ -419,4 +493,28 @@
         bottom: 80px;
         right: 20px;
       }
+      
+      .chat-iframe {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 400px;
+        height: 600px;
+        background-color: #fff;
+        border: 1px solid #000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        display: none;
+        z-index: 1;
+        
+      }
+      
+      .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+      
+      
       

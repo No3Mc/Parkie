@@ -31,13 +31,14 @@
     />
   </button>
 
-  <!-- chat btn -->
   <button id="chatBtn" onclick="openChatbot()">Chat</button>
+  <iframe id="chatIframe" class="chat-iframe" src="routes/CustDev/bot/bot.html" frameborder="0"></iframe>
+  
 
   <body>
     <!-- nav -->
     <nav class="navbar">
-      <div class="brand-title"><a href="Index.html">Parkie</a></div>
+      <div class="brand-title"><a href="index.html">Parkie</a></div>
       <a href="#" class="toggle-button" title = "Toggle Button">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -49,10 +50,20 @@
           <li><a href="#">Lend Space</a></li>
           <li><a href="#">Company</a></li>
           <li><a href="#">Help</a></li>
-          <li><a href="routes/CustDev/Login/login.html">Log In</a></li>
+          <li>
+            <a id="login-button" class="login-button" href="#">
+              Login
+              <span class="dropdown-icon"></span>
+              <div class="dropdown-content">
+                <iframe class="login-iframe" src="routes/CustDev/Login/login.html" frameborder="0"></iframe>
+              </div>
+            </a>
+          </li>
+          
+          
           <li>
             <a href="routes/CustDev/Register/Register.html"
-              ><b class="log-btn"
+              ><b class="reg-btn"
                 >Sign Up
                 <!-- <span class="material-symbols-outlined"> arrow_right_alt </span> -->
               </b></a
@@ -60,6 +71,7 @@
           </li>
         </ul>
       </div>
+      
     </nav>
 
     <!-- hero box -->

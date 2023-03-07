@@ -1,0 +1,29 @@
+# name: Pull Request Comment
+
+# on:
+#   pull_request:
+#     types: [opened, reopened]
+
+# jobs:
+#   comment_job:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Install dependencies
+#       run: npm install @octokit/rest
+#     - name: Comment on Pull Request
+#       uses: actions/github-script@v6
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       with:
+#         script: |
+#           const { Octokit } = require("@octokit/rest");
+#           const octokit = new Octokit({
+#             auth: process.env.GITHUB_TOKEN
+#           });
+#           octokit.issues.createComment({
+#             owner: context.repo.owner,
+#             repo: context.repo.repo,
+#             issue_number: context.issue.number,
+#             body: "Nice work, @" + context.payload.pull_request.user.login + "!"
+#           });
