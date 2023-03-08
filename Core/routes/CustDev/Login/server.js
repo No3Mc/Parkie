@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 client.connect((err) => {
   if (err) {
     console.error('Failed to connect to the database:', err);
-    return;
+    process.exit(1);
   }
 
   console.log('Connected to the database');
@@ -38,7 +38,3 @@ app.post('/login', (req, res) => {
 app.listen(3000, () => {
   console.log('Server is listening on port 3000');
 });
-
-
-// db.runCommand({whatsmyuri:1})
-// { "you" : "127.0.0.1:46324", "ok" : 1 }
