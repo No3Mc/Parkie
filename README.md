@@ -1,4 +1,4 @@
-# Parkie | Documentation for this project: <https://github.com/P4RKI3/.github/wiki>
+# Parkie | English and Urdu Documentation for this project: <https://github.com/P4RKI3/.github/wiki>
 
 **Note:** Wiki is public so `AVOID POSTING CODE THERE`.
 
