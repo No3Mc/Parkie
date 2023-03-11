@@ -16,12 +16,13 @@ loginForm.addEventListener('submit', event => {
   })
     .then(response => response.json())
     .then(data => {
-      // Show popup based on server response
+      console.log(data); // Log the server response to the console
       alert(data.message);
     })
     .catch(error => {
       console.error('Error:', error);
     });
+  
 });
 
 
