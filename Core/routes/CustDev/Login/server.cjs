@@ -11,7 +11,7 @@ client.connect(err => {
 
   console.log('Connected to MongoDB Atlas cluster!');
 
-  const db = client.db('myDatabase');
+  const db = client.db('USER_DB');
   const usersCollection = db.collection('users');
 
 
