@@ -1,8 +1,8 @@
 {
   "name": "login",
   "version": "1.0.0",
-  "description": "Mongo Cluster",
-  "main": "server.js",
+  "description": "mongodb Cluster",
+  "main": "server.cjs",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/P4RKI3/Parkie.git"
   },
   "keywords": [
-    "Mongo"
+    "mongodb"
   ],
   "author": "No3Mc",
   "license": "ISC",
