@@ -1,11 +1,12 @@
-import express from 'express.js';
-import bodyParser from 'body-parser.js';
-import mongoose from 'mongoose.js';
-import cors from 'cors.js';
+require = require('esm')(module, { mainFields: ['module', 'main'] });
 
-import { mongoURI } from './config/keys.js';
-import User from './models/User.js';
+import express from 'express';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import cors from 'cors';
 
+import { mongoURI } from './config/keys';
+import User from './models/User';
 
 const app = express();
 
