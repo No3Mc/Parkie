@@ -1,6 +1,6 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const MongoClient = require('mongodb').MongoClient;
+import express from 'express';
+import bodyParser from 'body-parser';
+import { MongoClient } from 'mongodb';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
