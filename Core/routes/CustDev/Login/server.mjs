@@ -35,7 +35,11 @@ client.connect((err) => {
     });
   });
 
-  app.listen(3000, () => {
+  const server = app.listen(3000, () => {
     console.log('Server is listening on port 3000');
+  });
+
+  server.on('error', (err) => {
+    console.error('Server error:', err);
   });
 });
