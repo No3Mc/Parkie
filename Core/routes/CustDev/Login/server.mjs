@@ -16,30 +16,26 @@ client.connect((err) => {
   }
 
   console.log('Connected to the database');
+});
 
-  app.use('/login', (req, res) => {
-    const { email, password } = req.body;
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
 
-    client.db('USER_DB').collection('users').findOne({ email, password }, (err, user) => {
-      if (err) {
-        console.error('Failed to query the database:', err);
-        res.status(500).send('Internal server error');
-        return;
-      }
+  client.db('USER_DB').collection('users').findOne({ email, password }, (err, user) => {
+    if (err) {
+      console.error('Failed to query the database:', err);
+      res.status(500).send('Internal server error');
+      return;
+    }
 
-      if (user) {
-        res.send('Successful');
-      } else {
-        res.send('Invalid');
-      }
-    });
+    if (user) {
+      res.send('Successful');
+    } else {
+      res.send('Invalid');
+    }
   });
+});
 
-  const server = app.listen(3000, () => {
-    console.log('Server is listening on port 3000');
-  });
-
-  server.on('error', (err) => {
-    console.error('Server error:', err);
-  });
+app.listen(3000, () => {
+  console.log('Server is listening on port 3000');
 });
