@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/P4RKI3/Parkie/issues"
   },
-  "homepage": "https://github.com/P4RKI3/Parkie#readme"
+  "homepage": "https://github.com/P4RKI3/Parkie#readme",
+  "dependencies": {
+    "mongodb": "^5.1.0"
+  }
 }
