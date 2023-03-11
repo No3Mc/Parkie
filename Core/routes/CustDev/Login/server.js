@@ -1,5 +1,3 @@
-require = require('esm')(module, { mainFields: ['module', 'main'] });
-
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
