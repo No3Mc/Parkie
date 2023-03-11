@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="login.css">
     <script src="login.js"></script>
     
-    <script type="" src="server.cjs"></script>
+    <script type="module" src="server.cjs"></script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     
@@ -16,7 +16,7 @@
   <body>
     <div class="container">
       <div>
-        <form action="/login" method="POST">
+        <form>
           <div class="button-container">
             <button id='facebook-login-button' type="button">
               <img src='https://img.icons8.com/color/48/000000/facebook-new.png'/>
@@ -34,7 +34,7 @@
             <input type="password" id="pass" name="password" class="input-field">
             <br>
           </div>
-          <button class="button button-login" type="submit">Log in</button>
+          <button id='login-button' class="button button-login" type="submit">Log in</button>
         </form>
       </div>
       <a href="../Register/Register.html">Don't have an account? Sign up</a>
