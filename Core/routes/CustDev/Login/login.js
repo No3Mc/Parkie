@@ -1,27 +1,29 @@
-document.querySelector('.button-login').addEventListener('click', function(event) {
-    event.preventDefault(); // prevent default form submission
-  
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('pass').value;
-  
-    // send AJAX request to server to check if user exists
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/login');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        if (xhr.responseText === 'User valid') {
-          alert('User verified!');
-        } else {
-          alert('Invalid email or password');
-        }
-      } else {
-        alert('Error');
-      }
-    };
-    xhr.send('email=' + email + '&password=' + password);
-  });
-  
+const loginForm = document.querySelector('form');
+
+loginForm.addEventListener('submit', event => {
+  event.preventDefault();
+
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('pass').value;
+
+  const data = { email, password };
+
+  // Send a POST request to the server to handle login
+  fetch('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Show popup based on server response
+      alert(data.message);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+});
+
 
 
 // document.addEventListener('DOMContentLoaded', function() {
