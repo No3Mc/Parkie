@@ -8,8 +8,5 @@
     "start": "node server.js"
   },
   "author": "No3Mc",
-  "license": "ISC",
-  "dependencies": {
-    "aws-sdk": "^2.1333.0"
-  }
+  "license": "ISC"
 }
