@@ -1,4 +1,4 @@
-import { MongoClient } from 'https://unpkg.com/mongodb@4.4.3';
+import { MongoClient } from 'https://unpkg.com/mongodb@5.1.0/lib/index.js?module';
 
 const url = 'mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/test?retryWrites=true&w=majority';
 const dbName = 'USER_DB';
