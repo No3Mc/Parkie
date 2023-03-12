@@ -4,10 +4,10 @@ function loginUser(usernameInput, passwordInput) {
     fetch('../users.csv') // path to the CSV file relative to the HTML file
       .then(response => response.text())
       .then(data => {
-        const rows = data.split('\n').slice(1); // split the CSV into rows and remove the header
+        const rows = data.split('\n').slice(1); 
         const userArray = rows.filter(row => row.trim() !== '').map(row => {
           const [storedUsername, storedPassword] = row.split(',');
-          return { storedUsername, storedPassword: storedPassword.trim() }; // trim whitespace from storedPassword
+          return { storedUsername, storedPassword: storedPassword.trim() };
         });
         for (let i = 0; i < userArray.length; i++) {
           const { storedUsername, storedPassword } = userArray[i];
