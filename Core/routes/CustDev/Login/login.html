@@ -12,6 +12,33 @@
       <input type="password" id="password" name="password" required><br><br>
       <input type="submit" id="submit" value="Login">
     </form>
-    <script src="login.js"></script>
+    <div id="message"></div>
+    <script src="https://unpkg.com/mongodb@4.2.2/lib/browser/mongodb.min.js"></script>
+    <script>
+      const uri = 'YOUR_CLUSTER_URL_HERE';
+      const client = new mongodb.MongoClient(uri, { useNewUrlParser: true });
+      
+      document.getElementById('login-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        try {
+          await client.connect();
+          const database = client.db('USER_DB');
+          const users = database.collection('users');
+          const user = await users.findOne({ email, password });
+          if (user) {
+            document.getElementById('message').textContent = 'Login successful.';
+          } else {
+            document.getElementById('message').textContent = 'Invalid email or password.';
+          }
+        } catch (err) {
+          console.error(err);
+          document.getElementById('message').textContent = 'An error occurred.';
+        } finally {
+          await client.close();
+        }
+      });
+    </script>
   </body>
 </html>
