@@ -1,73 +1,13 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import session from 'express-session';
-import MongoStore from 'connect-mongo';
 
-const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({
-  secret: 'my-secret',
-  resave: false,
-  saveUninitialized: true,
-  store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/user_db' }),
-}));
 
-mongoose.connect('mongodb://localhost:27017/user_db', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error(err));
 
-const userSchema = new mongoose.Schema({
-  email: String,
-  password: String,
-});
 
-const User = mongoose.model('User', userSchema);
 
-app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
 
-  try {
-    const user = await User.findOne({ email, password });
 
-    if (user) {
-      req.session.userId = user._id;
 
-      res.send('User authenticated');
-    } else {
-      res.status(401).send('Invalid email or password');
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Internal server error');
-  }
-});
 
-app.get('/', (req, res) => {
-  const { userId } = req.session;
-
-  if (userId) {
-    res.send('Welcome!');
-  } else {
-    res.redirect('/login');
-  }
-});
-
-app.get('/login', (req, res) => {
-  res.send(`
-    <form method="post" action="/login">
-      <label for="email">Email:</label>
-      <input type="email" name="email" id="email" required><br>
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" required><br>
-      <button type="submit">Log in</button>
-    </form>
-  `);
-});
-
-app.listen(3000, () => console.log('Server started'));
 
 
 
