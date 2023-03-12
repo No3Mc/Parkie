@@ -4,62 +4,45 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
-    <link rel="stylesheet" href="login.css">
-    <script type="module" src="login.js"></script>
-
-    <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-    
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      const firebaseConfig = {
-        apiKey: "AIzaSyCjY9_bAztgizBihCvd1TUjI8LYctouCYc",
-        authDomain: "parkie572.firebaseapp.com",
-        projectId: "parkie572",
-        storageBucket: "parkie572.appspot.com",
-        messagingSenderId: "840311623256",
-        appId: "1:840311623256:web:0f992635959579e8b7842d",
-        measurementId: "G-4XZWCVWLZL"
-      };
-    
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-    </script>
-
-    <script src="https://apis.google.com/js/platform.js" async defer></script>    
-  </head>
-  <body>
-    <div class="container">
-      <div>
-        <form>
-          <div class="button-container">
-            <button id="facebook-login-button" type="button">
-              <img src="https://img.icons8.com/color/48/000000/facebook-new.png"/>
-              Log in with Facebook
-            </button>
-            <button id="google-login-button" type="button">
-              <img src="https://img.icons8.com/color/48/000000/google-logo.png"/>
-              Log in with Google
-            </button>
-          </div>
-          <div class="input-container">
-            <label for="email" class="input-label">Email</label>
-            <input type="email" id="email" name="email" class="input-field">
-            <label for="pass" class="input-label">Password</label>
-            <input type="password" id="pass" name="password" class="input-field">
-            <br>
-          </div>
-          <button id="login-button" class="button button-login" type="submit">Log in</button>
-        </form>
-      </div>
-      <a href="../Register/Register.html">Don't have an account? Sign up</a>
-    </div>
-    <script type="module" src="server.js"></script>
-  </body>
+  <title>Login</title>
+  <!-- Include Firebase SDK scripts -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCjY9_bAztgizBihCvd1TUjI8LYctouCYc",
+      authDomain: "parkie572.firebaseapp.com",
+      projectId: "parkie572",
+      storageBucket: "parkie572.appspot.com",
+      messagingSenderId: "840311623256",
+      appId: "1:840311623256:web:0f992635959579e8b7842d",
+      measurementId: "G-4XZWCVWLZL"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+</head>
+<body>
+  <h1>Login</h1>
+  <form id="login-form">
+    <label for="email">Email:</label>
+    <input type="email" id="email" required><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" required><br>
+    <button type="submit">Login</button>
+  </form>
+  <p>Or sign in with:</p>
+  <button id="google-signin">Google</button>
+  <button id="apple-signin">Apple</button>
+  <!-- Include your login.js script -->
+  <script src="login.js"></script>
+</body>
 </html>
