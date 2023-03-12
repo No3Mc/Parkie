@@ -1,3 +1,21 @@
+// Load the AWS SDK for Node.js
+var AWS = require('aws-sdk');
+
+// Set the region
+AWS.config.update({region: 'REGION'});
+
+// Create the DynamoDB Document Client
+var docClient = new AWS.DynamoDB.DocumentClient();
+
+
+// Use the Document Client to query the table
+docClient.query(params, function(err, data) {
+  if (err) {
+    console.error('Unable to query. Error:', JSON.stringify(err, null, 2));
+  } else {
+    console.log('Query succeeded:', JSON.stringify(data, null, 2));
+  }
+});
 
 
 
