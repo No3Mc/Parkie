@@ -1,16 +1,20 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient } from 'https://unpkg.com/mongodb@4.4.3';
 
 const url = 'mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/test?retryWrites=true&w=majority';
 const dbName = 'USER_DB';
 const collectionName = 'users';
 
 async function checkUser(email, password) {
-  const client = await MongoClient.connect(url);
-  const db = client.db(dbName);
-  const collection = db.collection(collectionName);
-  const user = await collection.findOne({ email, password });
-  client.close();
-  return user;
+  const client = new MongoClient(url);
+  try {
+    await client.connect();
+    const db = client.db(dbName);
+    const collection = db.collection(collectionName);
+    const user = await collection.findOne({ email, password });
+    return user;
+  } finally {
+    await client.close();
+  }
 }
 
 document.querySelector('form').addEventListener('submit', async (event) => {
@@ -25,8 +29,6 @@ document.querySelector('form').addEventListener('submit', async (event) => {
     alert('Invalid email or password.');
   }
 });
-  
-
 
 
 
