@@ -5,12 +5,14 @@ function registerUser(event) {
     const phone = document.getElementById('phone').value;
     const postcode = document.getElementById('postcode').value;
     const password = document.getElementById('password').value;
-    const userData = [name, email, phone, postcode, password].join(',');
-    fetch('../users.csv', {
+    const userData = new FormData();
+    userData.append('name', name);
+    userData.append('email', email);
+    userData.append('phone', phone);
+    userData.append('postcode', postcode);
+    userData.append('password', password);
+    fetch('../register.php', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/csv'
-      },
       body: userData
     })
     .then(response => {
@@ -18,16 +20,5 @@ function registerUser(event) {
       window.location.href = '../Login/login.html'; // redirect to login page after registration
     })
     .catch(error => console.error('Error registering user:', error));
-  
-    // Append the new user's data to the CSV file
-    const userRow = `\n${userData}`;
-    fetch('../users.csv', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/csv'
-      },
-      body: userRow
-    })
-    .catch(error => console.error('Error adding user to CSV:', error));
   }
   
