@@ -13,9 +13,9 @@
       <input type="submit" id="submit" value="Login">
     </form>
     <div id="message"></div>
-    <script src="https://unpkg.com/mongodb@4.2.2/lib/browser/mongodb.min.js"></script>
+    <script src="./mongodb.min.js"></script>
     <script>
-      const uri = 'YOUR_CLUSTER_URL_HERE';
+      const uri = 'mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/test?retryWrites=true&w=majority';
       const client = new mongodb.MongoClient(uri, { useNewUrlParser: true });
       
       document.getElementById('login-form').addEventListener('submit', async (event) => {
