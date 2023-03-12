@@ -1,38 +1,85 @@
-import { MongoClient } from 'https://cdn.skypack.dev/mongodb';
+// Import required modules
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
-const loginForm = document.querySelector('form');
-loginForm.addEventListener('submit', (e) => {
-  e.preventDefault(); // prevent the form from submitting normally
-  const email = document.querySelector('#email').value;
-  const password = document.querySelector('#pass').value;
+// Create an instance of Express app
+const app = express();
 
-  const uri = 'mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/test?retryWrites=true&w=majority';
-  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// Configure the app
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+  secret: 'my-secret',
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+}));
 
-  client.connect().then(() => {
-    console.log('Connected to MongoDB Atlas');
+// Connect to MongoDB database
+mongoose.connect('mongodb://localhost:27017/user_db', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error(err));
 
-    const db = client.db('USER_DB');
-    const users = db.collection('users');
-
-    // find a user with the provided email and password
-    users.findOne({ email, password }, (err, user) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      if (user) {
-        console.log('User authenticated');
-        // TODO: Redirect the user to the home page or some other page
-      } else {
-        console.log('Invalid email or password');
-      }
-    });
-  }).catch(err => {
-    console.error(err);
-  });
+// Define user schema
+const userSchema = new mongoose.Schema({
+  email: String,
+  password: String,
 });
 
+// Define user model
+const User = mongoose.model('User', userSchema);
+
+// Define login route
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Find a user with the provided email and password
+    const user = await User.findOne({ email, password });
+
+    if (user) {
+      // Store user ID in the session
+      req.session.userId = user._id;
+
+      res.send('User authenticated');
+    } else {
+      res.status(401).send('Invalid email or password');
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal server error');
+  }
+});
+
+// Define home route
+app.get('/', (req, res) => {
+  const { userId } = req.session;
+
+  if (userId) {
+    res.send('Welcome!');
+  } else {
+    res.redirect('/login');
+  }
+});
+
+// Define login form route
+app.get('/login', (req, res) => {
+  res.send(`
+    <form method="post" action="/login">
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" required><br>
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" required><br>
+      <button type="submit">Log in</button>
+    </form>
+  `);
+});
+
+// Start the server
+app.listen(3000, () => console.log('Server started'));
 
 
 
