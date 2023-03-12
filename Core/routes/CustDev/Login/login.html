@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Login Page</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <script type="module" src="login.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
-    <h1>Login</h1>
-    <form id="login-form">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required><br><br>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required><br><br>
-      <input type="submit" id="submit" value="Login">
-    </form>
-    <div id="message"></div>
-    <script src="./mongodb.min.js"></script>
-    <script>
-      const uri = 'mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/test?retryWrites=true&w=majority';
-      const client = new mongodb.MongoClient(uri, { useNewUrlParser: true });
-      
-      document.getElementById('login-form').addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        try {
-          await client.connect();
-          const database = client.db('USER_DB');
-          const users = database.collection('users');
-          const user = await users.findOne({ email, password });
-          if (user) {
-            document.getElementById('message').textContent = 'Login successful.';
-          } else {
-            document.getElementById('message').textContent = 'Invalid email or password.';
-          }
-        } catch (err) {
-          console.error(err);
-          document.getElementById('message').textContent = 'An error occurred.';
-        } finally {
-          await client.close();
-        }
-      });
-    </script>
+    <div class="container">
+      <div>
+        <form>
+          <div class="button-container">
+            <button id="facebook-login-button" type="button">
+              <img src="https://img.icons8.com/color/48/000000/facebook-new.png"/>
+              Log in with Facebook
+            </button>
+            <button id="google-login-button" type="button">
+              <img src="https://img.icons8.com/color/48/000000/google-logo.png"/>
+              Log in with Google
+            </button>
+          </div>
+          <div class="input-container">
+            <label for="email" class="input-label">Email</label>
+            <input type="email" id="email" name="email" class="input-field">
+            <label for="pass" class="input-label">Password</label>
+            <input type="password" id="pass" name="password" class="input-field">
+            <br>
+          </div>
+          <button id="login-button" class="button button-login" type="submit">Log in</button>
+        </form>
+      </div>
+      <a href="../Register/Register.html">Don't have an account? Sign up</a>
+    </div>
+    <script type="module" src="server.js"></script>
   </body>
 </html>
