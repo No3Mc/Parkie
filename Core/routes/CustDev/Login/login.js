@@ -1,35 +1,3 @@
-import { MongoClient } from 'https://unpkg.com/mongodb@5.1.0/lib/index.js?module';
-
-const url = 'mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/test?retryWrites=true&w=majority';
-const dbName = 'USER_DB';
-const collectionName = 'users';
-
-async function checkUser(email, password) {
-  const client = new MongoClient(url);
-  try {
-    await client.connect();
-    const db = client.db(dbName);
-    const collection = db.collection(collectionName);
-    const user = await collection.findOne({ email, password });
-    return user;
-  } finally {
-    await client.close();
-  }
-}
-
-document.querySelector('form').addEventListener('submit', async (event) => {
-  event.preventDefault();
-  const email = document.querySelector('#email').value;
-  const password = document.querySelector('#pass').value;
-  const user = await checkUser(email, password);
-  if (user) {
-    alert(`Welcome!`);
-    // redirect the user to the home page or dashboard
-  } else {
-    alert('Invalid email or password.');
-  }
-});
-
 
 
 
