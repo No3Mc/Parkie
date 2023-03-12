@@ -1,26 +1,31 @@
-const apiKey = 'TqYxzDVZPJj8bpcbZ0Jt7nI8Q8zh84rqgpCTacYVTFMYf7hmWcoJlTke7rEwQ9MI';
-const projectId = '640b4168ffa19c34deae6fa5';
-const clusterName = 'Cluster0';
+import { MongoClient } from 'mongodb';
+
+const url = 'mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/test?retryWrites=true&w=majority';
 const dbName = 'USER_DB';
 const collectionName = 'users';
 
-const apiUrl = `https://cloud.mongodb.com/api/atlas/v1.0/groups/${projectId}/clusters/${clusterName}/database/${dbName}/collections/${collectionName}`;
+async function checkUser(email, password) {
+  const client = await MongoClient.connect(url);
+  const db = client.db(dbName);
+  const collection = db.collection(collectionName);
+  const user = await collection.findOne({ email, password });
+  client.close();
+  return user;
+}
 
-const headers = {
-  'Content-Type': 'application/json',
-  'Authorization': `Bearer ${apiKey}`
-};
-
-fetch(apiUrl, { headers })
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
-
-
-
-
-
-
+document.querySelector('form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const email = document.querySelector('#email').value;
+  const password = document.querySelector('#pass').value;
+  const user = await checkUser(email, password);
+  if (user) {
+    alert(`Welcome!`);
+    // redirect the user to the home page or dashboard
+  } else {
+    alert('Invalid email or password.');
+  }
+});
+  
 
 
 
