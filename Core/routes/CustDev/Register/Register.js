@@ -21,4 +21,3 @@ function registerUser(event) {
     })
     .catch(error => console.error('Error registering user:', error));
   }
-  
