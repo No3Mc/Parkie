@@ -1,6 +1,37 @@
+import { MongoClient } from 'https://cdn.skypack.dev/mongodb';
 
+const loginForm = document.querySelector('form');
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault(); // prevent the form from submitting normally
+  const email = document.querySelector('#email').value;
+  const password = document.querySelector('#pass').value;
 
+  const uri = 'mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/test?retryWrites=true&w=majority';
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+  client.connect().then(() => {
+    console.log('Connected to MongoDB Atlas');
+
+    const db = client.db('USER_DB');
+    const users = db.collection('users');
+
+    // find a user with the provided email and password
+    users.findOne({ email, password }, (err, user) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      if (user) {
+        console.log('User authenticated');
+        // TODO: Redirect the user to the home page or some other page
+      } else {
+        console.log('Invalid email or password');
+      }
+    });
+  }).catch(err => {
+    console.error(err);
+  });
+});
 
 
 
