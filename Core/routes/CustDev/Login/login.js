@@ -1,7 +1,6 @@
 function loginUser(usernameInput, passwordInput) {
     const username = usernameInput.value;
     const password = passwordInput.value;
-    // Check if the user exists and the password is correct
     fetch('users.txt')
       .then(response => response.text())
       .then(data => {
