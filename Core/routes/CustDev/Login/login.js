@@ -1,47 +1,38 @@
-// Import required modules
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
 
-// Create an instance of Express app
 const app = express();
 
-// Configure the app
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
   secret: 'my-secret',
   resave: false,
   saveUninitialized: true,
-  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/user_db' }),
 }));
 
-// Connect to MongoDB database
 mongoose.connect('mongodb://localhost:27017/user_db', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error(err));
 
-// Define user schema
 const userSchema = new mongoose.Schema({
   email: String,
   password: String,
 });
 
-// Define user model
 const User = mongoose.model('User', userSchema);
 
-// Define login route
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Find a user with the provided email and password
     const user = await User.findOne({ email, password });
 
     if (user) {
-      // Store user ID in the session
       req.session.userId = user._id;
 
       res.send('User authenticated');
@@ -54,7 +45,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Define home route
 app.get('/', (req, res) => {
   const { userId } = req.session;
 
@@ -65,7 +55,6 @@ app.get('/', (req, res) => {
   }
 });
 
-// Define login form route
 app.get('/login', (req, res) => {
   res.send(`
     <form method="post" action="/login">
@@ -78,7 +67,6 @@ app.get('/login', (req, res) => {
   `);
 });
 
-// Start the server
 app.listen(3000, () => console.log('Server started'));
 
 
