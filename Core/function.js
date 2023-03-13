@@ -54,11 +54,12 @@ toggleButton.addEventListener('click', () => {
 
 
 
-      // Get the login button element
-      const loginButton = document.getElementById('login-button');
+      // // Get the login button element
+      // const loginButton = document.getElementById('login-button');
 
-      // Add an event listener to the login button to prevent default behavior
-      loginButton.addEventListener('click', (event) => {
-        event.preventDefault();
-      });
+      // // Add an event listener to the login button to prevent default behavior
+      // loginButton.addEventListener('click', (event) => {
+      //   event.preventDefault();
+      // });
 
+      // routes/CustDev/LogReg/login.html
