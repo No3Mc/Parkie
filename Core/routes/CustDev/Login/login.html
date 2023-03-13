@@ -8,16 +8,14 @@
   </head>
   <body>
     <h1>Login</h1>
-    <form onsubmit="loginUser(this.username, this.password); return false;">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username"><br>
+    <form action="login.php" method="post">
+      <label for="email">email:</label>
+      <input type="email" id="email"><br>
 
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password"><br>
+      <input type="password" id="password"><br>
 
       <input type="submit" value="Login">
     </form>
-
-    <script src="login.js"></script>
   </body>
 </html>
