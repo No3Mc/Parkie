@@ -15,7 +15,7 @@ users_collection = db['users']
 
 @app.route('/')
 def index():
-    return render_template('Core/routes/CustDev/Login/login.html')
+    return render_template('login.html')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -36,7 +36,7 @@ def dashboard():
     email = session.get('email')
 
     if email:
-        return render_template('Core/routes/CustDev/CDashboard/CDashboard.html', email=email)
+        return render_template('CDashboard.html', email=email)
     else:
         return redirect(url_for('index'))
 
