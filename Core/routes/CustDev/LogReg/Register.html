@@ -9,7 +9,7 @@
 </head>
 <body>
   <h1>Registration Form</h1>
-  <form id="registration-form">
+  <form id="registration-form" action="/register" method="POST">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required><br><br>
     
@@ -32,8 +32,6 @@
     <button type="submit" id="register-btn">Register</button>
   </form>
   <script src="Register.js"></script>
-  <script>
-    document.getElementById('registration-form').addEventListener('submit', registerUser);
-  </script>
+
 </body>
 </html>

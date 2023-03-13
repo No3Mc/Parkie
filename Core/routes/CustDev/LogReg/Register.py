@@ -44,22 +44,22 @@ def register():
     # check if user already exists
     if users_collection.find_one({'email': email}):
         flash('User with this email already exists', 'error')
-        return redirect(url_for('index'))
+    else:
+        # insert user into database
+        user_data = {
+            'username': username,
+            'firsn': firsn,
+            'lasn': lasn,
+            'email': email,
+            'phone': phone,
+            'postcode': postcode,
+            'password': password
+        }
+        users_collection.insert_one(user_data)
+        flash('Registration successful!', 'success')
 
-    # insert user into database
-    user_data = {
-        'username': username,
-        'firsn': firsn,
-        'lasn': lasn,
-        'email': email,
-        'phone': phone,
-        'postcode': postcode,
-        'password': password
-    }
-    users_collection.insert_one(user_data)
-
-    flash('Registration successful!', 'success')
     return redirect(url_for('index'))
+
 
 
 if __name__ == '__main__':
