@@ -13,7 +13,7 @@ users_collection = db['users']
 
 @app.route('/')
 def index():
-    return render_template('login.html')
+    return render_template('Register.html')
 
 @app.route('/login', methods=['POST'])
 def login():
