@@ -8,27 +8,23 @@
   <link rel='stylesheet' type='text/css' media='screen' href='Register.css'>
 </head>
 <body>
-  <div class="container">
-    <form id="register-form">
-      <h1>Registration</h1>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" placeholder="name@email.com" required>
-
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
-
-      <label for="confirm-password">Confirm Password:</label>
-      <input type="password" id="confirm-password" name="confirm-password" required>
-
-      <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="786-467-5484" required>
-
-      <button type="submit" id="register-btn">Register</button>
-      <p>Already have an account? <a href="../Login/login.html">Login</a></p>
-
-
-    </form>
-  </div>
-  <script src='../../../database/Custdb.js'></script>
+  <h1>Registration Form</h1>
+  <form id="registration-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" required><br><br>
+    <label for="postcode">Postcode:</label>
+    <input type="text" id="postcode" name="postcode" required><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    <button type="submit" id="register-btn">Register</button>
+  </form>
+  <script src="Register.js"></script>
+  <script>
+    document.getElementById('registration-form').addEventListener('submit', registerUser);
+  </script>
 </body>
 </html>

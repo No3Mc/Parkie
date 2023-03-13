@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "* [FAQ General](https://github.com/P4RKI3/.github/wiki#faq-general)",
   "main": "function.js",
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +15,7 @@
     "express": "^4.18.2",
     "mongodb": "^5.1.0",
     "mongoose": "^6.10.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "xlsx": "^0.18.5"
   }
 }
