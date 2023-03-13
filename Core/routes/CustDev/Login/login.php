@@ -7,8 +7,8 @@
     
     $manager = new MongoDB\Driver\Manager("mongodb+srv://$username:$password@$clustername.mongodb.net/$dbname");
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
 
     $query = new MongoDB\Driver\Query([
         'email' => $email,
@@ -22,15 +22,4 @@
     } else {
         echo "Invalid email or password";
     }
-
-
-// testing the maan choud driver for php. Gand pharh di hai database ne
-
-    $query = new MongoDB\Driver\Query([]);
-    $result = $manager->executeQuery("$dbname.$collection", $query)->toArray();
-    print_r($result);
-    
-
-
-
 ?>
