@@ -2,10 +2,7 @@ from pymongo import MongoClient
 from flask import Flask, render_template, request, redirect, url_for, session
 import secrets
 
-app = Flask(__name__)
-app.secret_key = secrets.token_hex(16)
-
-app = Flask(__name__)
+app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/Login')
 app.secret_key = secrets.token_hex(16)
 
 # MongoDB Atlas connection string
@@ -30,15 +27,6 @@ def login():
     else:
         print('Login failed for user:', email)
         return ''
-
-@app.route('/dashboard')
-def dashboard():
-    email = session.get('email')
-
-    if email:
-        return render_template('CDashboard.html', email=email)
-    else:
-        return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
