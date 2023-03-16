@@ -23,7 +23,7 @@ Also an alternate approach is that there is a draft javascript bot is inside the
 For my own ease:
 
           git push --delete origin b
-
+          git checkout main
           git branch -D b
 
 Mongodb database connection:
