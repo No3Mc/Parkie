@@ -15,6 +15,7 @@ users_collection = db['users']
 def index():
     return render_template('Register.html')
 
+
 @app.route('/login', methods=['POST'])
 def login():
     email = request.form['email']
