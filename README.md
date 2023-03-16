@@ -22,4 +22,4 @@ Also an alternate approach is that there is a draft javascript bot is inside the
 
 For my own ease:
 
-          git push --delete origin branch-name && git branch -d branch-name
+          git push --delete origin branch-name && git branch -D branch-name
