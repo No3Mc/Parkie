@@ -29,6 +29,17 @@ chatForm.addEventListener('submit', event => {
   }, 500);
 });
 
+
+
+
+
+
+
+
+
+
+// iske upar likhna hai
+
 function appendMessage(sender, message) {
   const messageElement = document.createElement('div');
   messageElement.classList.add('message');

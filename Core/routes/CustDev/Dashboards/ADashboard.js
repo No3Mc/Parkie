@@ -16,7 +16,7 @@ custsBtn.addEventListener('click', () => {
 });
 
 promoBtn.addEventListener('click', () => {
-	iframeContainer.innerHTML = '<iframe src="../Promos/Promos.html"></iframe>';
+	iframeContainer.innerHTML = '<iframe src="../AbtPro/Promos.html"></iframe>';
 	iframeContainer.style.display = 'block';
 });
 
