@@ -3,7 +3,7 @@ const cardsBtn = document.getElementById('cards-btn');
 const iframeContainer = document.getElementById('iframe-container');
 
 profileBtn.addEventListener('click', () => {
-	iframeContainer.innerHTML = '<iframe src="../MngProfile/MngProfile.html"></iframe>';
+	iframeContainer.innerHTML = '<iframe src="../Manage/MngProfile.html"></iframe>';
 	iframeContainer.style.display = 'block';
 });
 

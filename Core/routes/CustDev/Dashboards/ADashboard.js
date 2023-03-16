@@ -11,7 +11,7 @@ botBtn.addEventListener('click', () => {
 });
 
 custsBtn.addEventListener('click', () => {
-	iframeContainer.innerHTML = '<iframe src="../MngCusts/MngCusts.html"></iframe>';
+	iframeContainer.innerHTML = '<iframe src="../Manage/MngCusts.html"></iframe>';
 	iframeContainer.style.display = 'block';
 });
 
