@@ -25,3 +25,7 @@ For my own ease:
           git push --delete origin b
 
           git branch -D b
+
+Mongodb database connection:
+
+    mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority
