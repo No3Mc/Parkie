@@ -18,7 +18,6 @@ In order to run django bot you'll need to run the following commands:
 
 Also an alternate approach is that there is a draft javascript bot is inside the [bot folder](Core/routes/CustDev/bot/bot.html)
 
-          node --experimental-modules server.mjs
 
 
 For my own ease:
