@@ -19,13 +19,24 @@ function createCard(paymentMethod) {
         <div class="card-num">${paymentMethod.number}</div>
         <div class="card-name">${paymentMethod.name}</div>
         <div class="card-expiry">${paymentMethod.expiry}</div>
+        <div class="card-cvv">${paymentMethod.cvv}</div>
       </div>
       <div class="card-back" style="background: linear-gradient(to bottom, #800080, #00ff00, #ffff00);">
-        <div class="card-num">${paymentMethod.number}</div>
+        <div class="card-cvv">${paymentMethod.cvv}</div>
       </div>
     `;
+  
+    const cardFront = card.querySelector('.card-front');
+    const cardBack = card.querySelector('.card-back');
+  
+    card.addEventListener('click', () => {
+      card.classList.toggle('card-flipped');
+      cardBack.classList.toggle('visible');
+    });
+  
     return card;
   }
+  
   
 
 function displayPaymentMethods() {
