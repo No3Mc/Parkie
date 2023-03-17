@@ -63,17 +63,6 @@ button:hover {
   padding: 20px;
 }
 
-/* .card-back {
-  background: linear-gradient(to bottom, #7d7d7d, #3f3f3f);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  padding: 20px;
-  transform: rotateY(180deg);
-  position: absolute;
-  top: 0;
-  left: 0;
-} */
-
 .card-num,
 .card-name,
 .card-expiry,
@@ -253,7 +242,7 @@ button:hover {
   text-align: center;
   }
   
-  .card-front,
+  .card-front
   {
   font-size: 1rem;
   }
