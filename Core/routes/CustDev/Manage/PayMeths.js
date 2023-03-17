@@ -15,15 +15,13 @@ function createCard(paymentMethod) {
     const card = document.createElement('div');
     card.classList.add('card');
     card.innerHTML = `
-      <div class="card-front" style="background: linear-gradient(to bottom, #00ff00, #000000, #0000ff);">
+      <div class="card-front");">
         <div class="card-num">${paymentMethod.number}</div>
         <div class="card-name">${paymentMethod.name}</div>
         <div class="card-expiry">${paymentMethod.expiry}</div>
         <div class="card-cvv">${paymentMethod.cvv}</div>
       </div>
-      <div class="card-back" style="background: linear-gradient(to bottom, #800080, #00ff00, #ffff00);">
-        <div class="card-cvv">${paymentMethod.cvv}</div>
-      </div>
+
     `;
   
     const cardFront = card.querySelector('.card-front');
@@ -93,7 +91,7 @@ function displayPaymentMethods() {
     const name = event.target.name.value;
     const number = event.target.number.value;
     const expiry = event.target.expiry.value;
-    const cvv = event.target['cvv-back'].value;
+    // const cvv = event.target['cvv-back'].value;
     const paymentMethod = {
       name,
       number,
