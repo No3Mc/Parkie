@@ -13,8 +13,8 @@ Chamber Of Secrets
 
 In order to run django bot you'll need to run the following commands:
 
-          Parkie/Core/routes/CustDev/
-          └─$ python manage.py runserver
+    Parkie/Core/routes/CustDev/
+    └─$ python manage.py runserver
 
 Also an alternate approach is that there is a draft javascript bot is inside the [bot folder](Core/routes/CustDev/bot/bot.html)
 
@@ -22,9 +22,9 @@ Also an alternate approach is that there is a draft javascript bot is inside the
 
 For my own ease:
 
-          git push --delete origin b
-          git checkout main
-          git branch -D b
+    git push --delete origin b
+    git checkout main
+    git branch -D b
 
 Mongodb database connection:
 
