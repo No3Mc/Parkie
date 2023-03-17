@@ -49,6 +49,7 @@ button:hover {
   transition: transform 1s;
   transform-origin: center right;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .card-flipped {
@@ -56,13 +57,22 @@ button:hover {
 }
 
 .card-front {
-  background: linear-gradient(to bottom, #00ff00, #000000, #0000ff);
+  background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 20px;
 }
 
 .card-back {
-  background: linear-gradient(to bottom, #800080, #00ff00, #ffff00);
+  background: linear-gradient(to bottom, #7d7d7d, #3f3f3f);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 20px;
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-
 
 .card-num,
 .card-name,
@@ -70,6 +80,7 @@ button:hover {
 .card-cvv {
   font-size: 1.5rem;
   color: #fff;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
 .card-num {
@@ -123,158 +134,169 @@ button:hover {
   background-image: url('https://img.icons8.com/color/48/000000/visa.png');
   background-size: contain;
   background-repeat: no-repeat;
-}
-
-.card-chip {
+  }
+  
+  .card-chip {
   width: 50px;
   height: 50px;
-  .card-chip {
-    width: 50px;
-    height: 50px;
-    background-image: url('https://img.icons8.com/flat_round/64/000000/sim-card-chip.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    }
-    
-    .card-number {
-    font-size: 1.5rem;
-    margin: 1rem 0;
-    }
-    
-    .card-name {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    }
-    
-    .card-expiry-cvv {
-    display: flex;
-    }
-    
-    .card-expiry,
-    .card-cvv {
-    margin-right: 1rem;
-    }
-    
-    .card-expiry label,
-    .card-cvv label {
-    font-size: 0.8rem;
-    display: block;
-    margin-bottom: 0.25rem;
-    }
-    
-    .card-expiry input,
-    .card-cvv input {
-    font-size: 1rem;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
-    }
-    
-    .card-magnetic-stripe {
-    height: 20px;
-    background-color: #000;
-    margin-top: 0.5rem;
-    }
-    
-    .card-signature {
-    height: 30px;
-    width: 80%;
-    background-color: #fff;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    border: 1px solid #ccc;
-    }
-    
-    /* Payment method colors */
-    .green {
-    background-color: #28a745;
-    color: #fff;
-    }
-    
-    .black {
-    background-color: #343a40;
-    color: #fff;
-    }
-    
-    .blue {
-    background-color: #007bff;
-    color: #fff;
-    }
-    
-    .purple {
-    background-color: #6f42c1;
-    color: #fff;
-    }
-    
-    .yellow {
-    background-color: #ffc107;
-    color: #fff;
-    }
-    
-    @media (max-width: 768px) {
-      .card {
-      width: 250px;
-      height: 150px;
-      }
-      
-      .modal-content {
-      width: 80%;
-      }
-      
-      .payment-method {
-      flex-wrap: wrap;
-      }
-      
-      .payment-method > * {
-      width: 100%;
-      text-align: center;
-      }
-      
-      .card-front,
-      .card-back {
-      font-size: 1rem;
-      }
+  background-image: url('https://img.icons8.com/flat_round/64/000000/sim-card-chip.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  }
+  
+  .card-number {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  font-family: Arial, sans-serif;
+  letter-spacing: 2px;
+  }
+  
+  .card-name {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  }
+  
+  .card-expiry-cvv {
+  display: flex;
+  justify-content: space-between;
+  }
+  
+  .card-expiry,
+  .card-cvv {
+  margin-right: 1rem;
+  }
+  
+  .card-expiry label,
+  .card-cvv label {
+  font-size: 0.8rem;
+  display: block;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  }
+  
+  .card-expiry input,
+  .card-cvv input {
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: #f5f5f5;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1) inset;
+  width: 60px;
+  text-align: center;
+  }
+  
+  .card-magnetic-stripe {
+  height: 20px;
+  background-color: #000;
+  margin-top: 0.5rem;
+  }
+  
+  .card-signature {
+  height: 30px;
+  width: 80%;
+  background-color: #fff;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  }
+  
+  /* Payment method colors */
+  .green {
+  background-color: #28a745;
+  color: #fff;
+  }
+  
+  .black {
+  background-color: #343a40;
+  color: #fff;
+  }
+  
+  .blue {
+  background-color: #007bff;
+  color: #fff;
+  }
+  
+  .purple {
+  background-color: #6f42c1;
+  color: #fff;
+  }
+  
+  .yellow {
+  background-color: #ffc107;
+  color: #fff;
+  }
+  
+  @media (max-width: 768px) {
+  .card {
+  width: 250px;
+  height: 150px;
+  }
+  
+  .modal-content {
+  width: 80%;
+  }
+  
+  .payment-method {
+  flex-wrap: wrap;
+  }
+  
+  .payment-method > * {
+  width: 100%;
+  text-align: center;
+  }
+  
+  .card-front,
+  .card-back {
+  font-size: 1rem;
+  }
+  
+  #add-payment-method-form label {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  }
+  
+  #add-payment-method-form input[type="text"] {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  width: 100%;
+box-sizing: border-box;
+}
+#add-payment-method-form {
+  display: flex;
+  flex-direction: column;
+  }
+  
+  #add-payment-method-form .card-field {
+  display: flex;
+  margin-bottom: 1rem;
+  }
+  
+  #add-payment-method-form .card-field input {
+  margin-left: 1rem;
+  }
+  
+  #add-payment-method-form .card-expiry-cvv {
+  display: flex;
+  justify-content: space-between;
+  }
+  
+  #add-payment-method-form .card-expiry {
+  flex: 1;
+  margin-right: 1rem;
+  }
+  }
+  
+  
 
-      #add-payment-method-form label {
-        display: block;
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-      }
-      
-      #add-payment-method-form input[type="text"] {
-        font-size: 1.2rem;
-        padding: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 0.25rem;
-        margin-bottom: 1rem;
-        width: 100%;
-        box-sizing: border-box;
-      }
-      
-
-
-      }
-      #add-payment-method-form {
-        display: flex;
-        flex-direction: column;
-      }
-      
-      #add-payment-method-form .card-field {
-        display: flex;
-        margin-bottom: 1rem;
-      }
-      
-      #add-payment-method-form .card-field input {
-        margin-left: 1rem;
-      }
-      
-      #add-payment-method-form .card-expiry-cvv {
-        display: flex;
-        justify-content: space-between;
-      }
-      
-      #add-payment-method-form .card-expiry {
-        flex: 1;
-        margin-right: 1rem;
-      }
-      
