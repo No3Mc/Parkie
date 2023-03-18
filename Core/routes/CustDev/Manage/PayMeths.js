@@ -20,11 +20,22 @@ function createCard(paymentMethod) {
       <div class="card-logo"></div>
       <div class="card-chip"></div>
       <div class="card-number">${paymentMethod.number}</div>
-      <div class="card-name">${paymentMethod.name}</div>
-      <div class="card-expiry">${paymentMethod.expiry}</div>
+      <div class="card-details">
+        <div class="card-detail">
+          <div class="card-label">Cardholder Name:</div>
+          <div class="card-value">${paymentMethod.name}</div>
+        </div>
+        <div class="card-detail">
+          <div class="card-label">Expiry Date:</div>
+          <div class="card-value">${paymentMethod.expiry}</div>
+        </div>
+      </div>
     </div>
     <div class="card-back">
-      <div class="card-cvv">${paymentMethod.cvv}</div>
+      <div class="card-cvv">
+        <div class="card-label">CVV:</div>
+        <div class="card-value">${paymentMethod.cvv}</div>
+      </div>
     </div>
   `;
 
@@ -39,6 +50,7 @@ function createCard(paymentMethod) {
 
   return card;
 }
+
 
 
 
