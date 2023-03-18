@@ -1,6 +1,8 @@
-const addPaymentMethodForm = document.getElementById('add-payment-method-form');
+const addPaymentMethodForm = document.getElementById('add-payment-method-modal').querySelector('form');
 const closeModalBtns = document.getElementsByClassName('close');
-const modal = document.getElementsByClassName('modal')[0];
+const modal = document.getElementById('add-payment-method-modal');
+const paymentMethodsStack = document.getElementById('payment-methods-stack');
+const autoOpenControllerScriptRuntime = true;
 
 const addPaymentMethodBtn = document.getElementById('add-payment-method-btn');
 addPaymentMethodBtn.addEventListener('click', function() {
@@ -10,73 +12,129 @@ addPaymentMethodBtn.addEventListener('click', function() {
 // Initialize payment methods array
 let paymentMethods = [];
 
-// Get reference to payment methods list element
-const paymentMethodsList = document.getElementById('payment-methods-list');
+function createCard(paymentMethod) {
+  const card = document.createElement('div');
+  card.classList.add('card');
+  card.innerHTML = `
+  <div class="card-front">
+  <div class="card-logo"></div>
+  <div class="card-chip"></div>
+  <div class="card-number">${paymentMethod.number}</div>
+  <div class="card-details">
+    <div class="card-detail">
+      <div class="card-label">Cardholder Name:</div>
+      <div class="card-value">${paymentMethod.name}</div>
+    </div>
+    <div class="card-detail">
+      <div class="card-label">Expiry Date:</div>
+      <div class="card-value">${paymentMethod.expiry}</div>
+    </div>
+  </div>
+</div>
+<div class="card-back">
+  <div class="card-cvv">
+    <div class="card-label">CVV:</div>
+    <div class="card-value">${paymentMethod.cvv}</div>
+  </div>
+</div>
+
+  `;
+
+  const cardFront = card.querySelector('.card-front');
+  const cardBack = card.querySelector('.card-back');
+  const cvvInput = cardBack.querySelector('.card-cvv');
+
+  card.addEventListener('click', () => {
+    card.classList.toggle('card-flipped');
+    cvvInput.style.visibility = card.classList.contains('card-flipped') ? 'visible' : 'hidden';
+  });
+
+  return card;
+}
+
+
+
 
 function displayPaymentMethods() {
-    paymentMethodsList.innerHTML = '';
-    paymentMethods.forEach((paymentMethod, index) => {
-        const li = document.createElement('li');
-        li.classList.add('payment-method');
-        const name = document.createElement('div');
-        name.classList.add('payment-method-name');
-        name.innerHTML = paymentMethod.name;
-        const details = document.createElement('div');
-        details.classList.add('payment-method-details');
-        details.innerHTML = `**** **** **** ${paymentMethod.number.slice(-4)} - Expires ${paymentMethod.expiry}`;
-        const deleteBtn = document.createElement('button');
-        deleteBtn.innerHTML = 'Delete';
-        deleteBtn.addEventListener('click', () => {
-            paymentMethods.splice(index, 1);
-            displayPaymentMethods();
-        });
-        li.appendChild(name);
-        li.appendChild(details);
-        li.appendChild(deleteBtn);
-        paymentMethodsList.appendChild(li);
+  paymentMethodsStack.innerHTML = '';
+  paymentMethods.forEach((paymentMethod, index) => {
+    const paymentMethodElement = document.createElement('div');
+    paymentMethodElement.classList.add('payment-method');
+    paymentMethodElement.classList.add(getCardClass(index));
+    const card = createCard(paymentMethod);
+    paymentMethodElement.appendChild(card);
+    const deleteBtn = document.createElement('button');
+    deleteBtn.innerHTML = 'Delete';
+    deleteBtn.addEventListener('click', () => {
+      paymentMethods.splice(index, 1);
+      displayPaymentMethods();
     });
+    paymentMethodElement.appendChild(deleteBtn);
+    paymentMethodsStack.appendChild(paymentMethodElement);
+  });
+}
+
+function getCardClass(index) {
+  return 'card-' + (index % 5);
 }
 
 // Helper function to show the add payment method modal
 function showAddPaymentMethodModal() {
-    modal.style.display = 'block';
+  modal.style.display = 'block';
 }
 
 // Helper function to hide the add payment method modal
 function hideAddPaymentMethodModal() {
-    modal.style.display = 'none';
-    addPaymentMethodForm.reset();
+  modal.style.display = 'none';
+  addPaymentMethodForm.reset();
 }
 
 // Event listeners
 addPaymentMethodBtn.addEventListener('click', showAddPaymentMethodModal);
 
 Array.from(closeModalBtns).forEach(closeModalBtn => {
-    closeModalBtn.addEventListener('click', hideAddPaymentMethodModal);
+  closeModalBtn.addEventListener('click', hideAddPaymentMethodModal);
 });
 
 window.addEventListener('click', event => {
-    if (event.target == modal) {
-        hideAddPaymentMethodModal();
-    }
+  if (event.target == modal) {
+    hideAddPaymentMethodModal();
+  }
 });
 
 addPaymentMethodForm.addEventListener('submit', event => {
-    event.preventDefault();
-    const name = event.target.name.value;
-    const number = event.target.number.value;
-    const expiry = event.target.expiry.value;
-    const cvv = event.target.cvv.value;
-    const paymentMethod = {
-        name,
-        number,
-        expiry,
-        cvv
-    };
-    paymentMethods.push(paymentMethod);
-    hideAddPaymentMethodModal();
-    displayPaymentMethods();
+  event.preventDefault();
+  const name = event.target.name.value;
+  const number = event.target.number.value;
+  const expiry = event.target.expiry.value;
+  const cvv = event.target.cvv.value;
+  const paymentMethod = {
+    name,
+    number,
+    expiry,
+    cvv
+  };
+  paymentMethods.push(paymentMethod);
+  hideAddPaymentMethodModal();
+  displayPaymentMethods();
 });
+
+
+const cardNumberInput = document.getElementById('number');
+
+cardNumberInput.addEventListener('input', function() {
+  let cardNumber = this.value.replace(/\s/g, ''); // ye remove kar raha hai space
+  let spacedCardNumber = '';
+  for (let i = 0; i < cardNumber.length; i++) {
+    if (i > 0 && i % 4 == 0) {
+      spacedCardNumber += ' '; // idhar space add kar raha hai ye takey ye bc card number ko 4 digit ke groups me divide karke rakhe
+    }
+    spacedCardNumber += cardNumber[i];
+  }
+  this.value = spacedCardNumber;
+});
+
+
 
 Array.from(closeModalBtns).forEach(closeModalBtn => {
   closeModalBtn.addEventListener('click', function() {
