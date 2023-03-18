@@ -216,6 +216,31 @@ button:hover {
   border-radius: 5px;
   }
   
+  .card-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-label {
+    width: 120px;
+    text-align: left;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 1px;
+  }
+  
+  .card-value {
+    font-size: 1.2rem;
+    text-align: right;
+  }
+  
+  .card-details {
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+  }
+  
   /* Payment method colors */
   /* .green {
   background-color: #ffffff;

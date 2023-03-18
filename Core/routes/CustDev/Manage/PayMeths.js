@@ -16,27 +16,28 @@ function createCard(paymentMethod) {
   const card = document.createElement('div');
   card.classList.add('card');
   card.innerHTML = `
-    <div class="card-front">
-      <div class="card-logo"></div>
-      <div class="card-chip"></div>
-      <div class="card-number">${paymentMethod.number}</div>
-      <div class="card-details">
-        <div class="card-detail">
-          <div class="card-label">Cardholder Name:</div>
-          <div class="card-value">${paymentMethod.name}</div>
-        </div>
-        <div class="card-detail">
-          <div class="card-label">Expiry Date:</div>
-          <div class="card-value">${paymentMethod.expiry}</div>
-        </div>
-      </div>
+  <div class="card-front">
+  <div class="card-logo"></div>
+  <div class="card-chip"></div>
+  <div class="card-number">${paymentMethod.number}</div>
+  <div class="card-details">
+    <div class="card-detail">
+      <div class="card-label">Cardholder Name:</div>
+      <div class="card-value">${paymentMethod.name}</div>
     </div>
-    <div class="card-back">
-      <div class="card-cvv">
-        <div class="card-label">CVV:</div>
-        <div class="card-value">${paymentMethod.cvv}</div>
-      </div>
+    <div class="card-detail">
+      <div class="card-label">Expiry Date:</div>
+      <div class="card-value">${paymentMethod.expiry}</div>
     </div>
+  </div>
+</div>
+<div class="card-back">
+  <div class="card-cvv">
+    <div class="card-label">CVV:</div>
+    <div class="card-value">${paymentMethod.cvv}</div>
+  </div>
+</div>
+
   `;
 
   const cardFront = card.querySelector('.card-front');
