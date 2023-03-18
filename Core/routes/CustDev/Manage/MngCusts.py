@@ -51,5 +51,14 @@ def edit_user():
         flash('User updated successfully!', 'success')
         return redirect(url_for('index'))
 
+@app.route('/delete_user', methods=['POST'])
+def delete_user():
+    user_id = request.form['user_id']
+    users_collection.delete_one({'_id': ObjectId(user_id)})
+    flash('User deleted successfully!', 'success')
+    return redirect(url_for('index'))
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
