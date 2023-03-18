@@ -8,7 +8,7 @@ profileBtn.addEventListener('click', () => {
 });
 
 cardsBtn.addEventListener('click', () => {
-	iframeContainer.innerHTML = '<iframe src="../PayMeths/PayMeths.html"></iframe>';
+	iframeContainer.innerHTML = '<iframe src="../Manage/PayMeths.html"></iframe>';
 	iframeContainer.style.display = 'block';
 });
 
