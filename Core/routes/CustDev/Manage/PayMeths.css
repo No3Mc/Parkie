@@ -33,7 +33,16 @@ button:hover {
 /* Payment methods */
 #payment-methods {
   margin: 1rem 0;
+  margin-bottom: 5rem; /* Add this */
 }
+
+#add-payment-method-btn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+
 
 .payment-method {
   margin: 1rem 0;
