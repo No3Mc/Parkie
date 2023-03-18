@@ -24,10 +24,7 @@ function createCard(paymentMethod) {
       <div class="card-expiry">${paymentMethod.expiry}</div>
     </div>
     <div class="card-back">
-      <div class="card-cvv">
-        <label for="cvv-back">CVV</label>
-        <input type="text" id="cvv-back" name="cvv-back" maxlength="3">
-      </div>
+      <div class="card-cvv">${paymentMethod.cvv}</div>
     </div>
   `;
 
@@ -42,6 +39,7 @@ function createCard(paymentMethod) {
 
   return card;
 }
+
 
 
 function displayPaymentMethods() {
@@ -96,7 +94,7 @@ addPaymentMethodForm.addEventListener('submit', event => {
   const name = event.target.name.value;
   const number = event.target.number.value;
   const expiry = event.target.expiry.value;
-  const cvv = event.target['cvv-back'].value;
+  const cvv = event.target.cvv.value;
   const paymentMethod = {
     name,
     number,
