@@ -42,3 +42,11 @@ To store permanently
 To remove the old cache
 
     git credential-cache exit
+
+Get info about remote reps
+
+    git remote -v
+
+To remove origin/remote names
+
+    git remote remove origin
