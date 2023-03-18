@@ -128,7 +128,10 @@ button:hover {
   border: 1px solid #888;
   width: 50%;
   border-radius: 0.5rem;
-  position: relative;
+  position: relative; /* Add this */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .close {
@@ -319,7 +322,9 @@ box-sizing: border-box;
 #add-payment-method-form {
   display: flex;
   flex-direction: column;
-  }
+  z-index: 1;
+}
+
   
   #add-payment-method-form .card-field {
   display: flex;
@@ -354,6 +359,7 @@ box-sizing: border-box;
     font-size: 1rem;
     padding: 0.5rem 1rem;
     margin-top: 1rem;
+    margin-left: auto;
     cursor: pointer;
     border: none;
     transition: background-color 0.3s ease;
