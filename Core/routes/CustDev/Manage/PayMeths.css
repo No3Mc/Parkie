@@ -9,11 +9,13 @@ body {
 h1 {
   font-size: 2rem;
   margin: 1rem 0;
+  text-align: center;
 }
 
 h2 {
   font-size: 1.5rem;
   margin: 0.5rem 0;
+  text-align: center;
 }
 
 button {
@@ -33,13 +35,15 @@ button:hover {
 /* Payment methods */
 #payment-methods {
   margin: 1rem 0;
-  margin-bottom: 5rem; /* Add this */
+  margin-bottom: 5rem;
+  
 }
 
 #add-payment-method-btn {
   position: fixed;
   bottom: 1rem;
   right: 1rem;
+  text-align: center;
 }
 
 
