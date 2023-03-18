@@ -50,3 +50,10 @@ Get info about remote reps
 To remove origin/remote names
 
     git remote remove origin
+
+gitlab repo syncing
+
+    git remote add https://gitlab.com/No3Mc/parkie.git
+    git fetch --all
+    git merge github/main
+    git push gitlab main
