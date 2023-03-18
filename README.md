@@ -53,7 +53,7 @@ To remove origin/remote names
 
 gitlab repo syncing
 
-    git remote add https://gitlab.com/No3Mc/parkie.git
+    git remote add gitlab https://gitlab.com/No3Mc/parkie.git
     git fetch --all
     git merge github/main
     git push gitlab main
