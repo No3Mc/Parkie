@@ -15,23 +15,6 @@ users_collection = db['users']
 def index():
     return render_template('Register.html')
 
-
-@app.route('/login', methods=['POST'])
-def login():
-    email = request.form['email']
-    password = request.form['password']
-
-    user = users_collection.find_one({'email': email})
-
-    if user and user['password'] == password:
-        print('Login successful for user:', email)
-        flash('Login successful!', 'success')
-    else:
-        print('Login failed for user:', email)
-        flash('Invalid email or password', 'error')
-
-    return redirect(url_for('index'))
-
 @app.route('/register', methods=['POST'])
 def register():
     username = request.form['username']
