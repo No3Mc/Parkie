@@ -187,8 +187,8 @@ button:hover {
   }
   
   /* Payment method colors */
-  .green {
-  background-color: #28a745;
+  /* .green {
+  background-color: #ffffff;
   color: #fff;
   }
   
@@ -210,7 +210,7 @@ button:hover {
   .yellow {
   background-color: #ffc107;
   color: #fff;
-  }
+  } */
   
   @media (max-width: 768px) {
   .card {

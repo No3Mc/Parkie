@@ -29,7 +29,7 @@ function createCard(paymentMethod) {
   
     card.addEventListener('click', () => {
       card.classList.toggle('card-flipped');
-      cardBack.classList.toggle('visible');
+    //   cardBack.classList.toggle('visible');
     });
   
     return card;
@@ -57,9 +57,9 @@ function displayPaymentMethods() {
   }
   
   function getCardClass(index) {
-    const classes = ['green', 'black', 'blue', 'purple', 'yellow'];
-    return classes[index % classes.length];
+    return 'card-' + (index % 5);
   }
+  
   
   
   // Helper function to show the add payment method modal
