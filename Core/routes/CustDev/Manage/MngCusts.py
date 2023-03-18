@@ -17,38 +17,39 @@ def index():
     users = users_collection.find()
     return render_template('MngCusts.html', users=users)
 
-@app.route('/edit_user/<user_id>')
-def edit_user(user_id):
-    user = users_collection.find_one({'_id': ObjectId(user_id)})
-    return render_template('thinking', user=user)
+@app.route('/edit_user', methods=['GET', 'POST'])
+def edit_user():
+    if request.method == 'GET':
+        user_id = request.args.get('user_id')
+        user = users_collection.find_one({'_id': ObjectId(user_id)})
+        return render_template('MngCusts.html', user=user, edit_mode=True)
 
-@app.route('/update_user/<user_id>', methods=['POST'])
-def update_user(user_id):
-    username = request.form['username']
-    firsn = request.form['firsn']
-    lasn = request.form['lasn']
-    email = request.form['email']
-    phone = request.form['phone']
-    postcode = request.form['postcode']
-    password = request.form['password']
+    elif request.method == 'POST':
+        user_id = request.form['user_id']
+        username = request.form['username']
+        firsn = request.form['firsn']
+        lasn = request.form['lasn']
+        email = request.form['email']
+        phone = request.form['phone']
+        postcode = request.form['postcode']
+        password = request.form['password']
 
-    # update user data in the database
-    users_collection.update_one(
-        {'_id': ObjectId(user_id)},
-        {'$set': {
-            'username': username,
-            'firsn': firsn,
-            'lasn': lasn,
-            'email': email,
-            'phone': phone,
-            'postcode': postcode,
-            'password': password
-        }}
-    )
+        # update user data in the database
+        users_collection.update_one(
+            {'_id': ObjectId(user_id)},
+            {'$set': {
+                'username': username,
+                'firsn': firsn,
+                'lasn': lasn,
+                'email': email,
+                'phone': phone,
+                'postcode': postcode,
+                'password': password
+            }}
+        )
 
-    flash('User updated successfully!', 'success')
-    return redirect(url_for('index'))
+        flash('User updated successfully!', 'success')
+        return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
-
