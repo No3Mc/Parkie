@@ -119,6 +119,23 @@ addPaymentMethodForm.addEventListener('submit', event => {
   displayPaymentMethods();
 });
 
+
+const cardNumberInput = document.getElementById('number');
+
+cardNumberInput.addEventListener('input', function() {
+  let cardNumber = this.value.replace(/\s/g, ''); // ye remove kar raha hai space
+  let spacedCardNumber = '';
+  for (let i = 0; i < cardNumber.length; i++) {
+    if (i > 0 && i % 4 == 0) {
+      spacedCardNumber += ' '; // idhar space add kar raha hai ye takey ye bc card number ko 4 digit ke groups me divide karke rakhe
+    }
+    spacedCardNumber += cardNumber[i];
+  }
+  this.value = spacedCardNumber;
+});
+
+
+
 Array.from(closeModalBtns).forEach(closeModalBtn => {
   closeModalBtn.addEventListener('click', function() {
     modal.style.display = "none";
