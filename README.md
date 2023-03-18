@@ -29,3 +29,15 @@ For my own ease:
 Mongodb database connection:
 
     mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority
+
+
+To store for 15 mins
+
+    git config --global credential.helper cache
+
+To store permanently
+
+    git config --global credential.helper store
+To remove the old cache
+
+    git credential-cache exit
