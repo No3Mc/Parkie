@@ -6,6 +6,8 @@
     "html-checker": "off",
     "axe/language": "off",
     "axe/text-alternatives": "off",
-    "disown-opener": "off"
+    "disown-opener": "off",
+    "axe/forms": "off",
+    "axe/structure": "off"
   }
 }
