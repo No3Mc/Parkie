@@ -47,11 +47,12 @@ button:hover {
   position: relative;
   transform-style: preserve-3d;
   transition: transform 1s;
-  transform-origin: center right;
+  transform-origin: center center;
   cursor: pointer;
   border-radius: 10px;
   transform: rotateY(0);
 }
+
 
 
 .card-flipped {
