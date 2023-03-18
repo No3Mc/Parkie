@@ -340,3 +340,26 @@ box-sizing: border-box;
   margin-right: 1rem;
   }
   }
+
+  .modal-title {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    text-align: center;
+  }
+  
+  .modal-save-btn {
+    background-color: #009688;
+    color: #fff;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal-save-btn:hover {
+    background-color: #00796b;
+  }
+  
