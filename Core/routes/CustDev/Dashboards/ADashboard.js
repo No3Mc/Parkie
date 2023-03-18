@@ -21,7 +21,7 @@ promoBtn.addEventListener('click', () => {
 });
 
 dafaqBtn.addEventListener('click', () => {
-	iframeContainer.innerHTML = '<iframe src="../DocnFAQ/DocnFAQ.html"></iframe>';
+	iframeContainer.innerHTML = '<iframe src="../VulFaq/DocnFAQ.html"></iframe>';
 	iframeContainer.style.display = 'block';
 });
 
