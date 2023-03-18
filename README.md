@@ -38,6 +38,7 @@ To store for 15 mins
 To store permanently
 
     git config --global credential.helper store
+
 To remove the old cache
 
     git credential-cache exit
