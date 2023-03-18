@@ -363,6 +363,9 @@ box-sizing: border-box;
     cursor: pointer;
     border: none;
     transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
   }
   
   .modal-save-btn:hover {
