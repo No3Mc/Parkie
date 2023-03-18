@@ -30,25 +30,25 @@
                       <div class="card-logo"></div>
                       <div class="card-chip"></div>
                       <div class="card-number">
-                          <input type="text" id="number" name="number" maxlength="19" placeholder="XXXX XXXX XXXX XXXX">
+                          <input type="text" id="number" name="number" maxlength="19" placeholder="XXXX XXXX XXXX XXXX" pattern="^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$" required>
                       </div>
                       <div class="card-name">
                           <div class="card-field">
                               <label for="name">Cardholder Name</label>
-                              <input type="text" id="name" name="name" placeholder="Syed Naqvi">
+                              <input type="text" id="name" name="name" placeholder="Syed Naqvi" required>
                           </div>
                       </div>
                       <div class="card-expiry-cvv">
                         <div class="card-expiry">
                             <div class="card-field">
                                 <label for="expiry">Expiry Date</label>
-                                <input type="text" id="expiry" name="expiry" placeholder="MM/YY">
+                                <input type="date" id="expiry" name="expiry" required>
                             </div>
                         </div>
                         <div class="card-cvv">
                             <div class="card-field">
                                 <label for="cvv">CVV</label>
-                                <input type="text" id="cvv" name="cvv" maxlength="3">
+                                <input type="text" id="cvv" name="cvv" maxlength="3" pattern="^[0-9]{3}$" required>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                     <div class="card-cvv">
                         <div class="card-field">
                             <label for="cvv-back">CVV</label>
-                            <input type="text" id="cvv-back" name="cvv-back" maxlength="3">
+                            <input type="text" id="cvv-back" name="cvv-back" maxlength="3" pattern="^[0-9]{3}$" required tabindex="-1">
                         </div>
                     </div>
                   </div>
