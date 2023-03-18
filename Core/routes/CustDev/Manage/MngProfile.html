@@ -1,58 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Meta Information for the webpage -->
+<html>
+  <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edit User Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="MngProfile.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../MngProfile.css', _external=True) }}">
+  </head>
+  <body>
+    {% if not logged_in %}
+      <form action="{{ url_for('login') }}" method="POST">
+        <label>Username:</label><input type="text" name="username" /><br>
+        <label>Password:</label><input type="password" name="password" /><br>
+        <button type="submit">Login</button>
+      </form>
+    {% else %}
+      <h1>Edit User Details</h1>
+      <form action="{{ url_for('edit_user') }}" method="POST">
+        <input type="hidden" name="user_id" value="{{ user['_id'] }}" />
+        <label>Username:</label><input type="text" name="username" value="{{ user['username'] }}" /><br>
+        <label>First Name:</label><input type="text" name="firsn" value="{{ user['firsn'] }}" /><br>
+        <label>Last Name:</label><input type="text" name="lasn" value="{{ user['lasn'] }}" /><br>
+        <label>Email:</label><input type="text" name="email" value="{{ user['email'] }}" /><br>
+        <label>Phone:</label><input type="text" name="phone" value="{{ user['phone'] }}" /><br>
+        <label>Postcode:</label><input type="text" name="postcode" value="{{ user['postcode'] }}" /><br>
+        <label>Password:</label><input type="password" name="password" value="{{ user['password'] }}" /><br>
+        <button type="submit">Save</button>
+      </form>
+    {% endif %}
 
-
-<head>
-	<title>Profile Page</title>
-	<link rel="stylesheet" type="text/css" href="MngProfile.css">
-</head>
-<body>
-	<header>
-		<h1>Profile Page</h1>
-	</header>
-	<main>
-		<section class="profile-info">
-			<h2>Profile Information</h2>
-			<form>
-				<label for="name">Name:</label>
-				<input type="text" name="name" id="name">
-
-				<label for="email">Email:</label>
-				<input type="email" name="email" id="email">
-
-				<label for="bio">Bio:</label>
-				<textarea name="bio" id="bio"></textarea>
-
-				<label for="profile-pic">Profile Picture:</label>
-				<input type="file" name="profile-pic" id="profile-pic">
-				<img src="#" alt="Profile Picture">
-
-				<button type="submit">Save Changes</button>
-			</form>
-		</section>
-
-		<section class="password-change">
-			<h2>Change Password</h2>
-			<form>
-				<label for="current-password">Current Password:</label>
-				<input type="password" name="current-password" id="current-password">
-
-				<label for="new-password">New Password:</label>
-				<input type="password" name="new-password" id="new-password">
-
-				<label for="confirm-password">Confirm Password:</label>
-				<input type="password" name="confirm-password" id="confirm-password">
-
-				<button type="submit">Change Password</button>
-			</form>
-		</section>
-	</main>
-	<footer>
-		<p>&copy; 2023 Parkie</p>
-	</footer>
-</body>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </body>
 </html>
