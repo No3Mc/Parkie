@@ -51,6 +51,7 @@ button:hover {
   cursor: pointer;
   border-radius: 10px;
   transform: rotateY(0);
+  margin: 0 auto;
 }
 
 
@@ -287,6 +288,14 @@ button:hover {
   text-align: center;
   }
   
+  .payment-methods-stack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+
   .card-front
   {
   font-size: 1rem;
