@@ -141,7 +141,7 @@ button:hover {
   border: 1px solid #888;
   width: 50%;
   border-radius: 0.5rem;
-  position: relative; /* Add this */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -155,7 +155,9 @@ button:hover {
   font-size: 2rem;
   font-weight: bold;
   cursor: pointer;
+  margin-left: 0.5rem;
 }
+
 
 .close:hover,
 .close:focus {
