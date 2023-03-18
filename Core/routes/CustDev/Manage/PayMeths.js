@@ -17,13 +17,17 @@ function createCard(paymentMethod) {
   card.classList.add('card');
   card.innerHTML = `
     <div class="card-front">
-      <div class="card-num">${paymentMethod.number}</div>
+      <div class="card-logo"></div>
+      <div class="card-chip"></div>
+      <div class="card-number">${paymentMethod.number}</div>
       <div class="card-name">${paymentMethod.name}</div>
       <div class="card-expiry">${paymentMethod.expiry}</div>
-      <div class="card-cvv">${paymentMethod.cvv}</div>
     </div>
     <div class="card-back">
-      <div class="card-cvv">${paymentMethod.cvv}</div>
+      <div class="card-cvv">
+        <label for="cvv-back">CVV</label>
+        <input type="text" id="cvv-back" name="cvv-back" maxlength="3">
+      </div>
     </div>
   `;
 
@@ -38,6 +42,7 @@ function createCard(paymentMethod) {
 
   return card;
 }
+
 
 function displayPaymentMethods() {
   paymentMethodsStack.innerHTML = '';
