@@ -6,13 +6,16 @@ const port = 3000;
 // MongoDB connection
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority";
+
 const client = new MongoClient(uri, { useNewUrlParser: true });
 let usersCollection;
+let connected = false;
 
 client.connect(err => {
   if (err) throw err;
   usersCollection = client.db("USER_DB").collection("users");
   console.log("Connected to MongoDB Atlas");
+  connected = true;
 });
 
 // Middleware
@@ -25,6 +28,11 @@ app.get('/', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
+  if (!connected) {
+    res.status(500).send('Error: Database connection not established');
+    return;
+  }
+
   const email = req.body.email;
   const password = req.body.password;
 
