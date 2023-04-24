@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Manage Promotions</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../MngPromos.css', _external=True) }}">
+</head>
+<body>
+  <h1>Manage Promotions</h1>
+
+  <form id="promo-form" action="/add-promo" method="POST">
+    <label for="promo-code">Promo Code:</label>
+    <input type="text" id="promo-code" name="promo-code" required><br><br>
+    <label for="discount">Discount:</label>
+    <input type="number" id="discount" name="discount" required><br><br>
+    <label for="expiry-date">Expiry Date:</label>
+    <input type="date" id="expiry-date" name="expiry-date" required><br><br>
+
+    <button type="submit" id="add-promo-btn">Add Promo</button>
+  </form>
+
+  <h2>Promotions List</h2>
+
+  <table id="promos-table">
+    <tr>
+      <th>Promo Code</th>
+      <th>Discount</th>
+      <th>Expiry Date</th>
+      <th>Action</th>
+    </tr>
+    {% for promo in promos %}
+      <tr>
+        <td>{{ promo['promo-code'] }}</td>
+        <td>{{ promo['discount'] }}%</td>
+        <td>{{ promo['expiry-date'] }}</td>
+        <td>
+          <form action="/edit-promo/{{ promo['_id'] }}" method="GET">
+            <button type="submit">Edit</button>
+          </form>
+          <form action="/delete-promo/{{ promo['_id'] }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this promo?')">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  {% if edit_mode %}
+  {% set promo = promos[0] %}
+  <form id="promo-edit-form" action="/edit-promo/{{ promo['_id'] }}" method="POST">
+    <label for="promo-code-edit">Promo Code:</label>
+    <input type="text" id="promo-code-edit" name="promo-code" value="{{ promo['promo-code'] }}" required><br><br>
+    <label for="discount-edit">Discount:</label>
+    <input type="number" id="discount-edit" name="discount" value="{{ promo['discount'] }}" required><br><br>
+    <label for="expiry-date-edit">Expiry Date:</label>
+    <input type="date" id="expiry-date-edit" name="expiry-date" value="{{ promo['expiry-date'].strftime('%Y-%m-%d') }}" required><br><br>
+
+    <button type="submit" id="save-promo-btn">Save</button>
+    <button type="button" id="cancel-edit-btn">Cancel</button>
+  </form>
+  {% endif %}
+
+</body>
+</html>

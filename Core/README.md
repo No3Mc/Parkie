@@ -32,7 +32,7 @@
 
 This folder has main files which are used to run the [static site](www.parkie.app) on azure.
 
-Directory Structure:
+Directory Structure (Will be changed):
 
         CORE
         │   index.html (main html)
