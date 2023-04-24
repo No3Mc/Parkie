@@ -1,0 +1,108 @@
+﻿
+body {
+    background-color: #f8f9fa; /* This is a light gray color */
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #343a40; /* You can change this color to your preferred one */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+   
+    padding-top: 10px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    padding-left: 100px;
+}
+
+    .navbar .navbar-brand {
+        color: #0dcaf0;
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    .navbar .navbar-nav .nav-link {
+        color: #0dcaf0;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+    }
+
+        .navbar .navbar-nav .nav-link:hover {
+            color: #cccccc;
+        }
+
+    .navbar .navbar-nav .nav-item:last-child .nav-link {
+        background-color: #007bff; /* You can change this color to your preferred one */
+        color: #ffffff;
+        border-radius: 4px;
+        font-weight: 600;
+    }
+
+        .navbar .navbar-nav .nav-item:last-child .nav-link:hover {
+            background-color: #0056b3;
+        }
+        /* Navbar styles */
+
+        /* Header styles */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+    header .row {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+@media (max-width: 991.98px) {
+    header .row {
+        flex-direction: column;
+    }
+}
+
+.header-Driveway1 { /* Driveway1 Image */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: rotate(-5deg);
+    max-width: 100%; /* This ensures the image doesn't overflow its container */
+}
+
+       /* Header styles */
+
+/* Benefits Section */
+.benefits-section {
+    background-color: #f1e0d6;
+}
+
+.custom-card {
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-icon {
+    font-size: 3rem;
+    color: #f07d58;
+    margin-bottom: 1rem;
+}
+
+.benefit-bg {
+    background-image: url("Images/notepad-background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Benefits Section */
+
+/* additonla information for Benefits Section /*
+    ................
+    ................
+/* additonla information for Benefits Section /*
+

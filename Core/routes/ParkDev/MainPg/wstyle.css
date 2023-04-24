@@ -227,9 +227,22 @@
   /* Body */
 
   .main-body{
+    position: relative;
     height: 1000px;
     width: 100%;
     background-color: white;
+  }
+  .main-body > iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    border-radius: 0px;
+
+    /* shadow genrator */
+    -webkit-box-shadow: 1px 11px 18px 5px rgba(212,201,212,1);
+    -moz-box-shadow: 1px 11px 18px 5px rgba(212,201,212,1);
+    box-shadow: 1px 11px 18px 5px rgba(212,201,212,1);
   }
 
 
