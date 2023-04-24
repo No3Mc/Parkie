@@ -7,6 +7,12 @@ body {
 .navbar {
     background-color: #343a40; /* You can change this color to your preferred one */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+   
+    padding-top: 10px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    padding-left: 100px;
 }
 
     .navbar .navbar-brand {
@@ -44,6 +50,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
+    margin-top: 40px;
 }
 
     header .row {
@@ -68,4 +75,34 @@ header {
 
        /* Header styles */
 
+/* Benefits Section */
+.benefits-section {
+    background-color: #f1e0d6;
+}
+
+.custom-card {
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-icon {
+    font-size: 3rem;
+    color: #f07d58;
+    margin-bottom: 1rem;
+}
+
+.benefit-bg {
+    background-image: url("Images/notepad-background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Benefits Section */
+
+/* additonla information for Benefits Section /*
+    ................
+    ................
+/* additonla information for Benefits Section /*
 
