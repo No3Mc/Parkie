@@ -4,6 +4,7 @@ import secrets
 from bson.objectid import ObjectId
 from flask import flash
 
+# (Have to work on the flash app)
 app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/Manage')
 app.secret_key = secrets.token_hex(16)
 
