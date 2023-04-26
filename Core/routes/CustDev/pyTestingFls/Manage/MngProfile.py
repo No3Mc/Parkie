@@ -5,7 +5,8 @@ from bson.objectid import ObjectId
 from flask import flash
 
 
-app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/Manage')
+# app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/Manage')
+app = Flask(__name__, static_url_path='', static_folder='static', template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/Manage')
 app.secret_key = secrets.token_hex(16)
 
 # MongoDB Atlas connection string
