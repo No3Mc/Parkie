@@ -3,8 +3,10 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import secrets
 from flask import flash
 
-app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/LogReg')
+# app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/LogReg')
+app = Flask(__name__, static_url_path='', static_folder='static', template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/LogReg')
 app.secret_key = secrets.token_hex(16)
+
 
 # MongoDB Atlas connection string
 client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority')
