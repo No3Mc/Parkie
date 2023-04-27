@@ -1,0 +1,103 @@
+/* MngPromos.css */
+
+/* Styles for the page title */
+h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+/* Styles for the form */
+form {
+  width: 70%;
+  margin: auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+label {
+  display: inline-block;
+  width: 150px;
+  margin-right: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+button[type="submit"],
+button[type="button"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+  background-color: #3e8e41;
+}
+
+/* Styles for the promotions list */
+h2 {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+table {
+  width: 90%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e2e2e2;
+}
+
+/* Styles for flash messages */
+.flash {
+  width: 70%;
+  margin: auto;
+  margin-top: 30px;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.flash-success {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.flash-error {
+  background-color: #f44336;
+  color: #fff;
+}
+
