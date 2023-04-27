@@ -1,10 +1,59 @@
+/* Style for the form */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  padding: 5px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
 button[type="submit"] {
-	background-color: #333;
-	color: #fff;
-	padding: 10px;
-	border: none;
-	border-radius: 5px;
-	margin-top: 10px;
-	cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+/* Style for the page title */
+h1 {
+  text-align: center;
+  font-size: 36px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/* Style for the flash messages */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px auto;
+  width: 50%;
+  text-align: center;
+}
+
+li {
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
