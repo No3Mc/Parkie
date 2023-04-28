@@ -9,9 +9,4 @@ updates:
     directory: "/Core"
     schedule:
       interval: "weekly"
-    allow:
-      - dependency-type: "all"
-        version: "widen"
-      - dependency-type: "all"
-        version: "lockfile"
 
