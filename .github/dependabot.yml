@@ -11,6 +11,7 @@ updates:
       interval: "weekly"
     allow:
       - dependency-type: "all"
-        update-type: "widen"
+        version: "widen"
       - dependency-type: "all"
-        update-type: "lockfile"
+        version: "lockfile"
+
