@@ -4,6 +4,7 @@ import secrets
 from flask import flash
 from flask_mail import Mail, Message
 import os
+import bcrypt
 
 app = Flask(__name__, static_url_path='', static_folder='static', template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/LogReg')
 
@@ -37,7 +38,10 @@ def register():
     email = request.form['email']
     phone = request.form['phone']
     postcode = request.form['postcode']
-    password = request.form['password']
+    password = request.form['password'].encode('utf-8')  # encode password to bytes
+
+    # hash password using bcrypt
+    hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
 
     # check if user already exists
     if users_collection.find_one({'email': email}):
@@ -53,11 +57,15 @@ def register():
             'email': email,
             'phone': phone,
             'postcode': postcode,
-            'password': password,
+            'password': hashed_password,  # store hashed password in database
             'verified': False,
             'token': token
         }
         users_collection.insert_one(user_data)
+
+        # remove the original password from the dictionary
+        del user_data['password']
+
         flash('Registration successful! Please check your email to verify your account', 'success')
         # send verification email
         verify_url = url_for('verify', token=token, _external=True)
