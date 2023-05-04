@@ -2,11 +2,10 @@ from pymongo import MongoClient
 from flask import Flask, render_template, request, redirect, url_for, session
 import secrets
 from flask import flash
+import bcrypt
 
-# app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/LogReg')
 app = Flask(__name__, static_url_path='', static_folder='static', template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/LogReg')
 app.secret_key = secrets.token_hex(16)
-
 
 # MongoDB Atlas connection string
 client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority')
@@ -21,11 +20,11 @@ def index():
 @app.route('/login', methods=['POST'])
 def login():
     email = request.form['email']
-    password = request.form['password']
+    password = request.form['password'].encode('utf-8')  # encode password to bytes
 
     user = users_collection.find_one({'email': email})
 
-    if user and user['password'] == password:
+    if user and bcrypt.checkpw(password, user['password']):
         print('Login successful for user:', email)
         flash('Login successful!', 'success')
     else:
@@ -36,3 +35,4 @@ def login():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
