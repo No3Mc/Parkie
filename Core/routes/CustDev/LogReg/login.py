@@ -1,16 +1,20 @@
 from pymongo import MongoClient
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import secrets
 from flask import flash
 import bcrypt
-
-app = Flask(__name__, static_url_path='', static_folder='static', template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/LogReg')
-app.secret_key = secrets.token_hex(16)
+from time import sleep
 
 # MongoDB Atlas connection string
 client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority')
 db = client['USER_DB']
 users_collection = db['users']
+
+# Set a delay of 5 seconds between login attempts
+DELAY_SECONDS = 5
+
+app = Flask(__name__, static_url_path='', static_folder='static', template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/LogReg')
+app.secret_key = secrets.token_hex(16)
 
 @app.route('/')
 def index():
@@ -30,6 +34,9 @@ def login():
     else:
         print('Login failed for user:', email)
         flash('Invalid email or password', 'error')
+
+        # Add a delay before returning to slow down brute force attacks
+        sleep(DELAY_SECONDS)
 
     return redirect(url_for('index'))
 
