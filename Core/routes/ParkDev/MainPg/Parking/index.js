@@ -63,6 +63,7 @@ app.get('/', (req, res) => {
 
           
           markersWithStatus.forEach(marker => {
+           /*    console.log(marker); */
             let markerPopup = L.popup();
           
             const popupContent = document.createElement('div');
@@ -87,17 +88,16 @@ app.get('/', (req, res) => {
               bookingForm.addEventListener('submit', (event) => {
                 event.preventDefault();
                 const formData = new FormData(bookingForm);
-                const data = {
-                  name: formData.get('name'),
-                  email: formData.get('email'),
-                  markerId: marker._id,
-                };
+                  const data = new URLSearchParams();
+                  data.append('name', formData.get('name'));
+                  data.append('email', formData.get('email'));
+                  data.append('markerId', marker._id);
                 fetch("/book", {
                   method: "POST",
                   headers: {
-                    "Content-Type": "application/json"
+                   "Content-Type": "application/x-www-form-urlencoded"
                   },
-                  body: JSON.stringify(data)
+                  body: data
                 })
                 .then(response => {
                   if (!response.ok) {
@@ -170,31 +170,39 @@ app.get('/', (req, res) => {
        `;
        res.send(html);
      });
-   
-     app.post('/book', async (req, res) => {
-      const { name, email, markerId } = req.body;
-    
-      try {
-        const client = await MongoClient.connect(uri, { useNewUrlParser: true });
-        const markersCollection = client.db("Parking").collection("marker");
-        const marker = await markersCollection.findOneAndUpdate(
-          { _id: new ObjectId(markerId) },
-          { $set: { name, email, status: 'booked' } },
-          { returnOriginal: false }
-        );
-    
-        res.json(marker);
-        console.log(`Marker ${markerId} has been booked by ${name} (${email})`);
-      } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Internal server error' });
-      }
+
+
+    app.post('/book', async (req, res) => {
+        const { name, email, markerId } = req.body;
+        console.log("name: ", name);
+        console.log("email: ", email);
+        console.log("markerId: ", markerId);
+
+        try {
+            const client = await MongoClient.connect(uri, { useNewUrlParser: true });
+            const markersCollection = client.db("Parking").collection("marker");
+            const marker = await markersCollection.findOneAndUpdate(
+                { _id: new ObjectId(markerId) },
+                { $set: { name, email, status: 'booked' } },
+                { returnOriginal: false }
+            );
+
+            console.log(`Marker ${markerId} has been booked by ${name} (${email})`);
+            res.json(marker);
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ message: 'Error updating marker: ' + err.message });
+        }
     });
-    
-  app.listen(port, () => {
-    console.log(`App listening at http://localhost:${port}`);
-  });
+
+
+    app.listen(port, () => {
+        console.log(`App listening at http://localhost:${port}`);
+    });
+
+
 } 
+
 
 startServer();
 
