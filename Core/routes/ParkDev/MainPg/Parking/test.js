@@ -3,8 +3,6 @@ import { MongoClient } from 'mongodb';
 import { readFile } from 'fs/promises';
 import { ObjectId } from 'mongodb';
 
-
-
 const app = express();
 const port = 3000;
 const uri = "mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/Parking?retryWrites=true&w=majority";
@@ -65,6 +63,7 @@ app.get('/', (req, res) => {
 
           
           markersWithStatus.forEach(marker => {
+           /*    console.log(marker); */
             let markerPopup = L.popup();
           
             const popupContent = document.createElement('div');
@@ -89,17 +88,16 @@ app.get('/', (req, res) => {
               bookingForm.addEventListener('submit', (event) => {
                 event.preventDefault();
                 const formData = new FormData(bookingForm);
-                const data = {
-                  name: formData.get('name'),
-                  email: formData.get('email'),
-                  markerId: marker._id,
-                };
+                  const data = new URLSearchParams();
+                  data.append('name', formData.get('name'));
+                  data.append('email', formData.get('email'));
+                  data.append('markerId', marker._id);
                 fetch("/book", {
                   method: "POST",
                   headers: {
-                    "Content-Type": "application/json"
+                   "Content-Type": "application/x-www-form-urlencoded"
                   },
-                  body: JSON.stringify(data)
+                  body: data
                 })
                 .then(response => {
                   if (!response.ok) {
@@ -172,48 +170,40 @@ app.get('/', (req, res) => {
        `;
        res.send(html);
      });
-   
-    
-     app.post('/book', async (req, res) => {
-      const booking = req.body;
-      const markersCollection = client.db("Parking").collection("marker");
-      
-      try {
-        const updatedMarker = await markersCollection.findOneAndUpdate(
-          { _id: new ObjectId(booking.markerId), status: 'available' },
-          { $set: { status: 'booked', booking } },
-          { returnOriginal: false }
-        );
-      
-        if (!updatedMarker) {
-          res.status(400).send('The parking spot is no longer available.');
-          return;
-        }
-      
-        res.json(updatedMarker);
-      } catch (error) {
-        console.error(error);
-        rres.status(500).json({ message: "An error occurred." });
-      }
-    });
-    
-    //  app.post('/book', async (req, res) => {
-    //   const { name, email, markerId } = req.body;
-    //   const result = await markersCollection.updateOne(
-    //     { _id: new ObjectId(markerId), status: 'Available' },
-    //     { $set: { status: 'Booked', bookedBy: { name, email } } }
-    //   );
-    //   if (result.modifiedCount === 1) {
-    //     const updatedMarker = await markersCollection.findOne({ _id: ObjectId(markerId) });
-    //     res.json(updatedMarker);
-    //   } else {
-    //     res.status(400).json({ message: 'Failed to book the marker' });
-    //   }
-    // });
 
-  app.listen(port, () => {
-    console.log(`App listening at http://localhost:${port}`);
-  });
-}
+
+    app.post('/book', async (req, res) => {
+        const { name, email, markerId } = req.body;
+        console.log("name: ", name);
+        console.log("email: ", email);
+        console.log("markerId: ", markerId);
+
+        try {
+            const client = await MongoClient.connect(uri, { useNewUrlParser: true });
+            const markersCollection = client.db("Parking").collection("marker");
+            const marker = await markersCollection.findOneAndUpdate(
+                { _id: new ObjectId(markerId) },
+                { $set: { name, email, status: 'booked' } },
+                { returnOriginal: false }
+            );
+
+            console.log(`Marker ${markerId} has been booked by ${name} (${email})`);
+            res.json(marker);
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ message: 'Error updating marker: ' + err.message });
+        }
+    });
+
+
+    app.listen(port, () => {
+        console.log(`App listening at http://localhost:${port}`);
+    });
+
+
+} 
+
 
 startServer();
+
+
