@@ -121,7 +121,7 @@ app.get('/', (req, res) => {
               .addTo(map)
               .bindPopup(markerPopup);
           }); // add closing curly brace here
-
+    // have to look here. Prevent default
           
           const forms = document.querySelectorAll('form');
 
