@@ -1,0 +1,32 @@
+<form>
+    <input type="text" name="message" id="message">
+    <button type="submit" id="send">Send</button>
+</form>
+
+<div id="response"></div>
+
+<script>
+    // Use jQuery to handle form submission and update the response
+    $('#send').click(function(e) {
+        e.preventDefault();
+        $.get('/bot/', { message: $('#message').val() }, function(data) {
+            $('#response').text(data.response);
+        });
+    });
+
+    // Listen for input events on the message input box
+    $('#message').on('input', function() {
+        // Get the current value of the input box
+        var message = $('#message').val();
+
+        // Only send a request if the message is not empty
+        if (message.length > 0) {
+            $.get('/bot/', { message: message }, function(data) {
+                $('#response').text(data.response);
+            });
+        } else {
+            $('#response').empty();
+        }
+    });
+</script>
+

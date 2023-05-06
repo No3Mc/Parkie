@@ -1,3 +1,5 @@
+import os
+from django.shortcuts import render
 from django.http import JsonResponse
 from pymongo import MongoClient
 import spacy
@@ -19,18 +21,21 @@ def preprocess_message(message):
     return message
 
 def bot(request):
-    try:
-        message = request.GET.get('message')
+    if request.method == 'GET':
+        template_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bot.html')
 
+
+        return render(request, template_path)
+        return render(request, template_path)
+    
+    elif request.method == 'POST':
+        message = request.POST.get('message')
         message = preprocess_message(message)
-
         response = responses.find_one({'message': message})
-
         if response:
             return JsonResponse({'response': response['response']})
         else:
             return JsonResponse({'response': 'Sorry, I do not understand your query.'})
-
-    except Exception as e:
-        return JsonResponse({'response': f"Error: {str(e)}"})
+    
+    return render(request, template_path)
 
