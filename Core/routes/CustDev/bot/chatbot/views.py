@@ -28,7 +28,7 @@ def bot(request):
         message = preprocess_message(message)
         response = responses.find_one({'message': message})
         if response:
-            return JsonResponse({'response': response['response']})
+            return JsonResponse({'response': response['message']})
         else:
             return JsonResponse({'response': 'Sorry, I do not understand your query.'})
 
