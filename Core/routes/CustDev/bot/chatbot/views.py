@@ -21,14 +21,9 @@ def preprocess_message(message):
     return message
 
 def bot(request):
-    if request.method == 'GET':
-        template_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bot.html')
+    template_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bot.html')
 
-
-        return render(request, template_path)
-        return render(request, template_path)
-    
-    elif request.method == 'POST':
+    if request.method == 'POST':
         message = request.POST.get('message')
         message = preprocess_message(message)
         response = responses.find_one({'message': message})
@@ -36,6 +31,6 @@ def bot(request):
             return JsonResponse({'response': response['response']})
         else:
             return JsonResponse({'response': 'Sorry, I do not understand your query.'})
-    
+
     return render(request, template_path)
 

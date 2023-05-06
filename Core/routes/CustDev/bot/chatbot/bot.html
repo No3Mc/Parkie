@@ -1,32 +1,45 @@
-<form>
-    <input type="text" name="message" id="message">
-    <button type="submit" id="send">Send</button>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <form>
+        {% csrf_token %}
+        <input type="text" name="message" id="message">
+        <button type="submit" id="send">Send</button>
+    </form>
 
-<div id="response"></div>
+    <div id="response"></div>
 
-<script>
-    // Use jQuery to handle form submission and update the response
-    $('#send').click(function(e) {
-        e.preventDefault();
-        $.get('/bot/', { message: $('#message').val() }, function(data) {
-            $('#response').text(data.response);
-        });
-    });
+    <script>
+        // jQuery to handle form submission and update the response
+        $('form').on('submit', function(e) {
+            e.preventDefault();
 
-    // Listen for input events on the message input box
-    $('#message').on('input', function() {
-        // Get the current value of the input box
-        var message = $('#message').val();
+            // Get the CSRF token
+            var csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
 
-        // Only send a request if the message is not empty
-        if (message.length > 0) {
-            $.get('/bot/', { message: message }, function(data) {
-                $('#response').text(data.response);
+            $.ajax({
+                url: '{% url "bot" %}',
+                type: 'POST',
+                headers: {
+                    'X-CSRFToken': csrf_token
+                },
+                data: {
+                    message: $('#message').val()
+                },
+                success: function(data) {
+                    console.log(data);
+                    $('#response').text(data.response);
+                },
+                error: function() {
+                    $('#response').text('Error occurred while sending the message');
+                }
             });
-        } else {
-            $('#response').empty();
-        }
-    });
-</script>
+        });
+    </script>
+</body>
+</html>
 
