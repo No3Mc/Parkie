@@ -7,7 +7,7 @@ import sgMail from '@sendgrid/mail';
 const app = express();
 const port = 3000;
 const uri = "mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/Parking?retryWrites=true&w=majority";
-// sgMail.setApiKey('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');
+
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
@@ -22,8 +22,6 @@ async function startServer() {
 
   const leafletJS = await readFile('./node_modules/leaflet/dist/leaflet.js', 'utf-8');
   const leafletCSS = await readFile('./node_modules/leaflet/dist/leaflet.css', 'utf-8');
-
-  // sgMail.setApiKey('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');
 
 app.get('/', (req, res) => {
   let html = `
@@ -168,15 +166,6 @@ app.get('/', (req, res) => {
           );
     
         console.log(`Marker ${markerId} has been booked by ${name} (${email})`);
-        
-        // Send confirmation email using SendGrid
-        // const msg = {
-        //   to: email,
-        //   from: {name: 'Parkie',
-        //         email: 'parkie.parking@gmail.com'},
-        //   subject: 'Parking Booking Confirmation',
-        //   text: `Hi ${name}, your parking spot with the markerID: ${markerId} has been booked sucessfully by using this email: ${email} 🎉`,
-        // };
 
         const msg = {
           to: email,
