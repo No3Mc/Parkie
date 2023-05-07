@@ -8,7 +8,6 @@ body {
     background-color: #343a40; /* You can change this color to your preferred one */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
-   
     padding-top: 10px;
     padding-right: 40px;
     padding-bottom: 10px;
@@ -41,9 +40,9 @@ body {
         .navbar .navbar-nav .nav-item:last-child .nav-link:hover {
             background-color: #0056b3;
         }
-        /* Navbar styles */
+/* Navbar styles */
 
-        /* Header styles */
+/* Header styles */
 
 header {
     display: flex;
@@ -73,7 +72,7 @@ header {
     max-width: 100%; /* This ensures the image doesn't overflow its container */
 }
 
-       /* Header styles */
+/* Header styles */
 
 /* Benefits Section */
 .custom-card {
@@ -84,26 +83,8 @@ header {
 /* Benefits Section */
 
 /* additonla information for Benefits Section */
-    
-/* additonla information for Benefits Section */
 
-/* Postcode estimate */
-.postcode-section {
-    background-color: white;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
 
-    .postcode-section h2 {
-        font-size: 28px;
-        margin-bottom: 20px;
-    }
-
-    .postcode-section .form-control {
-        margin-bottom: 15px;
-    }
-
-.signup-link {
     color: #ffffff; 
     background-color: #000; 
     text-decoration: none;
@@ -119,6 +100,7 @@ header {
 
 
  /* Postcode estimate */
+
 
 
 
