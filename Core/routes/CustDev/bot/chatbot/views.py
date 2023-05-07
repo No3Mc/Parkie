@@ -5,6 +5,9 @@ from pymongo import MongoClient
 import spacy
 import re
 import random
+from datetime import datetime
+import string
+import random
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -12,6 +15,7 @@ nlp = spacy.load("en_core_web_sm")
 try:
     client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/Chat_DB?retryWrites=true&w=majority')
     db = client['Chat_DB']
+    chats = db['Chats']
     responses = db['Chatbt']
 except Exception as e:
     print("Error connecting to database:", e)
@@ -27,6 +31,13 @@ def preprocess_message(message):
         message = " ".join(tokens)
         message = message.strip()
     return message
+
+def generate_random_string(length=6):
+    letters = string.ascii_lowercase
+    random_string = ''.join(random.choice(letters) for i in range(length))
+    print("Random string:", random_string)
+    return random_string
+
 
 def generate_response(message, return_all=False):
     if not message:
@@ -53,7 +64,6 @@ def generate_response(message, return_all=False):
     else:
         return 'Sorry, I do not understand your query.'
 
-
 def bot(request):
     template_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bot.html')
 
@@ -65,8 +75,17 @@ def bot(request):
         print("Input message:", message)
         print("Bot response:", response)
 
+        # Save the conversation to the database
+        chat_history = db['Chats']
+        chat_doc = chat_history.find_one({'user_id': 'user_id'})
+        if not chat_doc:
+            chat_doc = {'user_id': 'user_id', 'conversations': []}
+
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        conversation = {'timestamp': timestamp, 'user_message': message, 'bot_response': response}
+        chat_doc['conversations'].append(conversation)
+        chat_history.save(chat_doc)
+
         return JsonResponse({'response': response})
 
     return render(request, template_path)
-
-
