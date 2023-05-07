@@ -1,6 +1,6 @@
 ﻿
 body {
-    background-color: #f8f9fa; /* This is a light gray color */
+    background-color: white; /* This is a light gray color */
 }
 
 /* Navbar styles */
@@ -8,7 +8,6 @@ body {
     background-color: #343a40; /* You can change this color to your preferred one */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
-   
     padding-top: 10px;
     padding-right: 40px;
     padding-bottom: 10px;
@@ -41,9 +40,9 @@ body {
         .navbar .navbar-nav .nav-item:last-child .nav-link:hover {
             background-color: #0056b3;
         }
-        /* Navbar styles */
+/* Navbar styles */
 
-        /* Header styles */
+/* Header styles */
 
 header {
     display: flex;
@@ -73,36 +72,53 @@ header {
     max-width: 100%; /* This ensures the image doesn't overflow its container */
 }
 
-       /* Header styles */
+/* Header styles */
 
 /* Benefits Section */
-.benefits-section {
-    background-color: #f1e0d6;
-}
-
 .custom-card {
-    border: none;
-    border-radius: 0;
+    background-color: white;
+    border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-.custom-icon {
-    font-size: 3rem;
-    color: #f07d58;
-    margin-bottom: 1rem;
-}
-
-.benefit-bg {
-    background-image: url("Images/notepad-background.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-
 /* Benefits Section */
 
-/* additonla information for Benefits Section /*
-    ................
-    ................
-/* additonla information for Benefits Section /*
+/* additonla information for Benefits Section */
+
+/* additonla information for Benefits Section */
+
+/* Postcode estimate */
+.postcode-section {
+    background-color: white;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+    .postcode-section h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .postcode-section .form-control {
+        margin-bottom: 15px;
+    }
+
+.signup-link {
+    color: #ffffff;
+    background-color: #000;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+    .signup-link:hover {
+        background-color: #0056b3;
+    }
+
+
+/* Postcode estimate */
+
+
+
 
