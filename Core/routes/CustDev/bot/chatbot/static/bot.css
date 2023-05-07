@@ -44,4 +44,7 @@ body {
   color: white;
   align-self: flex-end;
 }
-
+.ui-autocomplete {
+    position: absolute;
+    top: -150%;
+}
