@@ -14,48 +14,64 @@
       <input type="text" name="message" id="message">
       <button type="submit" id="send">Send</button>
       <button type="button" id="clear-chat">Clear chat</button>
+      <button type="button" id="speech-to-text"> </button>
+
     </form>
   </div>
   <div id="response"></div>
 
   <script>
-    // jQuery to handle form submission and update the response
-    $(document).ready(function() {
-      $('form').on('submit', function(e) {
-        e.preventDefault();
+      // jQuery to handle form submission and update the response
+      $(document).ready(function() {
+          $('form').on('submit', function(e) {
+              e.preventDefault();
 
-        // Get the CSRF token
-        var csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
+              // Get the CSRF token
+              var csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
 
-        $.ajax({
-          url: '{% url "bot" %}',
-          type: 'POST',
-          headers: {
-            'X-CSRFToken': csrf_token
-          },
-          data: {
-            message: $('#message').val()
-          },
-          success: function(data) {
-            console.log(data);
-            $('#chat-history').append('<div class="user-message">' + $('#message').val() + '</div>');
-            $('#message').val('');
-            $('#chat-history').append('<div class="bot-message">' + data.response + '</div>');
+              $.ajax({
+                  url: '{% url "bot" %}',
+                  type: 'POST',
+                  headers: {
+                      'X-CSRFToken': csrf_token
+                  },
+                  data: {
+                      message: $('#message').val()
+                  },
+                  success: function(data) {
+                      console.log(data);
+                      $('#chat-history').append('<div class="user-message">' + $('#message').val() + '</div>');
+                      $('#message').val('');
+                      $('#chat-history').append('<div class="bot-message">' + data.response + '</div>');
+                      $('#chat-history').scrollTop($('#chat-history')[0].scrollHeight);
+                  },
+                  error: function() {
+                      $('#response').text('Error occurred while sending the message');
+                  }
+              });
+          });
 
-            
-            $('#chat-history').scrollTop($('#chat-history')[0].scrollHeight);
-          },
-          error: function() {
-            $('#response').text('Error occurred while sending the message');
-          }
-        });
+          // Function to handle click on clear chat button
+          $('#clear-chat').on('click', function() {
+              $('#chat-history').empty(); 
+          });
+
+          // Function to handle speech-to-text button click
+          $('#speech-to-text').on('click', function() {
+              var recognition = new webkitSpeechRecognition();
+              recognition.lang = 'en-US';
+              recognition.start();
+
+              recognition.onresult = function(event) {
+                  var speechToText = event.results[0][0].transcript;
+                  $('#message').val(speechToText);
+              };
+
+              recognition.onend = function() {
+                  recognition.stop();
+              };
+          });
       });
-
-      // Function to handle click on clear chat button
-      $('#clear-chat').on('click', function() {
-        $('#chat-history').empty(); 
-      });
-    });
   </script>
 </body>
 </html>
