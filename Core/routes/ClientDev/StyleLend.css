@@ -84,41 +84,25 @@ header {
 
 /* additonla information for Benefits Section */
 
-/* additonla information for Benefits Section */
 
-/* Postcode estimate */
-.postcode-section {
-    background-color: white;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
-
-    .postcode-section h2 {
-        font-size: 28px;
-        margin-bottom: 20px;
-    }
-
-    .postcode-section .form-control {
-        margin-bottom: 15px;
-    }
-
-.signup-link {
-    color: #ffffff;
-    background-color: #000;
+    color: #ffffff; 
+    background-color: #000; 
     text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: inline-block;
-    transition: all 0.3s ease;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    display: inline-block; 
+    transition: all 0.3s ease; 
 }
 
     .signup-link:hover {
-        background-color: #0056b3;
+        background-color: #0056b3; 
     }
 
 
-/* Postcode estimate */
+ /* Postcode estimate */
 
 
 
 
+
+    
