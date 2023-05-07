@@ -2,48 +2,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Chatbot</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'bot.css' %}">
-
-
+  <title>Chatbot</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'bot.css' %}">
 </head>
 <body>
+  <div class="chat-container">
+    <div id="chat-history"></div>
     <form>
-        {% csrf_token %}
-        <input type="text" name="message" id="message">
-        <button type="submit" id="send">Send</button>
+      {% csrf_token %}
+      <input type="text" name="message" id="message">
+      <button type="submit" id="send">Send</button>
+      <button type="button" id="clear-chat">Clear chat</button>
     </form>
+  </div>
+  <div id="response"></div>
 
-    <div id="response"></div>
+  <script>
+    // jQuery to handle form submission and update the response
+    $(document).ready(function() {
+      $('form').on('submit', function(e) {
+        e.preventDefault();
 
-    <script>
-        // jQuery to handle form submission and update the response
-        $('form').on('submit', function(e) {
-            e.preventDefault();
+        // Get the CSRF token
+        var csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
 
-            // Get the CSRF token
-            var csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
+        $.ajax({
+          url: '{% url "bot" %}',
+          type: 'POST',
+          headers: {
+            'X-CSRFToken': csrf_token
+          },
+          data: {
+            message: $('#message').val()
+          },
+          success: function(data) {
+            console.log(data);
+            $('#chat-history').append('<div class="user-message">' + $('#message').val() + '</div>');
+            $('#message').val('');
+            $('#chat-history').append('<div class="bot-message">' + data.response + '</div>');
 
-            $.ajax({
-                url: '{% url "bot" %}',
-                type: 'POST',
-                headers: {
-                    'X-CSRFToken': csrf_token
-                },
-                data: {
-                    message: $('#message').val()
-                },
-                success: function(data) {
-                    console.log(data);
-                    $('#response').text(data.response);
-                },
-                error: function() {
-                    $('#response').text('Error occurred while sending the message');
-                }
-            });
+            
+            $('#chat-history').scrollTop($('#chat-history')[0].scrollHeight);
+          },
+          error: function() {
+            $('#response').text('Error occurred while sending the message');
+          }
         });
-    </script>
+      });
+
+      // Function to handle click on clear chat button
+      $('#clear-chat').on('click', function() {
+        $('#chat-history').empty(); 
+      });
+    });
+  </script>
 </body>
 </html>
 
