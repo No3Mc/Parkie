@@ -16,6 +16,5 @@
 # Start-Process -FilePath "www.parkie.app"
 #
 #
-cd $HOME/Downloads/Parkie/Core/routes/ParkDev/parking
+cd Core/routes/ParkDev/parking
 node server.js
-
