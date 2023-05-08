@@ -2,6 +2,8 @@ import os
 from django.shortcuts import render
 from django.http import JsonResponse
 from pymongo import MongoClient
+from django.contrib import messages
+from django.shortcuts import redirect
 import spacy
 import re
 import random
@@ -68,10 +70,28 @@ def bot(request):
     template_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bot.html')
 
     if request.method == 'POST':
-        # Process the user message and generate a bot response
+        # Check if user entered email and password
         message = request.POST.get('message')
         message = preprocess_message(message)
-        response = generate_response(message)
+
+        if message.startswith('/admin'):
+            email_password = message[7:].split()
+            if len(email_password) == 2:
+                email, password = email_password
+                admin_doc = db['Admins'].find_one({'email': email, 'password': password})
+
+                if admin_doc:
+                    response = 'Welcome Admin! What can I help you with?'
+                else:
+                    response = 'Sorry, I could not validate your credentials. Please try again.'
+            else:
+                response = 'Please enter valid email and password in the format: /admin email pass'
+        else:
+            # Process the user message and generate a bot response
+            response = generate_response(message)
+
+            if not response:
+                response = 'Sorry, I do not understand your query.'
 
         print("Input message:", message)
         print("Bot response:", response)
@@ -116,3 +136,4 @@ def bot(request):
         chat_history.insert_one(chat_doc)
 
         return render(request, template_path)
+
