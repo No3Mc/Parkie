@@ -14,7 +14,7 @@
 # Start-Process -FilePath "https://portal.azure.com/#@DeMontfortUniversity.onmicrosoft.com/resource/subscriptions/163642f3-7dde-4df1-b7a3-ef411bd2541c/resourceGroups/Parkie_group/providers/Microsoft.Storage/storageAccounts/parkiegroup9013/storagebrowser"
 # Start-Process -FilePath "https://portal.azure.com/#@DeMontfortUniversity.onmicrosoft.com/resource/subscriptions/163642f3-7dde-4df1-b7a3-ef411bd2541c/resourceGroups/Parkie_group/providers/microsoft.insights/components/parkie/overview"
 # Start-Process -FilePath "www.parkie.app"
-#
-#
+
+
 cd Core/routes/ParkDev/parking
 node server.js
