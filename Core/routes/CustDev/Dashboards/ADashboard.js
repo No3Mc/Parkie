@@ -6,7 +6,7 @@ const dafaqBtn = document.getElementById('dafaq-btn');
 const iframeContainer = document.getElementById('iframe-container');
 
 botBtn.addEventListener('click', () => {
-	iframeContainer.innerHTML = '<iframe src="../bot/bot.html"></iframe>';
+	iframeContainer.innerHTML = '<iframe src="../bot/chatbot/bot.html"></iframe>';
 	iframeContainer.style.display = 'block';
 });
 

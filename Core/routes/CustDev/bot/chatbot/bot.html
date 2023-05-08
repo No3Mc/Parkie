@@ -1,45 +1,121 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Chatbot</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>Chatbot</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'bot.css' %}">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
 </head>
 <body>
+  <div class="chat-container">
+    <div id="chat-history"></div>
     <form>
-        {% csrf_token %}
-        <input type="text" name="message" id="message">
-        <button type="submit" id="send">Send</button>
+      {% csrf_token %}
+      <input type="text" name="message" id="message">
+      <button type="submit" id="send">Send</button>
+      <button type="button" id="clear-chat">Clear chat</button>
+      <button type="button" id="speech-to-text"> </button>
     </form>
+  </div>
+  <div id="response"></div>
 
-    <div id="response"></div>
+  <script>
+      // available commands
+      var commands = [
+          '/help',
+          '/admin',
+          '/booking'
+      ];
 
-    <script>
-        // jQuery to handle form submission and update the response
-        $('form').on('submit', function(e) {
-            e.preventDefault();
+      // Initialize the autocomplete widget
+      $('#message').autocomplete({
+          source: commands,
+          autoFocus: true,
+          delay: 0,
+          select: function(event, ui) {
+              // Insert the selected command into the input field
+              var message = $('#message').val();
+              var startIndex = message.lastIndexOf('/');
+              $('#message').val(message.substring(0, startIndex) + ui.item.value);
+              return false;
+          },
+          open: function(event, ui) {
+              // Hide the autocomplete menu if the user types a non-command character
+              var menu = $(this).data("ui-autocomplete").menu.element;
+              var term = $(this).data("ui-autocomplete").term;
+              var regex = new RegExp("^" + term.replace("/", "\\/"));
+              var nonCommands = $.grep(commands, function(item) {
+                  return !regex.test(item);
+              });
+              menu.children(".ui-menu-item:contains('" + nonCommands.join("'), .ui-menu-item:contains('") + "')").hide();
+          },
+          response: function(event, ui) {
+              // Hide the autocomplete menu if there are no matches
+              if (ui.content.length === 0) {
+                  $(this).autocomplete("close");
+              }
+          },
+          position: {
+              my: "left bottom",
+              at: "left top",
+              collision: "none"
+          },
+          appendTo: "#message-container"
+      });
 
-            // Get the CSRF token
-            var csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
+      // jQuery to handle form submission and update the response
+      $(document).ready(function() {
+          $('form').on('submit', function(e) {
+              e.preventDefault();
 
-            $.ajax({
-                url: '{% url "bot" %}',
-                type: 'POST',
-                headers: {
-                    'X-CSRFToken': csrf_token
-                },
-                data: {
-                    message: $('#message').val()
-                },
-                success: function(data) {
-                    console.log(data);
-                    $('#response').text(data.response);
-                },
-                error: function() {
-                    $('#response').text('Error occurred while sending the message');
-                }
-            });
-        });
-    </script>
+              // Get the CSRF token
+              var csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
+
+              $.ajax({
+                  url: '{% url "bot" %}',
+                  type: 'POST',
+                  headers: {
+                      'X-CSRFToken': csrf_token
+                  },
+                  data: {
+                      message: $('#message').val()
+                  },
+                  success: function(data) {
+                      console.log(data);
+                      $('#chat-history').append('<div class="user-message">' + $('#message').val() + '</div>');
+                      $('#message').val('');
+                      $('#chat-history').append('<div class="bot-message">' + data.response + '</div>');
+                      $('#chat-history').scrollTop($('#chat-history')[0].scrollHeight);
+                  },
+              error: function() {
+                  $('#response').text('Error occurred while sending the message');
+              }
+          });
+      });
+
+      // Function to handle click on clear chat button
+      $('#clear-chat').on('click', function() {
+          $('#chat-history').empty(); 
+      });
+
+      // Function to handle speech-to-text button click
+      $('#speech-to-text').on('click', function() {
+          var recognition = new webkitSpeechRecognition();
+          recognition.lang = 'en-US';
+          recognition.start();
+
+          recognition.onresult = function(event) {
+              var speechToText = event.results[0][0].transcript;
+              $('#message').val(speechToText);
+          };
+
+          recognition.onend = function() {
+              recognition.stop();
+          };
+      });
+  });
+ </script>
 </body>
 </html>
-

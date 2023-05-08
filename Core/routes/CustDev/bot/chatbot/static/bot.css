@@ -1,0 +1,50 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+  overflow: hidden; 
+}
+
+#chat-history {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto;
+  max-height: calc(100% - 80px);
+}
+
+.user-message, .bot-message {
+  max-width: 80%;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.user-message {
+  background-color: #f1f0f0;
+}
+
+.bot-message {
+  background-color: #4CAF50;
+  color: white;
+  align-self: flex-end;
+}
+.ui-autocomplete {
+    position: absolute;
+    top: -150%;
+}

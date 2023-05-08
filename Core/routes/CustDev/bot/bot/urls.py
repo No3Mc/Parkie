@@ -21,9 +21,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from chatbot.views import bot
+from chatbot import views
+
 
 urlpatterns = [
     path('', bot, name='bot'),  
     path('admin/', admin.site.urls),
+    # path('verify-admin/', views.verify_admin, name='verify_admin')
 ]
 

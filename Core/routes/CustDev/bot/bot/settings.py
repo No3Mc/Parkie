@@ -123,6 +123,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "bot/chatbot/static")]
+# SESSION_SAVE_EVERY_REQUEST = True
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
