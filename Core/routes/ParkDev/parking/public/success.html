@@ -7,32 +7,6 @@
   <body>
     <h1>Payment Successful!</h1>
     <p>Thank you for your payment.</p>
-    <script>
-      // Update the status of the parking spot and send confirmation email
-      fetch("/book-success", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          markerId: "the_id_of_the_booked_marker",
-        }),
-      })
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error(
-              "Failed to update the status of the parking spot and send confirmation email."
-            );
-          }
-        })
-        .then((data) => {
-          console.log(data.message);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    </script>
+    <script></script>
   </body>
 </html>
