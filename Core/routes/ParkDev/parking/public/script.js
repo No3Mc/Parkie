@@ -65,39 +65,40 @@ markersWithStatus.forEach(marker => {
         data.append('email', formData.get('email'));
         data.append('markerId', marker._id);
 
-        // fetching the booking data
-        fetch("/book", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-             },
-             body: data
-         })
-             .then(response => {
-                 if (response.ok) {
-                     return response.json();
-                 } else if (response.status === 409) {
-                     throw new Error("⚠️Marker is already booked!!");
-                 } else {
-                     throw new Error(response.statusText);
-                 }
-             })  
-             .then(data => {
-                 alert(data.message);
-                 // updateMarkerStatus(marker._id, 'booked');
-                 map.closePopup(bookingFormPopup);
-                 markerPopup.setContent(popupContent);
-                 markerPopup.openOn(map);
-                 map.closePopup(markerPopup);
-
-             })
-             .catch(error => {   
-                 map.closePopup(bookingFormPopup);
-                 map.closePopup(markerPopup);
-                 console.error(error);
-                 alert(error.message);
-             });
-             
+        // stripe
+        fetch('/create-checkout-session',{
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              name: formData.get('name'),
+              email: formData.get('email'),
+              markerId: marker._id,
+              items: [
+                  { id: 1, quantity: 1 },
+              ]
+          }),
+      })
+      .then(response => {
+          if (response.ok) {
+              return response.json();
+          } else if (response.status === 409) {
+              throw new Error("⚠️Marker is already booked!!");
+          } else {
+              throw new Error(response.statusText);
+          }
+      })  
+      .then(data => {
+          window.location.href = data.url;
+      })
+      .catch(error => {   
+          map.closePopup(bookingFormPopup);
+          map.closePopup(markerPopup);
+          console.error(error);
+          alert(error.message);
+      });
+      
      });
    });
 

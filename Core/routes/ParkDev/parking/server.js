@@ -1,77 +1,136 @@
-const express = require('express');
-const { MongoClient, ObjectId } = require('mongodb');
-const { readFile } = require('fs/promises');
-const sgMail = require('@sendgrid/mail')
+  require("dotenv").config()
 
-const app = express();
-const port = 3000;
-const uri = "mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/Parking?retryWrites=true&w=majority";
+  const express = require('express');
+  const { MongoClient, ObjectId } = require('mongodb');
+  const { readFile } = require('fs/promises');
+  const sgMail = require('@sendgrid/mail')
 
-app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true }));
+  const app = express();
+  const port = 3000;
+  const uri = "mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/Parking?retryWrites=true&w=majority";
 
-async function connectToDatabase(uri) {
-  const client = await MongoClient.connect(uri, { useNewUrlParser: true });
-  const markersCollection = client.db("Parking").collection("marker");
-  console.log("Connected to MongoDB Atlas");
+  // middle ware
+  app.use(express.static('public'));
+  app.use(express.json())
+  app.use(express.urlencoded({ extended: true }));
 
-  return markersCollection.find().toArray();
-}
+  // stripe api key
+  const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
-async function start() {
-  const markersWithStatus = await connectToDatabase(uri);
+  async function connectToDatabase(uri) {
+    const client = await MongoClient.connect(uri, { useNewUrlParser: true });
+    const markersCollection = client.db("Parking").collection("marker");
+    console.log("Connected to MongoDB Atlas");
 
-  app.get('/markers', (req, res) => {
-    res.json(markersWithStatus);
-  });
+    return markersCollection.find().toArray();
+  }
 
-  app.post('/book', async (req, res) => {
-    const { name, email, markerId } = req.body;
+  async function start() {
+    const markersWithStatus = await connectToDatabase(uri);
+
+    app.get('/markers', (req, res) => {
+      res.json(markersWithStatus);
+    });
+  }
+
+  // testing data
+  const parkSlots =  new Map ([
+    [1, {priceInCents: 100, name: "Parking slot"}]
+  ])
+
+  // stripe checkout
+  app.post('/create-checkout-session', async (req, res) => {
+  const { name, email, markerId } = req.body;
+  try{
+
+          const client = await MongoClient.connect(uri, { useNewUrlParser: true });
+          const markersCollection = client.db("Parking").collection("marker");
+
+          const marker = await markersCollection.findOne({ _id: new ObjectId(markerId) });
+          
+          if (marker.status === "available") { 
+            const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            mode: 'payment',
+            line_items: req.body.items.map(item =>{
+                   const parkSlot = parkSlots.get(item.id)
+                   return{
+                          price_data: {
+                                 currency: 'gbp',
+                                 product_data: {
+                                        name: parkSlot.name,
+                                 },
+                                 unit_amount: parkSlot.priceInCents,
+                          },
+                          quantity: item.quantity,
+                   }
+            }),     
+            success_url: `${process.env.SERVER_URL}/success.html`,
+            cancel_url: `${process.env.SERVER_URL}/cancel.html`,
+          })
+            res.json({ url: session.url })
+          } 
+          else {
+                // Marker is already booked, send an error message to the user
+                res.status(409).json({ message: "Marker is already booked ⚠️" });
+            }            
+          }
+          catch (err) {
+                console.error(err);
+                res.status(500).json({ message: "We are facing unexpected error ⚠️" + err.message });
+              }
+        })
+
+
+
+  // on success book req and store data in db
+  // app.post('/book', async (req, res) => {
+  //   const { name, email, markerId } = req.body;
   
-    try {
-      const client = await MongoClient.connect(uri, { useNewUrlParser: true });
-      const markersCollection = client.db("Parking").collection("marker");
+  //   try {
+  //     const client = await MongoClient.connect(uri, { useNewUrlParser: true });
+  //     const markersCollection = client.db("Parking").collection("marker");
   
-      const marker = await markersCollection.findOne({ _id: new ObjectId(markerId) });
+  //     const marker = await markersCollection.findOne({ _id: new ObjectId(markerId) });
   
-      if (marker.status === "available") {
-        const updatedMarker = await markersCollection.findOneAndUpdate(
-          { _id: new ObjectId(markerId) },
-          { $set: { name, email, status: 'booked' } },
-          { returnOriginal: false }
-        );
+  //     if (marker.status === "available") {
+  //       const updatedMarker = await markersCollection.findOneAndUpdate(
+  //         { _id: new ObjectId(markerId) },
+  //         { $set: { name, email, status: 'booked' } },
+  //         { returnOriginal: false }
+  //       );
   
-      console.log(`Marker ${markerId} has been booked by ${name} (${email})`);
+  //     console.log(`Marker ${markerId} has been booked by ${name} (${email})`);
 
-      const msg = {
-        to: email,
-        from: { name: 'Parkie', email: 'parkie.parking@gmail.com' },
-        templateId: 'd-ec1c780d10334a3386396ea75f9fc332',
-        dynamicTemplateData: {
-          name: name,
-          markerId: markerId,
-          email: email
-        }
-      };
+  //     const msg = {
+  //       to: email,
+  //       from: { name: 'Parkie', email: 'parkie.parking@gmail.com' },
+  //       templateId: 'd-ec1c780d10334a3386396ea75f9fc332',
+  //       dynamicTemplateData: {
+  //         name: name,
+  //         markerId: markerId,
+  //         email: email
+  //       }
+  //     };
 
-      sgMail.setApiKey('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');
-      await sgMail.send(msg);
+  //     sgMail.setApiKey('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');
+  //     await sgMail.send(msg);
 
-      res.json({ message: '🎉 Booking successful!' });       
-      } else {
-        // Marker is already booked, send an error message to the user
-        res.status(409).json({ message: "Marker is already booked ⚠️" });
-      }
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: "We are facing unexpected error ⚠️" + err.message });
-    }
-  });
+  //     res.json({ message: '🎉 Booking successful!' });       
+  //     } else {
+  //       // Marker is already booked, send an error message to the user
+  //       res.status(409).json({ message: "Marker is already booked ⚠️" });
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //     res.status(500).json({ message: "We are facing unexpected error ⚠️" + err.message });
+  //   }
+  // });
   
   app.listen(port, () => {
       console.log(`App listening at http://localhost:${port}`);
   });
-} 
+
 
 start();
 
