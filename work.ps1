@@ -15,6 +15,31 @@
 # Start-Process -FilePath "https://portal.azure.com/#@DeMontfortUniversity.onmicrosoft.com/resource/subscriptions/163642f3-7dde-4df1-b7a3-ef411bd2541c/resourceGroups/Parkie_group/providers/microsoft.insights/components/parkie/overview"
 # Start-Process -FilePath "www.parkie.app"
 
+$black = [char]27 + '[1;30m'
+$red = [char]27 + '[1;31m'
+$green = [char]27 + '[1;32m'
+$yellow = [char]27 + '[1;33m'
+$blue = [char]27 + '[1;34m'
+$magenta = [char]27 + '[1;35m'
+$cyan = [char]27 + '[1;36m'
+$white = [char]27 + '[1;37m'
+$reset = [char]27 + '[0m'
 
-cd Core/routes/ParkDev/parking
-node server.js
+Write-Output "${green}Running server.js written by UMAR SOOMRO${reset}"
+Start-Process node -ArgumentList "Core/routes/ParkDev/parking/server.js" -NoNewWindow
+Start-Sleep -Seconds 1
+
+Write-Output "${green}Running Promos.js written by YO BOI SYED${reset}"
+Start-Process python -ArgumentList "Core/routes/CustDev/AbtPro/Promos.py" -NoNewWindow
+
+
+
+while($true) {
+  Start-Sleep -Seconds 1
+}
+
+
+
+#
+# Start-Process -FilePath
+#
