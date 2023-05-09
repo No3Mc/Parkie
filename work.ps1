@@ -9,34 +9,39 @@ $cyan = [char]27 + '[1;36m'
 $white = [char]27 + '[1;37m'
 $reset = [char]27 + '[0m'
 
-Write-Output "${red}Setting up the Environmental Variables for Nodejs${reset}"
-$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$(Split-Path -Parent $MyInvocation.MyCommand.Path)\Core\Node"
-[Environment]::SetEnvironmentVariable("Path", $envPath, "User")
-
-Start-Sleep -Seconds 1
-
-Write-Output "${red}Setting up the Environmental Variables for Python${reset}"
+$nodePath = "$(Split-Path -Parent $MyInvocation.MyCommand.Path)\Core\Node"
 $pythonPath = Join-Path $PSScriptRoot "Core\Python\python.exe"
-$scriptsPath = Join-Path $PSScriptRoot "Core\Python\Scripts"
-$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$pythonPath;$scriptsPath"
-[Environment]::SetEnvironmentVariable("Path", $envPath, "User")
+$pythonScriptsPath = Join-Path $PSScriptRoot "Core\Python\Scripts"
+$gitPath = "$(Split-Path -Parent $MyInvocation.MyCommand.Path)\Core\Git\bin"
 
-Start-Sleep -Seconds 1
+$existingPaths = [Environment]::GetEnvironmentVariable("Path", "User") -split ';'
 
-Write-Output "${red}Setting up the Environmental Variables for GIT${reset}"
-$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$(Split-Path -Parent $MyInvocation.MyCommand.Path)\Core\Git\bin"
-[Environment]::SetEnvironmentVariable("Path", $envPath, "User")
+if ($existingPaths -contains $nodePath) {
+    Write-Output "Node.js path already exists in PATH"
+} else {
+    # Add Node.js path to PATH
+    $envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$nodePath"
+    [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
+    Write-Output "Added Node.js path to PATH"
+}
 
-# Install Py Packages
+if ($existingPaths -contains $pythonPath) {
+    Write-Output "Python path already exists in PATH"
+} else {
+    # Add Python path to PATH
+    $envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$pythonPath;$pythonScriptsPath"
+    [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
+    Write-Output "Added Python path to PATH"
+}
 
-# pip install <package-name> --target /path/to/directory
-
-# Install npm packages
-
-# cd Core\routes\ParkDev\parking\node_modules
-# export NODE_PATH=$(pwd)
-# set NODE_PATH=%cd%
-
+if ($existingPaths -contains $gitPath) {
+    Write-Output "Git path already exists in PATH"
+} else {
+    # Add Git path to PATH
+    $envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$gitPath"
+    [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
+    Write-Output "Added Git path to PATH"
+}
 
 
 
@@ -93,6 +98,40 @@ Start-Process python -ArgumentList "manage.py", "runserver" -WorkingDirectory $f
 while($true) {
   Start-Sleep -Seconds 1
 }
+
+
+
+
+# Write-Output "${red}Setting up the Environmental Variables for Nodejs${reset}"
+# $envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$(Split-Path -Parent $MyInvocation.MyCommand.Path)\Core\Node"
+# [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
+
+# Start-Sleep -Seconds 1
+
+# Write-Output "${red}Setting up the Environmental Variables for Python${reset}"
+# $pythonPath = Join-Path $PSScriptRoot "Core\Python\python.exe"
+# $scriptsPath = Join-Path $PSScriptRoot "Core\Python\Scripts"
+# $envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$pythonPath;$scriptsPath"
+# [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
+
+# Start-Sleep -Seconds 1
+
+# Write-Output "${red}Setting up the Environmental Variables for GIT${reset}"
+# $envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$(Split-Path -Parent $MyInvocation.MyCommand.Path)\Core\Git\bin"
+# [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
+
+# Install Py Packages
+
+# pip install <package-name> --target /path/to/directory
+
+# Install npm packages
+
+# cd Core\routes\ParkDev\parking\node_modules
+# export NODE_PATH=$(pwd)
+# set NODE_PATH=%cd%
+
+
+
 
 
 
