@@ -26,19 +26,19 @@ $white = [char]27 + '[1;37m'
 $reset = [char]27 + '[0m'
 
 Write-Output "${red}Setting up the Environmental Variables for Nodejs${reset}"
-$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";Core\Node"
+$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$(Split-Path -Parent $MyInvocation.MyCommand.Path)/Core/Node"
 [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
 
 Start-Sleep -Seconds 1
 
 Write-Output "${red}Setting up the Environmental Variables for Python${reset}"
-$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";Core\Python"
+$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$(Split-Path -Parent $MyInvocation.MyCommand.Path)/Core/Python"
 [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
 
 Start-Sleep -Seconds 1
 
 Write-Output "${red}Setting up the Environmental Variables for GIT${reset}"
-$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";Core\Git\bin;"
+$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$(Split-Path -Parent $MyInvocation.MyCommand.Path)/Core/Git/bin"
 [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
 
 Start-Sleep -Seconds 1
