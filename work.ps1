@@ -43,6 +43,15 @@ Write-Output "${red}Setting up the Environmental Variables for GIT${reset}"
 $envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$(Split-Path -Parent $MyInvocation.MyCommand.Path)\Core\Git\bin"
 [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
 
+# Install Packages
+
+# pip install <package-name> --target /path/to/directory
+
+
+
+
+
+
 Start-Sleep -Seconds 1
 
 Write-Output "${green}Running server.js written by UMAR SOOMRO${reset}"
