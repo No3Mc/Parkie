@@ -44,48 +44,48 @@ $envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$(Split-Pat
 Start-Sleep -Seconds 1
 
 Write-Output "${green}Running server.js written by UMAR SOOMRO${reset}"
-Start-Process node.exe -ArgumentList "Core/routes/ParkDev/parking/server.js" -NoNewWindow
+Start-Process node -ArgumentList "Core/routes/ParkDev/parking/server.js" -NoNewWindow
 
 Start-Sleep -Seconds 1
 
 Write-Output "${green}Running Promos.py written by YO BOI SYED${reset}"
-Start-Process python.exe -ArgumentList "Core/routes/CustDev/AbtPro/Promos.py" -NoNewWindow
+Start-Process python -ArgumentList "Core/routes/CustDev/AbtPro/Promos.py" -NoNewWindow
 
 Start-Sleep -Seconds 1
 
 Write-Output "${green}Running Register.py written by YO BOI SYED${reset}"
-Start-Process python.exe -ArgumentList "Core/routes/CustDev/LogReg/Register.py" -NoNewWindow
+Start-Process python -ArgumentList "Core/routes/CustDev/LogReg/Register.py" -NoNewWindow
 
 Start-Sleep -Seconds 1
 
 Write-Output "${green}Running Login.py written by YO BOI SYED${reset}"
-Start-Process python.exe -ArgumentList "Core/routes/CustDev/LogReg/login.py" -NoNewWindow
+Start-Process python -ArgumentList "Core/routes/CustDev/LogReg/login.py" -NoNewWindow
 
 Start-Sleep -Seconds 1
 
 Write-Output "${green}Running MngCusts.py written by YO BOI SYED${reset}"
-Start-Process python.exe -ArgumentList "Core/routes/CustDev/Manage/MngCusts.py" -NoNewWindow
+Start-Process python -ArgumentList "Core/routes/CustDev/Manage/MngCusts.py" -NoNewWindow
 
 Start-Sleep -Seconds 1
 
 Write-Output "${green}Running MngProfile.py written by YO BOI SYED${reset}"
-Start-Process python.exe -ArgumentList "Core/routes/CustDev/Manage/MngProfile.py" -NoNewWindow
+Start-Process python -ArgumentList "Core/routes/CustDev/Manage/MngProfile.py" -NoNewWindow
 
 Start-Sleep -Seconds 1
 
 Write-Output "${green}Running MngPromos.py written by YO BOI SYED${reset}"
-Start-Process python.exe -ArgumentList "Core/routes/CustDev/Manage/MngPromos.py" -NoNewWindow
+Start-Process python -ArgumentList "Core/routes/CustDev/Manage/MngPromos.py" -NoNewWindow
 
 Start-Sleep -Seconds 1
 
 Write-Output "${green}Running VulRep.py written by YO BOI SYED${reset}"
-Start-Process python.exe -ArgumentList "Core/routes/CustDev/VulFaq/VulRep.py" -NoNewWindow
+Start-Process python -ArgumentList "Core/routes/CustDev/VulFaq/VulRep.py" -NoNewWindow
 
 Start-Sleep -Seconds 1
 
 $folderPath = "Core/routes/CustDev/bot"
 Write-Output "${green}Django server in written by YO BOI SYED${reset}"
-Start-Process python.exe -ArgumentList "manage.py", "runserver" -WorkingDirectory $folderPath -NoNewWindow
+Start-Process python -ArgumentList "manage.py", "runserver" -WorkingDirectory $folderPath -NoNewWindow
 
 
 
