@@ -25,6 +25,24 @@ $cyan = [char]27 + '[1;36m'
 $white = [char]27 + '[1;37m'
 $reset = [char]27 + '[0m'
 
+Write-Output "${red}Setting up the Environmental Variables for Nodejs${reset}"
+$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";Core\Node"
+[Environment]::SetEnvironmentVariable("Path", $envPath, "User")
+
+Start-Sleep -Seconds 1
+
+Write-Output "${red}Setting up the Environmental Variables for Python${reset}"
+$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";Core\Python"
+[Environment]::SetEnvironmentVariable("Path", $envPath, "User")
+
+Start-Sleep -Seconds 1
+
+Write-Output "${red}Setting up the Environmental Variables for GIT${reset}"
+$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";Core\Git\bin;"
+[Environment]::SetEnvironmentVariable("Path", $envPath, "User")
+
+Start-Sleep -Seconds 1
+
 Write-Output "${green}Running server.js written by UMAR SOOMRO${reset}"
 Start-Process node -ArgumentList "Core/routes/ParkDev/parking/server.js" -NoNewWindow
 
@@ -35,46 +53,35 @@ Start-Process python -ArgumentList "Core/routes/CustDev/AbtPro/Promos.py" -NoNew
 
 Start-Sleep -Seconds 1
 
-
 Write-Output "${green}Running Register.py written by YO BOI SYED${reset}"
 Start-Process python -ArgumentList "Core/routes/CustDev/LogReg/Register.py" -NoNewWindow
 
 Start-Sleep -Seconds 1
-
 
 Write-Output "${green}Running Login.py written by YO BOI SYED${reset}"
 Start-Process python -ArgumentList "Core/routes/CustDev/LogReg/login.py" -NoNewWindow
 
 Start-Sleep -Seconds 1
 
-
-
 Write-Output "${green}Running MngCusts.py written by YO BOI SYED${reset}"
 Start-Process python -ArgumentList "Core/routes/CustDev/Manage/MngCusts.py" -NoNewWindow
 
 Start-Sleep -Seconds 1
-
-
 
 Write-Output "${green}Running MngProfile.py written by YO BOI SYED${reset}"
 Start-Process python -ArgumentList "Core/routes/CustDev/Manage/MngProfile.py" -NoNewWindow
 
 Start-Sleep -Seconds 1
 
-
-
 Write-Output "${green}Running MngPromos.py written by YO BOI SYED${reset}"
 Start-Process python -ArgumentList "Core/routes/CustDev/Manage/MngPromos.py" -NoNewWindow
 
 Start-Sleep -Seconds 1
 
-
-
 Write-Output "${green}Running VulRep.py written by YO BOI SYED${reset}"
 Start-Process python -ArgumentList "Core/routes/CustDev/VulFaq/VulRep.py" -NoNewWindow
 
 Start-Sleep -Seconds 1
-
 
 $folderPath = "Core/routes/CustDev/bot"
 Write-Output "${green}Django server in written by YO BOI SYED${reset}"
