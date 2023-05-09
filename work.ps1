@@ -32,7 +32,9 @@ $envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$(Split-Pat
 Start-Sleep -Seconds 1
 
 Write-Output "${red}Setting up the Environmental Variables for Python${reset}"
-$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$(Split-Path -Parent $MyInvocation.MyCommand.Path)\Core\Python"
+$pythonPath = Join-Path $PSScriptRoot "Core\Python\python.exe"
+$scriptsPath = Join-Path $PSScriptRoot "Core\Python\Scripts"
+$envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$pythonPath;$scriptsPath"
 [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
 
 Start-Sleep -Seconds 1
