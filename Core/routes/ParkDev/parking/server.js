@@ -65,8 +65,11 @@
           }),     
           success_url: `${process.env.SERVER_URL}/book?name=${name}&email=${email}&markerId=${markerId}`,
           cancel_url: `${process.env.SERVER_URL}/cancel.html`,
+          metadata: {
+            success_message: "Payment successful!",
+          },
         });
-        res.json({ url: session.url });
+        res.json({ url: session.url});
       } 
       else {
         // Marker is already booked, send an error message to the user
@@ -109,10 +112,16 @@
           }
         };
   
-        sgMail.setApiKey('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');
+        sgMail.setApiKey(process.env.SG_PRIVATE_KEY);
         await sgMail.send(msg);
-  
-        res.send(`🎉 Booking successful! Marker ${markerId} has been booked by ${name} (${email})`);
+        
+        // // Update the marker object with the new status
+        // marker.status = 'booked';
+
+        // // Send the updated marker object as the response
+        //  res.json({ marker: marker });
+
+        res.redirect(`${process.env.SERVER_URL}?success=true`);
       } else {
         // Marker is already booked, send an error message to the user
         res.status(409).send(`Marker ${markerId} is already booked ⚠️`);

@@ -45,7 +45,6 @@ markersWithStatus.forEach(marker => {
   bookButton.addEventListener('click', (event) => {
     const bookingForm = document.createElement('form');
     bookingForm.innerHTML =
-
       '<input type="text" id="name" name="name" placeholder="Enter your full name" style="border-radius: 12px; padding: 10px 10px; margin: 5px 0px;" required > <br> ' +
       '<input type="email" id="email" name="email" placeholder="Enter your email" style="border-radius: 12px; padding: 10px 10px; margin:5px 0px" required> <br> ' +
       '<button type="submit" style="padding: 7px 10px; border-radius: 10px; margin: 5px 0px; cursor: pointer;">Book Now</button>';
@@ -56,8 +55,10 @@ markersWithStatus.forEach(marker => {
 
     // submit btn
     bookingForm.addEventListener('submit', (event) => {
+     event.preventDefault();
 
-        event.preventDefault();
+      // Clear the alertShown flag to allow showing the alert for subsequent bookings
+      sessionStorage.removeItem("alertShown");
 
       const formData = new FormData(bookingForm);
         const data = new URLSearchParams();
@@ -97,9 +98,16 @@ markersWithStatus.forEach(marker => {
           map.closePopup(markerPopup);
           console.error(error);
           alert(error.message);
-      });
+      })
+          .catch(error => {
+            console.error(error);
+          });
       
-     });
+      
+      
+      
+
+   });
    });
 
    popupContent.appendChild(status);
