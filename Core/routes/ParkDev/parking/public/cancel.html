@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="main">
+      <h1>Transection Cancelled</h1>
+      <p>
+        Please go back to map and <br />
+        start booking again
+      </p>
+      <button id="myButton">Go Back</button>
+    </div>
+
+    <script>
+      const button = document.getElementById("myButton");
+      button.addEventListener("click", () => {
+        window.location.href = "http://localhost:3000"; // Replace with your server URL and port
+      });
+    </script>
+  </body>
+</html>
