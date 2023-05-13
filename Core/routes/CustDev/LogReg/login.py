@@ -1,17 +1,15 @@
 from pymongo import MongoClient
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import secrets
-from flask import flash
 import bcrypt
-from flask_login import LoginManager, login_user, current_user, login_required
+from flask_login import LoginManager, login_user, current_user, login_required, UserMixin
 from datetime import datetime, timedelta
-
+from bson.objectid import ObjectId
 
 # MongoDB Atlas connection string
 client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority')
 db = client['USER_DB']
 users_collection = db['users']
-
 
 app = Flask(__name__, static_url_path='', static_folder='static', template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/LogReg')
 app.secret_key = secrets.token_hex(16)
@@ -23,6 +21,25 @@ login_manager.login_view = 'index'
 
 # Rate limiting for failed login attempts
 failed_logins = {}
+
+
+class User(UserMixin):
+    def __init__(self, user_dict):
+        self.id = str(user_dict['_id'])
+        self.email = user_dict['email']
+        # Add any other required attributes
+
+    def is_active(self):
+        return True  # Or implement your own logic to determine if the user is active
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    user_dict = users_collection.find_one({'_id': ObjectId(user_id)})
+    if user_dict:
+        return User(user_dict)
+    return None
+
 
 def rate_limited(ip_address):
     now = datetime.now()
@@ -41,11 +58,6 @@ def rate_limited(ip_address):
     else:
         failed_logins[ip_address] = (1, now)
         return False
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return users_collection.find_one({'_id': ObjectId(user_id)})
 
 
 @app.route('/')
@@ -68,7 +80,7 @@ def login():
     if user and bcrypt.checkpw(password, user['password']):
         print('Login successful for user:', email)
         flash('Login successful!', 'success')
-        login_user(user)
+        login_user(User(user))
     else:
         print('Login failed for user:', email)
         flash('Invalid email or password', 'error')
