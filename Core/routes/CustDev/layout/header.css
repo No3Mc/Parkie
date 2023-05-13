@@ -2,107 +2,141 @@
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300&display=swap');
 
 * {
-   box-sizing: border-box;
-   font-family: 'Unbounded', cursive;
-   text-decoration: none;
-   list-style: none;
-   scroll-behavior: smooth;
-}  
+  box-sizing: border-box;
+  font-family: 'Unbounded', cursive;
+  text-decoration: none;
+  list-style: none;
+  scroll-behavior: smooth;
+}
 
 body {
-   margin: 0;
-   padding: 0;
-   overflow-x: hidden;
-} 
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
 
 .navbar {
-   display: flex;
-   position: relative;
-   justify-content: space-between;
-   align-items: center;
-   background-color: white;
-   color: black;
-   margin: 0px 94px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: white;
+  color: black;
+  margin: 0px 94px;
+}
+
+.brand-title {
+  margin-top: 10px;
 }
 
 .brand-title > a {
-   font-size: 1.8rem;
-   margin: .5rem;
-   color: #1FA637;
-} 
+  font-size: 1.8rem;
+  margin: .5rem;
+  color: #1FA637;
+}
 
 .navbar-links {
-   height: 100%;
-} 
+  align-self: flex-end;
+}
 
 .navbar-links ul {
-   display: flex;
-   margin: 0;
-   padding: 0;
-}  
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
 
 .navbar-links li {
-   list-style: none;
-}  
+  list-style: none;
+}
 
 .navbar-links li a {
-   display: block;
-   text-decoration: none;
-   color: #747774;
-   padding: 1.188rem;   
-   transition: all 0.8s;
-
-   font-size: 13px;
+  display: block;
+  text-decoration: none;
+  color: #747774;
+  padding: 1.188rem;
+  transition: all 0.8s;
+  font-size: 13px;
 }
-.navbar-links li a:hover{
-   color: #000000;
+
+.navbar-links li a:hover {
+  color: #000000;
 }
 
 .toggle-button {
-   position: absolute;
-   top: .75rem;
-   right: 1rem;
-   display: none;
-   flex-direction: column;
-   justify-content: space-around;
-   width: 30px;
-   height: 21px;
+  position: absolute;
+  top: .75rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 21px;
 }
 
 .toggle-button .bar {
-   height: 3px;
-   width: 100%;
-   background-color: black;
-   border-radius: 10px;
-   transition: all ease 1s;
+  height: 3px;
+  width: 100%;
+  background-color: black;
+  border-radius: 10px;
+  transition: all ease 1s;
+}
+
+#login-form {
+  overflow: hidden;
+  width: 0;
+  transition: width 0.5s ease;
+}
+
+#login-form input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
 }
 
 @media (max-width: 1200px) {
-   .navbar {
-       flex-direction: column;
-        align-items: flex-start; 
-   }
-   .toggle-button {
-       display: flex; 
-   }
-   .navbar-links {
-       display: none;
-       width: 100%;
-   }
-   .navbar-links ul {
-       width: 100%;
-       flex-direction: column;
-   }
-   .navbar-links ul li {
-       text-align: center;
-   }
-   .navbar-links ul li a {
-       padding: .5rem 1rem;
-       margin: 0px 13px;
-       padding: 10px 0px; 
-   }
-   .navbar-links.active {
-       display: flex;
-   }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .toggle-button {
+    display: flex;
+  }
+
+  .navbar-links {
+    display: none;
+    width: 100%;
+  }
+
+  .navbar-links ul {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .navbar-links ul li {
+    text-align: center;
+  }
+
+  .navbar-links ul li a {
+    padding: .5rem 1rem;
+    margin: 0px 13px;
+    padding: 10px 0px;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+
+  #login-button:focus + #login-form {
+    width: 200px;
+  }
 }
 
+#login-form.open {
+    width: 200px;
+}
+
+@media (max-width: 1200px) {
+    #login-button:focus + #login-form {
+        width: 200px;
+    }
+}
