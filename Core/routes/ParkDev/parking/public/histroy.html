@@ -7,11 +7,38 @@
         border-collapse: collapse;
         width: 100%;
       }
+
       th,
       td {
         text-align: left;
         padding: 8px;
         border-bottom: 1px solid #ddd;
+      }
+
+      /* Edit Popup Styles */
+      #edit-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+      }
+
+      #edit-popup h2 {
+        margin-top: 0;
+      }
+
+      #edit-popup .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -23,6 +50,9 @@
           <th>Slot ID</th>
           <th>Name</th>
           <th>Email</th>
+          <th>Time</th>
+          <th>Car Number</th>
+          <th>No.</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -30,6 +60,22 @@
         <!-- Table body will be dynamically generated -->
       </tbody>
     </table>
+    <div id="edit-popup">
+      <h2>Edit Details</h2>
+      <span class="close-btn" onclick="closeEditPopup()">&times;</span>
+      <form id="edit-form">
+        <input type="hidden" id="edit-slot-id" />
+        <label for="edit-name">Name:</label>
+        <input type="text" id="edit-name" required /><br />
+        <label for="edit-email">Email:</label>
+        <input type="email" id="edit-email" required /><br />
+        <label for="edit-carno">Car Number:</label>
+        <input type="text" id="edit-carno" required /><br />
+        <label for="edit-no">No.:</label>
+        <input type="text" id="edit-no" required /><br />
+        <button type="submit">Save</button>
+      </form>
+    </div>
     <script>
       function handleDelete(slotId) {
         if (confirm("Are you sure you want to delete this booking?")) {
@@ -46,6 +92,66 @@
         }
       }
 
+      function handleEdit(slotId, name, email, carno, no) {
+        const editForm = document.getElementById("edit-form");
+        const editSlotId = document.getElementById("edit-slot-id");
+        const editName = document.getElementById("edit-name");
+        const editEmail = document.getElementById("edit-email");
+        const editCarno = document.getElementById("edit-carno");
+        const editNo = document.getElementById("edit-no");
+
+        editSlotId.value = slotId;
+        editName.value = name;
+        editEmail.value = email;
+        editCarno.value = carno;
+        editNo.value = no;
+
+        document.getElementById("edit-popup").style.display = "block";
+      }
+
+      function closeEditPopup() {
+        document.getElementById("edit-popup").style.display = "none";
+      }
+
+      document
+        .getElementById("edit-form")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const editSlotId = document.getElementById("edit-slot-id").value;
+          const editName = document.getElementById("edit-name").value;
+          const editEmail = document.getElementById("edit-email").value;
+          const editCarno = document.getElementById("edit-carno").value;
+          const editNo = document.getElementById("edit-no").value;
+
+          fetch(`/history/data/${editSlotId}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: editName,
+              email: editEmail,
+              carno: editCarno,
+              no: editNo,
+            }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                const row = document.getElementById(`slot-${editSlotId}`);
+                if (row) {
+                  const columns = row.getElementsByTagName("td");
+                  columns[1].textContent = editName;
+                  columns[2].textContent = editEmail;
+                  columns[4].textContent = editCarno;
+                  columns[5].textContent = editNo;
+                }
+                closeEditPopup();
+              }
+            })
+            .catch((error) => console.error(error));
+        });
+
       fetch("/history/data")
         .then((response) => response.json())
         .then((data) => {
@@ -56,7 +162,13 @@
             row.innerHTML = `<td>${slot._id}</td>
                        <td>${slot.name}</td>
                        <td>${slot.email}</td>
-                       <td><button onclick="handleDelete('${slot._id}')">Delete</button></td>`;
+                       <td>${slot.time}</td>
+                       <td>${slot.carno}</td>
+                       <td>${slot.no}</td>
+                       <td>
+                         <button onclick="handleEdit('${slot._id}', '${slot.name}', '${slot.email}', '${slot.carno}', '${slot.no}')">Edit</button>
+                         <button onclick="handleDelete('${slot._id}')">Delete</button>
+                       </td>`;
             tableBody.appendChild(row);
           });
         })
