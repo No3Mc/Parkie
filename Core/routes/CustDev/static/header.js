@@ -3,14 +3,15 @@ document.addEventListener("DOMContentLoaded", function() {
   const loginForm = document.getElementById("login-form");
   const usernameInput = document.getElementById("username-input");
   const passwordInput = document.getElementById("password-input");
+  const profileIcon = document.querySelector(".profile-icon");
+  const logoutLink = document.querySelector(".logout-link");
 
-  loginButton.addEventListener("click", function (event) {
+  loginButton.addEventListener("click", function(event) {
     event.preventDefault();
-
     loginForm.classList.toggle("open");
   });
 
-  passwordInput.addEventListener("keydown", function (event) {
+  passwordInput.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
       event.preventDefault();
       login();
@@ -43,5 +44,15 @@ document.addEventListener("DOMContentLoaded", function() {
         alert("An error occurred during login. Please try again later.");
       });
   }
+
+  profileIcon.addEventListener("click", function(event) {
+    event.stopPropagation(); // Prevent event bubbling
+
+    logoutLink.classList.toggle("open");
+  });
+
+  window.addEventListener("click", function() {
+    logoutLink.classList.remove("open");
+  });
 });
 

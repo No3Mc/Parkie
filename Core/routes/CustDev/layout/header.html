@@ -33,24 +33,28 @@
                 <li><a href="routes/CustDev/AbtPro/AboutUs.html">Company</a></li>
                 <li><a href="routes/CustDev/VulFaq/DocnFAQ.html">Help</a></li>
                 {% if current_user.is_authenticated %}
-                    <!-- User is logged in -->
-                    <li>
+                <li class="profile-dropdown">
+                    <a href="#" class="profile-icon">
+                        <!-- Add your profile icon HTML here -->
+                    </a>
+                    <div class="dropdown-content">
                         <a href="{{ url_for('logout') }}">Logout</a>
-                    </li>
+                    </div>
+                </li>
                 {% else %}
-                    <!-- User is not logged in -->
-                    <li>
-                        <a id="login-button" class="login-button" href="#">Login</a>
-                        <div id="login-form" class="login-form">
-                            <input id="username-input" type="text" placeholder="Username">
-                            <input id="password-input" type="password" placeholder="Password">
-                        </div>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('rpg') }}">
-                            <b class="reg-btn">Sign Up</b>
-                        </a>
-                    </li>
+                <!-- User is not logged in -->
+                <li>
+                    <a id="login-button" class="login-button" href="#">Login</a>
+                    <div id="login-form" class="login-form">
+                        <input id="username-input" type="text" placeholder="Username">
+                        <input id="password-input" type="password" placeholder="Password">
+                    </div>
+                </li>
+                <li>
+                    <a href="{{ url_for('rpg') }}">
+                        <b class="reg-btn">Sign Up</b>
+                    </a>
+                </li>
                 {% endif %}
             </ul>
         </div>
