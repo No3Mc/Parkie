@@ -6,12 +6,13 @@ from flask_login import LoginManager, login_user, current_user, login_required, 
 from datetime import datetime, timedelta
 from bson.objectid import ObjectId
 
+
 # MongoDB Atlas connection string
 client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority')
 db = client['USER_DB']
 users_collection = db['users']
 
-app = Flask(__name__, static_url_path='', static_folder='static', template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/LogReg')
+app = Flask(__name__, static_url_path='', static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/layout', template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev')
 app.secret_key = secrets.token_hex(16)
 
 login_manager = LoginManager()
@@ -26,11 +27,11 @@ failed_logins = {}
 class User(UserMixin):
     def __init__(self, user_dict):
         self.id = str(user_dict['_id'])
-        self.email = user_dict['email']
+        self.username = user_dict['username']
         # Add any other required attributes
 
     def is_active(self):
-        return True  # Or implement your own logic to determine if the user is active
+        return True  
 
 
 @login_manager.user_loader
@@ -62,7 +63,7 @@ def rate_limited(ip_address):
 
 @app.route('/')
 def index():
-    return render_template('login.html')
+    return render_template('layout/header.html')
 
 
 @app.route('/login', methods=['POST'])
@@ -72,18 +73,18 @@ def login():
         flash('Too many failed login attempts. Please try again later.', 'error')
         return redirect(url_for('index'))
 
-    email = request.form['email']
+    username = request.form['username']
     password = request.form['password'].encode('utf-8')  # encode password to bytes
 
-    user = users_collection.find_one({'email': email})
+    user = users_collection.find_one({'username': username})
 
     if user and bcrypt.checkpw(password, user['password']):
-        print('Login successful for user:', email)
+        print('Login successful for user:', username)
         flash('Login successful!', 'success')
         login_user(User(user))
     else:
-        print('Login failed for user:', email)
-        flash('Invalid email or password', 'error')
+        print('Login failed for user:', username)
+        flash('Invalid username or password', 'error')
 
     return redirect(url_for('index'))
 

@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Meta Information for the webpage -->
-        <meta charset="utf-8" />
-        <!-- linking files -->
-        <link rel="stylesheet" href="header.css" />
-        <script src="header.js" defer></script>
-        <!-- linking font -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <!-- Fav icon -->
-        <link rel="shortcut icon" type="image/png" href="https://i.postimg.cc/NMbHx9JP/favicon.png" />
-        <title>Parkie - Home</title>
-    </head>
+<head>
+    <!-- Meta Information for the webpage -->
+    <meta charset="utf-8" />
+    <!-- linking files -->
+    <link rel="stylesheet" href="header.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Add Axios library -->
+    <script src="header.js" defer></script>
+    <!-- linking font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Fav icon -->
+    <link rel="shortcut icon" type="image/png" href="https://i.postimg.cc/NMbHx9JP/favicon.png" />
+    <title>Parkie - Home</title>
+</head>
 
-    <body>
-        <!-- nav -->
-        <nav class="navbar">
-            <div class="brand-title"><a href="index.html">Parkie</a></div>
-            <a href="#" class="toggle-button" title="Toggle Button">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </a>
-            <div class="navbar-links">
-                <ul>
-                    <li>
-                        <a href="">How it works?</a>
-                    </li>
-                    <li><a href="#">Lend space</a></li>
-                    <li><a href="#">Business solution</a></li>
-                    <li><a href="routes/CustDev/AbtPro/AboutUs.html">Company</a></li>
-                    <li><a href="routes/CustDev/VulFaq/DocnFAQ.html">Help</a></li>
-                    <li>
-                        <a id="login-button" class="login-button" href="routes/CustDev/LogReg/login.html">Login</a>
-                        <div id="login-form" class="login-form">
-                            <input type="text" placeholder="Username">
-                            <input type="password" placeholder="Password">
-                        </div>
-                    </li>
-                    <li>
-                        <a href="routes/CustDev/LogReg/Register.html"><b class="reg-btn">Sign Up</b></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </body>
+<body>
+    <!-- nav -->
+    <nav class="navbar">
+        <div class="brand-title"><a href="index.html">Parkie</a></div>
+        <a href="#" class="toggle-button" title="Toggle Button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+            <ul>
+                <li>
+                    <a href="">How it works?</a>
+                </li>
+                <li><a href="#">Lend space</a></li>
+                <li><a href="#">Business solution</a></li>
+                <li><a href="routes/CustDev/AbtPro/AboutUs.html">Company</a></li>
+                <li><a href="routes/CustDev/VulFaq/DocnFAQ.html">Help</a></li>
+                <li>
+                    <a id="login-button" class="login-button" href="#">Login</a>
+                    <div id="login-form" class="login-form">
+                        <input id="username-input" type="text" placeholder="Username">
+                        <input id="password-input" type="password" placeholder="Password">
+                    </div>
+                </li>
+                <li>
+                    <a href="routes/CustDev/LogReg/Register.html"><b class="reg-btn">Sign Up</b></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</body>
 </html>
 
