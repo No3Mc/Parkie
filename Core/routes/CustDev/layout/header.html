@@ -4,9 +4,11 @@
     <!-- Meta Information for the webpage -->
     <meta charset="utf-8" />
     <!-- linking files -->
-    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='header.css') }}">
+
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Add Axios library -->
-    <script src="header.js" defer></script>
+    <script src="{{ url_for('static', filename='header.js') }}" defer></script>
     <!-- linking font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Fav icon -->
@@ -40,7 +42,9 @@
                     </div>
                 </li>
                 <li>
-                    <a href="routes/CustDev/LogReg/Register.html"><b class="reg-btn">Sign Up</b></a>
+                    <a href="{{ url_for('rpg') }}">
+                        <b class="reg-btn">Sign Up</b>
+
                 </li>
             </ul>
         </div>

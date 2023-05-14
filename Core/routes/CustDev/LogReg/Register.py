@@ -6,7 +6,7 @@ from flask_mail import Mail, Message
 import os
 import bcrypt
 
-app = Flask(__name__, static_url_path='', static_folder='static', template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/LogReg')
+app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev', static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
 
 app.secret_key = secrets.token_hex(16)
 
@@ -18,6 +18,10 @@ app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
+
+# def email
+app.config['MAIL_DEFAULT_SENDER'] = 'help.almadad@aol.com'
+
 # Create a Mail instance
 mail = Mail(app)
 
@@ -28,7 +32,14 @@ users_collection = db['users']
 
 @app.route('/')
 def index():
-    return render_template('Register.html')
+    return render_template('layout/header.html')
+    # return render_template('layout/header.html')
+
+@app.route('/rpg')
+def rpg():
+    return render_template('LogReg/Register.html')
+    # return render_template('LogReg/Register.html')
+
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -74,6 +85,7 @@ def register():
         mail.send(msg)
 
     return redirect(url_for('index'))
+
 
 @app.route('/verify/<token>')
 def verify(token):
