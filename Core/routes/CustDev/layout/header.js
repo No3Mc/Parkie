@@ -3,14 +3,15 @@ document.addEventListener("DOMContentLoaded", function() {
   const loginForm = document.getElementById("login-form");
   const usernameInput = document.getElementById("username-input");
   const passwordInput = document.getElementById("password-input");
+  const loginStatus = document.getElementById("login-status");
 
-  loginButton.addEventListener("click", function(event) {
+  loginButton.addEventListener("click", function (event) {
     event.preventDefault();
 
     loginForm.classList.toggle("open");
   });
 
-  passwordInput.addEventListener("keydown", function(event) {
+  passwordInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       event.preventDefault();
       login();
@@ -26,23 +27,26 @@ document.addEventListener("DOMContentLoaded", function() {
     formData.append("username", username);
     formData.append("password", password);
 
-fetch("/login", {
-  method: "POST",
-  body: new URLSearchParams(formData)
-})
-  .then(function(response) {
-    console.log(response); 
-    if (response.status === 200) { 
-      console.log("Login successful");
-    } else if (response.status === 401) { 
-      console.log("Login failed");
-    } else {
-      console.log("Unexpected response");
-    }
-  })
-  .catch(function(error) {
-    console.log("An error occurred during login");
-  });
+    fetch("/login", {
+      method: "POST",
+      body: new URLSearchParams(formData),
+    })
+      .then(function (response) {
+        if (response.status === 200) {
+          loginStatus.textContent = "Login successful";
+          loginStatus.style.color = "green";
+        } else if (response.status === 401) {
+          loginStatus.textContent = "Login failed";
+          loginStatus.style.color = "red";
+        } else {
+          loginStatus.textContent = "Unexpected response";
+          loginStatus.style.color = "red";
+        }
+      })
+      .catch(function (error) {
+        loginStatus.textContent = "An error occurred during login";
+        loginStatus.style.color = "red";
+      });
   }
 });
 
