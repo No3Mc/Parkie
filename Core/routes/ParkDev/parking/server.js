@@ -132,6 +132,82 @@
     }
   });
   
+  // getting the parking data
+  app.get('/history', (req, res) => {
+    res.sendFile(__dirname + '/history.html');
+  });
+  
+  app.get('/history/data', async (req, res) => {
+    try {
+      const client = await MongoClient.connect(uri, { useNewUrlParser: true });
+      const markersCollection = client.db("Parking").collection("marker");
+      const history = await markersCollection.find({ status: 'booked' }).toArray();
+      res.json(history);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send(`We are facing unexpected error ⚠️ ${err.message}`);
+    }
+  });
+
+  // deleting the data
+  app.delete('/history/data/:id', async (req, res) => {
+    try {
+      const client = await MongoClient.connect(uri, { useNewUrlParser: true });
+      const markersCollection = client.db("Parking").collection("marker");
+      const markerId = req.params.id;
+  
+      const marker = await markersCollection.findOne({ _id: new ObjectId(markerId) });
+  
+      if (!marker) {
+        res.status(404).json({ message: "Marker not found ⚠️" });
+        return;
+      }
+  
+      if (marker.status !== 'booked') {
+        res.status(409).json({ message: "Cannot delete. Marker is not booked ⚠️" });
+        return;
+      }
+  
+      const { name, email } = marker;
+  
+      await markersCollection.updateOne(
+        { _id: new ObjectId(markerId) },
+        {
+          $set: {
+            status: 'available',
+            name: '',
+            email: ''
+          }
+        }
+      );
+  
+      // Send cancellation email using SendGrid
+      const sgMail = require('@sendgrid/mail');
+      sgMail.setApiKey(process.env.SG_PRIVATE_KEY);
+  
+      const msg = {
+        to: email,
+        from: { name: 'Parkie', email: 'parkie.parking@gmail.com' },
+        templateId: 'd-cc5e9e9251c54a2ab54f8451eb0beb5c',
+        dynamicTemplateData: {
+          name: name,
+          markerId: markerId,
+          email: email
+        }
+      };
+  
+      await sgMail.send(msg);
+  
+      res.sendStatus(204);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send(`We are facing unexpected error ⚠️ ${err.message}`);
+    }
+  });
+  
+  
+  
+  
   
   app.listen(port, () => {
       console.log(`App listening at http://localhost:${port}`);

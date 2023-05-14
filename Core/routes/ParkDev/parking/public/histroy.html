@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parking History</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Parking History</h1>
+    <table id="history-table">
+      <thead>
+        <tr>
+          <th>Slot ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Table body will be dynamically generated -->
+      </tbody>
+    </table>
+    <script>
+      function handleDelete(slotId) {
+        if (confirm("Are you sure you want to delete this booking?")) {
+          fetch(`/history/data/${slotId}`, { method: "DELETE" })
+            .then((response) => {
+              if (response.ok) {
+                const row = document.getElementById(`slot-${slotId}`);
+                if (row) {
+                  row.remove();
+                }
+              }
+            })
+            .catch((error) => console.error(error));
+        }
+      }
+
+      fetch("/history/data")
+        .then((response) => response.json())
+        .then((data) => {
+          const tableBody = document.querySelector("#history-table tbody");
+          data.forEach((slot) => {
+            const row = document.createElement("tr");
+            row.id = `slot-${slot._id}`;
+            row.innerHTML = `<td>${slot._id}</td>
+                       <td>${slot.name}</td>
+                       <td>${slot.email}</td>
+                       <td><button onclick="handleDelete('${slot._id}')">Delete</button></td>`;
+            tableBody.appendChild(row);
+          });
+        })
+        .catch((error) => console.error(error));
+    </script>
+  </body>
+</html>
