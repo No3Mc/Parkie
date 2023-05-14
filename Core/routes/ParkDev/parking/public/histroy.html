@@ -3,19 +3,60 @@
   <head>
     <title>Parking History</title>
     <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
       table {
         border-collapse: collapse;
         width: 100%;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
       }
 
       th,
       td {
         text-align: left;
-        padding: 8px;
+        padding: 12px 15px;
         border-bottom: 1px solid #ddd;
       }
 
-      /* Edit Popup Styles */
+      th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+        color: #333;
+      }
+
+      tr:hover {
+        background-color: #f9f9f9;
+      }
+
+      button {
+        display: inline-block;
+        background: linear-gradient(45deg, #ff3cac, #784ba0);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        text-decoration: none;
+      }
+
+      button:hover {
+        background: linear-gradient(45deg, #784ba0, #ff3cac);
+      }
+
       #edit-popup {
         display: none;
         position: fixed;
@@ -27,6 +68,8 @@
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         z-index: 9999;
+        width: 400px;
+        margin: 20px;
       }
 
       #edit-popup h2 {
@@ -40,9 +83,39 @@
         font-size: 20px;
         cursor: pointer;
       }
+
+      #edit-form label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      #edit-form input {
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+      }
+
+      #edit-form button[type="submit"] {
+        display: inline-block;
+        background: linear-gradient(45deg, #ff3cac, #784ba0);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      #edit-form button[type="submit"]:hover {
+        background: linear-gradient(45deg, #784ba0, #ff3cac);
+      }
     </style>
   </head>
   <body>
+    <button><a href="payHistroy.html">Payment Histroy</a></button>
     <h1>Parking History</h1>
     <table id="history-table">
       <thead>

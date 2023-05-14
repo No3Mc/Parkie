@@ -66,6 +66,7 @@
           success_url: `${process.env.SERVER_URL}/book?carno=${carno}&name=${name}&email=${email}&no=${no}&markerId=${markerId}`,
           cancel_url: `${process.env.SERVER_URL}/cancel.html`,
           metadata: {
+            paymentTimestamp: new Date().toISOString(), // Store the payment timestamp
             success_message: "Payment successful!",
           },
         });
@@ -82,6 +83,30 @@
     }
   });
   
+// Endpoint to fetch payment history
+// Endpoint to fetch payment history
+  // Endpoint to fetch payment history
+  app.get('/payment/history', async (req, res) => {
+    try {
+      // Fetch payment history from the Stripe API
+      const paymentHistory = await stripe.paymentIntents.list();
+  
+      // Process the payment history data as needed
+      const formattedPaymentHistory = paymentHistory.data.map(payment => ({
+        id: payment.id,
+        customerName: payment.metadata.name,
+        amount: (payment.amount / 100).toFixed(2), // Assuming payment amount is in cents
+        status: payment.status
+      }));
+  
+      // Send the formatted payment history as the response
+      res.json(formattedPaymentHistory);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error fetching payment history');
+    }
+    });      
+
   // booking 
   app.get('/book', async (req, res) => {
     const { carno, name, email, no, markerId } = req.query;
