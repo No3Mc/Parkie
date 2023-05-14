@@ -26,20 +26,23 @@ document.addEventListener("DOMContentLoaded", function() {
     formData.append("username", username);
     formData.append("password", password);
 
-    fetch("/login", {
-      method: "POST",
-      body: new URLSearchParams(formData)
-    })
-      .then(function(response) {
-        if (response.ok) {
-          console.log("Login successful");
-        } else {
-          console.log("Login failed");
-        }
-      })
-      .catch(function(error) {
-        console.log("An error occurred during login");
-      });
+fetch("/login", {
+  method: "POST",
+  body: new URLSearchParams(formData)
+})
+  .then(function(response) {
+    console.log(response); 
+    if (response.status === 200) { 
+      console.log("Login successful");
+    } else if (response.status === 401) { 
+      console.log("Login failed");
+    } else {
+      console.log("Unexpected response");
+    }
+  })
+  .catch(function(error) {
+    console.log("An error occurred during login");
+  });
   }
 });
 

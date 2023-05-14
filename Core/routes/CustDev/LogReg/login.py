@@ -5,6 +5,7 @@ import bcrypt
 from flask_login import LoginManager, login_user, current_user, login_required, UserMixin
 from datetime import datetime, timedelta
 from bson.objectid import ObjectId
+from flask import jsonify
 
 
 # MongoDB Atlas connection string
@@ -80,11 +81,11 @@ def login():
 
     if user and bcrypt.checkpw(password, user['password']):
         print('Login successful for user:', username)
-        flash('Login successful!', 'success')
         login_user(User(user))
+        return jsonify({'message': 'Login successful'}), 200
     else:
         print('Login failed for user:', username)
-        flash('Invalid username or password', 'error')
+        return jsonify({'message': 'Login failed'}), 401
 
     return redirect(url_for('index'))
 
