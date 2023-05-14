@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const loginForm = document.getElementById("login-form");
   const usernameInput = document.getElementById("username-input");
   const passwordInput = document.getElementById("password-input");
-  const loginStatus = document.getElementById("login-status");
 
   loginButton.addEventListener("click", function (event) {
     event.preventDefault();
@@ -33,19 +32,15 @@ document.addEventListener("DOMContentLoaded", function() {
     })
       .then(function (response) {
         if (response.status === 200) {
-          loginStatus.textContent = "Login successful";
-          loginStatus.style.color = "green";
+          window.location.href = "/";  
         } else if (response.status === 401) {
-          loginStatus.textContent = "Login failed";
-          loginStatus.style.color = "red";
+          alert("Login failed. Please check your credentials and try again.");
         } else {
-          loginStatus.textContent = "Unexpected response";
-          loginStatus.style.color = "red";
+          alert("Unexpected response. Please try again later.");
         }
       })
       .catch(function (error) {
-        loginStatus.textContent = "An error occurred during login";
-        loginStatus.style.color = "red";
+        alert("An error occurred during login. Please try again later.");
       });
   }
 });

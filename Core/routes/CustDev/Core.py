@@ -8,6 +8,7 @@ from bson.objectid import ObjectId
 from flask_mail import Mail, Message
 import os
 import re
+from flask_login import logout_user
 
 # MongoDB Atlas connection string
 client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority')
@@ -76,7 +77,7 @@ def rate_limited(ip_address):
 
 @app.route('/')
 def index():
-    return render_template('layout/header.html')
+    return render_template('layout/header.html', current_user=current_user)
 
 @app.route('/rpg')
 def rpg():
@@ -97,11 +98,17 @@ def login():
     if user and bcrypt.checkpw(password, user['password']):
         print('Login successful for user:', username)
         login_user(User(user))
-        return jsonify({'message': 'Login successful'}), 200
+        return redirect(url_for('index'))  
     else:
         print('Login failed for user:', username)
         return jsonify({'message': 'Login failed'}), 401
 
+    return redirect(url_for('index'))
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
     return redirect(url_for('index'))
 
 

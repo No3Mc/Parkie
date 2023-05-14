@@ -5,8 +5,6 @@
     <meta charset="utf-8" />
     <!-- linking files -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='header.css') }}">
-
-
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Add Axios library -->
     <script src="{{ url_for('static', filename='header.js') }}" defer></script>
     <!-- linking font -->
@@ -34,18 +32,26 @@
                 <li><a href="#">Business solution</a></li>
                 <li><a href="routes/CustDev/AbtPro/AboutUs.html">Company</a></li>
                 <li><a href="routes/CustDev/VulFaq/DocnFAQ.html">Help</a></li>
-                <li>
-                    <a id="login-button" class="login-button" href="#">Login</a>
-                    <div id="login-form" class="login-form">
-                        <input id="username-input" type="text" placeholder="Username">
-                        <input id="password-input" type="password" placeholder="Password">
-                    </div>
-                </li>
-                <li>
-                    <a href="{{ url_for('rpg') }}">
-                        <b class="reg-btn">Sign Up</b>
-                    </a>
-                </li>
+                {% if current_user.is_authenticated %}
+                    <!-- User is logged in -->
+                    <li>
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                {% else %}
+                    <!-- User is not logged in -->
+                    <li>
+                        <a id="login-button" class="login-button" href="#">Login</a>
+                        <div id="login-form" class="login-form">
+                            <input id="username-input" type="text" placeholder="Username">
+                            <input id="password-input" type="password" placeholder="Password">
+                        </div>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('rpg') }}">
+                            <b class="reg-btn">Sign Up</b>
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
