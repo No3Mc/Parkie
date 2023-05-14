@@ -13,7 +13,7 @@ client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mong
 db = client['USER_DB']
 users_collection = db['users']
 
-app = Flask(__name__, static_url_path='', static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/layout', template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev')
+app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev', static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
 app.secret_key = secrets.token_hex(16)
 
 login_manager = LoginManager()
