@@ -45,8 +45,10 @@ markersWithStatus.forEach(marker => {
   bookButton.addEventListener('click', (event) => {
     const bookingForm = document.createElement('form');
     bookingForm.innerHTML =
+      '<input type="text" id="carno" name="carno" placeholder="Enter your car number" style="border-radius: 12px; padding: 10px 10px; margin: 5px 0px;" required > <br> ' +
       '<input type="text" id="name" name="name" placeholder="Enter your full name" style="border-radius: 12px; padding: 10px 10px; margin: 5px 0px;" required > <br> ' +
       '<input type="email" id="email" name="email" placeholder="Enter your email" style="border-radius: 12px; padding: 10px 10px; margin:5px 0px" required> <br> ' +
+      '<input type="number" id="no" name="no" placeholder="Enter your phone number" style="border-radius: 12px; padding: 10px 10px; margin: 5px 0px;" required > <br> ' +
       '<button type="submit" style="padding: 7px 10px; border-radius: 10px; margin: 5px 0px; cursor: pointer;">Book Now</button>';
       
     const bookingFormPopup = L.popup().setContent(bookingForm);
@@ -62,8 +64,10 @@ markersWithStatus.forEach(marker => {
 
       const formData = new FormData(bookingForm);
         const data = new URLSearchParams();
+        data.append('carno', formData.get('carno'));
         data.append('name', formData.get('name'));
         data.append('email', formData.get('email'));
+        data.append('no', formData.get('no'));
         data.append('markerId', marker._id);
 
         // stripe
@@ -73,8 +77,10 @@ markersWithStatus.forEach(marker => {
               "Content-Type": "application/json",
           },
           body: JSON.stringify({
+              carno: formData.get('carno'),
               name: formData.get('name'),
               email: formData.get('email'),
+              no: formData.get('no'),
               markerId: marker._id,
               items: [
                   { id: 1, quantity: 1 },
