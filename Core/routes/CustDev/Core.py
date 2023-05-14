@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from bson.objectid import ObjectId
 from flask_mail import Mail, Message
 import os
+import re
 
 # MongoDB Atlas connection string
 client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority')
@@ -114,6 +115,13 @@ def register():
     postcode = request.form['postcode']
     password = request.form['password'].encode('utf-8')  # encode password to bytes
 
+    error_message = None
+
+    # Check if the email ends with .net, .org, or .com
+    if not re.match(r'^[\w\.-]+@[\w\.-]+\.(net|org|com)$', email):
+        error_message = 'Email must end with .net, .org, or .com'
+        return render_template('LogReg/Register.html', error_message=error_message)
+
     # hash password using bcrypt
     hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
 
@@ -142,13 +150,14 @@ def register():
 
         flash('Registration successful! Please check your email to verify your account', 'success')
         # send verification email
-        verify_url = url_for('verify', token=token, _external=True)
-        msg = Message('Verify your email', sender=app.config['MAIL_USERNAME'], recipients=[email])
-        msg.body = f'Please click the following link to verify your email: {verify_url}'
-        mail.send(msg)
+        # verify_url = url_for('verify', token=token, _external=True)
+        # msg = Message('Verify your email', sender=app.config['MAIL_USERNAME'], recipients=[email])
+        # msg.body = f'Please click the following link to verify your email: {verify_url}'
+        # mail.send(msg)
 
-    return redirect(url_for('index'))
+        return redirect(url_for('index'))
 
+    return render_template('LogReg/Register.html')
 
 @app.route('/verify/<token>')
 def verify(token):

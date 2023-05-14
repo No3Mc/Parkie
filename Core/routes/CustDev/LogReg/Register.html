@@ -6,12 +6,12 @@
   <title>Registration</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Register.css') }}">
-
-
-
 </head>
 <body>
   <h1>Registration Form</h1>
+  {% if error_message %}
+    <p class="error">{{ error_message }}</p>
+  {% endif %}
   <form id="registration-form" action="/register" method="POST">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required><br><br>
