@@ -1,0 +1,520 @@
+    /* font connection */
+    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300&display=swap');
+    /* To top button */
+    #myBtn {
+        display: none; /* Hidden by default */
+        position: fixed; /* Fixed/sticky position */
+        bottom: 20px; /* Place the button at the bottom of the page */
+        right: 20px; /* Place the button 30px from the right */
+        z-index: 99; /* Make sure it does not overlap */
+        border: none; /* Remove borders */
+        outline: none; /* Remove outline */
+        background-color: #24AA81; /* Set a background color */
+        cursor: pointer; /* Add a mouse pointer on hover */
+        padding: 2px 5px; /* Some padding */
+        height: 40px;
+        border-radius: 100%; /* Rounded corners */
+        -webkit-box-shadow: -1px 5px 24px -10px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: -1px 5px 24px -10px rgba(0, 0, 0, 0.75);
+        box-shadow: -1px 5px 24px -10px rgba(0, 0, 0, 0.75);
+        transition: all 300ms ease-in-out;
+      }
+      #myBtn:hover {
+        height: 50px;
+        background-color: #555; /* Add a dark-grey background on hover */
+        padding: 7px 10px; /* Some padding */
+      }
+
+    /* icons style */
+    .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+    * {
+       box-sizing: border-box;
+       font-family: 'Unbounded', cursive;
+       text-decoration: none;
+       list-style: none;
+       scroll-behavior: smooth;
+   }  
+   body {
+       margin: 0;
+       padding: 0;
+       overflow-x: hidden;
+   } 
+   .navbar {
+       display: flex;
+       position: relative;
+       justify-content: space-between;
+       align-items: center;
+       background-color: white;
+       color: black;
+       margin: 0px 94px; 
+   }
+   .brand-title > a {
+       font-size: 1.8rem;
+       margin: .5rem;
+       color: #1FA637;
+   } 
+   .navbar-links {
+       height: 100%;
+   } 
+   .navbar-links ul {
+       display: flex;
+       margin: 0;
+       padding: 0;
+   }  
+   .navbar-links li {
+       list-style: none;
+   }  
+   .navbar-links li a {
+       display: block;
+       text-decoration: none;
+       color: #747774;
+       padding: 1.188rem;   
+       transition: all 0.8s;
+
+       font-size: 13px;
+   }
+   .navbar-links li a:hover{
+    color: #000000;
+   }
+   
+   /* .navbar-links li:hover {
+       background-color: #555;
+   } */
+   
+   .toggle-button {
+       position: absolute;
+       top: .75rem;
+       right: 1rem;
+       display: none;
+       flex-direction: column;
+       justify-content: space-around;
+       width: 30px;
+       height: 21px;
+   }
+   .toggle-button .bar {
+       height: 3px;
+       width: 100%;
+       background-color: black;
+       border-radius: 10px;
+       transition: all ease 1s;
+   }
+   @media (max-width: 1200px) {
+       .navbar {
+           flex-direction: column;
+            align-items: flex-start; 
+       }
+       .toggle-button {
+           display: flex; 
+       }
+       .navbar-links {
+           display: none;
+           width: 100%;
+       }
+       .navbar-links ul {
+           width: 100%;
+           flex-direction: column;
+       }
+       .navbar-links ul li {
+           text-align: center;
+       }
+       .navbar-links ul li a {
+           padding: .5rem 1rem;
+           /* background-color: black;
+           color: white; */
+            margin: 0px 13px;
+            padding: 10px 0px; 
+       }
+       .navbar-links.active {
+           display: flex;
+       }
+   }
+
+
+      /* bro(@itsumarsoomro) is ko comment is lie kia hai kuin ke ye keera kar raha tha and main bhool gaya tha
+   ke isko comment kar ke apna keera apply kar skta. Waise to name bhei change kar skta tha but html main mein ne pher 
+   udhar se .reg-btn kar dia To bro just kuch stuff ki wajah se isko hata dia
+   Kuin ke apne sath keera ho raha tha but tumhara code bht next level tha no doubt */
+
+   .login-button {
+    position: relative;
+  }
+  
+  .dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-left: 1px solid #9d9d9d;
+    border-bottom: 1px solid #9d9d9d;
+    transition: transform 0.3s ease;
+  }
+  
+  .dropdown-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 400px;
+    height: 600px;
+    background-color: #fff;
+    border: 1px solid #000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 1;
+  }
+  
+  .login-button:hover .dropdown-icon {
+    transform: translateY(-50%) rotate(-45deg);
+  }
+  
+  .login-button:hover .dropdown-content {
+    display: block;
+  }
+  
+  .login-iframe {
+    width: 100%;
+    height: 100%;
+  }
+  
+
+
+
+
+   /* login btn */
+   /* .log-btn{ */
+    /* background-color: white; */
+    /* color: #3CAD4F;
+    padding: 7px 26px;
+    border-radius: 16px;
+    border: 1px solid;
+    border-color: black; */
+
+
+    /* From https://css.glass */
+    /* background: rgba(255, 255, 255, 1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgb(245, 244, 244);
+    
+    transition: all 1s;
+    } */
+
+
+    /* login btn */
+    .reg-btn{
+    /* background-color: white; */
+    color: #3CAD4F;
+    padding: 7px 26px;
+    border-radius: 16px;
+    border: 1px solid;
+    border-color: black;
+
+
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgb(245, 244, 244);
+    
+    transition: all 1s;
+    }
+
+    .reg-btn:hover{
+    /* padding: 5px 30px; */
+    /* background-image: url("https://cdn-icons-png.flaticon.com/512/2989/2989981.png"); */
+    /* From https://css.glass */
+    /* background: rgba(255, 255, 255, 0.83);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.9px);
+    -webkit-backdrop-filter: blur(7.9px);
+    border: 1px solid rgba(255, 255, 255, 1); */
+    /* background: rgb(245, 241, 241); */
+    opacity: 85%;
+    border-color: #24AA81;
+    }
+
+  
+    /* hero box*/
+    .hero-box{
+        margin: 6px 100px;
+        display: flex;
+        position: relative;
+    }
+    .hero{
+    /* background-color: #17ac33; */
+    background-color: #08AEEA;
+    background-image: linear-gradient(270deg, #08AEEA 0%, #2AF598 68%);
+    
+    width: 100%;
+    height: 600px;
+    border-radius: 20px;
+    /* clip-path: polygon(0 0, 100% 0, 100% 24%, 0 84%); */
+    }
+
+    .h-title{
+        position: absolute;
+        margin: 180px 100px;
+        color: white;
+        font-size: 54px;
+    }
+
+    .hero-btn{
+        padding: 15px 45px;
+        margin: 355px 0px;
+        margin-left: 100px;
+        border-radius: 26px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.8s;
+    }
+    .hero-btn1{
+        padding: 15px 45px;
+        margin: 355px 0px;
+        margin-left: 20px;
+        border-radius: 26px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.8s;
+    }
+    .hero-btn:hover{
+      opacity: 85%;
+    }
+    .hero-btn1:hover{
+        opacity: 85%;
+    }
+    /* how to use box */
+    .howtouse{ margin: 6px 200px;}
+
+    .howtouse-box{
+        height: 500px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .htu-title{
+       text-align: center;
+       margin-top: 80px;
+       font-size: 30px;
+    }
+    .howtouse-box > div{
+        /* clip-path: circle(50% at 50% 50%); */
+        height: 349px;
+        width: 371px;
+        background-color: #000000;
+        transform: translateY(-80px);
+        margin: 0px 20px;
+    }
+    .htu-d{
+        color: black;
+        margin-top: 50px;
+        width: 50px;
+        
+    }
+    /* lending box */
+    .lending{
+        margin: 6px 100px;  
+    }
+    .lend-1, .lend-2{
+        width: 700px;
+        color: white;
+        margin: 0px 0px;
+    }
+    .lend-1{
+        margin: 0px 50px;
+    }
+    .lending-box{
+       
+        height: 500px;
+        width: 100%;
+        background-color: #24AA81;
+        display: flex;
+        /* justify-content: space-around; */
+    }
+    .lend-title{
+        font-size: 40px;
+        margin-top: 130px;
+    }
+    .lend-desc{
+        width: 600px;
+        margin-top: 25px;
+    }
+    .lend-btn{
+        margin-top: 25px;
+        padding: 12px 100px;
+        border-radius: 18px;
+        cursor: pointer;
+        border: white;
+        /* shadow */
+        -webkit-box-shadow: 0px -1px 25px -6px rgba(255,255,255,0.71);
+        -moz-box-shadow: 0px -1px 25px -6px rgba(255,255,255,0.71);
+        box-shadow: 0px -1px 25px -6px rgba(255,255,255,0.71);
+        /* animations */
+        transition: all 1s;
+    }
+    .lend-btn:hover{
+        opacity: 85%;
+        /* color: #24AA81; */
+    }
+
+    .lend-2 > div{
+        margin: 0px 0px;
+        height: 500px;
+        width: 100%;
+        clip-path: polygon(34% 0, 100% 0%, 100% 100%, 0 100%);
+        /* border-radius: 20px; */
+        background-color: #000000;
+        border: none;
+
+        /* background url */
+        background-image: url("https://images.unsplash.com/photo-1541858155916-08de608b4fe0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+        background-repeat: no-repeat;
+        background-size: cover;
+    
+
+    
+    }
+    /* what users think box */
+    .whatusersthink{
+        margin: 6px 100px;
+    }
+    .whatusersthink-box{
+        height: 500px;
+        width: 100%;
+        /* overflow-x: scroll; */
+        display: flex;
+        /* justify-content: space-evenly; */
+    }
+    .wut-title{
+        text-align: center;
+        font-size: 30px;
+        margin: 90px 0px;
+    }
+    .whatusersthink-box > div{
+        height: 400px;
+        width: 600px;
+        background-color: #000000;
+        border-radius: 20px;
+        margin: 0px 20px;
+    }
+    /* future things */
+    .futurethings{
+        margin: 6px 100px;
+    }
+    .future-box{
+        width: 100%;
+        height: 500px;
+        background-color: #504D4D;
+        display: flex;
+    }
+    .future-1, .future-2{
+        width: 100%;
+    }
+    .future-1{
+        /* clip-path: polygon(0 0, 34% 0, 100% 100%, 0 100%); */
+        clip-path: polygon(0 0, 66% 0, 100% 100%, 0 100%);
+
+        /* background url */
+        background-image: url("https://images.unsplash.com/photo-1506521781263-d8422e82f27a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .future-2{
+        margin-left: 20px;
+    }
+    .future-title{
+        color: white;
+        font-size: 40px;
+        margin-top: 130px;
+    }
+    .future-desc{
+        margin-top: 25px;
+        color: white;
+        width: 600px;
+    }
+    .future-btn{
+        margin-top: 25px;
+        padding: 12px 100px;
+        border-radius: 18px;
+        cursor: pointer;
+        border: white;
+        /* shadow */
+        -webkit-box-shadow: 0px -1px 25px -6px rgba(255,255,255,0.71);
+        -moz-box-shadow: 0px -1px 25px -6px rgba(255,255,255,0.71);
+        box-shadow: 0px -1px 25px -6px rgba(255,255,255,0.71);
+
+        /* animations */
+        transition: all 1s; 
+    }
+    .future-btn:hover{
+        opacity: 85%;
+        /* color: #24AA81; */
+    }
+    /* footer */
+    .footer{
+        margin: 6px 100px;
+    }
+    .foot-box{
+        width: 100%;
+        height: 250px;
+    }
+    footer{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 50px;
+    }
+    .l-footer{
+        text-align: center;
+        margin-top: 140px;
+        font-size: 13px;
+        border-top: 1px solid black;
+    }
+    .footer-desc{
+        margin-top: 24px;
+    }
+    .hero-btns {
+        display: flex;
+    }
+
+    #chatBtn {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+      }
+      
+      .chat-iframe {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 400px;
+        height: 600px;
+        background-color: #fff;
+        border: 1px solid #000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        display: none;
+        z-index: 1;
+        
+      }
+      
+      .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+      
+      
+      

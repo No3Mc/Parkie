@@ -17,7 +17,7 @@ promos_collection = db['promos']
 @app.route('/')
 def index():
     promos = list(promos_collection.find())
-    return render_template('Manage/MngPromos.html', promos=promos)
+    return render_template('/routes/CustDev/Manage/MngPromos.html', promos=promos)
 
 @app.route('/add-promo', methods=['POST'])
 def add_promo():
@@ -48,7 +48,7 @@ def delete_promo(promo_id):
 def edit_promo(promo_id):
     promo = promos_collection.find_one({'_id': ObjectId(promo_id)})
     if request.method == 'GET':
-        return render_template('Manage/MngPromos.html', promos=[promo], edit_mode=True)
+        return render_template('/routes/CustDev/Manage/MngPromos.html', promos=[promo], edit_mode=True)
     elif request.method == 'POST':
         promo_code = request.form['promo-code']
         discount = int(request.form['discount'])

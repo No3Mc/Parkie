@@ -8,6 +8,7 @@
     <!-- linking files -->
     <link rel="stylesheet" href="style.css" />
     <script src="function.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
     <!-- linking font -->
     <link
@@ -39,6 +40,8 @@
   ></iframe>
 
   <body>
+      {% include header %}
+
     <!-- nav -->
     <nav class="navbar">
       <div class="brand-title"><a href="index.html">Parkie</a></div>
@@ -146,7 +149,7 @@
         </div>
       </div>
     </section>
-
+      {% include footer %}
     <!-- footer -->
     <section class="footer">
       <div class="foot-box">
@@ -171,5 +174,6 @@
         </div>
       </div>
     </section>
+        <script src="{{ url_for('static', filename='function.js') }}" defer></script>
   </body>
 </html>

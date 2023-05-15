@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify, current_app
 import secrets
 import bcrypt
 from flask_login import LoginManager, login_user, current_user, login_required, UserMixin
@@ -17,6 +17,7 @@ from Manage.MngCusts import edit_user_route, delete_user_route
 
 # MongoDB Atlas connection string
 client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority')
+
 user_db = client['USER_DB']
 user_collection = user_db['users']
 
@@ -25,8 +26,9 @@ admin_collection = admin_db['admins']
 
 
 
-app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev',
+app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/',
             static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
+
 app.secret_key = secrets.token_hex(16)
 
 # Configure Flask-Mail settings
@@ -102,6 +104,18 @@ def rate_limited(ip_address):
         return False
 
 
+
+
+
+@app.route('/')
+def index():
+    return render_template('index.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')   
+
+
+
+# return render_template('/home/thr33/Downloads/Parkie/Core/index.html', header='header.html')
+
+
 @app.route('/add-promo', methods=['POST'])
 def add_promo_route():
     return add_promo()
@@ -127,33 +141,31 @@ def edit_user():
 def delete_user():
     return delete_user_route()
 
-@app.route('/')
-def index():
-    return render_template('layout/header.html')
+
 
 @app.route('/admin_dashboard')
 @login_required
 def admin_dashboard():
-    return render_template('Dashboards/ADashboard.html')
+    return render_template('routes/CustDev/Dashboards/ADashboard.html')
 
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('Dashboards/CDashboard.html')
+    return render_template('routes/CustDev/Dashboards/CDashboard.html')
 
 @app.route('/MngCusts')
 def MngCusts():
     users = user_collection.find()
-    return render_template('Manage/MngCusts.html', users=users)
+    return render_template('routes/CustDev/Manage/MngCusts.html', users=users)
 
 @app.route('/MngProfile')
 def MngProfile():
-    return render_template('Manage/MngProfile.html')
+    return render_template('routes/CustDev/Manage/MngProfile.html')
 
 @app.route('/MngPromos')
 def MngPromos():
     promos = promos_collection.find()
-    return render_template('Manage/MngPromos.html', promos=promos)
+    return render_template('routes/CustDev/Manage/MngPromos.html', promos=promos)
 
 # @app.route('/bawt')
 # def bawt():
@@ -161,13 +173,13 @@ def MngPromos():
 
 @app.route('/DocnFAQ')
 def DocnFAQ():
-    return render_template('VulFaq/DocnFAQ.html')
+    return render_template('routes/CustDev/VulFaq/DocnFAQ.html')
 
 
 
 @app.route('/rpg')
 def rpg():
-    return render_template('LogReg/Register.html')
+    return render_template('routes/CustDev/LogReg/Register.html')
 
 
 @app.route('/login', methods=['POST'])
@@ -195,7 +207,7 @@ def login():
         return redirect(url_for('index'))
     elif admin and bcrypt.checkpw(password, admin['password'].encode('utf-8')):  # Encode admin password as bytes
         print('Login successful for admin:', username)
-        admin_obj = User(admin)  
+        admin_obj = User(admin)
         profile_icon_url = admin.get('profile_icon_url')
         if profile_icon_url:
             admin_obj.set_profile_icon_url(profile_icon_url)
@@ -233,13 +245,13 @@ def register():
     # Check if the email ends with .net, .org, or .com
     if not re.match(r'^[\w\.-]+@[\w\.-]+\.(net|org|com)$', email):
         error_message = 'Email must end with .net, .org, or .com'
-        return render_template('LogReg/Register.html', error_message=error_message)
+        return render_template('routes/CustDev/LogReg/Register.html', error_message=error_message)
 
     # hash password using bcrypt
     hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
 
     # check if user already exists
-    if users_collection.find_one({'email': email}):
+    if user_collection.find_one({'email': email}):
         flash('User with this email already exists', 'error')
     else:
         # generate a random token for email verification
@@ -256,7 +268,7 @@ def register():
             'verified': False,
             'token': token
         }
-        users_collection.insert_one(user_data)
+        user_collection.insert_one(user_data)
 
         # remove the original password from the dictionary
         del user_data['password']
@@ -283,7 +295,7 @@ def register():
 
         return redirect(url_for('index'))
 
-    return render_template('LogReg/Register.html')
+    return render_template('routes/CustDev/LogReg/Register.html')
 
 
 @app.route('/verify/<token>')

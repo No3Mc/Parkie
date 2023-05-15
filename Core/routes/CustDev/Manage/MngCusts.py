@@ -15,14 +15,14 @@ users_collection = db['users']
 @app.route('/')
 def index():
     users = users_collection.find()
-    return render_template('Manage/MngCusts.html', users=users)
+    return render_template('/routes/CustDev/Manage/MngCusts.html', users=users)
 
 @app.route('/edit_user', methods=['GET', 'POST'])
 def edit_user_route():
     if request.method == 'GET':
         user_id = request.args.get('user_id')
         user = users_collection.find_one({'_id': ObjectId(user_id)})
-        return render_template('Manage/MngCusts.html', user=user, edit_mode=True)
+        return render_template('/routes/CustDev/Manage/MngCusts.html', user=user, edit_mode=True)
 
     elif request.method == 'POST':
         user_id = request.form['user_id']
