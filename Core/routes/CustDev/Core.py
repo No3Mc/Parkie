@@ -46,10 +46,12 @@ class User(UserMixin):
         self.id = str(user_dict['_id'])
         self.username = user_dict['username']
         self.profile_icon_url = user_dict.get('profile_icon_url')
-        # Add any other required attributes
 
     def is_active(self):
         return True
+
+    def set_profile_icon_url(self, profile_icon_url):
+        self.profile_icon_url = profile_icon_url
 
 
 @login_manager.user_loader
@@ -97,12 +99,18 @@ def login():
         return redirect(url_for('index'))
 
     username = request.form['username']
-    password = request.form['password'].encode('utf-8')  # encode password to bytes
+    password = request.form['password'].encode('utf-8')
 
     user = users_collection.find_one({'username': username})
     if user and bcrypt.checkpw(password, user['password']):
         print('Login successful for user:', username)
-        login_user(User(user))
+        user_obj = User(user)
+        profile_icon_url = user.get('profile_icon_url')
+        if profile_icon_url:
+            user_obj.set_profile_icon_url(profile_icon_url)
+        login_user(user_obj)
+        # Set the profile icon URL in the current_user object
+        current_user.set_profile_icon_url(profile_icon_url)
         return redirect(url_for('index'))
     else:
         print('Login failed for user:', username)
@@ -165,9 +173,9 @@ def register():
         if 'profile_icon' in request.files:
             profile_icon = request.files['profile_icon']
 
-            filename = secure_filename(profile_icon.filename)
-            bucket_name = 'parkie'  
-            storage_client = storage.Client.from_service_account_json('/home/thr33/Downloads/parkie-org-7b65cdd695df.json')  
+            filename = 'thr33.png'  # Set the file name to 'thr33.png'
+            bucket_name = 'parkie'
+            storage_client = storage.Client.from_service_account_json('/home/thr33/Downloads/parkie-org-7b65cdd695df.json')
             bucket = storage_client.bucket(bucket_name)
             blob = bucket.blob(filename)
             blob.upload_from_file(profile_icon)

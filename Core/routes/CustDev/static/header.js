@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const usernameInput = document.getElementById("username-input");
   const passwordInput = document.getElementById("password-input");
   const profileIcon = document.querySelector(".profile-icon");
-  const logoutLink = document.querySelector(".logout-link");
+  const logoutLink = document.querySelector(".dropdown-content");
 
   if (loginButton) {
     loginButton.addEventListener("click", function(event) {
