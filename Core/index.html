@@ -42,41 +42,6 @@
   <body>
       {% include header %}
 
-    <!-- nav -->
-    <nav class="navbar">
-      <div class="brand-title"><a href="index.html">Parkie</a></div>
-      <a href="#" class="toggle-button" title="Toggle Button">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </a>
-      <div class="navbar-links">
-        <ul>
-          <li>
-            <a href="">How it works?</a>
-          </li>
-          <li><a href="#">Lend space</a></li>
-          <li><a href="#">Business solution</a></li>
-          <li><a href="routes/CustDev/AbtPro/AboutUs.html">Company</a></li>
-          <li><a href="routes/CustDev/VulFaq/DocnFAQ.html">Help</a></li>
-          <li>
-            <a id="login-button" class="login-button" href="routes/CustDev/LogReg/login.html">Login</a>
-
-            </a>
-          </li>
-
-          <li>
-            <a href="routes/CustDev/LogReg/Register.html"
-              ><b class="reg-btn"
-                >Sign Up
-                <!-- <span class="material-symbols-outlined"> arrow_right_alt </span> -->
-              </b></a
-            >
-          </li>
-        </ul>
-      </div>
-    </nav>
-
     <!-- hero box -->
     <section class="hero-box">
       <div class="hero">
@@ -118,8 +83,7 @@
           </p>
           <button class="lend-btn">Learn how to Lend Now</button>
         </div>
-
-        <div class="lend-2">
+                <div class="lend-2">
           <div></div>
         </div>
       </div>
@@ -149,31 +113,8 @@
         </div>
       </div>
     </section>
-      {% include footer %}
-    <!-- footer -->
-    <section class="footer">
-      <div class="foot-box">
-        <footer>
-          <div class="brand-title"><a href="Index.html">Parkie</a></div>
-          <div class="navbar-links">
-            <ul>
-              <li><a href="#">Find Parking Spots?</a></li>
-              <li><a href="#">Lend Space</a></li>
-              <li><a href="routes/CustDev/AbtPro/AboutUs.html">Company</a></li>
-              <li><a href="routes/CustDev/VulFaq/DocnFAQ.html">Help</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-        </footer>
-
-        <div class="l-footer">
-          <p class="footer-desc">
-            Parkie is the trading name of Parkie Parking Limited Registered in
-            England, Gateway house Leicester
-          </p>
-        </div>
-      </div>
-    </section>
-        <script src="{{ url_for('static', filename='function.js') }}" defer></script>
+    {% include footer %}
+    <script src="{{ url_for('static', filename='function.js') }}" defer></script>
   </body>
 </html>
+
