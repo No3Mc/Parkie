@@ -40,7 +40,7 @@
 
   // stripe checkout
   app.post('/create-checkout-session', async (req, res) => {
-    const { name, email, markerId } = req.body;
+    const { carno, name, email, no, markerId } = req.body;
     try{
       const client = await MongoClient.connect(uri, { useNewUrlParser: true });
       const markersCollection = client.db("Parking").collection("marker");
@@ -63,9 +63,10 @@
               quantity: item.quantity,
             }
           }),     
-          success_url: `${process.env.SERVER_URL}/book?name=${name}&email=${email}&markerId=${markerId}`,
+          success_url: `${process.env.SERVER_URL}/book?carno=${carno}&name=${name}&email=${email}&no=${no}&markerId=${markerId}`,
           cancel_url: `${process.env.SERVER_URL}/cancel.html`,
           metadata: {
+            paymentTimestamp: new Date().toISOString(), // Store the payment timestamp
             success_message: "Payment successful!",
           },
         });
@@ -82,9 +83,33 @@
     }
   });
   
+// Endpoint to fetch payment history
+// Endpoint to fetch payment history
+  // Endpoint to fetch payment history
+  app.get('/payment/history', async (req, res) => {
+    try {
+      // Fetch payment history from the Stripe API
+      const paymentHistory = await stripe.paymentIntents.list();
+  
+      // Process the payment history data as needed
+      const formattedPaymentHistory = paymentHistory.data.map(payment => ({
+        id: payment.id,
+        customerName: payment.metadata.name,
+        amount: (payment.amount / 100).toFixed(2), // Assuming payment amount is in cents
+        status: payment.status
+      }));
+  
+      // Send the formatted payment history as the response
+      res.json(formattedPaymentHistory);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error fetching payment history');
+    }
+    });      
+
   // booking 
   app.get('/book', async (req, res) => {
-    const { name, email, markerId } = req.query;
+    const { carno, name, email, no, markerId } = req.query;
     
     try {
       const client = await MongoClient.connect(uri, { useNewUrlParser: true });
@@ -93,9 +118,10 @@
       const marker = await markersCollection.findOne({ _id: new ObjectId(markerId) });
     
       if (marker.status === "available") {
+        const currentTime = new Date(); // Get the current time
         const updatedMarker = await markersCollection.findOneAndUpdate(
           { _id: new ObjectId(markerId) },
-          { $set: { name, email, status: 'booked' } },
+          { $set: { carno, name, email, no, status: 'booked', time: currentTime } },
           { returnOriginal: false }
         );
         
@@ -131,6 +157,142 @@
       res.status(500).send(`We are facing unexpected error ⚠️ ${err.message}`);
     }
   });
+  
+  // getting the parking data
+  app.get('/history', (req, res) => {
+    res.sendFile(__dirname + '/history.html');
+  });
+  
+  app.get('/history/data', async (req, res) => {
+    try {
+      const client = await MongoClient.connect(uri, { useNewUrlParser: true });
+      const markersCollection = client.db("Parking").collection("marker");
+      const history = await markersCollection.find({ status: 'booked' }).toArray();
+      res.json(history);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send(`We are facing unexpected error ⚠️ ${err.message}`);
+    }
+  });
+  
+
+  // deleting the booking
+  app.delete('/history/data/:id', async (req, res) => {
+    try {
+      const client = await MongoClient.connect(uri, { useNewUrlParser: true });
+      const markersCollection = client.db("Parking").collection("marker");
+      const markerId = req.params.id;
+  
+      const marker = await markersCollection.findOne({ _id: new ObjectId(markerId) });
+  
+      if (!marker) {
+        res.status(404).json({ message: "Marker not found ⚠️" });
+        return;
+      }
+  
+      if (marker.status !== 'booked') {
+        res.status(409).json({ message: "Cannot delete. Marker is not booked ⚠️" });
+        return;
+      }
+  
+      const { name, email } = marker;
+  
+      await markersCollection.updateOne(
+        { _id: new ObjectId(markerId) },
+        {
+          $set: {
+            status: 'available',
+            carno: '',
+            name: '',
+            email: '',
+            no: '',
+            time: null
+          }
+        }
+      );
+  
+      // Send cancellation email using SendGrid
+      const sgMail = require('@sendgrid/mail');
+      sgMail.setApiKey(process.env.SG_PRIVATE_KEY);
+  
+      const msg = {
+        to: email,
+        from: { name: 'Parkie', email: 'parkie.parking@gmail.com' },
+        templateId: 'd-cc5e9e9251c54a2ab54f8451eb0beb5c',
+        dynamicTemplateData: {
+          name: name,
+          markerId: markerId,
+          email: email,
+          time: null
+        }
+      };
+  
+      await sgMail.send(msg);
+  
+      res.sendStatus(204);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send(`We are facing unexpected error ⚠️ ${err.message}`);
+    }
+  });
+  
+  // update the booking
+  app.put('/history/data/:id', async (req, res) => {
+    try {
+      const client = await MongoClient.connect(uri, { useNewUrlParser: true });
+      const markersCollection = client.db("Parking").collection("marker");
+      const markerId = req.params.id;
+      const { name, email, carno, no } = req.body;
+  
+      const marker = await markersCollection.findOne({ _id: new ObjectId(markerId) });
+  
+      if (!marker) {
+        res.status(404).json({ message: "Marker not found ⚠️" });
+        return;
+      }
+  
+      if (marker.status !== 'booked') {
+        res.status(409).json({ message: "Cannot update. Marker is not booked ⚠️" });
+        return;
+      }
+  
+      await markersCollection.updateOne(
+        { _id: new ObjectId(markerId) },
+        {
+          $set: {
+            name: name,
+            email: email,
+            carno: carno,
+            no: no
+          }
+        }
+      );
+  
+      // Send update email using SendGrid
+      const sgMail = require('@sendgrid/mail');
+      sgMail.setApiKey(process.env.SG_PRIVATE_KEY);
+  
+      const msg = {
+        to: email,
+        from: { name: 'Parkie', email: 'parkie.parking@gmail.com' },
+        templateId: 'd-a7422da93f0641329b8fe9b353ef4337',
+        dynamicTemplateData: {
+          name: name,
+          markerId: markerId,
+          email: email
+        }
+      };
+  
+      await sgMail.send(msg);
+  
+      res.sendStatus(204);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send(`We are facing an unexpected error ⚠️ ${err.message}`);
+    }
+  });
+  
+  
   
   
   app.listen(port, () => {

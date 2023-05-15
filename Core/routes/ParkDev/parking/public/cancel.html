@@ -5,20 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <!-- linking html -->
+    <link rel="stylesheet" href="style/cStyle.css" />
   </head>
   <body>
+    <!-- header -->
+    <div id="header-placeholder"></div>
+
+    <!-- body -->
     <div class="main">
-      <h1>Transection Cancelled</h1>
+      <h1>Transaction Cancelled</h1>
       <p>
-        Please go back to map and <br />
+        Please go back to the map and <br />
         start booking again
       </p>
-      <button id="myButton">Go Back</button>
+      <form id="myForm">
+        <!-- Wrap the content in a form and assign an ID -->
+        <button type="submit" id="myButton">Go Back</button>
+      </form>
     </div>
 
+    <!-- footer -->
+    <div id="footer-placeholder"></div>
     <script>
-      const button = document.getElementById("myButton");
-      button.addEventListener("click", () => {
+      let headerLoaded = false;
+      let footerLoaded = false;
+
+      // Fetch header content if not already loaded
+      if (!headerLoaded) {
+        fetch("structure/header.html")
+          .then((response) => response.text())
+          .then((content) => {
+            document.querySelector("#header-placeholder").innerHTML = content;
+            headerLoaded = true;
+          });
+      }
+
+      // Fetch footer content if not already loaded
+      if (!footerLoaded) {
+        fetch("structure/footer.html")
+          .then((response) => response.text())
+          .then((content) => {
+            document.querySelector("#footer-placeholder").innerHTML = content;
+            footerLoaded = true;
+          });
+      }
+
+      // go back btn
+      const form = document.getElementById("myForm");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent form submission behavior
         window.location.href = "http://localhost:3000"; // Replace with your server URL and port
       });
     </script>

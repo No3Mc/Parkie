@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parking History</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 12px 15px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+        color: #333;
+      }
+
+      tr:hover {
+        background-color: #f9f9f9;
+      }
+
+      button {
+        display: inline-block;
+        background: linear-gradient(45deg, #00b894, #00cec9);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        text-decoration: none;
+      }
+
+      button:hover {
+        background: linear-gradient(45deg, #00cec9, #00b894);
+      }
+
+      #edit-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        width: 400px;
+        margin: 20px;
+      }
+
+      #edit-popup h2 {
+        margin-top: 0;
+      }
+
+      #edit-popup .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      #edit-form label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      #edit-form input {
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+      }
+
+      #edit-form button[type="submit"] {
+        display: inline-block;
+        background: linear-gradient(45deg, #00b894, #00cec9);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      #edit-form button[type="submit"]:hover {
+        background: linear-gradient(45deg, #00cec9, #00b894);
+      }
+    </style>
+  </head>
+  <body>
+    <button><a href="payHistroy.html">Payment Histroy</a></button>
+    <h1>Parking History</h1>
+    <table id="history-table">
+      <thead>
+        <tr>
+          <th>Slot ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Time</th>
+          <th>Car Number</th>
+          <th>No.</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Table body will be dynamically generated -->
+      </tbody>
+    </table>
+    <div id="edit-popup">
+      <h2>Edit Details</h2>
+      <span class="close-btn" onclick="closeEditPopup()">&times;</span>
+      <form id="edit-form">
+        <input type="hidden" id="edit-slot-id" />
+        <label for="edit-name">Name:</label>
+        <input type="text" id="edit-name" required /><br />
+        <label for="edit-email">Email:</label>
+        <input type="email" id="edit-email" required /><br />
+        <label for="edit-carno">Car Number:</label>
+        <input type="text" id="edit-carno" required /><br />
+        <label for="edit-no">No.:</label>
+        <input type="text" id="edit-no" required /><br />
+        <button type="submit">Save</button>
+      </form>
+    </div>
+    <script>
+      function handleDelete(slotId) {
+        if (confirm("Are you sure you want to delete this booking?")) {
+          fetch(`/history/data/${slotId}`, { method: "DELETE" })
+            .then((response) => {
+              if (response.ok) {
+                const row = document.getElementById(`slot-${slotId}`);
+                if (row) {
+                  row.remove();
+                }
+              }
+            })
+            .catch((error) => console.error(error));
+        }
+      }
+
+      function handleEdit(slotId, name, email, carno, no) {
+        const editForm = document.getElementById("edit-form");
+        const editSlotId = document.getElementById("edit-slot-id");
+        const editName = document.getElementById("edit-name");
+        const editEmail = document.getElementById("edit-email");
+        const editCarno = document.getElementById("edit-carno");
+        const editNo = document.getElementById("edit-no");
+
+        editSlotId.value = slotId;
+        editName.value = name;
+        editEmail.value = email;
+        editCarno.value = carno;
+        editNo.value = no;
+
+        document.getElementById("edit-popup").style.display = "block";
+      }
+
+      function closeEditPopup() {
+        document.getElementById("edit-popup").style.display = "none";
+      }
+
+      document
+        .getElementById("edit-form")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const editSlotId = document.getElementById("edit-slot-id").value;
+          const editName = document.getElementById("edit-name").value;
+          const editEmail = document.getElementById("edit-email").value;
+          const editCarno = document.getElementById("edit-carno").value;
+          const editNo = document.getElementById("edit-no").value;
+
+          fetch(`/history/data/${editSlotId}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: editName,
+              email: editEmail,
+              carno: editCarno,
+              no: editNo,
+            }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                const row = document.getElementById(`slot-${editSlotId}`);
+                if (row) {
+                  const columns = row.getElementsByTagName("td");
+                  columns[1].textContent = editName;
+                  columns[2].textContent = editEmail;
+                  columns[4].textContent = editCarno;
+                  columns[5].textContent = editNo;
+                }
+                closeEditPopup();
+              }
+            })
+            .catch((error) => console.error(error));
+        });
+
+      fetch("/history/data")
+        .then((response) => response.json())
+        .then((data) => {
+          const tableBody = document.querySelector("#history-table tbody");
+          data.forEach((slot) => {
+            const row = document.createElement("tr");
+            row.id = `slot-${slot._id}`;
+            row.innerHTML = `<td>${slot._id}</td>
+                       <td>${slot.name}</td>
+                       <td>${slot.email}</td>
+                       <td>${slot.time}</td>
+                       <td>${slot.carno}</td>
+                       <td>${slot.no}</td>
+                       <td>
+                         <button onclick="handleEdit('${slot._id}', '${slot.name}', '${slot.email}', '${slot.carno}', '${slot.no}')">Edit</button>
+                         <button onclick="handleDelete('${slot._id}')">Delete</button>
+                       </td>`;
+            tableBody.appendChild(row);
+          });
+        })
+        .catch((error) => console.error(error));
+    </script>
+  </body>
+</html>

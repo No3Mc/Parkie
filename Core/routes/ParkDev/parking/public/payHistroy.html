@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Payment History</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .table-container {
+        width: 80%;
+        background: linear-gradient(45deg, #f3e7e9, #d5dae6);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 12px 15px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+        color: #333;
+      }
+
+      tr:hover {
+        background-color: #f9f9f9;
+      }
+
+      .back-button {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: linear-gradient(45deg, #d5dae6, #f3e7e9);
+        color: #333;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        text-decoration: none;
+        transition: background 0.3s ease;
+      }
+
+      .back-button:hover {
+        background: linear-gradient(45deg, #f3e7e9, #d5dae6);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Payment History</h1>
+    <div class="container">
+      <div class="table-container">
+        <table id="payment-history-table">
+          <thead>
+            <tr>
+              <th>Payment ID</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Table body will be dynamically generated -->
+          </tbody>
+        </table>
+        <a href="histroy.html" class="back-button">Go Back to History</a>
+      </div>
+    </div>
+    <script>
+      // Fetch payment history data from the Stripe API
+      fetch("/payment/history")
+        .then((response) => response.json())
+        .then((data) => {
+          const tableBody = document.querySelector(
+            "#payment-history-table tbody"
+          );
+          data.forEach((payment) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${payment.id}</td>
+              <td>${payment.amount}</td>
+              <td>${payment.status}</td>
+            `;
+            tableBody.appendChild(row);
+          });
+        })
+        .catch((error) => console.error(error));
+    </script>
+  </body>
+</html>
