@@ -30,6 +30,10 @@ Mongodb database connection:
 
     mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority
 
+zsh shell:
+
+    mongosh "mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority" --apiVersion 1 --username No3Mc
+
 
 To store for 15 mins
 
