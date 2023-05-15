@@ -17,8 +17,13 @@ from Manage.MngCusts import edit_user_route, delete_user_route
 
 # MongoDB Atlas connection string
 client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority')
-db = client['USER_DB']
-users_collection = db['users']
+user_db = client['USER_DB']
+user_collection = user_db['users']
+
+admin_db = client['Admin_DB']
+admin_collection = admin_db['admins']
+
+
 
 app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev',
             static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
@@ -49,6 +54,7 @@ class User(UserMixin):
         self.id = str(user_dict['_id'])
         self.username = user_dict['username']
         self.profile_icon_url = user_dict.get('profile_icon_url')
+        self.is_admin = False  # Add is_admin attribute
 
     def is_active(self):
         return True
@@ -57,12 +63,24 @@ class User(UserMixin):
         self.profile_icon_url = profile_icon_url
 
 
+@app.context_processor
+def inject_user():
+    return dict(current_user=current_user)
+
 @login_manager.user_loader
 def load_user(user_id):
-    user_dict = users_collection.find_one({'_id': ObjectId(user_id)})
+    user_dict = user_collection.find_one({'_id': ObjectId(user_id)})
     if user_dict:
         return User(user_dict)
+    
+    admin_dict = admin_collection.find_one({'_id': ObjectId(user_id)})
+    if admin_dict:
+        admin_user = User(admin_dict)
+        admin_user.is_admin = True
+        return admin_user
+    
     return None
+
 
 
 def rate_limited(ip_address):
@@ -111,22 +129,26 @@ def delete_user():
 
 @app.route('/')
 def index():
-    return render_template('layout/header.html', current_user=current_user)
+    return render_template('layout/header.html')
+
+@app.route('/admin_dashboard')
+@login_required
+def admin_dashboard():
+    return render_template('Dashboards/ADashboard.html')
+
 
 @app.route('/dashboard')
 def dashboard():
-    users = users_collection.find()
-    return render_template('Dashboards/ADashboard.html', users=users)
+    return render_template('Dashboards/CDashboard.html')
 
 @app.route('/MngCusts')
 def MngCusts():
-    users = users_collection.find()
+    users = user_collection.find()
     return render_template('Manage/MngCusts.html', users=users)
 
 @app.route('/MngProfile')
 def MngProfile():
-    users = users_collection.find()
-    return render_template('Manage/MngProfile.html', users=users)
+    return render_template('Manage/MngProfile.html')
 
 @app.route('/MngPromos')
 def MngPromos():
@@ -139,7 +161,6 @@ def MngPromos():
 
 @app.route('/DocnFAQ')
 def DocnFAQ():
-    users = users_collection.find()
     return render_template('VulFaq/DocnFAQ.html')
 
 
@@ -159,7 +180,9 @@ def login():
     username = request.form['username']
     password = request.form['password'].encode('utf-8')
 
-    user = users_collection.find_one({'username': username})
+    user = user_collection.find_one({'username': username})
+    admin = admin_collection.find_one({'username': username})
+
     if user and bcrypt.checkpw(password, user['password']):
         print('Login successful for user:', username)
         user_obj = User(user)
@@ -170,9 +193,22 @@ def login():
         # Set the profile icon URL in the current_user object
         current_user.set_profile_icon_url(profile_icon_url)
         return redirect(url_for('index'))
+    elif admin and bcrypt.checkpw(password, admin['password'].encode('utf-8')):  # Encode admin password as bytes
+        print('Login successful for admin:', username)
+        admin_obj = User(admin)  
+        profile_icon_url = admin.get('profile_icon_url')
+        if profile_icon_url:
+            admin_obj.set_profile_icon_url(profile_icon_url)
+        admin_obj.is_admin = True
+        login_user(admin_obj)
+        # Set the profile icon URL in the current_user object
+        current_user.set_profile_icon_url(profile_icon_url)
+        return redirect(url_for('index'))
     else:
         print('Login failed for user:', username)
         return jsonify({'message': 'Login failed'}), 401
+
+
 
 
 @app.route('/logout')
@@ -229,7 +265,7 @@ def register():
         if 'profile_icon' in request.files:
             profile_icon = request.files['profile_icon']
 
-            filename = 'thr33.png'  # Set the file name to 'thr33.png'
+            filename = 'thr33.png'  # Is bc ko koi next level ka keera hai. Bhosarika
             bucket_name = 'parkie'
             storage_client = storage.Client.from_service_account_json(
                 '/home/thr33/Downloads/parkie-org-7b65cdd695df.json')
@@ -253,12 +289,12 @@ def register():
 @app.route('/verify/<token>')
 def verify(token):
     # check if token is valid
-    user = users_collection.find_one({'token': token})
+    user = user_collection.find_one({'token': token})
     if not user:
         flash('Invalid token', 'error')
     else:
         # update user to verified email and remove token
-        users_collection.update_one({'_id': user['_id']}, {'$set': {'verified': True}, '$unset': {'token': 1}})
+        user_collection.update_one({'_id': user['_id']}, {'$set': {'verified': True}, '$unset': {'token': 1}})
     flash('Email verified! You can now log in', 'success')
 
     return redirect(url_for('index'))

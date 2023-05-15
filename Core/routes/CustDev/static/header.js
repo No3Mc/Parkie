@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
     })
       .then(function (response) {
         if (response.status === 200) {
-          window.location.href = "/";  
+          window.location.href = "/";
         } else if (response.status === 401) {
           alert("Login failed. Please check your credentials and try again.");
         } else {
@@ -58,7 +58,9 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   window.addEventListener("click", function() {
-    logoutLink.classList.remove("open");
+    if (logoutLink.classList.contains("open")) {
+      logoutLink.classList.remove("open");
+    }
   });
 });
 

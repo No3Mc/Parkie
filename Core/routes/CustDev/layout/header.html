@@ -32,13 +32,21 @@
                 <li><a href="routes/CustDev/VulFaq/DocnFAQ.html">Help</a></li>
                 {% if current_user.is_authenticated %}
                 <li class="profile-dropdown">
+                    {% if current_user.is_admin %}
+                    <img class="profile-icon" src="{{ url_for('static', filename='admin_profile_icon.png') }}" alt="Profile Icon">
+                    {% else %}
                     <img class="profile-icon" src="{{ current_user.profile_icon_url }}" alt="Profile Icon">
+                    {% endif %}
                     <div class="dropdown-content">
                         <a href="{{ url_for('logout') }}">Logout</a>
+                        {% if current_user.is_admin %}
+                        <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+                        {% else %}
                         <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                        {% endif %}
                     </div>
                 </li>
-                {% else %}                <!-- User is not logged in -->
+                {% else %}                   
                 <li>
                     <a id="login-button" class="login-button" href="#">Login</a>
                     <div id="login-form" class="login-form">
