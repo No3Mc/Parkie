@@ -16,7 +16,7 @@
     "express": "^4.18.2",
     "leaflet": "^1.9.3",
     "mongodb": "^5.4.0",
-    "mongoose": "^7.1.0",
+    "mongoose": "^7.1.1",
     "typescript": "^4.9.5",
     "xlsx": "^0.18.5"
   }
