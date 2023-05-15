@@ -7,7 +7,7 @@
 
 <head>
 	<title>Dashboard</title>
-	<link rel="stylesheet" type="text/css" href="ADashboard.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ADashboard.css') }}">
 </head>
 <body>
 	<div class="container">
@@ -22,6 +22,6 @@
 			<div id="iframe-container"></div>
 		</div>
 	</div>
-	<script src="ADashboard.js"></script>
+    <script src="{{ url_for('static', filename='ADashboard.js') }}" defer></script>
 </body>
 </html>

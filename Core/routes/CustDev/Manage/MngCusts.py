@@ -4,7 +4,6 @@ import secrets
 from bson.objectid import ObjectId
 from flask import flash
 
-# app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/Manage')
 app = Flask(__name__, static_url_path='', static_folder='static', template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/Manage')
 app.secret_key = secrets.token_hex(16)
 
@@ -16,14 +15,14 @@ users_collection = db['users']
 @app.route('/')
 def index():
     users = users_collection.find()
-    return render_template('MngCusts.html', users=users)
+    return render_template('Manage/MngCusts.html', users=users)
 
 @app.route('/edit_user', methods=['GET', 'POST'])
-def edit_user():
+def edit_user_route():
     if request.method == 'GET':
         user_id = request.args.get('user_id')
         user = users_collection.find_one({'_id': ObjectId(user_id)})
-        return render_template('MngCusts.html', user=user, edit_mode=True)
+        return render_template('Manage/MngCusts.html', user=user, edit_mode=True)
 
     elif request.method == 'POST':
         user_id = request.form['user_id']
@@ -50,16 +49,14 @@ def edit_user():
         )
 
         flash('User updated successfully!', 'success')
-        return redirect(url_for('index'))
+        return redirect(url_for('MngCusts'))
 
 @app.route('/delete_user', methods=['POST'])
-def delete_user():
+def delete_user_route():
     user_id = request.form['user_id']
     users_collection.delete_one({'_id': ObjectId(user_id)})
     flash('User deleted successfully!', 'success')
-    return redirect(url_for('index'))
-
-
+    return redirect(url_for('MngCusts'))
 
 if __name__ == '__main__':
     app.run(debug=True, port=5003)

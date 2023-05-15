@@ -6,22 +6,22 @@ const dafaqBtn = document.getElementById('dafaq-btn');
 const iframeContainer = document.getElementById('iframe-container');
 
 botBtn.addEventListener('click', () => {
-	iframeContainer.innerHTML = '<iframe src="../bot/chatbot/bot.html"></iframe>';
+	iframeContainer.innerHTML = '<iframe src="/bawt"></iframe>';
 	iframeContainer.style.display = 'block';
 });
 
 custsBtn.addEventListener('click', () => {
-	iframeContainer.innerHTML = '<iframe src="../Manage/MngCusts.html"></iframe>';
+	iframeContainer.innerHTML = '<iframe src="/MngCusts"></iframe>';
 	iframeContainer.style.display = 'block';
 });
 
 promoBtn.addEventListener('click', () => {
-	iframeContainer.innerHTML = '<iframe src="../Manage/MngPromos.html"></iframe>';
+	iframeContainer.innerHTML = '<iframe src="/MngPromos"></iframe>';
 	iframeContainer.style.display = 'block';
 });
 
 dafaqBtn.addEventListener('click', () => {
-	iframeContainer.innerHTML = '<iframe src="../VulFaq/DocnFAQ.html"></iframe>';
+	iframeContainer.innerHTML = '<iframe src="/DocnFAQ"></iframe>';
 	iframeContainer.style.display = 'block';
 });
 

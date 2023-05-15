@@ -35,6 +35,7 @@
                     <img class="profile-icon" src="{{ current_user.profile_icon_url }}" alt="Profile Icon">
                     <div class="dropdown-content">
                         <a href="{{ url_for('logout') }}">Logout</a>
+                        <a href="{{ url_for('dashboard') }}">Dashboard</a>
                     </div>
                 </li>
                 {% else %}                <!-- User is not logged in -->

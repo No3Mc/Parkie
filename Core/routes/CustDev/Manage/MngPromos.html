@@ -5,7 +5,7 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <title>Manage Promotions</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../MngPromos.css', _external=True) }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='MngPromos.css', _external=True) }}">
 </head>
 <body>
   <h1>Manage Promotions</h1>
@@ -31,19 +31,19 @@
       <th>Action</th>
     </tr>
     {% for promo in promos %}
-      <tr>
+    <tr>
         <td>{{ promo['promo-code'] }}</td>
         <td>{{ promo['discount'] }}%</td>
         <td>{{ promo['expiry-date'] }}</td>
         <td>
-          <form action="/edit-promo/{{ promo['_id'] }}" method="GET">
-            <button type="submit">Edit</button>
-          </form>
-          <form action="/delete-promo/{{ promo['_id'] }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this promo?')">
-            <button type="submit">Delete</button>
-          </form>
+            <form action="/edit-promo/{{ promo['_id'] }}" method="GET">
+                <button type="submit">Edit</button>
+            </form>
+            <form action="/delete-promo/{{ promo['_id'] }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this promo?')">
+                <button type="submit">Delete</button>
+            </form>
         </td>
-      </tr>
+    </tr>
     {% endfor %}
   </table>
 
@@ -62,5 +62,10 @@
   </form>
   {% endif %}
 
+  {% if message %}
+  <p class="{{ message['type'] }}">{{ message['text'] }}</p>
+  {% endif %}
+
 </body>
 </html>
+

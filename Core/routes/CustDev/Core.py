@@ -11,6 +11,9 @@ import re
 from flask_login import logout_user
 from werkzeug.utils import secure_filename
 from google.cloud import storage
+from Manage.MngPromos import add_promo, delete_promo, edit_promo, promos_collection
+from Manage.MngCusts import edit_user_route, delete_user_route
+
 
 # MongoDB Atlas connection string
 client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority')
@@ -81,9 +84,64 @@ def rate_limited(ip_address):
         return False
 
 
+@app.route('/add-promo', methods=['POST'])
+def add_promo_route():
+    return add_promo()
+
+@app.route('/delete-promo/<string:promo_id>', methods=['POST'])
+def delete_promo_route(promo_id):
+    return delete_promo(promo_id)
+
+@app.route('/edit-promo/<string:promo_id>', methods=['GET', 'POST'])
+def edit_promo_route(promo_id):
+    return edit_promo(promo_id)
+
+
+
+
+
+
+@app.route('/edit_user', methods=['GET', 'POST'])
+def edit_user():
+    return edit_user_route()
+
+@app.route('/delete_user', methods=['POST'])
+def delete_user():
+    return delete_user_route()
+
 @app.route('/')
 def index():
     return render_template('layout/header.html', current_user=current_user)
+
+@app.route('/dashboard')
+def dashboard():
+    users = users_collection.find()
+    return render_template('Dashboards/ADashboard.html', users=users)
+
+@app.route('/MngCusts')
+def MngCusts():
+    users = users_collection.find()
+    return render_template('Manage/MngCusts.html', users=users)
+
+@app.route('/MngProfile')
+def MngProfile():
+    users = users_collection.find()
+    return render_template('Manage/MngProfile.html', users=users)
+
+@app.route('/MngPromos')
+def MngPromos():
+    promos = promos_collection.find()
+    return render_template('Manage/MngPromos.html', promos=promos)
+
+# @app.route('/bawt')
+# def bawt():
+#     return render_template('http://127.0.0.1:8000/')
+
+@app.route('/DocnFAQ')
+def DocnFAQ():
+    users = users_collection.find()
+    return render_template('VulFaq/DocnFAQ.html')
+
 
 
 @app.route('/rpg')
@@ -115,8 +173,6 @@ def login():
     else:
         print('Login failed for user:', username)
         return jsonify({'message': 'Login failed'}), 401
-
-    return redirect(url_for('index'))
 
 
 @app.route('/logout')
@@ -154,16 +210,16 @@ def register():
         token = secrets.token_hex(16)
         # insert user into database with unverified email and token
         user_data = {
-                'username': username,
-                'firsn': firsn,
-                'lasn': lasn,
-                'email': email,
-                'phone': phone,
-                'postcode': postcode,
-                'password': hashed_password,  # store hashed password in database
-                'verified': False,
-                'token': token
-                }
+            'username': username,
+            'firsn': firsn,
+            'lasn': lasn,
+            'email': email,
+            'phone': phone,
+            'postcode': postcode,
+            'password': hashed_password,  # store hashed password in database
+            'verified': False,
+            'token': token
+        }
         users_collection.insert_one(user_data)
 
         # remove the original password from the dictionary
@@ -175,7 +231,8 @@ def register():
 
             filename = 'thr33.png'  # Set the file name to 'thr33.png'
             bucket_name = 'parkie'
-            storage_client = storage.Client.from_service_account_json('/home/thr33/Downloads/parkie-org-7b65cdd695df.json')
+            storage_client = storage.Client.from_service_account_json(
+                '/home/thr33/Downloads/parkie-org-7b65cdd695df.json')
             bucket = storage_client.bucket(bucket_name)
             blob = bucket.blob(filename)
             blob.upload_from_file(profile_icon)
