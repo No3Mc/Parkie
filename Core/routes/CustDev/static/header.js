@@ -6,17 +6,21 @@ document.addEventListener("DOMContentLoaded", function() {
   const profileIcon = document.querySelector(".profile-icon");
   const logoutLink = document.querySelector(".logout-link");
 
-  loginButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    loginForm.classList.toggle("open");
-  });
-
-  passwordInput.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
+  if (loginButton) {
+    loginButton.addEventListener("click", function(event) {
       event.preventDefault();
-      login();
-    }
-  });
+      loginForm.classList.toggle("open");
+    });
+  }
+
+  if (passwordInput) {
+    passwordInput.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        login();
+      }
+    });
+  }
 
   function login() {
     const username = usernameInput.value;
@@ -45,11 +49,13 @@ document.addEventListener("DOMContentLoaded", function() {
       });
   }
 
-  profileIcon.addEventListener("click", function(event) {
-    event.stopPropagation(); // Prevent event bubbling
+  if (profileIcon) {
+    profileIcon.addEventListener("click", function(event) {
+      event.stopPropagation(); // Prevent event bubbling
 
-    logoutLink.classList.toggle("open");
-  });
+      logoutLink.classList.toggle("open");
+    });
+  }
 
   window.addEventListener("click", function() {
     logoutLink.classList.remove("open");
