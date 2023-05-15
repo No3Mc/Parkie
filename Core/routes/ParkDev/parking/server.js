@@ -176,7 +176,7 @@
   });
   
 
-  // deleting the booking
+  // cancelling the booking
   app.delete('/history/data/:id', async (req, res) => {
     try {
       const client = await MongoClient.connect(uri, { useNewUrlParser: true });
@@ -236,7 +236,7 @@
     }
   });
   
-  // update the booking
+  // update the booking from booking page popup
   app.put('/history/data/:id', async (req, res) => {
     try {
       const client = await MongoClient.connect(uri, { useNewUrlParser: true });
@@ -289,6 +289,60 @@
     } catch (err) {
       console.error(err);
       res.status(500).send(`We are facing an unexpected error ⚠️ ${err.message}`);
+    }
+  });
+  
+   // updating the marker status automatically after time
+  app.post('/updateMarkerStatus', async (req, res) => {
+    try {
+      // Connect to the MongoDB Atlas cluster
+      const client = await MongoClient.connect(uri, { useNewUrlParser: true });
+      const markersCollection = client.db("Parking").collection("marker");
+  
+      // Retrieve the booked markers
+      const bookedMarkers = await markersCollection.find({ status: 'booked' }).toArray();
+  
+      // Update the marker status in the database
+      await markersCollection.updateMany({ status: 'booked' }, {
+        $set: {
+          status: 'available',
+          carno: '',
+          name: '',
+          email: '',
+          no: '',
+          time: null
+        }
+      });
+  
+      console.log('Marker status updated in the database');
+  
+      // Send update email using SendGrid
+      const sgMail = require('@sendgrid/mail');
+      sgMail.setApiKey(process.env.SG_PRIVATE_KEY);
+  
+      // Send an email to each user with a booked marker
+      const emailPromises = bookedMarkers.map(async (marker) => {
+        const { name, email } = marker;
+        const msg = {
+          to: email,
+          from: { name: 'Parkie', email: 'parkie.parking@gmail.com' },
+          templateId: 'd-30d14c1de7f74f84b21d55d1393ce190',
+          dynamicTemplateData: {
+            name: name,
+            email: email
+          }
+        };
+        await sgMail.send(msg);
+        console.log(`Email sent successfully to ${email}`);
+      });
+  
+      await Promise.all(emailPromises);
+  
+      console.log('All emails sent successfully');
+      res.status(200).send('Marker status updated and emails sent');
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Failed to update marker status and send emails');
     }
   });
   

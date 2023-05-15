@@ -166,3 +166,57 @@ markersWithStatus.forEach(marker => {
     });
   }
 }, 1000); // wait for 1 second before executing the code after the fetch call
+
+// Change marker status to 'available' after 2 minutes
+setTimeout(() => {
+  if (markersWithStatus) {
+    // Modify the marker status to 'available' in markersWithStatus
+    markersWithStatus.forEach(marker => {
+      marker.status = 'available';
+    });
+
+    // Update the marker status on the frontend
+    const statusElements = document.querySelectorAll('p[id^="status"]');
+    statusElements.forEach(element => {
+      element.textContent = 'Available: true';
+    });
+
+    // Update the marker status in the backend database
+    fetch('/updateMarkerStatus', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(markersWithStatus)
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log('Marker status updated successfully');
+          
+          // Clear email, name, car number, phone number, and date after 1 minute
+          setTimeout(() => {
+            const emailElement = document.getElementById('email');
+            const nameElement = document.getElementById('name');
+            const carnoElement = document.getElementById('carno');
+            const noElement = document.getElementById('no');
+            const dateElement = document.getElementById('date');
+
+            emailElement.value = '';
+            nameElement.value = '';
+            carnoElement.value = '';
+            noElement.value = '';
+            dateElement.value = null;
+
+            console.log('Input fields cleared');
+          }, 1 * 60 * 1000);
+        } else {
+          console.log('Marker status update failed:', response.statusText);
+          throw new Error('Failed to update marker status');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+  }
+}, 1 * 60 * 1000);
