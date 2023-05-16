@@ -99,7 +99,9 @@ markersWithStatus.forEach(marker => {
           }
       })  
       .then(data => {
-          window.location.href = data.url;
+          // Send a message to the parent window
+          window.parent.postMessage({ action: 'stripeCheckout', url: data.url }, '*');
+
       })
       .catch(error => {   
           map.closePopup(bookingFormPopup);

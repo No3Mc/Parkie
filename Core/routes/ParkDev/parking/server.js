@@ -147,7 +147,12 @@
         // // Send the updated marker object as the response
         //  res.json({ marker: marker });
 
-        res.redirect(`${process.env.SERVER_URL}?success=true`);
+          res.send(`
+              <script>
+              window.parent.postMessage({ action: 'stripeSuccess' }, '*');
+              </script>
+              `);
+
       } else {
         // Marker is already booked, send an error message to the user
         res.status(409).send(`Marker ${markerId} is already booked ⚠️`);

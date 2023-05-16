@@ -6,8 +6,10 @@
     <meta charset="utf-8" />
 
     <!-- linking files -->
-    <link rel="stylesheet" href="style.css" />
-    <script src="function.js" defer></script>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <!-- <script src="function.js" defer></script> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='function.js') }}" defer></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
     <!-- linking font -->
@@ -35,7 +37,7 @@
   <iframe
     id="chatIframe"
     class="chat-iframe"
-    src="routes/CustDev/bot/bot.html"
+    src="http://localhost:8000/"
     frameborder="0"
   ></iframe>
 

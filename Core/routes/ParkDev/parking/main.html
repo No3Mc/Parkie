@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <!-- Place your header content here -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +11,19 @@
 
 <body>
     {% include header %}
-       <iframe src="http://localhost:3000" frameborder="0" width="100%" height="1000px"></iframe>
+    <iframe src="http://localhost:3000" frameborder="0" width="100%" height="1000px"></iframe>
     {% include footer %}
+
+    <script src="{{ url_for('static', filename='main.js') }}" defer></script>
+    <script>
+        window.addEventListener('message', function (event) {
+            if (event.data.action === 'stripeCheckout') {
+                window.location.href = event.data.url;
+            } else if (event.data.action === 'stripeSuccess') {
+
+            }
+        });
+    </script>
 </body>
 
 </html>
