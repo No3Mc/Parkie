@@ -1,185 +1,137 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parki - Lend</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">    <!-- bootstrap css link -->
-    <link rel="stylesheet" href="StyleLend.css"> <!-- Stylesheet for lendpage -->
-</head>
-<body>
-    <!-- nav -->   <!-- This is to be the same for every page -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">Parkie</a>     <!-- Add parki logo instead of text   -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Parkie - Lend</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">    <!-- bootstrap css link -->
+        <!-- <link rel="stylesheet" href="StyleLend.css">  -->
+        <!-- Stylesheet for lendpage -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='StyleLend.css') }}">
+    </head>
+    <body>
+        {% include header %}
+        <header class="bg-light py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h1 class="display-4">Your Parking Space Your Pocket Money</h1>
+                        <p class="lead">Earn extra income by renting out your unused parking space on Parki. It's simple, flexible, and secure.</p>
+                        <a href="#form-section" class="btn btn-primary btn-lg">Get Started</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="Images/Driveway1.jpg" alt="Driveway" class="header-Driveway1">
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="py-5 benefits-section">
+            <div class="container">
+                <div class="row mb-4">
+                    <div class="col text-center">
+                        <h2>Why Rent Your Space?</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card custom-card p-4 text-center">
+                            <i class="bi bi-cash-coin custom-icon"></i>
+                            <h3>Earn Extra Income</h3>
+                            <p>Make money by renting out your unused parking space to those who need it.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card custom-card p-4 text-center">
+                            <i class="bi bi-clock custom-icon"></i>
+                            <h3>Flexible Schedule</h3>
+                            <p>Choose the hours and days when your parking space is available for rent.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card custom-card p-4 text-center">
+                            <i class="bi bi-shield-lock custom-icon"></i>
+                            <h3>Safe and Secure</h3>
+                            <p>Our platform ensures the safety and security of your property and transactions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-5 bg-light estimate-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Get an estimate for your parking space</h2>
+                        <p>Type your postcode district below:</p>
+                        <form>
+                            <input type="text" class="form-control" placeholder="Postcode district E.G LE11" />
+                            <button type="submit" class="btn btn-dark mt-3">Submit</button>
+                        </form>
+                        <a href="#form-section" class="d-block text-center mt-3 signup-link">Sign up Here!</a>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="Images/Postcode.png" alt="Visual" class="img-fluid" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center mb-4">
+                        <h2>Don't Take Just Our Word For It!!</h2>
+                    </div>                                                               <!-- Bootstrao Autoplaying carousels  -->
+                </div>
+                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <blockquote class="blockquote text-center">
+                                <p class="mb-3">"Great service, found a parking spot easily and quickly."</p>
+                                <footer class="blockquote-footer">John Doe</footer>
+                            </blockquote>
+                        </div>
+                        <div class="carousel-item">
+                            <blockquote class="blockquote text-center">
+                                <p class="mb-3">"I was able to rent out my parking space and make extra income."</p>
+                                <footer class="blockquote-footer">Jane Smith</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="bg-dark py-2 C-Stats">
+            <div class="container">
+                <div class="row text-center text-white">
+                    <div class="col-md-3">
+                        <h2>98%</h2>
+                        <p>Satisfaction Rate</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h2>10 million+</h2>
+                        <p>Drivers</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h2>10,000+</h2>
+                        <p>Space Owners</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h2>1 million+</h2>
+                        <p>Bookings per Year</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">How it works?</a>        <!-- All links need fixing  -->
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="lend.html">Lend</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Business solution</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Company</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Help</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../../../routes/CustDev/LogReg/login.html">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="routes/CustDev/LogReg/Register.html">
-                            <b class="reg-btn">Sign Up</b>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- nav -->
-    <!-- THis is the Header Section -->
-    <header class="bg-light py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h1 class="display-4">Your Parking Space Your Pocket Money</h1>
-                    <p class="lead">Earn extra income by renting out your unused parking space on Parki. It's simple, flexible, and secure.</p>
-                    <a href="#form-section" class="btn btn-primary btn-lg">Get Started</a>
-                </div>
-                <div class="col-lg-6">
-                    <img src="Images/Driveway1.jpg" alt="Driveway" class="header-Driveway1">
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- THis is the Header Section -->
-    <!-- Benefits Section -->
-    <section class="py-5 benefits-section">
-        <div class="container">
-            <div class="row mb-4">
-                <div class="col text-center">
-                    <h2>Why Rent Your Space?</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card custom-card p-4 text-center">
-                        <i class="bi bi-cash-coin custom-icon"></i>
-                        <h3>Earn Extra Income</h3>
-                        <p>Make money by renting out your unused parking space to those who need it.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card custom-card p-4 text-center">
-                        <i class="bi bi-clock custom-icon"></i>
-                        <h3>Flexible Schedule</h3>
-                        <p>Choose the hours and days when your parking space is available for rent.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card custom-card p-4 text-center">
-                        <i class="bi bi-shield-lock custom-icon"></i>
-                        <h3>Safe and Secure</h3>
-                        <p>Our platform ensures the safety and security of your property and transactions.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <!-- additonla information for Benefits Section -->
-    <section class="bg-dark py-2 C-Stats">
-        <div class="container">
-            <div class="row text-center text-white">
-                <div class="col-md-3">
-                    <h2>98%</h2>
-                    <p>Satisfaction Rate</p>
-                </div>
-                <div class="col-md-3">
-                    <h2>10 million+</h2>
-                    <p>Drivers</p>
-                </div>
-                <div class="col-md-3">
-                    <h2>10,000+</h2>
-                    <p>Space Owners</p>
-                </div>
-                <div class="col-md-3">
-                    <h2>1 million+</h2>
-                    <p>Bookings per Year</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- additonla information for Benefits Section -->
-    <!-- Postcode estimate  -->
-    <section class="py-5 bg-light estimate-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h2>Get an estimate for your parking space</h2>
-                    <p>Type your postcode district below:</p>
-                    <form>
-                        <input type="text" class="form-control" placeholder="Postcode district E.G LE11" />
-                        <button type="submit" class="btn btn-dark mt-3">Submit</button>
-                    </form>
-                    <a href="#form-section" class="d-block text-center mt-3 signup-link">Sign up Here!</a>
-                </div>
-                <div class="col-md-6">
-                    <img src="Images/Postcode.png" alt="Visual" class="img-fluid" />
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Postcode estimate  -->
-    <!-- Testimonials  -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col text-center mb-4">
-                    <h2>Don't Take Just Our Word For It!!</h2>
-                </div>                                                               <!-- Bootstrao Autoplaying carousels  -->
-            </div>
-            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <blockquote class="blockquote text-center">
-                            <p class="mb-3">"Great service, found a parking spot easily and quickly."</p>
-                            <footer class="blockquote-footer">John Doe</footer>
-                        </blockquote>
-                    </div>
-                    <div class="carousel-item">
-                        <blockquote class="blockquote text-center">
-                            <p class="mb-3">"I was able to rent out my parking space and make extra income."</p>
-                            <footer class="blockquote-footer">Jane Smith</footer>
-                        </blockquote>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    </section>
-    <!-- Testimonials   -->
-    <!-- Signup Form   -->
-
-    <!-- Signup Form   -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>       <!-- bootstrap js link -->
-</body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>       <!-- bootstrap js link -->
+        {% include footer %}
+    </body>
 </html>

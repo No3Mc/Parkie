@@ -120,6 +120,10 @@ def index():
 def main():
     return render_template('routes/ParkDev/parking/main.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')
 
+@app.route('/lendpg')
+def lendpg():
+    return render_template('routes/ClientDev/Lend.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')
+
 @app.route('/get-header')
 def get_header():
     return render_template('routes/CustDev/layout/header.html')
