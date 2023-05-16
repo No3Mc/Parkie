@@ -12,37 +12,13 @@
        href="https://i.postimg.cc/NMbHx9JP/favicon.png"
        />
        <!-- css -->
-       <link rel="stylesheet" href="style.css">
+       <!-- <link rel="stylesheet" href="style.css"> -->
+       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='how.css') }}">
 </head>
 <body>
-         <!-- nav -->
-    <nav class="navbar">
-       <div class="brand-title"><a href="index.html">Parkie</a></div>
-       <a href="#" class="toggle-button" title="Toggle Button">
-         <span class="bar"></span>
-         <span class="bar"></span>
-         <span class="bar"></span>
-       </a>
-       <div class="navbar-links">
-         <ul>
-           <li><a href="#">Lend space</a></li>
-           <li><a href="#">Business solution</a></li>
-           <li><a href="routes/CustDev/VulFaq/DocnFAQ.html">Help</a></li>
-           <li>
-             <a id="login-button" class="login-button" href="routes/CustDev/LogReg/login.html">Login</a>
-             </a>
-           </li>
-           <li>
-             <a href="routes/CustDev/LogReg/Register.html"
-               ><b class="reg-btn"
-                 >Sign Up
-                 <!-- <span class="material-symbols-outlined"> arrow_right_alt </span> -->
-               </b></a
-             >
-           </li>
-         </ul>
-       </div>
-     </nav>
+        {% include header %}     
+    <!-- nav -->
+
      <!-- body -->
      <section class="body">
      <div class="wel">
@@ -107,28 +83,6 @@
      </div>
      </section>
       <!-- footer -->
-  <section class="footer">
-       <div class="foot-box">
-         <footer>
-           <div class="brand-title"><a href="Index.html">Parkie</a></div>
-           <div class="navbar-links">
-             <ul>
-               <li><a href="#">Find Parking Spots?</a></li>
-               <li><a href="#">Lend Space</a></li>
-               <li><a href="routes/CustDev/AbtPro/AboutUs.html">Company</a></li>
-               <li><a href="routes/CustDev/VulFaq/DocnFAQ.html">Help</a></li>
-               <li><a href="#">Contact</a></li>
-             </ul>
-           </div>
-         </footer>
-   
-         <div class="l-footer">
-           <p class="footer-desc">
-             Parkie is the trading name of Parkie Parking Limited Registered in
-             England, Gateway house Leicester
-           </p>
-         </div>
-       </div>
-     </section>
+    {% include footer %}
 </body>
 </html>
