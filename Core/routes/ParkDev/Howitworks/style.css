@@ -1,0 +1,393 @@
+  /* font connection */
+  @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300&display=swap');
+  /* icons style */
+  .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+* {
+   box-sizing: border-box;
+   font-family: 'Unbounded', cursive;
+   text-decoration: none;
+   list-style: none;
+   scroll-behavior: smooth;
+}  
+body {
+   margin: auto;
+   padding: 0;
+   /* overflow-x: hidden; */
+}
+
+/* Nav bar */
+.navbar {
+   display: flex;
+   position: relative;
+   justify-content: space-between;
+   align-items: center;
+   background-color: white;
+   color: black;
+   margin: 0px 94px; 
+}
+.brand-title > a {
+   font-size: 1.8rem;
+   margin: .5rem;
+   color: #1FA637;
+} 
+.navbar-links {
+   height: 100%;
+} 
+.navbar-links ul {
+   display: flex;
+   margin: 0;
+   padding: 0;
+}  
+.navbar-links li {
+   list-style: none;
+}  
+.navbar-links li a {
+   display: block;
+   text-decoration: none;
+   color: #747774;
+   padding: 1.588rem;   
+   transition: all 0.8s;
+
+   font-size: 13px;
+}
+.navbar-links li a:hover{
+color: #000000;
+}
+
+/* .navbar-links li:hover {
+   background-color: #555;
+} */
+
+.toggle-button {
+   position: absolute;
+   top: .75rem;
+   right: 1rem;
+   display: none;
+   flex-direction: column;
+   justify-content: space-around;
+   width: 30px;
+   height: 21px;
+}
+.toggle-button .bar {
+   height: 3px;
+   width: 100%;
+   background-color: black;
+   border-radius: 10px;
+   transition: all ease 1s;
+}
+@media (max-width: 1200px) {
+   .navbar {
+       flex-direction: column;
+        align-items: flex-start; 
+   }
+   .toggle-button {
+       display: flex; 
+   }
+   .navbar-links {
+       display: none;
+       width: 100%;
+   }
+   .navbar-links ul {
+       width: 100%;
+       flex-direction: column;
+   }
+   .navbar-links ul li {
+       text-align: center;
+   }
+   .navbar-links ul li a {
+       padding: .5rem 1rem;
+       /* background-color: black;
+       color: white; */
+        margin: 0px 13px;
+        padding: 10px 0px; 
+   }
+   .navbar-links.active {
+       display: flex;
+   }
+}
+
+
+  /* bro(@itsumarsoomro) is ko comment is lie kia hai kuin ke ye keera kar raha tha and main bhool gaya tha
+ke isko comment kar ke apna keera apply kar skta. Waise to name bhei change kar skta tha but html main mein ne pher 
+udhar se .reg-btn kar dia To bro just kuch stuff ki wajah se isko hata dia
+Kuin ke apne sath keera ho raha tha but tumhara code bht next level tha no doubt */
+
+.login-button {
+position: relative;
+}
+
+.dropdown-icon {
+position: absolute;
+top: 50%;
+right: 0;
+transform: translateY(-50%);
+width: 10px;
+height: 10px;
+border-left: 1px solid #9d9d9d;
+border-bottom: 1px solid #9d9d9d;
+transition: transform 0.3s ease;
+}
+
+.dropdown-content {
+position: absolute;
+top: 100%;
+right: 0;
+width: 400px;
+height: 600px;
+background-color: #fff;
+border: 1px solid #000;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+display: none;
+z-index: 1;
+}
+
+.login-button:hover .dropdown-icon {
+transform: translateY(-50%) rotate(-45deg);
+}
+
+.login-button:hover .dropdown-content {
+display: block;
+}
+
+.login-iframe {
+width: 100%;
+height: 100%;
+}
+
+/* login btn */
+/* .log-btn{ */
+/* background-color: white; */
+/* color: #3CAD4F;
+padding: 7px 26px;
+border-radius: 16px;
+border: 1px solid;
+border-color: black; */
+
+
+/* From https://css.glass */
+/* background: rgba(255, 255, 255, 1);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+-webkit-backdrop-filter: blur(20px);
+backdrop-filter: blur(20px);
+border: 1px solid rgb(245, 244, 244);
+
+transition: all 1s;
+} */
+
+
+/* login btn */
+.reg-btn{
+/* background-color: white; */
+color: #3CAD4F;
+padding: 7px 26px;
+border-radius: 16px;
+border: 1px solid;
+border-color: black;
+
+
+/* From https://css.glass */
+background: rgba(255, 255, 255, 1);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+-webkit-backdrop-filter: blur(20px);
+backdrop-filter: blur(20px);
+border: 1px solid rgb(245, 244, 244);
+
+transition: all 1s;
+}
+
+.reg-btn:hover{
+/* padding: 5px 30px; */
+/* background-image: url("https://cdn-icons-png.flaticon.com/512/2989/2989981.png"); */
+/* From https://css.glass */
+/* background: rgba(255, 255, 255, 0.83);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(7.9px);
+-webkit-backdrop-filter: blur(7.9px);
+border: 1px solid rgba(255, 255, 255, 1); */
+/* background: rgb(245, 241, 241); */
+opacity: 85%;
+border-color: #24AA81;
+}
+
+
+
+/* body */
+.wel{
+       height: 500px;
+       width: 70%;
+       display: flex;
+       justify-content: space-around;
+       margin: auto;
+       gap: 0px;
+       
+}      
+.wel-img1{
+       border-radius: 12px;
+       margin-top: 25px;
+}
+.wel-des > h1{
+       padding: 15px 0px;
+       font-size: 35px;
+       padding-top: 70px;
+}
+.wel-des > button{
+       margin-top: 20px;
+       padding: 15px 60px;
+       border-radius: 120px;
+       cursor: pointer;
+       color: #1FA637;
+       font-weight: 650;
+     /* From https://css.glass */
+       background: rgba(255, 255, 255, 0.81);
+       border-radius: 126px;
+       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+       backdrop-filter: blur(9.2px);
+       -webkit-backdrop-filter: blur(9.2px);
+       border: 1px solid rgba(255, 255, 255, 1);
+       /* shadow */
+       -webkit-box-shadow: 10px 10px 66px 2px rgba(171,171,171,1);
+       -moz-box-shadow: 10px 10px 66px 2px rgba(171,171,171,1);
+       box-shadow: 10px 10px 66px 2px rgba(171,171,171,1);
+       transition: 1s;
+}
+.wel-des > button:hover{
+       opacity: 85%;
+       border-color: #24AA81;
+}
+.stats{
+       height: 80px;
+       width: 100%;
+       background-color: #000000;
+       color: white;
+       display: flex;
+       justify-content: space-around;
+}
+
+.rest{
+       height: 1200px;
+       width: 100%;
+       margin-top: 60px;
+}
+.rest-1{
+       height: 400px;
+       width: 80%;
+       margin: auto;
+       border-radius: 12px;
+       display: flex;
+       justify-content: space-around;
+       padding: 20px 0px;
+
+              /* From https://css.glass */
+              background: rgba(255, 255, 255, 0.39);
+              border-radius: 16px;
+              box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+              backdrop-filter: blur(7.4px);
+              -webkit-backdrop-filter: blur(7.4px);
+              border: 1px solid rgba(255, 255, 255, 1);
+       
+              -webkit-box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
+              -moz-box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
+              box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
+}
+.rest-2{
+       display: flex;
+       margin: auto;
+       justify-content: space-around;
+       padding: 80px 0px;
+}
+.rest2-des > p{
+       width: 500px;
+}
+.action{
+       height: 200px;
+       width: 80%;
+       
+       margin: auto;
+       border-radius: 12px;
+
+       text-align: center;
+       padding: 20px 0px;
+
+       /* From https://css.glass */
+       background: rgba(255, 255, 255, 0.39);
+       border-radius: 16px;
+       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+       backdrop-filter: blur(7.4px);
+       -webkit-backdrop-filter: blur(7.4px);
+       border: 1px solid rgba(255, 255, 255, 1);
+
+       -webkit-box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
+       -moz-box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
+       box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
+}
+.action>button{
+       padding: 13px 20px;
+       border-radius: 120px;
+       cursor: pointer;
+       color: #1FA637;
+       font-weight: 650;
+
+     /* From https://css.glass */
+       background: rgba(255, 255, 255, 0.81);
+       border-radius: 126px;
+       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+       backdrop-filter: blur(9.2px);
+       -webkit-backdrop-filter: blur(9.2px);
+       border: 1px solid black;
+       /* shadow */
+       /* -webkit-box-shadow: 10px 10px 66px 2px rgba(171,171,171,1);
+       -moz-box-shadow: 10px 10px 66px 2px rgba(171,171,171,1);
+       box-shadow: 10px 10px 66px 2px rgba(171,171,171,1); */
+       transition: 1s;
+}
+.action > button:hover{
+       opacity: 85%;
+       border-color: #24AA81;
+}
+
+
+
+
+
+
+
+
+
+/* Footer */
+
+   /* footer */
+   .footer{
+    margin: 6px 100px;
+    /* width: 100%; */
+}
+.foot-box{
+    /* width: 100%; */
+    height: 250px;
+}
+footer{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+.l-footer{
+    text-align: center;
+    margin-top: 140px;
+    font-size: 13px;
+    border-top: 1px solid black;
+}
+.footer-desc{
+    margin-top: 15px;
+}
+.hero-btns {
+    display: flex;
+}
