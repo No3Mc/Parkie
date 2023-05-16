@@ -31,6 +31,9 @@ admin_collection = admin_db['admins']
 app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/',
             static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
 
+
+
+
 app.secret_key = secrets.token_hex(16)
 
 # Configure Flask-Mail settings
