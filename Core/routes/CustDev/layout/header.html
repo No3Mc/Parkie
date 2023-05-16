@@ -31,12 +31,18 @@
                 <li><a href="routes/CustDev/AbtPro/AboutUs.html">Company</a></li>
                 <li><a href="routes/CustDev/VulFaq/DocnFAQ.html">Help</a></li>
                 {% if current_user.is_authenticated %}
+                <li>
+                    <a id="history" class="history" href="{{ url_for('history') }}">Histroy <img src="https://i.postimg.cc/kG3H36Nk/history.png" height="15px" width="15px" style="transform: translate(0px, 3.35px);"></a>
+                </li>
                 <li class="profile-dropdown">
+
                     {% if current_user.is_admin %}
                     <img class="profile-icon" src="{{ url_for('static', filename='admin_profile_icon.png') }}" alt="Profile Icon">
                     {% else %}
                     <img class="profile-icon" src="{{ current_user.profile_icon_url }}" alt="Profile Icon">
                     {% endif %}
+
+
                     <div class="dropdown-content">
                         <a href="{{ url_for('logout') }}">Logout</a>
                         {% if current_user.is_admin %}

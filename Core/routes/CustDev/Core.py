@@ -111,6 +111,19 @@ def rate_limited(ip_address):
 def index():
     return render_template('index.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')   
 
+@app.route('/main')
+def main():
+    return render_template('routes/ParkDev/parking/main.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')
+
+@app.route('/get-header')
+def get_header():
+    return render_template('routes/CustDev/layout/header.html')
+
+@app.route('/get-footer')
+def get_footer():
+    with open('/home/thr33/Downloads/Parkie/Core/routes/CustDev/layout/footer.html', 'r') as file:
+        footer_content = file.read()
+    return footer_content
 
 
 # return render_template('/home/thr33/Downloads/Parkie/Core/index.html', header='header.html')
@@ -175,11 +188,13 @@ def MngPromos():
 def DocnFAQ():
     return render_template('routes/CustDev/VulFaq/DocnFAQ.html')
 
-
-
 @app.route('/rpg')
 def rpg():
     return render_template('routes/CustDev/LogReg/Register.html')
+
+@app.route('/history')
+def history():
+    return redirect('http://localhost:3000/histroy.html')
 
 
 @app.route('/login', methods=['POST'])

@@ -9,6 +9,8 @@ fetch('/markers')
   })
   .catch(error => console.error(error));
 
+
+
 // wait for the fetch to complete before accessing markersWithStatus
 setTimeout(() => {
   if (markersWithStatus) {
