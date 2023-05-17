@@ -21,7 +21,7 @@ promoBtn.addEventListener('click', () => {
 });
 
 dafaqBtn.addEventListener('click', () => {
-	iframeContainer.innerHTML = '<iframe src="/DocnFAQ"></iframe>';
+	iframeContainer.innerHTML = '<iframe src="/help"></iframe>';
 	iframeContainer.style.display = 'block';
 });
 
