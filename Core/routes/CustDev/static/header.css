@@ -81,9 +81,11 @@ body {
 }
 
 #login-form {
-  overflow: hidden;
-  width: 0;
-  transition: width 0.5s ease;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px; /* Set initial width */
 }
 
 #login-form input {
@@ -91,6 +93,29 @@ body {
   margin-bottom: 10px;
   padding: 5px;
 }
+
+#login-form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#login-button {
+  background-color: white;
+  color: #747774;
+  padding: 1.188rem;
+  transition: all 0.8s;
+  font-size: 13px;
+}
+
+#login-button:hover {
+  color: #000000;
+}
+
+#login-button:focus {
+  outline: none;
+}
+
 
 @media (max-width: 1200px) {
   .navbar {
@@ -125,25 +150,11 @@ body {
   .navbar-links.active {
     display: flex;
   }
-
-  #login-button:focus + #login-form {
-    width: 200px;
-  }
 }
 
-#login-form.open {
-    width: 200px;
-}
-
-@media (max-width: 1200px) {
-    #login-button:focus + #login-form {
-        width: 200px;
-    }
-}
 .profile-dropdown {
   position: relative;
 }
-
 .profile-icon {
   display: inline-block;
   width: 32px;
@@ -177,7 +188,22 @@ body {
   background-color: #f1f1f1;
 }
 
+#guest-button {
+  background-color: #1FA637;
+  color: white;
+  border: none;
+}
 
+#guest-button:hover {
+  background-color: #148f29;
+}
 
+#guest-button:focus {
+  outline: none;
+}
 
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
 

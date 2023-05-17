@@ -1,26 +1,35 @@
 document.addEventListener("DOMContentLoaded", function() {
   const loginButton = document.getElementById("login-button");
+  const guestButton = document.getElementById("guest-button");
   const loginForm = document.getElementById("login-form");
   const usernameInput = document.getElementById("username-input");
   const passwordInput = document.getElementById("password-input");
   const profileIcon = document.querySelector(".profile-icon");
   const logoutLink = document.querySelector(".dropdown-content");
+  const loginSubmitButton = document.getElementById("login-submit");
 
-  if (loginButton) {
-    loginButton.addEventListener("click", function(event) {
-      event.preventDefault();
-      loginForm.classList.toggle("open");
-    });
-  }
+    if (loginButton) {
+        loginButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            toggleLoginForm();
+        });
+    }
 
-  if (passwordInput) {
-    passwordInput.addEventListener("keydown", function(event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        login();
-      }
-    });
-  }
+    if (loginSubmitButton) {
+        loginSubmitButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            login();
+        });
+    }
+
+    function toggleLoginForm() {
+        loginForm.classList.toggle("open");
+    }
+    if (guestButton) {
+        guestButton.addEventListener("click", function(event) {
+            event.preventDefault();
+        });
+    }
 
   function login() {
     const username = usernameInput.value;

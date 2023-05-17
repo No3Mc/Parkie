@@ -29,13 +29,14 @@ admin_collection = admin_db['admins']
 
 
 
-app = Flask(__name__, template_folder='C:/Users/haide/Downloads/Parkie/Core',
-            static_folder='C:/Users/haide/Downloads/Parkie/Core/routes/CustDev/static')
+# app = Flask(__name__, template_folder='C:/Users/haide/Downloads/Parkie/Core',
+#             static_folder='C:/Users/haide/Downloads/Parkie/Core/routes/CustDev/static')
 
-# app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/',
-#             static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
+app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/',
+            static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
 
-
+# app = Flask(__name__, template_folder='/Parkie/Core/',
+#             static_folder='/Parkie/Core/routes/CustDev/static')
 
 
 # app = Flask(__name__)
