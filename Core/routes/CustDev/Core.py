@@ -194,6 +194,11 @@ def delete_user():
 
 
 
+# @app.route('/bawt')
+# def bawt():
+#     return render_template('http://127.0.0.1:8000/')
+
+
 @app.route('/admin_dashboard')
 @login_required
 def admin_dashboard():
@@ -218,13 +223,15 @@ def MngPromos():
     promos = promos_collection.find()
     return render_template('routes/CustDev/Manage/MngPromos.html', promos=promos)
 
-# @app.route('/bawt')
-# def bawt():
-#     return render_template('http://127.0.0.1:8000/')
 
-@app.route('/DocnFAQ')
-def DocnFAQ():
+
+@app.route('/help')
+def help():
     return render_template('routes/CustDev/VulFaq/DocnFAQ.html')
+
+@app.route('/AboutUs')
+def AboutUs():
+    return render_template('routes/CustDev/AbtPro/AboutUs.html')
 
 @app.route('/rpg')
 def rpg():
