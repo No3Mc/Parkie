@@ -67,6 +67,13 @@ toggleButton.addEventListener('click', () => {
         });
       });
       
+
+
+
+
+
+
+
   function openLoginForm() {
     var loginForm = document.getElementById("login-form");
     loginForm.style.display = "block";

@@ -25,6 +25,8 @@ user_collection = user_db['users']
 admin_db = client['Admin_DB']
 admin_collection = admin_db['admins']
 
+guest_db = client['USER_DB']
+guest_collection = guest_db['guests']
 
 
 
@@ -64,6 +66,18 @@ class User(UserMixin):
         self.id = str(user_dict['_id'])
         self.username = user_dict['username']
         self.profile_icon_url = user_dict.get('profile_icon_url')
+
+    def is_active(self):
+        return True
+
+    def set_profile_icon_url(self, profile_icon_url):
+        self.profile_icon_url = profile_icon_url
+
+class Guest(UserMixin):
+    def __init__(self, guest_dict):
+        self.id = str(guest_dict['_id'])
+        self.username = guest_dict['username']
+        self.profile_icon_url = guest_dict.get('profile_icon_url')
         self.is_admin = False  # Add is_admin attribute
 
     def is_active(self):
@@ -71,6 +85,9 @@ class User(UserMixin):
 
     def set_profile_icon_url(self, profile_icon_url):
         self.profile_icon_url = profile_icon_url
+
+
+
 
 
 @app.context_processor
@@ -88,6 +105,10 @@ def load_user(user_id):
         admin_user = User(admin_dict)
         admin_user.is_admin = True
         return admin_user
+
+    guest_dict = guest_collection.find_one({'_id': ObjectId(user_id)})
+    if guest_dict:
+        return Guest(guest_dict)
     
     return None
 
@@ -214,6 +235,7 @@ def history():
     return redirect('http://localhost:3000/histroy.html')
 
 
+
 @app.route('/login', methods=['POST'])
 def login():
     ip_address = request.remote_addr
@@ -222,12 +244,13 @@ def login():
         return redirect(url_for('index'))
 
     username = request.form['username']
-    password = request.form['password'].encode('utf-8')
+    password = request.form['password']
 
     user = user_collection.find_one({'username': username})
     admin = admin_collection.find_one({'username': username})
+    guest = guest_collection.find_one({'username': username})  # Check guest collection
 
-    if user and bcrypt.checkpw(password, user['password']):
+    if user and bcrypt.checkpw(password.encode('utf-8'), user['password']):
         print('Login successful for user:', username)
         user_obj = User(user)
         profile_icon_url = user.get('profile_icon_url')
@@ -237,7 +260,7 @@ def login():
         # Set the profile icon URL in the current_user object
         current_user.set_profile_icon_url(profile_icon_url)
         return redirect(url_for('index'))
-    elif admin and bcrypt.checkpw(password, admin['password'].encode('utf-8')):  # Encode admin password as bytes
+    elif admin and bcrypt.checkpw(password.encode('utf-8'), admin['password'].encode('utf-8')):
         print('Login successful for admin:', username)
         admin_obj = User(admin)
         profile_icon_url = admin.get('profile_icon_url')
@@ -248,9 +271,34 @@ def login():
         # Set the profile icon URL in the current_user object
         current_user.set_profile_icon_url(profile_icon_url)
         return redirect(url_for('index'))
-    else:
-        print('Login failed for user:', username)
-        return jsonify({'message': 'Login failed'}), 401
+
+    print('Login failed for user:', username)
+    return jsonify({'message': 'Login failed'}), 401
+
+
+@app.route('/guest-login', methods=['POST'])
+def guest_login():
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    if username is None or password is None:
+        return jsonify({'message': 'Invalid request data'}), 400
+
+    guest = guest_collection.find_one({'username': username})
+
+    if guest and password == guest.get('password'):
+        print('Login successful for guest:', username)
+        guest_obj = Guest(guest)
+        profile_icon_url = guest.get('profile_icon_url')
+        if profile_icon_url:
+            guest_obj.set_profile_icon_url(profile_icon_url)
+        login_user(guest_obj)
+        # Set the profile icon URL in the current_user object
+        current_user.set_profile_icon_url(profile_icon_url)
+        return jsonify({'message': 'Guest login successful'}), 200
+
+    print('Login failed for guest:', username)
+    return jsonify({'message': 'Guest login failed'}), 401
 
 
 
