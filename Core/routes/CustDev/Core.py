@@ -86,7 +86,17 @@ class Guest(UserMixin):
     def set_profile_icon_url(self, profile_icon_url):
         self.profile_icon_url = profile_icon_url
 
+class Admin(UserMixin):
+    def __init__(self, user_dict):
+        self.id = str(user_dict['_id'])
+        self.username = user_dict['username']
+        self.profile_icon_url = user_dict.get('profile_icon_url')
 
+    def is_active(self):
+        return True
+
+    def set_profile_icon_url(self, profile_icon_url):
+        self.profile_icon_url = profile_icon_url
 
 
 
