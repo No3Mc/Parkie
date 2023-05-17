@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+"""
+Generated random codes for dates
+"""
+
+import os
+from systematic.shell import Script
+from systematic.dates import Day,Week,Month
+from secrets.generator import PasswordGenerator,PasswordGeneratorError
+
+DEFAULT_MONTHS = 6
+DEFAULT_LENGTH = 8
+DEFAULT_MODEL = 'simple'
+DEFAULT_FILENAME = os.path.expanduser('~/daycodes')
+
+script = Script()
+script.add_argument('-m','--months',default=DEFAULT_MONTHS,type=int,help='How many months to generate')
+script.add_argument('-r','--length',default=DEFAULT_LENGTH,type=int,help='Length of generated codes')
+script.add_argument('-o','--model',default=DEFAULT_MODEL,help='Complexity of generates codes')
+script.add_argument('-O','--output',default=DEFAULT_FILENAME,help='Output filename prefix')
+args = script.parse_args()
+
+def daycode(generator,model,length,day):
+    return pg.generate(count=1,model=model)[0][:length]
+
+try:
+    pg = PasswordGenerator()
+except PasswordGeneratorError,emsg:
+    pg = None
+    script.exit(1,emsg)
+
+m = Month()
+monthcount=0
+daycodes = {}
+
+print 'Generating %d letter random codes for %d months' % (
+    args.length,args.months
+)
+while monthcount<args.months:
+    for day in m:
+        value = daycode(pg,args.model,args.length,day)
+        while value in daycodes.keys():
+            value = daycode(pg,args.model,args.length,day)
+        daycodes[value] = day
+    monthcount+=1
+    m = m+1
+
+try:
+    bycode = open('%s by code.txt' % args.output,'w')
+    bydate = open('%s by date.txt' % args.output,'w')
+except IOError(ecode,emsg):
+    script.exit(1,'Error opening output files')
+
+print 'Writing sorted codes to %s' % '%s by code.txt' % args.output
+for k in sorted(daycodes.keys(),lambda x,y: cmp(x.lower(),y.lower())):
+    bycode.write('%s %s\r\n' % (k,daycodes[k]))
+bycode.close()
+
+print 'Writing sorted codes to %s' % '%s by date.txt' % args.output
+for k in sorted(daycodes.keys(),lambda x,y: cmp(daycodes[x],daycodes[y])):
+    bydate.write('%s %s\r\n' % (daycodes[k],k))
+bydate.close()
+

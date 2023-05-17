@@ -9,88 +9,137 @@ $cyan = [char]27 + '[1;36m'
 $white = [char]27 + '[1;37m'
 $reset = [char]27 + '[0m'
 
-$nodePath = "$(Split-Path -Parent $MyInvocation.MyCommand.Path)\Core\Node"
-$pythonPath = Join-Path $PSScriptRoot "Core\Python\python.exe"
-$pythonScriptsPath = Join-Path $PSScriptRoot "Core\Python\Scripts"
-$gitPath = "$(Split-Path -Parent $MyInvocation.MyCommand.Path)\Core\Git\bin"
-
-$existingPaths = [Environment]::GetEnvironmentVariable("Path", "User") -split ';'
-
-if ($existingPaths -contains $nodePath) {
-    Write-Output "Node.js path already exists in PATH"
-} else {
-    # Add Node.js path to PATH
-    $envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$nodePath"
-    [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
-    Write-Output "Added Node.js path to PATH"
-}
-
-if ($existingPaths -contains $pythonPath) {
-    Write-Output "Python path already exists in PATH"
-} else {
-    # Add Python path to PATH
-    $envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$pythonPath;$pythonScriptsPath"
-    [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
-    Write-Output "Added Python path to PATH"
-}
-
-if ($existingPaths -contains $gitPath) {
-    Write-Output "Git path already exists in PATH"
-} else {
-    # Add Git path to PATH
-    $envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$gitPath"
-    [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
-    Write-Output "Added Git path to PATH"
-}
 
 
 
 
-Start-Sleep -Seconds 1
+# $dirFile = Join-Path $PSScriptRoot "Core\routes\CustDev\dir.txt"
 
-Write-Output "${green}Running server.js written by UMAR SOOMRO${reset}"
-Start-Process node -ArgumentList "Core/routes/ParkDev/parking/server.js" -NoNewWindow
+# # Get the current directory location
+# $currentDir = Get-Location
 
-Start-Sleep -Seconds 1
+# # Update the dir.txt file with the current directory location
+# $currentDir | Set-Content $dirFile
 
-Write-Output "${green}Running Promos.py written by YO BOI SYED${reset}"
-Start-Process python -ArgumentList "Core/routes/CustDev/AbtPro/Promos.py" -NoNewWindow
+# Write-Host "Current directory location: $currentDir"
 
-Start-Sleep -Seconds 1
 
-Write-Output "${green}Running Register.py written by YO BOI SYED${reset}"
-Start-Process python -ArgumentList "Core/routes/CustDev/LogReg/Register.py" -NoNewWindow
 
-Start-Sleep -Seconds 1
 
-Write-Output "${green}Running Login.py written by YO BOI SYED${reset}"
-Start-Process python -ArgumentList "Core/routes/CustDev/LogReg/login.py" -NoNewWindow
+$scriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
+$directory1 = Join-Path -Path $scriptPath -ChildPath "\Core\"
+$directory2 = Join-Path -Path $directory1 -ChildPath "\routes\CustDev\static"
+$filePath = Join-Path -Path $directory1 -ChildPath "\routes\CustDev\dir.txt"
 
-Start-Sleep -Seconds 1
+# Create a new file or overwrite the existing file
+Set-Content -Path $filePath -Value "Template: '$directory1'`r`nStatic: '$directory2'"
 
-Write-Output "${green}Running MngCusts.py written by YO BOI SYED${reset}"
-Start-Process python -ArgumentList "Core/routes/CustDev/Manage/MngCusts.py" -NoNewWindow
+Write-Host "Directory 1: $directory1"
+Write-Host "Directory 2: $directory2"
 
-Start-Sleep -Seconds 1
 
-Write-Output "${green}Running MngProfile.py written by YO BOI SYED${reset}"
-Start-Process python -ArgumentList "Core/routes/CustDev/Manage/MngProfile.py" -NoNewWindow
 
-Start-Sleep -Seconds 1
 
-Write-Output "${green}Running MngPromos.py written by YO BOI SYED${reset}"
-Start-Process python -ArgumentList "Core/routes/CustDev/Manage/MngPromos.py" -NoNewWindow
 
-Start-Sleep -Seconds 1
 
-Write-Output "${green}Running VulRep.py written by YO BOI SYED${reset}"
-Start-Process python -ArgumentList "Core/routes/CustDev/VulFaq/VulRep.py" -NoNewWindow
 
-Start-Sleep -Seconds 1
 
-$folderPath = "Core/routes/CustDev/bot"
-Write-Output "${green}Django server in written by YO BOI SYED${reset}"
-Start-Process python -ArgumentList "manage.py", "runserver" -WorkingDirectory $folderPath -NoNewWindow
+# function Set-ParkieEnvironmentVariables {
+#     # Get the path of the directory where the PowerShell script is located
+#     $scriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+#     # Set the ParkieTemplate environment variable for the current user
+#     $userEnvVariable = [EnvironmentVariableTarget]::User
+#     $parkieTemplatePath = Join-Path $scriptPath "Core"
+#     [Environment]::SetEnvironmentVariable("ParkieTemplate", $parkieTemplatePath, $userEnvVariable)
+
+#     # Set the ParkieStatic environment variable for the current user
+#     $parkieStaticPath = Join-Path $scriptPath "Core\routes\CustDev\static"
+#     [Environment]::SetEnvironmentVariable("ParkieStatic", $parkieStaticPath, $userEnvVariable)
+# }
+
+# # Call the function to set the environment variables
+# Set-ParkieEnvironmentVariables
+
+
+
+
+# # Get the path of the directory where the PowerShell script is located
+# $scriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+# # Set the ParkieTemplate environment variable for the current user
+# [Environment]::SetEnvironmentVariable("ParkieTemplate", "$scriptPath\Core", "User")
+
+# # Set the ParkieStatic environment variable for the current user
+# [Environment]::SetEnvironmentVariable("ParkieStatic", "$scriptPath\Core\routes\CustDev\static", "User")
+
+# # Set the OpenSSL paths
+# $opensslPath = "$scriptPath\Core\OpenSSL-Win64"
+# $opensslBinPath = "$opensslPath\bin\openssl.exe"
+
+# # Add OpenSSL paths to PATH if they're not already present
+# $existingPaths = [Environment]::GetEnvironmentVariable("Path", "User") -split ';'
+# if ($existingPaths -notcontains $opensslPath) {
+#     $envPath = [Environment]::GetEnvironmentVariable("Path", "User") + ";$opensslPath;$opensslBinPath"
+#     [Environment]::SetEnvironmentVariable("Path", $envPath, "User")
+#     Write-Output "Added OpenSSL paths to PATH"
+# }
+
+# $nodePath = "$(Split-Path -Parent $MyInvocation.MyCommand.Path)\Core\Node"
+# $pythonPath = Join-Path $PSScriptRoot "Core\Python\python.exe"
+# $pythonScriptsPath = Join-Path $PSScriptRoot "Core\Python\Scripts"
+# $gitPath = "$(Split-Path -Parent $MyInvocation.MyCommand.Path)\Core\Git\bin"
+
+# Rest of your script ...
+
+
+
+
+# Start-Sleep -Seconds 1
+
+# Write-Output "${green}Running server.js written by UMAR SOOMRO${reset}"
+# Start-Process node -ArgumentList "Core/routes/ParkDev/parking/server.js" -NoNewWindow
+
+# Start-Sleep -Seconds 1
+
+# Write-Output "${green}Running Promos.py written by YO BOI SYED${reset}"
+# Start-Process python -ArgumentList "Core/routes/CustDev/AbtPro/Promos.py" -NoNewWindow
+
+# Start-Sleep -Seconds 1
+
+# Write-Output "${green}Running Register.py written by YO BOI SYED${reset}"
+# Start-Process python -ArgumentList "Core/routes/CustDev/LogReg/Register.py" -NoNewWindow
+
+# Start-Sleep -Seconds 1
+
+# Write-Output "${green}Running Login.py written by YO BOI SYED${reset}"
+# Start-Process python -ArgumentList "Core/routes/CustDev/LogReg/login.py" -NoNewWindow
+
+# Start-Sleep -Seconds 1
+
+# Write-Output "${green}Running MngCusts.py written by YO BOI SYED${reset}"
+# Start-Process python -ArgumentList "Core/routes/CustDev/Manage/MngCusts.py" -NoNewWindow
+
+# Start-Sleep -Seconds 1
+
+# Write-Output "${green}Running MngProfile.py written by YO BOI SYED${reset}"
+# Start-Process python -ArgumentList "Core/routes/CustDev/Manage/MngProfile.py" -NoNewWindow
+
+# Start-Sleep -Seconds 1
+
+# Write-Output "${green}Running MngPromos.py written by YO BOI SYED${reset}"
+# Start-Process python -ArgumentList "Core/routes/CustDev/Manage/MngPromos.py" -NoNewWindow
+
+# Start-Sleep -Seconds 1
+
+# Write-Output "${green}Running VulRep.py written by YO BOI SYED${reset}"
+# Start-Process python -ArgumentList "Core/routes/CustDev/VulFaq/VulRep.py" -NoNewWindow
+
+# Start-Sleep -Seconds 1
+
+# $folderPath = "Core/routes/CustDev/bot"
+# Write-Output "${green}Django server in written by YO BOI SYED${reset}"
+# Start-Process python -ArgumentList "manage.py", "runserver" -WorkingDirectory $folderPath -NoNewWindow
 
 
 

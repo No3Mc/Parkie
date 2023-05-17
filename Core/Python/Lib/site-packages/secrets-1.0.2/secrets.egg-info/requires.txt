@@ -1,0 +1,4 @@
+configobj
+python-ldap
+systematic>=3.0.0
+python-gnupg
