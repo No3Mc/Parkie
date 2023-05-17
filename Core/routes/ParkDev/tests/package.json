@@ -1,0 +1,27 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "testing",
+  "main": "parking/server.js",
+  "scripts": {
+    "test": "jest code.test.js"
+  },
+  "jest": {
+    "testEnvironment": "jest-environment-jsdom"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "dotenv": "^16.0.3",
+    "jquery": "^3.7.0",
+    "leaflet": "^1.7.1",
+    "sendgrid": "^5.2.3",
+    "stripe": "^12.5.0",
+    "text-encoding": "^0.7.0"
+  }
+}
