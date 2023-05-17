@@ -227,11 +227,11 @@ def MngPromos():
 
 @app.route('/help')
 def help():
-    return render_template('routes/CustDev/VulFaq/DocnFAQ.html')
+    return render_template('routes/CustDev/VulFaq/DocnFAQ.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')
 
 @app.route('/AboutUs')
 def AboutUs():
-    return render_template('routes/CustDev/AbtPro/AboutUs.html')
+    return render_template('routes/CustDev/AbtPro/AboutUs.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')
 
 @app.route('/rpg')
 def rpg():
@@ -239,7 +239,7 @@ def rpg():
 
 @app.route('/history')
 def history():
-    return redirect('http://localhost:3000/histroy.html')
+    return redirect('http://localhost:3000/histroy.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')
 
 
 
