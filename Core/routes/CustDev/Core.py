@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 import secrets
 import bcrypt
 from flask_login import LoginManager, login_user, current_user, login_required, UserMixin
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from bson.objectid import ObjectId
 from flask_mail import Mail, Message
 import os
@@ -295,20 +295,31 @@ def guest_login():
         login_user(guest_obj)
         # Set the profile icon URL in the current_user object
         current_user.set_profile_icon_url(profile_icon_url)
-        return jsonify({'message': 'Guest login successful'}), 200
 
+        # Set the logout time in the session as an offset-aware datetime
+        logout_time = datetime.now(timezone.utc) + timedelta(seconds=5)
+        session['logout_time'] = logout_time
+
+        return redirect(url_for('index'))  # Redirect to the index page after successful login
+
+    # Simulate incorrect credentials by returning a login failure response
     print('Login failed for guest:', username)
-    return jsonify({'message': 'Guest login failed'}), 401
+    return jsonify({'message': 'Invalid username or password'}), 401
 
 
+@app.before_request
+def check_logout_time():
+    logout_time = session.get('logout_time')
+    if logout_time and datetime.now(timezone.utc) >= logout_time:
+        if request.path != '/logout' and current_user.is_authenticated:
+            return redirect(url_for('logout'))
 
 
 @app.route('/logout')
-@login_required
 def logout():
-    logout_user()
+    if current_user.is_authenticated:
+        logout_user()
     return redirect(url_for('index'))
-
 
 @app.route('/register', methods=['POST'])
 def register():

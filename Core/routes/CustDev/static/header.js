@@ -48,12 +48,9 @@ function guestLogin() {
             if (response.status === 200) {
                 // Guest login successful, redirect to the homepage or desired page
                 window.location.href = "/";
-            } else if (response.status === 401) {
+            } else {
                 // Guest login failed, show an error message
                 alert("Guest login failed. Please check your credentials and try again.");
-            } else {
-                // Unexpected response, show an error message
-                alert("Unexpected response. Please try again later.");
             }
         })
         .catch(function(error) {
@@ -61,6 +58,7 @@ function guestLogin() {
             alert("An error occurred during guest login. Please try again later.");
         });
 }
+
 
   function login() {
     const username = usernameInput.value;
