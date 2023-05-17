@@ -35,58 +35,7 @@ admin_collection = admin_db['admins']
 app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/',
             static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
 
-# app = Flask(__name__, template_folder='/Parkie/Core/',
-#             static_folder='/Parkie/Core/routes/CustDev/static')
 
-
-# app = Flask(__name__)
-
-# # Get the base directory of the Python file
-# base_dir = os.path.abspath(os.path.dirname(__file__))
-
-# # Set the template folder to a subdirectory named 'templates' in the base directory
-# template_folder = os.path.join(base_dir)
-# app.template_folder = template_folder
-
-# # Set the static folder to a subdirectory named 'static' in the base directory
-# static_folder = os.path.join(base_dir, 'static')
-# app.static_folder = static_folder
-
-# # Print the folder paths (optional)
-# print("base_dir:", base_dir)
-# print("template_folder:", template_folder)
-# print("static_folder:", static_folder)
-
-
-# app = Flask(__name__)
-
-# static_folder = ''
-# template_folder = ''
-
-# def update_folder_paths():
-#     with open('dir.txt', 'r') as file:
-#         lines = file.readlines()
-
-#     for line in lines:
-#         if line.startswith('Template:'):
-#             template_path = line.split(':')[1].strip()
-#             global template_folder
-#             template_folder = template_path
-#         elif line.startswith('Static:'):
-#             static_path = line.split(':')[1].strip()
-#             global static_folder
-#             static_folder = static_path
-
-# # Call the function to update the folder paths
-# update_folder_paths()
-
-
-# 
-
-# app = Flask(__name__,
-#             template_folder=os.environ.get('ParkieTemplate'),
-#             static_folder=os.environ.get('ParkieStatic'))
-#
 
 app.secret_key = secrets.token_hex(16)
 
@@ -171,6 +120,7 @@ def index():
     return render_template('index.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')   
 
 @app.route('/main')
+@login_required
 def main():
     return render_template('routes/ParkDev/parking/main.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')
 
