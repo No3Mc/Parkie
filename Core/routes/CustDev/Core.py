@@ -239,7 +239,7 @@ def rpg():
 
 @app.route('/history')
 def history():
-    return redirect('http://localhost:3000/histroy.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')
+    return redirect('http://localhost:3000/histroy.html')
 
 
 
