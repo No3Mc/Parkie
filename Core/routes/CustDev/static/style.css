@@ -305,23 +305,40 @@ border-color: #24AA81;
         align-items: center;
     }
     .htu-title{
-        text-align: center;
-        margin-top: 80px;
-        font-size: 30px;
+       text-align: center;
+       margin-top: 80px;
+       font-size: 30px;
+       margin-bottom: 60px;
     }
     .howtouse-box > div{
-        /* clip-path: circle(50% at 50% 50%); */
-        height: 349px;
-        width: 371px;
-        background-color: #000000;
+  
+        clip-path: circle(50% at 50% 50%);
+        height: 300px;
+        width: 300px;
         transform: translateY(-80px);
         margin: 0px 20px;
+
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.39);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(7.4px);
+        -webkit-backdrop-filter: blur(7.4px);
+        border: 1px solid rgba(255, 255, 255, 1);
+    }
+    .howtouse-box > div > img{
+        
+        height: 300px;
+        width: 300px;
+        object-fit: cover;
+       border-radius: 100%;
+        
     }
     .htu-d{
         color: black;
         margin-top: 50px;
         width: 50px;
-
+        
     }
     /* lending box */
     .lending{
@@ -400,14 +417,31 @@ border-color: #24AA81;
     .wut-title{
         text-align: center;
         font-size: 30px;
-        margin: 90px 0px;
+        margin: 70px 0px;
     }
     .whatusersthink-box > div{
         height: 400px;
         width: 600px;
-        background-color: #000000;
         border-radius: 20px;
         margin: 0px 20px;
+        text-align: center;
+        padding: 50px 0px;
+
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.39);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(7.4px);
+        -webkit-backdrop-filter: blur(7.4px);
+        border: 1px solid rgba(255, 255, 255, 1);
+
+        -webkit-box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
+        -moz-box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
+        box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
+    }
+    .whatusersthink-box > div > img{
+        border-radius: 100%;
+        object-fit: cover;
     }
     /* future things */
     .futurethings{

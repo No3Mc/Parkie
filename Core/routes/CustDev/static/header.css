@@ -215,3 +215,17 @@ body {
   background-color: #1FA637; 
 }
 
+/* profile icon after authenticating */
+.dropdown-content {
+  transition: all 30s; /* Change the transition duration to 30 seconds */
+  border-radius: 12px;
+  height: 130px;
+  
+}
+
+.profile-icon {
+  margin: 13px;
+  background-color: #d8e1d8;
+  border-radius: 120px;
+  cursor: pointer;
+}
