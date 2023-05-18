@@ -27,30 +27,17 @@ user_collection = user_db['users']
 admin_db = client['Admin_DB']
 admin_collection = admin_db['admins']
 
-guest_db = client['USER_DB']
-guest_collection = guest_db['guests']
-
 paths = client['USER_DB']
 collection = paths['paths']
 
-static_dir = os.getcwd()
-static_dir = os.path.join(static_dir, "static")
 
-temp_dir = os.path.dirname(os.path.dirname(static_dir))
 
-data = {
-    'static_dir': static_dir,
-    'temp_dir': temp_dir
-}
-
-collection.insert_one(data)
+app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/',
+            static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
 
 
 # app = Flask(__name__, template_folder='C:/Users/haide/Downloads/Parkie/Core',
 #             static_folder='C:/Users/haide/Downloads/Parkie/Core/routes/CustDev/static')
-
-app = Flask(__name__, template_folder='temp_dir',
-            static_folder='static_dir')
 
 
 
