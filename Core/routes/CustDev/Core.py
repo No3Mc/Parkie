@@ -39,7 +39,7 @@ guest_collection = guest_db['guests']
 app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/',
             static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
 
-
+app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
 
 app.secret_key = secrets.token_hex(16)
 
@@ -165,15 +165,15 @@ def lend():
 def howto():
     return render_template('routes/ParkDev/Howitworks/How.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
 
-@app.route('/get-header')
-def get_header():
-    return render_template('routes/CustDev/layout/header.html')
-
-@app.route('/get-footer')
-def get_footer():
-    with open('/home/thr33/Downloads/Parkie/Core/routes/CustDev/layout/footer.html', 'r') as file:
-        footer_content = file.read()
-    return footer_content
+# @app.route('/get-header')
+# def get_header():
+#     return render_template('routes/CustDev/layout/header.html')
+#
+# @app.route('/get-footer')
+# def get_footer():
+#     with open('/home/thr33/Downloads/Parkie/Core/routes/CustDev/layout/footer.html', 'r') as file:
+#         footer_content = file.read()
+#     return footer_content
 
 
 # return render_template('/home/thr33/Downloads/Parkie/Core/index.html', header='header.html')
@@ -381,60 +381,87 @@ def register():
 
     error_message = None
 
+    # Check username length
+    if len(username) < 3 or len(username) > 20:
+        error_message = 'Username must be between 3 and 20 characters'
+        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+
+    # Check first name length
+    if len(firsn) < 2 or len(firsn) > 50:
+        error_message = 'First name must be between 2 and 50 characters'
+        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+
+    # Check last name length
+    if len(lasn) < 2 or len(lasn) > 50:
+        error_message = 'Last name must be between 2 and 50 characters'
+        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+
+    # Check email length
+    if len(email) < 5 or len(email) > 50:
+        error_message = 'Email must be between 5 and 50 characters'
+        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+
     # Check if the email ends with .net, .org, or .com
     if not re.match(r'^[\w\.-]+@[\w\.-]+\.(net|org|com)$', email):
         error_message = 'Email must end with .net, .org, or .com'
-        return render_template('routes/CustDev/LogReg/Register.html', error_message=error_message)
+        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+
+    # Check postcode length
+    if len(postcode) < 4 or len(postcode) > 10:
+        error_message = 'Postcode must be between 4 and 10 characters'
+        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+
 
     # hash password using bcrypt
     hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
 
     # check if user already exists
     if user_collection.find_one({'email': email}):
-        flash('User with this email already exists', 'error')
-    else:
-        # generate a random token for email verification
-        token = secrets.token_hex(16)
-        # insert user into database with unverified email and token
-        user_data = {
-            'username': username,
-            'firsn': firsn,
-            'lasn': lasn,
-            'email': email,
-            'phone': phone,
-            'postcode': postcode,
-            'password': hashed_password,  # store hashed password in database
-            'verified': False,
-            'token': token
-        }
-        user_collection.insert_one(user_data)
+        error_message = 'User with this email already exists'
+        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
 
-        # remove the original password from the dictionary
-        del user_data['password']
+    # generate a random token for email verification
+    token = secrets.token_hex(16)
+    # insert user into database with unverified email and token
+    user_data = {
+        'username': username,
+        'firsn': firsn,
+        'lasn': lasn,
+        'email': email,
+        'phone': phone,
+        'postcode': postcode,
+        'password': hashed_password,  # store hashed password in database
+        'verified': False,
+        'token': token
+    }
+    user_collection.insert_one(user_data)
 
-        # Save the profile icon to Google Cloud Storage
-        if 'profile_icon' in request.files:
-            profile_icon = request.files['profile_icon']
+    # remove the original password from the dictionary
+    del user_data['password']
 
-            filename = 'thr33.png'  # Is bc ko koi next level ka keera hai. Bhosarika
-            bucket_name = 'parkie'
-            storage_client = storage.Client.from_service_account_json(
-                '/home/thr33/Downloads/parkie-org-7b65cdd695df.json')
-            bucket = storage_client.bucket(bucket_name)
-            blob = bucket.blob(filename)
-            blob.upload_from_file(profile_icon)
+    # Save the profile icon to Google Cloud Storage
+    if 'profile_icon' in request.files:
+        profile_icon = request.files['profile_icon']
 
-            # Get the public URL of the uploaded file
-            profile_icon_url = blob.public_url
+        filename = 'thr33.png'  # Is bc ko koi next level ka keera hai. Bhosarika
+        bucket_name = 'parkie'
+        storage_client = storage.Client.from_service_account_json(
+            '/home/thr33/Downloads/parkie-org-7b65cdd695df.json')
+        bucket = storage_client.bucket(bucket_name)
+        blob = bucket.blob(filename)
+        blob.upload_from_file(profile_icon)
 
-            # Add the profile icon URL to the user_data dictionary
-            user_data['profile_icon_url'] = profile_icon_url
+        # Get the public URL of the uploaded file
+        profile_icon_url = blob.public_url
 
-        flash('Registration successful! Please check your email to verify your account', 'success')
+        # Add the profile icon URL to the user_data dictionary
+        user_data['profile_icon_url'] = profile_icon_url
 
-        return redirect(url_for('index'))
+    flash('Registration successful! Please check your email to verify your account', 'success')
 
-    return render_template('routes/CustDev/LogReg/Register.html')
+    return redirect(url_for('index'))
+
+    return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
 
 
 @app.route('/verify/<token>')
