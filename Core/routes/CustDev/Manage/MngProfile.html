@@ -5,19 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Edit User Details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="MngProfile.css">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="MngProfile.css"> -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='MngProfile.css', _external=True) }}">
   </head>
   <body>
     {% if not logged_in %}
-      <form action="{{ url_for('login') }}" method="POST">
+    <form action="{{ url_for('mngprofile_login') }}" method="POST">
+
+
         <label>Username:</label><input type="text" name="username" /><br>
         <label>Password:</label><input type="password" name="password" /><br>
         <button type="submit">Login</button>
       </form>
     {% else %}
       <h1>Edit User Details</h1>
-      <form action="{{ url_for('edit_user') }}" method="POST">
+<form action="{{ url_for('mngprofile_edit_user') }}" method="POST">
+
+
         <input type="hidden" name="user_id" value="{{ user['_id'] }}" />
         <label>Username:</label><input type="text" name="username" value="{{ user['username'] }}" /><br>
         <label>First Name:</label><input type="text" name="firsn" value="{{ user['firsn'] }}" /><br>
