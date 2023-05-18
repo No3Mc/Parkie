@@ -187,6 +187,8 @@
       src="{{ url_for('static', filename='function.js') }}"
       defer
     ></script>
-    <script></script>
+      <script>
+  const mainPageUrl = "{{ url_for('main') }}";
+  </script>
   </body>
 </html>

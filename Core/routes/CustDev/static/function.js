@@ -35,32 +35,30 @@ document.addEventListener('DOMContentLoaded', function() {
   const loginModal = document.getElementById("loginModal");
   const closeButton = document.getElementsByClassName("close")[0];
 
-  dailyParkingBtn.addEventListener("click", openLoginModal);
+  dailyParkingBtn.addEventListener("click", function() {
+    const isAuthenticated = dailyParkingBtn.getAttribute("data-authenticated");
+    openLoginModal(isAuthenticated);
+  });
   closeButton.addEventListener("click", closeLoginModal);
 
-function openLoginModal() {
-  const isAuthenticated = dailyParkingBtn.getAttribute("data-authenticated");
-  if (isAuthenticated === "false") {
-    loginModal.style.display = "block";
-  } else {
-    // User is already logged in, perform appropriate action
-    window.location.href = mainPageUrl;
-
+  function openLoginModal(isAuthenticated) {
+    if (isAuthenticated === "false") {
+      loginModal.style.display = "block";
+    } else {
+      // User is already logged in, perform appropriate action
+      
+      window.location.href = mainPageUrl;
+    }
   }
-}
 
   function closeLoginModal() {
     loginModal.style.display = "none";
   }
 
   // Hide the login modal initially if the user is already logged in
+  const current_user = { is_authenticated: true }; // Replace with the actual user object
   if (current_user.is_authenticated) {
     loginModal.style.display = "none";
   }
-
-
-
-
-
 });
 
