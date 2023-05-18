@@ -4,7 +4,7 @@
 
     <head>
     </head>
-   
+
     <div id="login-form" class="login-form" style="display: none;">
         <input id="username-input" type="text" placeholder="Username">
         <input id="password-input" type="password" placeholder="Password">
@@ -20,8 +20,14 @@
 
         const loginButton = document.getElementById('login-button');
         loginButton.addEventListener('click', showLoginForm);
+        function closeLoginForm() {
+            loginForm.classList.remove("open");
+        }
+        function openLoginForm() {
+            window.location.href = "";
+}
     </script>
 
-        <script src="{{ url_for('static', filename='AboutUs.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='AboutUs.js') }}" defer></script>
 </html>
 
