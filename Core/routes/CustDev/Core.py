@@ -15,8 +15,8 @@ from Manage.MngPromos import add_promo, delete_promo, edit_promo, promos_collect
 from Manage.MngCusts import edit_user_route, delete_user_route
 from VulFaq.VulRep import index as vulrep_index, vulnerability_report as vulrep_vulnerability_report
 from Manage.MngProfile import index as mngprofile_index, login as mngprofile_login, edit_user as mngprofile_edit_user
-
-
+import quickemailverification
+import time
 
 # MongoDB Atlas connection string
 client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority')
@@ -42,18 +42,6 @@ app = Flask(__name__, template_folder='D:/realParkie/Core/',
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
 
 app.secret_key = secrets.token_hex(16)
-
-# Configure Flask-Mail settings
-app.config['MAIL_SERVER'] = 'smtp.aol.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
-app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_DEFAULT_SENDER'] = 'help.almadad@aol.com'
-
-# Create a Mail instance
-mail = Mail(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -459,25 +447,12 @@ def register():
         # Add the profile icon URL to the user_data dictionary
         user_data['profile_icon_url'] = profile_icon_url
 
-    flash('Registration successful! Please check your email to verify your account', 'success')
 
     return redirect(url_for('index'))
 
     return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
 
 
-@app.route('/verify/<token>')
-def verify(token):
-    # check if token is valid
-    user = user_collection.find_one({'token': token})
-    if not user:
-        flash('Invalid token', 'error')
-    else:
-        # update user to verified email and remove token
-        user_collection.update_one({'_id': user['_id']}, {'$set': {'verified': True}, '$unset': {'token': 1}})
-    flash('Email verified! You can now log in', 'success')
-
-    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
