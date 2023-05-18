@@ -1,50 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <head>
-    <!-- Meta Information for the webpage -->
-    <meta charset="utf-8" />
+  <meta charset="UTF-8">
+  <title>Parkie - Home</title>
+  <link rel="shortcut icon" type="image/png" href="https://i.postimg.cc/NMbHx9JP/favicon.png" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+  {% include header %}
 
-    <!-- linking files -->
-    <!-- <link rel="stylesheet" href="style.css" /> -->
-    <!-- <script src="function.js" defer></script> -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    <script src="{{ url_for('static', filename='function.js') }}" defer></script>
-
-    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"> -->
-
-    <!-- linking font -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
-
-    <!-- Fav icon -->
-    <link rel="shortcut icon" type="image/png" href="https://i.postimg.cc/NMbHx9JP/favicon.png" />
-    <title>Parkie - Home</title>
-  </head>
-
-  <!-- To top button -->
   <button id="myBtn" title="Go to top">
-    <img
-      src="https://i.postimg.cc/P5mCxGqz/4781853-arrow-arrows-direction-down-move-icon.png"
-      alt="Top"
-      height="32"
-      width="32"
-    />
+    <img src="https://i.postimg.cc/P5mCxGqz/4781853-arrow-arrows-direction-down-move-icon.png" alt="Top" height="32" width="32" />
   </button>
 
-
   <button id="chatBtn" onclick="openChatbot()">Chat</button>
-  <iframe
-    id="chatIframe"
-    class="chat-iframe"
-    src="http://localhost:8000/"
-    frameborder="0"
-  ></iframe>
+  <iframe id="chatIframe" class="chat-iframe" src="http://localhost:8000/" frameborder="0"></iframe>
 
-  <body>
-      {% include header %}
 
     <!-- hero box -->
     <section class="hero-box">
@@ -56,23 +29,30 @@
         <!-- heor btn to line 412 css [flex display]-->
         <div class="hero-btns">
 
-    {% if current_user.is_authenticated %}
-        <a href="{{ url_for('main') }}">
-            <button class="hero-btn">Show Daily Parking Spots</button>
-        </a>
-    {% else %}
-        <button class="hero-btn" onclick="openLoginForm()">Show Daily Parking Spots</button>
-    {% endif %}
-          <a href="routes/ParkDev/MainPg/W-Parking.html">
-            <button class="hero-btn1">Show Weekly Parking Spots</button>
-          </a>
+            {% if current_user.is_authenticated %}
+            <button class="hero-btn" id="daily-parking-btn">Show Daily Parking Spots</button>
+            {% else %}
+            <button class="hero-btn" id="daily-parking-btn" data-authenticated="false">Show Daily Parking Spots</button>
+            {% endif %}
+            <a href="routes/ParkDev/MainPg/W-Parking.html">
+                <button class="hero-btn1">Show Weekly Parking Spots</button>
+            </a>
         </div>
       </div>
     </section>
 
 
-
       {% include login %}
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>In order to access the button, you need to continue as a guest or log in to the system.</p>
+        <button id="log">Login</button>
+        <button id="ajnabi">Continue as Guest</button>
+      </div>
+    </div>
 
     <!-- how to use box -->
     <section class="howtouse">

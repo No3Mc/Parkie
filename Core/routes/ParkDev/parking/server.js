@@ -150,6 +150,7 @@
           res.send(`
               <script>
               window.parent.postMessage({ action: 'stripeSuccess' }, '*');
+              window.location.href = 'http://localhost:5000'; // Redirects to localhost:5000
               </script>
               `);
 

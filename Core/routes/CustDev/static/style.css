@@ -1,134 +1,134 @@
-    /* font connection */
-    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300&display=swap');
-    /* To top button */
-    #myBtn {
-        display: none; /* Hidden by default */
-        position: fixed; /* Fixed/sticky position */
-        bottom: 20px; /* Place the button at the bottom of the page */
-        right: 20px; /* Place the button 30px from the right */
-        z-index: 99; /* Make sure it does not overlap */
-        border: none; /* Remove borders */
-        outline: none; /* Remove outline */
-        background-color: #24AA81; /* Set a background color */
-        cursor: pointer; /* Add a mouse pointer on hover */
-        padding: 2px 5px; /* Some padding */
-        height: 40px;
-        border-radius: 100%; /* Rounded corners */
-        -webkit-box-shadow: -1px 5px 24px -10px rgba(0, 0, 0, 0.75);
-        -moz-box-shadow: -1px 5px 24px -10px rgba(0, 0, 0, 0.75);
-        box-shadow: -1px 5px 24px -10px rgba(0, 0, 0, 0.75);
-        transition: all 300ms ease-in-out;
-      }
-      #myBtn:hover {
-        height: 50px;
-        background-color: #555; /* Add a dark-grey background on hover */
-        padding: 7px 10px; /* Some padding */
-      }
+/* font connection */
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300&display=swap');
+/* To top button */
+#myBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 20px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #24AA81; /* Set a background color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 2px 5px; /* Some padding */
+    height: 40px;
+    border-radius: 100%; /* Rounded corners */
+    -webkit-box-shadow: -1px 5px 24px -10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 5px 24px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 5px 24px -10px rgba(0, 0, 0, 0.75);
+    transition: all 300ms ease-in-out;
+}
+#myBtn:hover {
+    height: 50px;
+    background-color: #555; /* Add a dark-grey background on hover */
+    padding: 7px 10px; /* Some padding */
+}
 
-    /* icons style */
-    .material-symbols-outlined {
-        font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48
-    }
-    * {
-       box-sizing: border-box;
-       font-family: 'Unbounded', cursive;
-       text-decoration: none;
-       list-style: none;
-       scroll-behavior: smooth;
-   }  
-   body {
-       margin: 0;
-       padding: 0;
-       overflow-x: hidden;
-   } 
-   .navbar {
-       display: flex;
-       position: relative;
-       justify-content: space-between;
-       align-items: center;
-       background-color: white;
-       color: black;
-       margin: 0px 94px; 
-   }
-   .brand-title > a {
-       font-size: 1.8rem;
-       margin: .5rem;
-       color: #1FA637;
-   } 
-   .navbar-links {
-       height: 100%;
-   } 
-   .navbar-links ul {
-       display: flex;
-       margin: 0;
-       padding: 0;
-   }  
-   .navbar-links li {
-       list-style: none;
-   }  
-   .navbar-links li a {
-       display: block;
-       text-decoration: none;
-       color: #747774;
-       padding: 1.188rem;   
-       transition: all 0.8s;
+/* icons style */
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+* {
+    box-sizing: border-box;
+    font-family: 'Unbounded', cursive;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}  
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+} 
+.navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    color: black;
+    margin: 0px 94px; 
+}
+.brand-title > a {
+    font-size: 1.8rem;
+    margin: .5rem;
+    color: #1FA637;
+} 
+.navbar-links {
+    height: 100%;
+} 
+.navbar-links ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}  
+.navbar-links li {
+    list-style: none;
+}  
+.navbar-links li a {
+    display: block;
+    text-decoration: none;
+    color: #747774;
+    padding: 1.188rem;   
+    transition: all 0.8s;
 
-       font-size: 13px;
-   }
-   .navbar-links li a:hover{
+    font-size: 13px;
+}
+.navbar-links li a:hover{
     color: #000000;
-   }
-   
-   /* .navbar-links li:hover {
-       background-color: #555;
-   } */
-   
-   .toggle-button {
-       position: absolute;
-       top: .75rem;
-       right: 1rem;
-       display: none;
-       flex-direction: column;
-       justify-content: space-around;
-       width: 30px;
-       height: 21px;
-   }
-   .toggle-button .bar {
-       height: 3px;
-       width: 100%;
-       background-color: black;
-       border-radius: 10px;
-       transition: all ease 1s;
-   }
-   @media (max-width: 1200px) {
-       .navbar {
-           flex-direction: column;
-            align-items: flex-start; 
-       }
-       .toggle-button {
-           display: flex; 
-       }
-       .navbar-links {
-           display: none;
-           width: 100%;
-       }
-       .navbar-links ul {
-           width: 100%;
-           flex-direction: column;
-       }
-       .navbar-links ul li {
-           text-align: center;
-       }
-       .navbar-links ul li a {
-           padding: .5rem 1rem;
-           /* background-color: black;
-           color: white; */
-            margin: 0px 13px;
-            padding: 10px 0px; 
+}
+
+/* .navbar-links li:hover {
+    background-color: #555;
+} */
+
+.toggle-button {
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 21px;
+}
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: black;
+    border-radius: 10px;
+    transition: all ease 1s;
+}
+@media (max-width: 1200px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start; 
+    }
+    .toggle-button {
+        display: flex; 
+    }
+    .navbar-links {
+        display: none;
+        width: 100%;
+    }
+    .navbar-links ul {
+        width: 100%;
+        flex-direction: column;
+    }
+    .navbar-links ul li {
+        text-align: center;
+    }
+    .navbar-links ul li a {
+        padding: .5rem 1rem;
+        /* background-color: black;
+        color: white; */
+margin: 0px 13px;
+padding: 10px 0px; 
        }
        .navbar-links.active {
            display: flex;
@@ -136,16 +136,16 @@
    }
 
 
-      /* bro(@itsumarsoomro) is ko comment is lie kia hai kuin ke ye keera kar raha tha and main bhool gaya tha
+   /* bro(@itsumarsoomro) is ko comment is lie kia hai kuin ke ye keera kar raha tha and main bhool gaya tha
    ke isko comment kar ke apna keera apply kar skta. Waise to name bhei change kar skta tha but html main mein ne pher 
    udhar se .reg-btn kar dia To bro just kuch stuff ki wajah se isko hata dia
    Kuin ke apne sath keera ho raha tha but tumhara code bht next level tha no doubt */
 
-   .login-button {
+.login-button {
     position: relative;
-  }
-  
-  .dropdown-icon {
+}
+
+.dropdown-icon {
     position: absolute;
     top: 50%;
     right: 0;
@@ -155,9 +155,9 @@
     border-left: 1px solid #9d9d9d;
     border-bottom: 1px solid #9d9d9d;
     transition: transform 0.3s ease;
-  }
-  
-  .dropdown-content {
+}
+
+.dropdown-content {
     position: absolute;
     top: 100%;
     right: 0;
@@ -168,49 +168,49 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     display: none;
     z-index: 1;
-  }
-  
-  .login-button:hover .dropdown-icon {
+}
+
+.login-button:hover .dropdown-icon {
     transform: translateY(-50%) rotate(-45deg);
-  }
-  
-  .login-button:hover .dropdown-content {
+}
+
+.login-button:hover .dropdown-content {
     display: block;
-  }
-  
-  .login-iframe {
+}
+
+.login-iframe {
     width: 100%;
     height: 100%;
-  }
-  
+}
 
 
 
 
-   /* login btn */
-   /* .log-btn{ */
-    /* background-color: white; */
-    /* color: #3CAD4F;
-    padding: 7px 26px;
-    border-radius: 16px;
-    border: 1px solid;
-    border-color: black; */
+
+/* login btn */
+/* .log-btn{ */
+/* background-color: white; */
+/* color: #3CAD4F;
+padding: 7px 26px;
+border-radius: 16px;
+border: 1px solid;
+border-color: black; */
 
 
-    /* From https://css.glass */
-    /* background: rgba(255, 255, 255, 1);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgb(245, 244, 244);
-    
-    transition: all 1s;
+/* From https://css.glass */
+/* background: rgba(255, 255, 255, 1);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+-webkit-backdrop-filter: blur(20px);
+backdrop-filter: blur(20px);
+border: 1px solid rgb(245, 244, 244);
+
+transition: all 1s;
     } */
 
 
-    /* login btn */
-    .reg-btn{
+/* login btn */
+.reg-btn{
     /* background-color: white; */
     color: #3CAD4F;
     padding: 7px 26px;
@@ -226,11 +226,11 @@
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     border: 1px solid rgb(245, 244, 244);
-    
-    transition: all 1s;
-    }
 
-    .reg-btn:hover{
+    transition: all 1s;
+}
+
+.reg-btn:hover{
     /* padding: 5px 30px; */
     /* background-image: url("https://cdn-icons-png.flaticon.com/512/2989/2989981.png"); */
     /* From https://css.glass */
@@ -240,12 +240,12 @@
     backdrop-filter: blur(7.9px);
     -webkit-backdrop-filter: blur(7.9px);
     border: 1px solid rgba(255, 255, 255, 1); */
-    /* background: rgb(245, 241, 241); */
-    opacity: 85%;
-    border-color: #24AA81;
+/* background: rgb(245, 241, 241); */
+opacity: 85%;
+border-color: #24AA81;
     }
 
-  
+
     /* hero box*/
     .hero-box{
         margin: 6px 100px;
@@ -253,14 +253,14 @@
         position: relative;
     }
     .hero{
-    /* background-color: #17ac33; */
-    background-color: #08AEEA;
-    background-image: linear-gradient(270deg, #08AEEA 0%, #2AF598 68%);
-    
-    width: 100%;
-    height: 600px;
-    border-radius: 20px;
-    /* clip-path: polygon(0 0, 100% 0, 100% 24%, 0 84%); */
+        /* background-color: #17ac33; */
+        background-color: #08AEEA;
+        background-image: linear-gradient(270deg, #08AEEA 0%, #2AF598 68%);
+
+        width: 100%;
+        height: 600px;
+        border-radius: 20px;
+        /* clip-path: polygon(0 0, 100% 0, 100% 24%, 0 84%); */
     }
 
     .h-title{
@@ -289,7 +289,7 @@
         transition: all 0.8s;
     }
     .hero-btn:hover{
-      opacity: 85%;
+        opacity: 85%;
     }
     .hero-btn1:hover{
         opacity: 85%;
@@ -305,9 +305,9 @@
         align-items: center;
     }
     .htu-title{
-       text-align: center;
-       margin-top: 80px;
-       font-size: 30px;
+        text-align: center;
+        margin-top: 80px;
+        font-size: 30px;
     }
     .howtouse-box > div{
         /* clip-path: circle(50% at 50% 50%); */
@@ -321,7 +321,7 @@
         color: black;
         margin-top: 50px;
         width: 50px;
-        
+
     }
     /* lending box */
     .lending{
@@ -336,7 +336,7 @@
         margin: 0px 50px;
     }
     .lending-box{
-       
+
         height: 500px;
         width: 100%;
         background-color: #24AA81;
@@ -382,9 +382,9 @@
         background-image: url("https://images.unsplash.com/photo-1541858155916-08de608b4fe0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
         background-repeat: no-repeat;
         background-size: cover;
-    
 
-    
+
+
     }
     /* what users think box */
     .whatusersthink{
@@ -492,9 +492,9 @@
         position: fixed;
         bottom: 80px;
         right: 20px;
-      }
-      
-      .chat-iframe {
+    }
+
+    .chat-iframe {
         position: fixed;
         bottom: 80px;
         right: 20px;
@@ -505,16 +505,76 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         display: none;
         z-index: 1;
-        
-      }
-      
-      .close-button {
+
+    }
+
+    .close-button {
         position: absolute;
         top: 10px;
         right: 10px;
         font-size: 24px;
         cursor: pointer;
-      }
-      
-      
-      
+    }
+
+
+
+
+
+
+#loginModal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+
+    .modal-content {
+        background-color: #fff;
+        width: 400px;
+        padding: 20px;
+        border-radius: 8px;
+        position: relative;
+        margin: auto; /* Add this line */
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        color: #888;
+        cursor: pointer;
+    }
+
+    .login-modal-text {
+        margin-bottom: 20px;
+    }
+
+    .login-modal-btns {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .login-modal-btn {
+        padding: 10px 20px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .login-modal-btn:first-child {
+        background-color: #24AA81;
+        color: #fff;
+    }
+
+    .login-modal-btn:last-child {
+        background-color: #f1f1f1;
+        color: #333;
+    }
