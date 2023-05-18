@@ -27,17 +27,17 @@ user_collection = user_db['users']
 admin_db = client['Admin_DB']
 admin_collection = admin_db['admins']
 
-paths = client['USER_DB']
-collection = paths['paths']
+guest_db = client['USER_DB']
+guest_collection = guest_db['guests']
 
 
-
-app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/',
-            static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
 
 
 # app = Flask(__name__, template_folder='C:/Users/haide/Downloads/Parkie/Core',
 #             static_folder='C:/Users/haide/Downloads/Parkie/Core/routes/CustDev/static')
+
+app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/',
+            static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
 
 
 
