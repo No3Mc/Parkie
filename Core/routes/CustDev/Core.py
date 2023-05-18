@@ -379,38 +379,34 @@ def register():
     postcode = request.form['postcode']
     password = request.form['password'].encode('utf-8')  # encode password to bytes
 
-    error_message = None
+    error_messages = []
 
     # Check username length
     if len(username) < 3 or len(username) > 20:
-        error_message = 'Username must be between 3 and 20 characters'
-        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+        error_messages.append('Username must be between 3 and 20 characters')
 
     # Check first name length
     if len(firsn) < 2 or len(firsn) > 50:
-        error_message = 'First name must be between 2 and 50 characters'
-        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+        error_messages.append('First name must be between 2 and 50 characters')
 
     # Check last name length
     if len(lasn) < 2 or len(lasn) > 50:
-        error_message = 'Last name must be between 2 and 50 characters'
-        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+        error_messages.append('Last name must be between 2 and 50 characters')
 
     # Check email length
     if len(email) < 5 or len(email) > 50:
-        error_message = 'Email must be between 5 and 50 characters'
-        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+        error_messages.append('Email must be between 5 and 50 characters')
 
     # Check if the email ends with .net, .org, or .com
     if not re.match(r'^[\w\.-]+@[\w\.-]+\.(net|org|com)$', email):
-        error_message = 'Email must end with .net, .org, or .com'
-        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+        error_messages.append('Email must end with .net, .org, or .com')
 
     # Check postcode length
     if len(postcode) < 4 or len(postcode) > 10:
-        error_message = 'Postcode must be between 4 and 10 characters'
-        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+        error_messages.append('Postcode must be between 4 and 10 characters')
 
+    if error_messages:
+        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_messages=error_messages)
 
     # hash password using bcrypt
     hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())

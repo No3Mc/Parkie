@@ -6,12 +6,20 @@
         <title>Registration</title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Register.css') }}">
+        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
     <body>
         {% include header %}
         <h1>Registration Form</h1>
-        {% if error_message %}
-        <p class="error">{{ error_message }}</p>
+        {% if error_messages %}
+            <div class="alert alert-warning" role="alert">
+                <ul>
+                    {% for error_message in error_messages %}
+                        <li>{{ error_message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         {% endif %}
         <form id="registration-form" action="/register" method="POST">
             <label for="username">Username:</label>
@@ -38,3 +46,4 @@
         {% include footer %}
     </body>
 </html>
+
