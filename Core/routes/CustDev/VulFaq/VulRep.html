@@ -4,11 +4,12 @@
 
     <head>
         <meta charset="utf-8">
-        <title>Vulnerability Report</title>
+        <title>Contact Us</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='VulRep.css', _external=True) }}">
     </head>
     <body>
-        <h1>Vulnerability Report</h1>
+                {% include header %}
+        <h1>Contact Us</h1>
         <form id="vulnerability-form" action="/vulnerability_report" method="POST">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
@@ -24,5 +25,6 @@
         {% include login %}
         <p id="message"></p>
         <script src="{{ url_for('static', filename='VulRep.js') }}" defer></script>
+                {% include footer %}
     </body>
 </html>

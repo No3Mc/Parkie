@@ -7,9 +7,10 @@
 
 <head>
 	<title>Dashboard</title>
-	<link rel="stylesheet" type="text/css" href="CDashboard.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CDashboard.css', _external=True) }}">
 </head>
 <body>
+                    {% include header %}
 	<div class="container">
 		<div class="sidebar">
 			<h1>Dashboard</h1>
@@ -20,6 +21,7 @@
 			<div id="iframe-container"></div>
 		</div>
 	</div>
-	<script src="CDashboard.js"></script>
+        <script src="{{ url_for('static', filename='CDashboard.js') }}" defer></script>
+                        {% include footer %}
 </body>
 </html>

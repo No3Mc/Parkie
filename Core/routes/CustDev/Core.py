@@ -13,6 +13,7 @@ from werkzeug.utils import secure_filename
 from google.cloud import storage
 from Manage.MngPromos import add_promo, delete_promo, edit_promo, promos_collection
 from Manage.MngCusts import edit_user_route, delete_user_route
+from VulFaq.VulRep import index as vulrep_index, vulnerability_report as vulrep_vulnerability_report
 
 
 
@@ -202,7 +203,13 @@ def edit_user():
 def delete_user():
     return delete_user_route()
 
+@app.route('/vulrep')
+def vulrep_index_route():
+    return vulrep_index()
 
+@app.route('/vulnerability_report', methods=['POST'])
+def vulrep_vulnerability_report_route():
+    return vulrep_vulnerability_report()
 
 # @app.route('/bawt')
 # def bawt():
@@ -212,12 +219,12 @@ def delete_user():
 @app.route('/admin_dashboard')
 @login_required
 def admin_dashboard():
-    return render_template('routes/CustDev/Dashboards/ADashboard.html')
+    return render_template('routes/CustDev/Dashboards/ADashboard.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
 
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('routes/CustDev/Dashboards/CDashboard.html')
+    return render_template('routes/CustDev/Dashboards/CDashboard.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
 
 @app.route('/MngCusts')
 def MngCusts():
@@ -245,13 +252,18 @@ def AboutUs():
 
 @app.route('/rpg')
 def rpg():
-    return render_template('routes/CustDev/LogReg/Register.html', login='routes/CustDev/layout/login.html')
+    return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html',login='routes/CustDev/layout/login.html')
 
 @app.route('/history')
 def history():
     return redirect('http://localhost:3000/histroy.html')
 
+@app.route('/contact')
+def multan():
+    return render_template('routes/CustDev/VulFaq/VulRep.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
 
+                     # I love Multan <3
+                     # Multan – a revered Pakistani city, boasts antique marvels and effervescent culture.
 
 @app.route('/login', methods=['POST'])
 def login():
