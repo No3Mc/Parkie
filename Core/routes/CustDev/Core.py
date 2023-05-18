@@ -14,6 +14,7 @@ from google.cloud import storage
 from Manage.MngPromos import add_promo, delete_promo, edit_promo, promos_collection
 from Manage.MngCusts import edit_user_route, delete_user_route
 from VulFaq.VulRep import index as vulrep_index, vulnerability_report as vulrep_vulnerability_report
+from Manage.MngProfile import index as mngprofile_index, login as mngprofile_login, edit_user as mngprofile_edit_user
 
 
 
@@ -210,6 +211,16 @@ def vulrep_index_route():
 @app.route('/vulnerability_report', methods=['POST'])
 def vulrep_vulnerability_report_route():
     return vulrep_vulnerability_report()
+
+@app.route('/mngprofile_login', methods=['POST'])
+def mngprofile_login_route():
+    return mngprofile_login()
+
+@app.route('/mngprofile_edit_user', methods=['POST'])
+def mngprofile_edit_user_route():
+    return mngprofile_edit_user()
+
+
 
 # @app.route('/bawt')
 # def bawt():
