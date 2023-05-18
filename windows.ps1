@@ -25,19 +25,19 @@ $reset = [char]27 + '[0m'
 
 
 
-
-$scriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
-$directory1 = Join-Path -Path $scriptPath -ChildPath "\Core\"
-$directory2 = Join-Path -Path $directory1 -ChildPath "\routes\CustDev\static"
-$filePath = Join-Path -Path $directory1 -ChildPath "\routes\CustDev\dir.txt"
-
-# Create a new file or overwrite the existing file
-Set-Content -Path $filePath -Value "Template: '$directory1'`r`nStatic: '$directory2'"
-
-Write-Host "Directory 1: $directory1"
-Write-Host "Directory 2: $directory2"
-
-
+#
+# $scriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
+# $directory1 = Join-Path -Path $scriptPath -ChildPath "\Core\"
+# $directory2 = Join-Path -Path $directory1 -ChildPath "\routes\CustDev\static"
+# $filePath = Join-Path -Path $directory1 -ChildPath "\routes\CustDev\dir.txt"
+#
+# # Create a new file or overwrite the existing file
+# Set-Content -Path $filePath -Value "Template: '$directory1'`r`nStatic: '$directory2'"
+#
+# Write-Host "Directory 1: $directory1"
+# Write-Host "Directory 2: $directory2"
+#
+#
 
 
 
@@ -97,13 +97,13 @@ Write-Host "Directory 2: $directory2"
 
 # Start-Sleep -Seconds 1
 
-# Write-Output "${green}Running server.js written by UMAR SOOMRO${reset}"
-# Start-Process node -ArgumentList "Core/routes/ParkDev/parking/server.js" -NoNewWindow
+Write-Output "${green}Running server.js written by UMAR SOOMRO${reset}"
+Start-Process node -ArgumentList "Core/routes/ParkDev/parking/server.js" -NoNewWindow
 
 # Start-Sleep -Seconds 1
 
-# Write-Output "${green}Running Promos.py written by YO BOI SYED${reset}"
-# Start-Process python -ArgumentList "Core/routes/CustDev/AbtPro/Promos.py" -NoNewWindow
+Write-Output "${green}Running Promos.py written by YO BOI SYED${reset}"
+Start-Process python -ArgumentList "Core/routes/CustDev/Core.py" -NoNewWindow
 
 # Start-Sleep -Seconds 1
 
