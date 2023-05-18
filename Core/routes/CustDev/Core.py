@@ -15,6 +15,7 @@ from Manage.MngPromos import add_promo, delete_promo, edit_promo, promos_collect
 from Manage.MngCusts import edit_user_route, delete_user_route
 from VulFaq.VulRep import index as vulrep_index, vulnerability_report as vulrep_vulnerability_report
 from Manage.MngProfile import index as mngprofile_index, login as mngprofile_login, edit_user as mngprofile_edit_user
+from pyotp import totp
 
 
 
@@ -30,7 +31,7 @@ admin_collection = admin_db['admins']
 guest_db = client['USER_DB']
 guest_collection = guest_db['guests']
 
-
+secret_key = totp.random_base32()
 
 
 # app = Flask(__name__, template_folder='C:/Users/haide/Downloads/Parkie/Core',
@@ -68,6 +69,7 @@ class User(UserMixin):
         self.id = str(user_dict['_id'])
         self.username = user_dict['username']
         self.profile_icon_url = user_dict.get('profile_icon_url')
+        self.secret_key = user_dict.get('secret_key')
 
     def is_active(self):
         return True
