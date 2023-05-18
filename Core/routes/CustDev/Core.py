@@ -15,7 +15,6 @@ from Manage.MngPromos import add_promo, delete_promo, edit_promo, promos_collect
 from Manage.MngCusts import edit_user_route, delete_user_route
 from VulFaq.VulRep import index as vulrep_index, vulnerability_report as vulrep_vulnerability_report
 from Manage.MngProfile import index as mngprofile_index, login as mngprofile_login, edit_user as mngprofile_edit_user
-from pyotp import totp
 
 
 
@@ -31,7 +30,7 @@ admin_collection = admin_db['admins']
 guest_db = client['USER_DB']
 guest_collection = guest_db['guests']
 
-secret_key = totp.random_base32()
+
 
 
 # app = Flask(__name__, template_folder='C:/Users/haide/Downloads/Parkie/Core',
@@ -69,7 +68,6 @@ class User(UserMixin):
         self.id = str(user_dict['_id'])
         self.username = user_dict['username']
         self.profile_icon_url = user_dict.get('profile_icon_url')
-        self.secret_key = user_dict.get('secret_key')
 
     def is_active(self):
         return True
@@ -373,24 +371,6 @@ def logout():
 
 @app.route('/register', methods=['POST'])
 def register():
-    # Verify reCAPTCHA token
-    recaptcha_token = request.form.get('g-recaptcha-response')
-    if not recaptcha_token:
-        flash('Please complete the reCAPTCHA verification', 'error')
-        return redirect(url_for('index'))
-
-    recaptcha_secret_key = '6LemluElAAAAANnF7y5HrACpgFv6CsDopmbslaYG'
-    recaptcha_response = requests.post('https://www.google.com/recaptcha/api/siteverify', data={
-        'secret': recaptcha_secret_key,
-        'response': recaptcha_token
-    })
-
-    recaptcha_result = recaptcha_response.json()
-    if not recaptcha_result['success']:
-        flash('reCAPTCHA verification failed', 'error')
-        return redirect(url_for('index'))
-
-
     username = request.form['username']
     firsn = request.form['firsn']
     lasn = request.form['lasn']

@@ -16,6 +16,7 @@
 
     <body>
         <!-- nav -->
+        <div id="recaptcha-container"></div>
         <nav class="navbar">
             <div class="brand-title"><a href="{{ url_for('index') }}">Parkie</a></div>
             <a href="#" class="toggle-button" title="Toggle Button">
@@ -66,9 +67,8 @@
                     </li>
                     {% if request.path != url_for('rpg') %}
                     <li>
-                                <div id="recaptcha-container"></div>
                         <a href="{{ url_for('rpg') }}">
-                            <b class="reg-btn" onclick="submitForm"()>Sign Up</b>
+                            <b class="reg-btn">Sign Up</b>
                         </a>
                     </li>
                     {% endif %}
