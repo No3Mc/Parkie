@@ -213,12 +213,20 @@ def vulrep_vulnerability_report_route():
     return vulrep_vulnerability_report()
 
 @app.route('/mngprofile_login', methods=['POST'])
-def mngprofile_login_route():
-    return mngprofile_login()
+def mngprofile_login():
+    # Login logic goes here
+    # ...
+
+    # Redirect to the desired page after successful login
+    return redirect(url_for('MngProfile'))
 
 @app.route('/mngprofile_edit_user', methods=['POST'])
-def mngprofile_edit_user_route():
-    return mngprofile_edit_user()
+def mngprofile_edit_user():
+    # Edit user logic goes here
+    # ...
+
+    # Redirect to the desired page after successful edit
+    return redirect(url_for('MngProfile'))
 
 
 
