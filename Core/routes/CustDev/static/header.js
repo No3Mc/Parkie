@@ -16,6 +16,32 @@ document.addEventListener("DOMContentLoaded", function() {
     loginForm.classList.remove("open");
   }
 
+function submitForm() {
+  event.preventDefault();
+
+  // Verify reCAPTCHA
+  grecaptcha.ready(function() {
+    grecaptcha
+      .execute('YOUR_RECAPTCHA_SITE_KEY', { action: 'register' })
+      .then(function(token) {
+        // Get the form element
+        const form = document.getElementById('registration-form');
+
+        // Create a hidden input element for the reCAPTCHA token
+        const tokenInput = document.createElement('input');
+        tokenInput.type = 'hidden';
+        tokenInput.name = 'g-recaptcha-response';
+        tokenInput.value = token;
+
+        // Append the token input to the form
+        form.appendChild(tokenInput);
+
+        // Submit the form
+        form.submit();
+      });
+  });
+}
+
   function guestLogin() {
     const username = usernameInput.value;
     const password = passwordInput.value;

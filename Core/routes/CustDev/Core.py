@@ -371,6 +371,24 @@ def logout():
 
 @app.route('/register', methods=['POST'])
 def register():
+    # Verify reCAPTCHA token
+    recaptcha_token = request.form.get('g-recaptcha-response')
+    if not recaptcha_token:
+        flash('Please complete the reCAPTCHA verification', 'error')
+        return redirect(url_for('index'))
+
+    recaptcha_secret_key = '6LemluElAAAAANnF7y5HrACpgFv6CsDopmbslaYG'
+    recaptcha_response = requests.post('https://www.google.com/recaptcha/api/siteverify', data={
+        'secret': recaptcha_secret_key,
+        'response': recaptcha_token
+    })
+
+    recaptcha_result = recaptcha_response.json()
+    if not recaptcha_result['success']:
+        flash('reCAPTCHA verification failed', 'error')
+        return redirect(url_for('index'))
+
+
     username = request.form['username']
     firsn = request.form['firsn']
     lasn = request.form['lasn']
