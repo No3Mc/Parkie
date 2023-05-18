@@ -44,7 +44,8 @@ function openLoginModal() {
     loginModal.style.display = "block";
   } else {
     // User is already logged in, perform appropriate action
-    window.location.href = "{{ url_for('main') }}"; // Redirect to the main page
+    window.location.href = mainPageUrl;
+
   }
 }
 
