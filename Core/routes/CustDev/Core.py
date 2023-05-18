@@ -381,6 +381,17 @@ def register():
 
     error_messages = []
 
+    # Check if username already exists
+    if user_collection.find_one({'username': username}):
+        error_message = 'Username already exists'
+        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+
+    # Check if email already exists
+    if user_collection.find_one({'email': email}):
+        error_message = 'Email already exists'
+        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+
+
     # Check username length
     if len(username) < 3 or len(username) > 20:
         error_messages.append('Username must be between 3 and 20 characters')
@@ -410,11 +421,6 @@ def register():
 
     # hash password using bcrypt
     hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
-
-    # check if user already exists
-    if user_collection.find_one({'email': email}):
-        error_message = 'User with this email already exists'
-        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
 
     # generate a random token for email verification
     token = secrets.token_hex(16)

@@ -11,11 +11,16 @@
         {% include header %}
         <h1>Registration Form</h1>
         {% if error_messages %}
-        {% for error_message in error_messages %}
-        <div class="alert alert-warning" role="alert">
-            {{ error_message }}
-        </div>
-        {% endfor %}
+            {% for error_message in error_messages %}
+                <div class="alert alert-warning" role="alert">
+                    {{ error_message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if error_message %}
+            <div class="alert alert-warning" role="alert">
+                {{ error_message }}
+            </div>
         {% endif %}
         <form id="registration-form" action="/register" method="POST">
             <label for="username">Username:</label>
@@ -42,3 +47,4 @@
         {% include footer %}
     </body>
 </html>
+
