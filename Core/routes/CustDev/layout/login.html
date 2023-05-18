@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <head>
+    </head>
+   
+    <div id="login-form" class="login-form" style="display: none;">
+        <input id="username-input" type="text" placeholder="Username">
+        <input id="password-input" type="password" placeholder="Password">
+        <button id="guest-button">Continue as a guest</button>
+        <button id="login-submit">Login</button>
+    </div>
+    <script>
+        const loginForm = document.getElementById('login-form');
+
+        function showLoginForm() {
+            loginForm.style.display = 'block';
+        }
+
+        const loginButton = document.getElementById('login-button');
+        loginButton.addEventListener('click', showLoginForm);
+    </script>
+
+        <script src="{{ url_for('static', filename='AboutUs.js') }}" defer></script>
+</html>
+

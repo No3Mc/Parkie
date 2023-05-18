@@ -148,20 +148,20 @@ def rate_limited(ip_address):
 
 @app.route('/')
 def index():
-    return render_template('index.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')   
+    return render_template('index.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')   
 
 @app.route('/main')
 @login_required
 def main():
-    return render_template('routes/ParkDev/parking/main.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')
+    return render_template('routes/ParkDev/parking/main.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
 
 @app.route('/lend')
 def lend():
-    return render_template('routes/ClientDev/Lend.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')
+    return render_template('routes/ClientDev/Lend.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
 
 @app.route('/howto')
 def howto():
-    return render_template('routes/ParkDev/Howitworks/How.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')
+    return render_template('routes/ParkDev/Howitworks/How.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
 
 @app.route('/get-header')
 def get_header():
@@ -237,15 +237,15 @@ def MngPromos():
 
 @app.route('/help')
 def help():
-    return render_template('routes/CustDev/VulFaq/DocnFAQ.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')
+    return render_template('routes/CustDev/VulFaq/DocnFAQ.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
 
 @app.route('/AboutUs')
 def AboutUs():
-    return render_template('routes/CustDev/AbtPro/AboutUs.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html')
+    return render_template('routes/CustDev/AbtPro/AboutUs.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
 
 @app.route('/rpg')
 def rpg():
-    return render_template('routes/CustDev/LogReg/Register.html')
+    return render_template('routes/CustDev/LogReg/Register.html', login='routes/CustDev/layout/login.html')
 
 @app.route('/history')
 def history():
