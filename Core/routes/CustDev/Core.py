@@ -11,7 +11,7 @@ import re
 from werkzeug.utils import secure_filename
 from google.cloud import storage
 from Manage.MngPromos import add_promo, delete_promo, edit_promo, promos_collection
-from Manage.MngCusts import delete_user_route
+from Manage.MngCusts import edit_user_route, delete_user_route
 from VulFaq.VulRep import index as vulrep_index, vulnerability_report as vulrep_vulnerability_report
 from flask_login import logout_user
 
@@ -174,6 +174,14 @@ def delete_promo_route(promo_id):
 def edit_promo_route(promo_id):
     return edit_promo(promo_id)
 
+@app.route('/edit_user', methods=['GET', 'POST'])
+def edit_user():
+    return edit_user_route()
+
+@app.route('/delete_user', methods=['POST'])
+def delete_user():
+    return delete_user_route()
+
 
 @app.route('/admin_dashboard')
 @login_required
@@ -269,6 +277,8 @@ def login():
     password = request.form['password']
 
     user = user_collection.find_one({'username': username})
+    admin = admin_collection.find_one({'username': username})
+    guest = guest_collection.find_one({'username': username})  # Check guest collection
 
     if user and bcrypt.checkpw(password.encode('utf-8'), user['password']):
         print('Login successful for user:', username)
@@ -277,12 +287,23 @@ def login():
         if profile_icon_url:
             user_obj.set_profile_icon_url(profile_icon_url)
         login_user(user_obj)
+        # Set the profile icon URL in the current_user object
+        current_user.set_profile_icon_url(profile_icon_url)
+        return redirect(url_for('index'))
+    elif admin and bcrypt.checkpw(password.encode('utf-8'), admin['password'].encode('utf-8')):
+        print('Login successful for admin:', username)
+        admin_obj = User(admin)
+        profile_icon_url = admin.get('profile_icon_url')
+        if profile_icon_url:
+            admin_obj.set_profile_icon_url(profile_icon_url)
+        admin_obj.is_admin = True
+        login_user(admin_obj)
+        # Set the profile icon URL in the current_user object
         current_user.set_profile_icon_url(profile_icon_url)
         return redirect(url_for('index'))
 
     print('Login failed for user:', username)
     return jsonify({'message': 'Login failed'}), 401
-
 
 @app.route('/guest-login', methods=['POST'])
 def guest_login():
