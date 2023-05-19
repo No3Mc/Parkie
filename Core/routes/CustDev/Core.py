@@ -16,7 +16,6 @@ from Manage.MngCusts import edit_user_route, delete_user_route
 from VulFaq.VulRep import index as vulrep_index, vulnerability_report as vulrep_vulnerability_report
 from Manage.MngProfile import index as mngprofile_index, login as mngprofile_login, edit_user as mngprofile_edit_user
 # import quickemailverification
-import time
 
 
 
@@ -232,7 +231,7 @@ def MngPromos():
 
 @app.route('/bawth')
 def bawth():
-    return render_template('http://localhost:8000/')
+    return render_template('routes/CustDev/bot/sbot.html')
 
 
 @app.route('/help')
@@ -419,7 +418,7 @@ def register():
     if 'profile_icon' in request.files:
         profile_icon = request.files['profile_icon']
 
-        filename = 'thr33.png'  # Is bc ko koi next level ka keera hai. Bhosarika
+        filename = 'thr33.png'  # Idk what went wrong here. Was working earlier
         bucket_name = 'parkie'
         storage_client = storage.Client.from_service_account_json(
             '/home/thr33/Downloads/parkie-org-7b65cdd695df.json')
