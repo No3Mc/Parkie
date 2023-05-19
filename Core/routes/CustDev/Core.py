@@ -168,18 +168,6 @@ def lend():
 def howto():
     return render_template('routes/ParkDev/Howitworks/How.html', header=headerpth, footer=footerpth, login=loginpth)
 
-# @app.route('/get-header')
-# def get_header():
-#     return render_template('routes/CustDev/layout/header.html')
-#
-# @app.route('/get-footer')
-# def get_footer():
-#     with open('/home/thr33/Downloads/Parkie/Core/routes/CustDev/layout/footer.html', 'r') as file:
-#         footer_content = file.read()
-#     return footer_content
-
-
-# return render_template('/home/thr33/Downloads/Parkie/Core/index.html', header='header.html')
 
 
 @app.route('/add-promo', methods=['POST'])
@@ -193,11 +181,6 @@ def delete_promo_route(promo_id):
 @app.route('/edit-promo/<string:promo_id>', methods=['GET', 'POST'])
 def edit_promo_route(promo_id):
     return edit_promo(promo_id)
-
-
-
-
-
 
 @app.route('/edit_user', methods=['GET', 'POST'])
 def edit_user():
@@ -217,32 +200,17 @@ def vulrep_vulnerability_report_route():
 
 @app.route('/mngprofile_login', methods=['POST'])
 def mngprofile_login():
-    # Login logic goes here
-    # ...
 
-    # Redirect to the desired page after successful login
     return redirect(url_for('MngProfile'))
 
 @app.route('/mngprofile_edit_user', methods=['POST'])
 def mngprofile_edit_user():
-    # Edit user logic goes here
-    # ...
-
-    # Redirect to the desired page after successful edit
     return redirect(url_for('MngProfile'))
-
-
-
-# @app.route('/bawt')
-# def bawt():
-#     return render_template('http://127.0.0.1:8000/')
-
 
 @app.route('/admin_dashboard')
 @login_required
 def admin_dashboard():
     return render_template('routes/CustDev/Dashboards/ADashboard.html', header=headerpth, footer=footerpth, login=loginpth)
-
 
 @app.route('/dashboard')
 def dashboard():
@@ -262,6 +230,9 @@ def MngPromos():
     promos = promos_collection.find()
     return render_template('routes/CustDev/Manage/MngPromos.html', promos=promos)
 
+@app.route('/bawth')
+def bawth():
+    return render_template('http://localhost:8000/')
 
 
 @app.route('/help')

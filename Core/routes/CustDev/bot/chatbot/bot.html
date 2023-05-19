@@ -70,9 +70,10 @@
           $('form').on('submit', function(e) {
               e.preventDefault();
 
-              // Get the CSRF token
+              // Get the CSRF token from the form
               var csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
 
+              // Send the AJAX request with the CSRF token in the headers
               $.ajax({
                   url: '{% url "bot" %}',
                   type: 'POST',
@@ -89,9 +90,10 @@
                       $('#chat-history').append('<div class="bot-message">' + data.response + '</div>');
                       $('#chat-history').scrollTop($('#chat-history')[0].scrollHeight);
                   },
-              error: function() {
-                  $('#response').text('Error occurred while sending the message');
-              }
+                  error: function() {
+                      $('#response').text('Error occurred while sending the message');
+                  }
+              });
           });
       });
 
@@ -115,7 +117,7 @@
               recognition.stop();
           };
       });
-  });
- </script>
+  </script>
 </body>
 </html>
+

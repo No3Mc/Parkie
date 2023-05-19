@@ -31,13 +31,10 @@
       />
     </button>
 
-    <button id="chatBtn" onclick="openChatbot()">Chat</button>
-    <iframe
-      id="chatIframe"
-      class="chat-iframe"
-      src="http://localhost:8000/"
-      frameborder="0"
-    ></iframe>
+
+        <button id="chatBtn" onclick="openChatbot()">Chat</button>
+        <iframe id="chatIframe" class="chat-iframe" frameborder="0"></iframe>
+
 
     <!-- hero box -->
     <section class="hero-box">
@@ -177,27 +174,35 @@
       </div>
     </section>
 
-    <!-- Future thingy - parking solutions -->
-    <section class="futurethings">
-      <div class="future-box">
-        <div class="future-1"></div>
-        <div class="future-2">
-          <h2 class="future-title">Our parking solution method</h2>
-          <p class="future-desc">
-            Maximise yield from underused car parks and vacant land, or
-            transform payments with the UK’s favourite parking app.
-          </p>
-          <button class="future-btn">Learn more about solutions</button>
-        </div>
-      </div>
-    </section>
-    {% include footer %}
-    <script
-      src="{{ url_for('static', filename='Core/function.js') }}"
-      defer
-    ></script>
-    <script>
-      const mainPageUrl = "{{ url_for('main') }}";
-    </script>
-  </body>
+
+        <!-- Future thingy - parking solutions -->
+        <section class="futurethings">
+            <div class="future-box">
+                <div class="future-1"></div>
+                <div class="future-2">
+                    <h2 class="future-title">Our parking solution method</h2>
+                    <p class="future-desc">
+                    Maximise yield from underused car parks and vacant land, or
+                    transform payments with the UK’s favourite parking app.
+                    </p>
+                    <button class="future-btn">Learn more about solutions</button>
+                </div>
+            </div>
+        </section>
+        {% include footer %}
+        <script
+            src="{{ url_for('static', filename='Core/function.js') }}"
+            defer
+                ></script>
+        <script>
+            const mainPageUrl = "{{ url_for('main') }}";
+        </script>
+        <script
+            src="{{ url_for('static', filename='CustDev/chatbot.js') }}"
+            defer
+                ></script>
+
+
+    </body>
+
 </html>
