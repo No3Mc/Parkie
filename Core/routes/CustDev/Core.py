@@ -161,6 +161,12 @@ def main():
 def lend():
     return render_template('routes/ClientDev/Lend.html', header=headerpth, footer=footerpth, login=loginpth)
 
+# Route for the lend page
+@app.route('/future')
+def future():
+    return render_template('future.html', header=headerpth, footer=footerpth, login=loginpth)
+
+
 
 # Route for the howto page
 @app.route('/howto')
