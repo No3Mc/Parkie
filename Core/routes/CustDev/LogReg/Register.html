@@ -23,25 +23,13 @@
             </div>
         {% endif %}
         <form id="registration-form" action="/register" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br><br>
-
-            <label for="firsn">First Name:</label>
-            <input type="text" id="firsn" name="firsn" required><br><br>
-
-            <label for="lasn">Last Name:</label>
-            <input type="text" id="lasn" name="lasn" required><br><br>
-
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br><br>
-            <label for="phone">Phone:</label>
-            <input type="tel" id="phone" name="phone" required><br><br>
-            <label for="postcode">Postcode:</label>
-            <input type="text" id="postcode" name="postcode" required><br><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br><br>
-
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="text" id="firsn" name="firsn" placeholder="First Name" required>
+            <input type="text" id="lasn" name="lasn" placeholder="Last Name" required>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="tel" id="phone" name="phone" placeholder="Phone" required>
+            <input type="text" id="postcode" name="postcode" placeholder="Postcode" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
             <button type="submit" id="register-btn">Register</button>
         </form>
         {% include footer %}

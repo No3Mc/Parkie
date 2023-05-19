@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <head>
-    </head>
-
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='log.css', _external=True) }}">
+</head>
+<body>
     <div id="login-form" class="login-form" style="display: none;">
+        <span id="close-btn">&times;</span>
         <input id="username-input" type="text" placeholder="Username">
         <input id="password-input" type="password" placeholder="Password">
         <button id="guest-button">Continue as a guest</button>
         <button id="login-submit">Login</button>
     </div>
+
     <script>
         const loginForm = document.getElementById('login-form');
+        const closeBtn = document.getElementById('close-btn');
 
         function showLoginForm() {
             loginForm.style.display = 'block';
         }
 
+        function closeLoginForm() {
+            loginForm.style.display = 'none';
+        }
+
         const loginButton = document.getElementById('login-button');
         loginButton.addEventListener('click', showLoginForm);
-        function closeLoginForm() {
-            loginForm.classList.remove("open");
-        }
-        function openLoginForm() {
-            window.location.href = "";
-}
+        closeBtn.addEventListener('click', closeLoginForm);
     </script>
 
-    <script src="{{ url_for('static', filename='AboutUs.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='log.js') }}" defer></script>
+</body>
 </html>
 
