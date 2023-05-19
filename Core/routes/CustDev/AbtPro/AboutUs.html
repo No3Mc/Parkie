@@ -1,25 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CustDev/AboutUs.css') }}">
-        <title>About</title>
-    </head>
-    <body>
-        {% include header %}
-        <div id="about-us">
-            <h1>About Us</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-            <button id="learn-more">Learn More</button>
-        </div>
-    
-      {% include login %}
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='CustDev/AboutUs.css') }}"
+    />
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://i.postimg.cc/NMbHx9JP/favicon.png"
+    />
+    <title>Parkie - About</title>
+  </head>
+  <body>
+    {% include header %}
+    <div id="about-us" style="height: 1000px">
+      <div class="box-1">
+        <img
+          src="https://i.postimg.cc/FsNxHbKQ/about.jpg"
+          height="400"
+          width="400"
+        />
+        <h1>Simplifying your Journey!</h1>
+      </div>
 
-        <script src="{{ url_for('static', filename='CustDev/AboutUs.js') }}" defer></script>
-        {% include footer %}
-    </body>
+      <!-- stats -->
+      <div class="stats">
+        <h4>100%<br />satisfaction rate</h4>
+        <h4>
+          10 million+ <br />
+          drivers
+        </h4>
+        <h4>50,000+<br />space owners</h4>
+        <h4>2 million+<br />bookings per year</h4>
+      </div>
+
+      <h1>About Us</h1>
+      <p style="text-align: center">
+        What is Parkie? Parkie is a clever app that lets you book parking, rent
+        out your space or find an EV charger. But that’s just part of the story,
+        Because Parkie is also a community. It’s the ten million drivers and the
+        twenty-five thousand space owners that have joined us on this journey to
+        simplify parking and create a greener, calmer world where we can all
+        breathe easier. And, it’s the countless little moments shared, thanks to
+        the thousands of minutes saved not looking for a parking space. JustPark
+        Your parking & charging community.
+      </p>
+
+      <button id="learn-more">Learn More</button>
+    </div>
+
+    {% include login %}
+
+    <script
+      src="{{ url_for('static', filename='CustDev/AboutUs.js') }}"
+      defer
+    ></script>
+    {% include footer %}
+  </body>
 </html>
-

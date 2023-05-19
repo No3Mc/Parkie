@@ -18,8 +18,9 @@
 #learn-more {
     background-color: #4CAF50;
     color: white;
-    padding: 12px 20px;
+    padding: 12px 30px;
     border: none;
+    border-radius: 20px;
     cursor: pointer;
     margin-bottom: 20px;
 }
@@ -29,4 +30,24 @@
 }
 #hidden {
     display: none;
+}
+.box-1{
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 0px;
+}
+.box-1 > img{
+    border-radius: 12px;
+}
+.box-1 > h1 {
+    margin-top: 150px;
+}
+.stats{
+    height: 80px;
+    width: 100%;
+    background-color: #000000;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    margin: 80px 0px;
 }

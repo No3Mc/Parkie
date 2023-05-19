@@ -60,11 +60,6 @@ body {
 .navbar-links li a:hover{
 color: #000000;
 }
-
-/* .navbar-links li:hover {
-   background-color: #555;
-} */
-
 .toggle-button {
    position: absolute;
    top: .75rem;
