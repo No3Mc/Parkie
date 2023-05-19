@@ -83,7 +83,7 @@ header {
 /* Benefits Section */
 
 /* additonla information for Benefits Section */
-
+/* 
 
     color: #ffffff; 
     background-color: #000; 
@@ -92,7 +92,7 @@ header {
     border-radius: 5px; 
     display: inline-block; 
     transition: all 0.3s ease; 
-}
+} */
 
     .signup-link:hover {
         background-color: #0056b3; 

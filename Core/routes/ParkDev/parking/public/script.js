@@ -1,3 +1,4 @@
+
 let markersWithStatus = null;
 
 fetch('/markers')
@@ -112,11 +113,6 @@ markersWithStatus.forEach(marker => {
           .catch(error => {
             console.error(error);
           });
-      
-      
-      
-      
-
    });
    });
 
@@ -130,11 +126,9 @@ markersWithStatus.forEach(marker => {
    markerLayer.addLayer(markerObj);
  });
 
- // add the layer group to the map
- markerLayer.addTo(map);
-   
+//  lcoate me
     // geolocation
-    document.getElementById('locateME').addEventListener('click', () => {
+    document.getElementById('locateME').addEventListener("click", () => {
       if ('geolocation' in navigator) {
         /* geolocation is available */
         navigator.geolocation.getCurrentPosition((position) => {
@@ -168,6 +162,8 @@ markersWithStatus.forEach(marker => {
         alert('Geolocation function is not available!');
       }
     });
+ // add the layer group to the map
+ markerLayer.addTo(map);
   }
 }, 1000); // wait for 1 second before executing the code after the fetch call
 

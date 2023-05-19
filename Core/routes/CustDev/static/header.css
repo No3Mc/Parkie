@@ -22,6 +22,7 @@ body {
   background-color: white;
   color: black;
   margin: 0px 94px;
+  margin-top: 15px;
 }
 
 .brand-title {
@@ -32,6 +33,7 @@ body {
   font-size: 1.8rem;
   margin: .5rem;
   color: #1FA637;
+  cursor: pointer;
 }
 
 .navbar-links {
@@ -55,6 +57,7 @@ body {
   padding: 1.188rem;
   transition: all 0.8s;
   font-size: 13px;
+  cursor: pointer;
 }
 
 .navbar-links li a:hover {

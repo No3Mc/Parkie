@@ -19,9 +19,8 @@
 body {
    margin: auto;
    padding: 0;
-   /* overflow-x: hidden; */
+   overflow-x: hidden;
 }
-
 /* Nav bar */
 .navbar {
    display: flex;
@@ -60,11 +59,6 @@ body {
 .navbar-links li a:hover{
 color: #000000;
 }
-
-/* .navbar-links li:hover {
-   background-color: #555;
-} */
-
 .toggle-button {
    position: absolute;
    top: .75rem;
@@ -113,13 +107,9 @@ color: #000000;
    }
 }
 
-
 .login-button {
 position: relative;
 }
-
-
-
 
 /* login btn */
 .reg-btn{
@@ -130,7 +120,6 @@ border-radius: 16px;
 border: 1px solid;
 border-color: black;
 
-
 /* From https://css.glass */
 background: rgba(255, 255, 255, 1);
 border-radius: 16px;
@@ -138,17 +127,12 @@ box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 -webkit-backdrop-filter: blur(20px);
 backdrop-filter: blur(20px);
 border: 1px solid rgb(245, 244, 244);
-
 transition: all 1s;
 }
-
 .reg-btn:hover{
 opacity: 85%;
 border-color: #24AA81;
 }
-
-
-
 /* body */
 .wel{
        height: 500px;
@@ -215,17 +199,17 @@ border-color: #24AA81;
        justify-content: space-around;
        padding: 20px 0px;
 
-              /* From https://css.glass */
-              background: rgba(255, 255, 255, 0.39);
-              border-radius: 16px;
-              box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-              backdrop-filter: blur(7.4px);
-              -webkit-backdrop-filter: blur(7.4px);
-              border: 1px solid rgba(255, 255, 255, 1);
-       
-              -webkit-box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
-              -moz-box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
-              box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
+       /* From https://css.glass */
+       background: rgba(255, 255, 255, 0.39);
+       border-radius: 16px;
+       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+       backdrop-filter: blur(7.4px);
+       -webkit-backdrop-filter: blur(7.4px);
+       border: 1px solid rgba(255, 255, 255, 1);
+
+       -webkit-box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
+       -moz-box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
+       box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
 }
 .rest-2{
        display: flex;
@@ -257,6 +241,8 @@ border-color: #24AA81;
        -webkit-box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
        -moz-box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
        box-shadow: 0px 2px 32px 0px rgba(189,187,189,1);
+
+ 
 }
 .action>button{
        padding: 13px 20px;
@@ -282,9 +268,6 @@ border-color: #24AA81;
        opacity: 85%;
        border-color: #24AA81;
 }
-
-
-
 
 /* responsive test */
 
@@ -341,9 +324,6 @@ border-color: #24AA81;
        }
      }
      
-
-
-
 
 /* Footer */
 

@@ -1,31 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Page Title</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    {% include header %} {% include login %}
+    <iframe
+      src="http://localhost:3000"
+      frameborder="0"
+      width="100%"
+      height="1000px"
+    ></iframe>
 
-    {% include header %}
-    {% include login %}
-    <iframe src="http://localhost:3000" frameborder="0" width="100%" height="1000px"></iframe>
-
+    <!-- locate me btn -->
+    <button id="locateME">
+      <img
+        src="https://i.postimg.cc/xTgzWrnR/near-me.png"
+        alt="L"
+        height="25px"
+        width="25px"
+      />
+    </button>
     {% include footer %}
 
     <script src="{{ url_for('static', filename='main.js') }}" defer></script>
     <script>
-        window.addEventListener('message', function (event) {
-            if (event.data.action === 'stripeCheckout') {
-                window.location.href = event.data.url;
-            } else if (event.data.action === 'stripeSuccess') {
+      window.addEventListener("message", function (event) {
+        if (event.data.action === "stripeCheckout") {
+          window.location.href = event.data.url;
+        } else if (event.data.action === "stripeSuccess") {
+        }
+      });
 
+      document.getElementById("locateME").addEventListener("click", () => {
+        if ("geolocation" in navigator) {
+          /* geolocation is available */
+          navigator.geolocation.getCurrentPosition((position) => {
+            const lon = position.coords.longitude;
+            const lat = position.coords.latitude;
+
+            const cIcon = L.icon({
+              iconUrl: "https://i.postimg.cc/JzfHvYnJ/pin.png",
+              iconSize: [40, 40],
+              iconAnchor: [22, 94],
+              popupAnchor: [-3, -76],
+              shadowSize: [68, 95],
+              shadowAnchor: [22, 94],
+            });
+
+            const myMarker = L.marker([lat, lon], { icon: cIcon }).addTo(map);
+
+            let firstTime = true;
+
+            if (firstTime) {
+              map.setView([lat, lon], 15);
+              firstTime = false;
             }
-        });
+
+            document
+              .getElementById("locateME")
+              .addEventListener("dblclick", () => {
+                map.setView([lat, lon], 25);
+              });
+          });
+        } else {
+          /* geolocation IS NOT available */
+          alert("Geolocation function is not available!");
+        }
+      });
     </script>
-</body>
-
+  </body>
 </html>
-

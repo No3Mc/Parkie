@@ -16,52 +16,84 @@
   </head>
   <body>
     <!-- header -->
-    <div id="header-placeholder"></div>
+    <header>
+      <!-- nav -->
+      <nav class="navbar">
+        <div class="brand-title"><a href="index.html">Parkie</a></div>
+        <a href="#" class="toggle-button" title="Toggle Button">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+          <ul>
+            <li>
+              <a href="">How it works?</a>
+            </li>
+            <li><a href="#">Lend space</a></li>
+            <li><a href="#">Business solution</a></li>
+            <li><a href="routes/CustDev/AbtPro/AboutUs.html">Company</a></li>
+            <li><a href="routes/CustDev/VulFaq/DocnFAQ.html">Help</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
 
     <!-- body -->
     <div class="main">
-      <h1>Transaction Cancelled</h1>
-      <p>
-        Please go back to the map and <br />
-        start booking again
-      </p>
-      <form id="myForm">
-        <!-- Wrap the content in a form and assign an ID -->
-        <button type="submit" id="myButton">Go Back</button>
-      </form>
+      <div>
+        <h1>Transaction Cancelled</h1>
+
+        <br />
+        <p>
+          Please go back to the map and <br />
+          start booking again
+        </p>
+        <br />
+        <br />
+        <form id="myForm">
+          <!-- Wrap the content in a form and assign an ID -->
+          <button type="submit" id="myButton">Go Back</button>
+        </form>
+      </div>
     </div>
 
     <!-- footer -->
-    <div id="footer-placeholder"></div>
+    <footer>
+      <!-- footer -->
+      <section class="footer">
+        <div class="foot-box">
+          <footer>
+            <div class="brand-title"><a href="Index.html">Parkie</a></div>
+            <div class="navbar-links">
+              <ul>
+                <li><a href="#">Find Parking Spots?</a></li>
+                <li><a href="#">Lend Space</a></li>
+                <li>
+                  <a href="routes/CustDev/AbtPro/AboutUs.html">Company</a>
+                </li>
+                <li><a href="routes/CustDev/VulFaq/DocnFAQ.html">Help</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </footer>
+
+          <div class="l-footer">
+            <p class="footer-desc">
+              Parkie is the trading name of Parkie Parking Limited Registered in
+              England, Gateway house Leicester
+            </p>
+          </div>
+        </div>
+      </section>
+    </footer>
+
     <script>
-      let headerLoaded = false;
-      let footerLoaded = false;
-
-      // Fetch header content if not already loaded
-      if (!headerLoaded) {
-        fetch("structure/header.html")
-          .then((response) => response.text())
-          .then((content) => {
-            document.querySelector("#header-placeholder").innerHTML = content;
-            headerLoaded = true;
-          });
-      }
-
-      // Fetch footer content if not already loaded
-      if (!footerLoaded) {
-        fetch("structure/footer.html")
-          .then((response) => response.text())
-          .then((content) => {
-            document.querySelector("#footer-placeholder").innerHTML = content;
-            footerLoaded = true;
-          });
-      }
-
       // go back btn
       const form = document.getElementById("myForm");
       form.addEventListener("submit", (event) => {
         event.preventDefault(); // Prevent form submission behavior
-        window.location.href = "http://localhost:3000"; // Replace with your server URL and port
+        window.location.href = "http://localhost:5000/main"; // Replace with your server URL and port
       });
     </script>
   </body>

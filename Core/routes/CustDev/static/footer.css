@@ -70,7 +70,7 @@ footer {
   border-top: 1px solid black;
 }
 .footer-desc {
-  margin-top: 24px;
+  margin-top: 14px;
 }
 /* media queries */
 @media (max-width: 768px) {
