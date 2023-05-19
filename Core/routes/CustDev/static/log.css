@@ -18,6 +18,21 @@ body {
     display: none;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Enable scrolling when necessary */
+}
+
+.login-form::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+}
+
+.login-form::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 2.5px;
+}
+
+.login-form::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
 }
 
 .login-form input {
@@ -48,8 +63,14 @@ body {
     color: #aaa;
     cursor: pointer;
     z-index: 1;
-    transform: translate(50%, -50%); 
+    transform: translate(50%, -50%);
 }
+
+/* Show scrollbar on body, but disable scrolling when logbox is open */
+body.logbox-open {
+    overflow-y: hidden;
+}
+
 /* Mobile styles */
 @media (max-width: 480px) {
     .login-form input,

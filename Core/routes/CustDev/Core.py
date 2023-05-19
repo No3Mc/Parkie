@@ -18,6 +18,15 @@ from Manage.MngProfile import index as mngprofile_index, login as mngprofile_log
 # import quickemailverification
 import time
 
+
+# Define paths
+template_folder_path = '/home/thr33/Downloads/Parkie/Core/'
+static_folder_path = '/home/thr33/Downloads/Parkie/Core/routes/CustDev/static'
+headerpth = 'routes/CustDev/layout/header.html'
+footerpth = 'routes/CustDev/layout/footer.html'
+loginpth = 'routes/CustDev/layout/login.html'
+
+
 # MongoDB Atlas connection string
 client = MongoClient('mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/?retryWrites=true&w=majority')
 
@@ -140,20 +149,20 @@ def rate_limited(ip_address):
 
 @app.route('/')
 def index():
-    return render_template('index.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')   
+    return render_template('index.html', header=headerpth, footer=footerpth, login=loginpth)
 
 @app.route('/main')
 @login_required
 def main():
-    return render_template('routes/ParkDev/parking/main.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
+    return render_template('routes/ParkDev/parking/main.html', header=headerpth, footer=footerpth, login=loginpth)
 
 @app.route('/lend')
 def lend():
-    return render_template('routes/ClientDev/Lend.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
+    return render_template('routes/ClientDev/Lend.html', header=headerpth, footer=footerpth, login=loginpth)
 
 @app.route('/howto')
 def howto():
-    return render_template('routes/ParkDev/Howitworks/How.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
+    return render_template('routes/ParkDev/Howitworks/How.html', header=headerpth, footer=footerpth, login=loginpth)
 
 # @app.route('/get-header')
 # def get_header():
@@ -228,12 +237,12 @@ def mngprofile_edit_user():
 @app.route('/admin_dashboard')
 @login_required
 def admin_dashboard():
-    return render_template('routes/CustDev/Dashboards/ADashboard.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
+    return render_template('routes/CustDev/Dashboards/ADashboard.html', header=headerpth, footer=footerpth, login=loginpth)
 
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('routes/CustDev/Dashboards/CDashboard.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
+    return render_template('routes/CustDev/Dashboards/CDashboard.html', header=headerpth, footer=footerpth, login=loginpth)
 
 @app.route('/MngCusts')
 def MngCusts():
@@ -253,15 +262,15 @@ def MngPromos():
 
 @app.route('/help')
 def help():
-    return render_template('routes/CustDev/VulFaq/DocnFAQ.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
+    return render_template('routes/CustDev/VulFaq/DocnFAQ.html', header=headerpth, footer=footerpth, login=loginpth)
 
 @app.route('/AboutUs')
 def AboutUs():
-    return render_template('routes/CustDev/AbtPro/AboutUs.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
+    return render_template('routes/CustDev/AbtPro/AboutUs.html', header=headerpth, footer=footerpth, login=loginpth)
 
 @app.route('/rpg')
 def rpg():
-    return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html',login='routes/CustDev/layout/login.html')
+    return render_template('routes/CustDev/LogReg/Register.html', header=headerpth, footer=footerpth, login=loginpth)
 
 @app.route('/history')
 def history():
@@ -269,7 +278,7 @@ def history():
 
 @app.route('/contact')
 def multan():
-    return render_template('routes/CustDev/VulFaq/VulRep.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
+    return render_template('routes/CustDev/VulFaq/VulRep.html', header=headerpth, footer=footerpth, login=loginpth)
 
                      # I love Multan <3
                      # Multan – a revered Pakistani city, boasts antique marvels and effervescent culture.
@@ -374,12 +383,12 @@ def register():
     # Check if username already exists
     if user_collection.find_one({'username': username}):
         error_message = 'Username already exists'
-        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+        return render_template('routes/CustDev/LogReg/Register.html', header=headerpth, footer=footerpth, error_message=error_message)
 
     # Check if email already exists
     if user_collection.find_one({'email': email}):
         error_message = 'Email already exists'
-        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_message=error_message)
+        return render_template('routes/CustDev/LogReg/Register.html', header=headerpth, footer=footerpth, error_message=error_message)
 
 
     # Check username length
@@ -407,7 +416,7 @@ def register():
         error_messages.append('Postcode must be between 4 and 10 characters')
 
     if error_messages:
-        return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', error_messages=error_messages)
+        return render_template('routes/CustDev/LogReg/Register.html', header=headerpth, footer=footerpth, error_message=error_message)
 
     # hash password using bcrypt
     hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
@@ -452,7 +461,7 @@ def register():
 
     return redirect(url_for('index'))
 
-    return render_template('routes/CustDev/LogReg/Register.html', header='routes/CustDev/layout/header.html', footer='routes/CustDev/layout/footer.html', login='routes/CustDev/layout/login.html')
+    return render_template('routes/CustDev/LogReg/Register.html', header=headerpth, footer=footerpth, login=loginpth)
 
 
 

@@ -16,13 +16,16 @@
     <script>
         const loginForm = document.getElementById('login-form');
         const closeBtn = document.getElementById('close-btn');
+        const body = document.body;
 
         function showLoginForm() {
             loginForm.style.display = 'block';
+            body.classList.add('logbox-open'); // Add class to body to disable scrolling
         }
 
         function closeLoginForm() {
             loginForm.style.display = 'none';
+            body.classList.remove('logbox-open'); // Remove class to enable scrolling
         }
 
         const loginButton = document.getElementById('login-button');
