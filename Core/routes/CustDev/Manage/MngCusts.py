@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import secrets
 from bson.objectid import ObjectId
 from flask import flash
+import bcrypt
 
 app = Flask(__name__, static_url_path='', static_folder='static', template_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/Manage')
 app.secret_key = secrets.token_hex(16)
@@ -32,7 +33,7 @@ def edit_user_route():
         email = request.form['email']
         phone = request.form['phone']
         postcode = request.form['postcode']
-        password = request.form['password']
+        password = request.form['password'].encode('utf-8')
 
         # update user data in the database
         users_collection.update_one(
@@ -44,7 +45,7 @@ def edit_user_route():
                 'email': email,
                 'phone': phone,
                 'postcode': postcode,
-                'password': password
+                'password': bcrypt.hashpw(password, bcrypt.gensalt())
             }}
         )
 
