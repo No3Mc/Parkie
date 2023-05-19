@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parkie - Lending Form</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script.js" defer></script>
+
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://i.postimg.cc/NMbHx9JP/favicon.png"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="histroy.html"><button class="his-btn">Histroy</button></a>
+
+    <div class="form-container">
+      <h1 style="text-align: center">Lending Form</h1>
+      <form id="booking-form">
+        <div class="form-group">
+          <label for="full-name">Full Name</label>
+          <input type="text" id="full-name" name="full-name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="contact">Contact</label>
+          <input type="tel" id="contact" name="contact" required />
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" required />
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" id="location" name="location" required />
+          <button type="button" id="get-location-btn">Get Location</button>
+        </div>
+
+        <div class="form-group">
+          <label for="lat">Latitude</label>
+          <input type="text" id="lat" name="lat" required />
+        </div>
+
+        <div class="form-group">
+          <label for="long">Longitude</label>
+          <input type="text" id="long" name="long" required />
+        </div>
+
+        <div class="form-group">
+          <label for="note">Note (optional)</label>
+          <textarea id="note" name="note"></textarea>
+          <span class="note">Note: This field is not required.</span>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      // Function to fetch latitude and longitude based on the provided location
+      function getLatLong(location) {
+        const apiKey = "YOUR_API_KEY"; // Replace with your OpenCage Geocoding API key
+        const apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(
+          location
+        )}&key=${"43530cf7f9b140779a16d90472665b90"}`;
+
+        return axios
+          .get(apiUrl)
+          .then((response) => {
+            const { results } = response.data;
+            if (results.length > 0) {
+              const { lat, lng } = results[0].geometry;
+              return { lat, lng };
+            } else {
+              throw new Error("No results found");
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            throw new Error("Failed to fetch latitude and longitude");
+          });
+      }
+
+      // Get the latitude and longitude based on the selected location
+      document
+        .getElementById("get-location-btn")
+        .addEventListener("click", function () {
+          const locationInput = document.getElementById("location");
+          const latInput = document.getElementById("lat");
+          const longInput = document.getElementById("long");
+
+          const location = locationInput.value;
+
+          if (location) {
+            getLatLong(location)
+              .then(({ lat, lng }) => {
+                latInput.value = lat;
+                longInput.value = lng;
+              })
+              .catch((error) => {
+                console.error(error);
+                alert("Failed to fetch latitude and longitude");
+              });
+          } else {
+            alert("Please enter a location");
+          }
+        });
+
+      // Submit the form
+      document
+        .getElementById("booking-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the form from submitting normally
+
+          // Fetch the form data
+          const formData = new FormData(event.target);
+
+          // Convert the form data into a JSON object
+          const json = {};
+          for (const [key, value] of formData.entries()) {
+            json[key] = value;
+          }
+
+          // Send the form data to the server (replace 'http://localhost:3000' with your server URL)
+          axios
+            .post("/book", json)
+            .then((response) => {
+              // Handle the response from the server
+              console.log(response.data);
+
+              if (response.data.message === "Same location already exists") {
+                alert(
+                  "The same location already exists. Please choose a different location."
+                );
+              } else {
+                alert("Booking successful");
+                // Process the response data here if needed
+              }
+            })
+            .catch((error) => {
+              // Handle any errors that occur during the request
+              console.error(error);
+            });
+        });
+    </script>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Lending Form</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <form id="booking-form">
+        <div class="form-group">
+          <label for="full-name">Full Name</label>
+          <input type="text" id="full-name" name="full-name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="contact">Contact</label>
+          <input type="tel" id="contact" name="contact" required />
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" required />
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" id="location" name="location" required />
+          <button type="button" id="get-location-btn">Get Location</button>
+        </div>
+
+        <div class="form-group">
+          <label for="lat">Latitude</label>
+          <input type="text" id="lat" name="lat" required />
+        </div>
+
+        <div class="form-group">
+          <label for="long">Longitude</label>
+          <input type="text" id="long" name="long" required />
+        </div>
+
+        <div class="form-group">
+          <label for="note">Note (optional)</label>
+          <textarea id="note" name="note"></textarea>
+          <span class="note">Note: This field is not required.</span>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      // Function to fetch latitude and longitude based on the provided location
+      function getLatLong(location) {
+        const apiKey = "YOUR_API_KEY"; // Replace with your OpenCage Geocoding API key
+        const apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(
+          location
+        )}&key=${"43530cf7f9b140779a16d90472665b90"}`;
+
+        return axios
+          .get(apiUrl)
+          .then((response) => {
+            const { results } = response.data;
+            if (results.length > 0) {
+              const { lat, lng } = results[0].geometry;
+              return { lat, lng };
+            } else {
+              throw new Error("No results found");
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            throw new Error("Failed to fetch latitude and longitude");
+          });
+      }
+
+      // Get the latitude and longitude based on the selected location
+      document
+        .getElementById("get-location-btn")
+        .addEventListener("click", function () {
+          const locationInput = document.getElementById("location");
+          const latInput = document.getElementById("lat");
+          const longInput = document.getElementById("long");
+
+          const location = locationInput.value;
+
+          if (location) {
+            getLatLong(location)
+              .then(({ lat, lng }) => {
+                latInput.value = lat;
+                longInput.value = lng;
+              })
+              .catch((error) => {
+                console.error(error);
+                alert("Failed to fetch latitude and longitude");
+              });
+          } else {
+            alert("Please enter a location");
+          }
+        });
+
+      // Submit the form
+      document
+        .getElementById("booking-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the form from submitting normally
+
+          // Fetch the form data
+          const formData = new FormData(event.target);
+
+          // Convert the form data into a JSON object
+          const json = {};
+          for (const [key, value] of formData.entries()) {
+            json[key] = value;
+          }
+
+          // Send the form data to the server (replace 'http://localhost:3000' with your server URL)
+          axios
+            .post("/book", json)
+            .then((response) => {
+              // Handle the response from the server
+              console.log(response.data);
+              // Process the response data here if needed
+            })
+            .catch((error) => {
+              // Handle any errors that occur during the request
+              console.error(error);
+            });
+        });
+    </script>
+  </body>
+</html> -->

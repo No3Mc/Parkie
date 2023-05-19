@@ -22,9 +22,9 @@ from Manage.MngProfile import index as mngprofile_index, login as mngprofile_log
 # @itsumarsoomro bro link yahan neechay se change kar lena
 
 # Define paths
-template_folder_path = '/home/thr33/Downloads/Parkie/Core/'
+template_folder_path = 'D:/Parkie/Core'
 
-static_folder_path = '/home/thr33/Downloads/Parkie/Core/routes/CustDev/static'
+static_folder_path = 'D:/Parkie/Core/routes/CustDev/static'
 
 
 

@@ -1,0 +1,17 @@
+{
+  "name": "mongoclient",
+  "version": "1.0.3",
+  "description": "Mongoose wrapper client for MongoDB ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/gxela/mongoclient",
+  "author": "Alex Goretoy <alex@goretoy.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^4.9.6",
+    "nconf": "^0.8.4",
+    "winston": "^2.3.1"
+  }
+}
