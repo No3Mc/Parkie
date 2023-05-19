@@ -31,15 +31,15 @@ guest_db = client['USER_DB']
 guest_collection = guest_db['guests']
 
 
-app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/',
-            static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
+# app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/',
+#             static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
 
 
 # app = Flask(__name__, template_folder='C:/Users/haide/Downloads/Parkie/Core',
 #             static_folder='C:/Users/haide/Downloads/Parkie/Core/routes/CustDev/static')
 
-# app = Flask(__name__, template_folder='D:/realParkie/Core/',
-#             static_folder='D:/realParkie/Core/routes/CustDev/static')
+app = Flask(__name__, template_folder='D:/parkiee/Core/',
+            static_folder='D:/parkiee/Core/routes/CustDev/static')
 
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
 
