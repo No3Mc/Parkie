@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='log.css', _external=True) }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layout/log.css', _external=True) }}">
 </head>
 <body>
     <div id="login-form" class="login-form" style="display: none;">
@@ -16,13 +16,16 @@
     <script>
         const loginForm = document.getElementById('login-form');
         const closeBtn = document.getElementById('close-btn');
+        const body = document.body;
 
         function showLoginForm() {
             loginForm.style.display = 'block';
+            body.classList.add('logbox-open'); // Add class to body to disable scrolling
         }
 
         function closeLoginForm() {
             loginForm.style.display = 'none';
+            body.classList.remove('logbox-open'); // Remove class to enable scrolling
         }
 
         const loginButton = document.getElementById('login-button');
@@ -30,7 +33,7 @@
         closeBtn.addEventListener('click', closeLoginForm);
     </script>
 
-    <script src="{{ url_for('static', filename='log.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='layout/log.js') }}" defer></script>
 </body>
 </html>
 
