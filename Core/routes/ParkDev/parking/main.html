@@ -3,7 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Page Title</title>
+    <title>Parkie - Parking</title>
+    <!-- fav icon -->
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://i.postimg.cc/NMbHx9JP/favicon.png"
+    />
+    <!-- css -->
+    <style>
+      div.footer {
+        transform: translateY(-90px);
+      }
+      body {
+        height: 1245px;
+      }
+      
+    </style>
   </head>
 
   <body>
@@ -16,17 +32,20 @@
     ></iframe>
 
     <!-- locate me btn -->
-    <button id="locateME">
+    <!-- <button id="locateME">
       <img
         src="https://i.postimg.cc/xTgzWrnR/near-me.png"
         alt="L"
         height="25px"
         width="25px"
       />
-    </button>
+    </button> -->
     {% include footer %}
 
-    <script src="{{ url_for('static', filename='ParkDev/main.js') }}" defer></script>
+    <script
+      src="{{ url_for('static', filename='ParkDev/main.js') }}"
+      defer
+    ></script>
     <script>
       window.addEventListener("message", function (event) {
         if (event.data.action === "stripeCheckout") {

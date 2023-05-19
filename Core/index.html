@@ -1,167 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="UTF-8" />
-        <title>Parkie - Home</title>
-        <link
-        rel="shortcut icon"
-        type="image/png"
-        href="https://i.postimg.cc/NMbHx9JP/favicon.png"
-        />
-        <link
-        rel="stylesheet"
-        type="text/css"
-        href="{{ url_for('static', filename='/Core/style.css') }}"
-        />
-        <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-        />
-    </head>
-    <body>
-        {% include header %}
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Parkie - Home</title>
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://i.postimg.cc/NMbHx9JP/favicon.png"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='/Core/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+  <body>
+    {% include header %}
 
-        <button id="myBtn" title="Go to top">
-            <img
-            src="https://i.postimg.cc/P5mCxGqz/4781853-arrow-arrows-direction-down-move-icon.png"
-            alt="Top"
-            height="32"
-            width="32"
-            />
-        </button>
+    <button id="myBtn" title="Go to top">
+      <img
+        src="https://i.postimg.cc/P5mCxGqz/4781853-arrow-arrows-direction-down-move-icon.png"
+        alt="Top"
+        height="32"
+        width="32"
+      />
+    </button>
+
 
         <button id="chatBtn" onclick="openChatbot()">Chat</button>
         <iframe id="chatIframe" class="chat-iframe" frameborder="0"></iframe>
 
-        <!-- hero box -->
-        <section class="hero-box">
-            <div class="hero">
-                <h1 class="h-title">
-                    Never Circles the block again <br />
-                    Book your spot Now!
-                </h1>
-                <!-- heor btn to line 412 css [flex display]-->
-                <div class="hero-btns">
-                    {% if current_user.is_authenticated %}
-                    <button class="hero-btn" id="daily-parking-btn">
-                        Show Daily Parking Spots
-                    </button>
-                    {% else %}
-                    <button
-                        class="hero-btn"
-                        id="daily-parking-btn"
-                        data-authenticated="false"
-                        >
-                        Show Daily Parking Spots
-                    </button>
-                        {% endif %}
-                        <a href="routes/ParkDev/MainPg/W-Parking.html">
-                            <button class="hero-btn1">Show Weekly Parking Spots</button>
-                        </a>
-                </div>
-            </div>
-        </section>
 
-        {% include login %}
-
-        <!-- Login Modal -->
-        <div id="loginModal" class="modal hidden">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <p>
-                In order to access the button, you need to continue as a guest or log
-                in to the system.
-                </p>
-                <!-- <button id="log"><a href="#" id="login-link">Login</a></button> -->
-                <!-- <button id="ajnabi"><a href="#" id="guest-link">Continue as Guest</a></button> -->
-            </div>
+    <!-- hero box -->
+    <section class="hero-box">
+      <div class="hero">
+        <h1 class="h-title">
+          Never Circles the block again <br />
+          Book your spot Now!
+        </h1>
+        <!-- heor btn to line 412 css [flex display]-->
+        <div class="hero-btns">
+          {% if current_user.is_authenticated %}
+          <button class="hero-btn" id="daily-parking-btn">
+            Show Daily Parking Spots
+          </button>
+          {% else %}
+          <button
+            class="hero-btn"
+            id="daily-parking-btn"
+            data-authenticated="false"
+          >
+            Show Daily Parking Spots
+          </button>
+          {% endif %}
+          <a href="routes/ParkDev/MainPg/W-Parking.html">
+            <button class="hero-btn1">Show Weekly Parking Spots</button>
+          </a>
         </div>
+      </div>
+    </section>
 
-        <!-- how to use box -->
-        <section class="howtouse">
-            <h2 class="htu-title">Parking Made Easy</h2>
-            <div class="howtouse-box">
-                <div>
-                    <img src="https://i.postimg.cc/MGwjKss7/find-parking-v1-3d394644.png"
-                    alt="" height: 300px; width: 300px; />
-                </div>
-                <p style="transform: translateY(-50px); font-size: 50px">. . . . .</p>
-                <div>
-                    <img src="https://i.postimg.cc/YSxL41VJ/reserve-v1-408298f0.png"
-                    alt="" height: 300px; width: 300px; />
-                </div>
-                <p style="transform: translateY(-50px); font-size: 50px">. . . . .</p>
-                <div>
-                    <img src="https://i.postimg.cc/63j7cBBc/park-car-v1-4292f24f.png"
-                    alt="" height: 300px; width: 300px; />
-                </div>
-            </div>
-        </section>
+    {% include login %}
 
-        <!-- lending box -->
-        <section class="lending">
-            <div class="lending-box">
-                <div class="lend-1">
-                    <h2 class="lend-title">Lend out your free spaces</h2>
-                    <p class="lend-desc">
-                    Make easy tax free money by renting out your parking or EV charging
-                    space. It‘s free to list and only takes a few minutes to get up and
-                    running.
-                    </p>
-                    <button class="lend-btn">Learn how to Lend Now</button>
-                </div>
-                <div class="lend-2">
-                    <div></div>
-                </div>
-            </div>
-        </section>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>
+          In order to access the button, you need to continue as a guest or log
+          in to the system.
+        </p>
+        <!-- <button id="log"><a href="#" id="login-link">Login</a></button> -->
+        <!-- <button id="ajnabi"><a href="#" id="guest-link">Continue as Guest</a></button> -->
+      </div>
+    </div>
 
-        <!-- what users think -->
-        <section class="whatusersthink">
-            <h1 class="wut-title">What Users Think About Us.</h1>
-            <div class="whatusersthink-box">
-                <div>
-                    <img
-                    src="https://i.postimg.cc/XN87KH11/man2.jpg"
-                    alt=""
-                    height="150"
-                    width="150"
-                    />
-                    <br />
-                    <br />
-                    <h1>Umar</h1>
+    <!-- how to use box -->
+    <section class="howtouse">
+      <h2 class="htu-title">Parking Made Easy</h2>
+      <div class="howtouse-box">
+        <div>
+          <img src="https://i.postimg.cc/MGwjKss7/find-parking-v1-3d394644.png"
+          alt="" height: 300px; width: 300px; />
+        </div>
+        <p style="transform: translateY(-50px); font-size: 50px">. . . . .</p>
+        <div>
+          <img src="https://i.postimg.cc/YSxL41VJ/reserve-v1-408298f0.png"
+          alt="" height: 300px; width: 300px; />
+        </div>
+        <p style="transform: translateY(-50px); font-size: 50px">. . . . .</p>
+        <div>
+          <img src="https://i.postimg.cc/63j7cBBc/park-car-v1-4292f24f.png"
+          alt="" height: 300px; width: 300px; />
+        </div>
+      </div>
+    </section>
 
-                    <p>"Amazing Company really saved my time</p>
-                </div>
-                <div>
-                    <img
-                    src="https://i.postimg.cc/761PWmH6/man1.jpg"
-                    alt=""
-                    height="150"
-                    width="150"
-                    />
-                    <br />
+    <!-- lending box -->
+    <section class="lending">
+      <div class="lending-box">
+        <div class="lend-1">
+          <h2 class="lend-title">Lend out your free spaces</h2>
+          <p class="lend-desc">
+            Make easy tax free money by renting out your parking or EV charging
+            space. It‘s free to list and only takes a few minutes to get up and
+            running.
+          </p>
+          <button class="lend-btn">Learn how to Lend Now</button>
+        </div>
+        <div class="lend-2">
+          <div></div>
+        </div>
+      </div>
+    </section>
 
-                    <h1>Haider</h1>
+    <!-- what users think -->
+    <section class="whatusersthink">
+      <h1 class="wut-title">What Users Think About Us.</h1>
+      <div class="whatusersthink-box">
+        <div>
+          <img
+            src="https://i.postimg.cc/XN87KH11/man2.jpg"
+            alt=""
+            height="150"
+            width="150"
+          />
+          <br />
+          <br />
+          <h1>Umar</h1>
+          <p>⭐⭐⭐⭐⭐</p>
+          <p>
+            "Excellent locations availables <br />
+            amazing service.
+          </p>
+        </div>
+        <div>
+          <img
+            src="https://i.postimg.cc/761PWmH6/man1.jpg"
+            alt=""
+            height="150"
+            width="150"
+          />
+          <br />
 
-                    <p>"Amazing Company really saved my time</p>
-                </div>
-                <div>
-                    <img
-                    src="https://i.postimg.cc/c6ymL1qT/man3.png"
-                    alt=""
-                    height="150"
-                    width="150"
-                    />
-                    <br />
+          <h1>Haider</h1>
+          <p>⭐⭐⭐⭐⭐</p>
+          <p>
+            "New concept but Parkie have <br />
+            done it well
+          </p>
+        </div>
+        <div>
+          <img
+            src="https://i.postimg.cc/c6ymL1qT/man3.png"
+            alt=""
+            height="150"
+            width="150"
+          />
+          <br />
 
-                    <h1>Nav</h1>
+          <h1>Nav</h1>
+          <p>⭐⭐⭐⭐⭐</p>
+          <p>
+            "Love the feature of lending <br />
+            and booking spaces
+          </p>
+        </div>
+      </div>
+    </section>
 
-                    <p>"Amazing Company really saved my time</p>
-                </div>
-            </div>
-        </section>
 
         <!-- Future thingy - parking solutions -->
         <section class="futurethings">
@@ -192,4 +204,5 @@
 
 
     </body>
+
 </html>
