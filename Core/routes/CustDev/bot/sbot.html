@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/CustDev/sbot.css') }}" />
+</head>
+<body>
+  <div id="chatbot">
+    <div id="chat-container"></div>
+    <input type="text" id="user-input" placeholder="Type your message...">
+    <button id="send-btn">Send</button>
+  </div>
+    <script src="{{ url_for('static', filename='CustDev/sbot.js') }}"></script>
+</body>
+</html>
+
