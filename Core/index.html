@@ -12,7 +12,7 @@
         <link
         rel="stylesheet"
         type="text/css"
-        href="{{ url_for('static', filename='style.css') }}"
+        href="{{ url_for('static', filename='/Core/style.css') }}"
         />
         <link
         rel="stylesheet"
@@ -184,7 +184,7 @@
         </section>
         {% include footer %}
         <script
-            src="{{ url_for('static', filename='function.js') }}"
+            src="{{ url_for('static', filename='Core/function.js') }}"
             defer
                 ></script>
         <script>
