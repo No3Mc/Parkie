@@ -26,7 +26,7 @@
     </button>
     {% include footer %}
 
-    <script src="{{ url_for('static', filename='main.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='ParkDev/main.js') }}" defer></script>
     <script>
       window.addEventListener("message", function (event) {
         if (event.data.action === "stripeCheckout") {

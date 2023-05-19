@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <title>Contact Us</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='VulRep.css', _external=True) }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CustDev/VulRep.css', _external=True) }}">
     </head>
     <body>
                 {% include header %}
@@ -24,7 +24,7 @@
         </form>
         {% include login %}
         <p id="message"></p>
-        <script src="{{ url_for('static', filename='VulRep.js') }}" defer></script>
+        <script src="{{ url_for('static', filename='CustDev/VulRep.js') }}" defer></script>
                 {% include footer %}
     </body>
 </html>

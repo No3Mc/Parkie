@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='log.css', _external=True) }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layout/log.css', _external=True) }}">
 </head>
 <body>
     <div id="login-form" class="login-form" style="display: none;">
@@ -33,7 +33,7 @@
         closeBtn.addEventListener('click', closeLoginForm);
     </script>
 
-    <script src="{{ url_for('static', filename='log.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='layout/log.js') }}" defer></script>
 </body>
 </html>
 
