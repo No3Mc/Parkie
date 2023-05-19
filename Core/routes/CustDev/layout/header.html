@@ -30,8 +30,8 @@
                     </li>
                     <li {% if request.path == url_for('lend') %}class="active"{% endif %}>
                         <a href="{{ url_for('lend') }}">Lend space</a></li>
-                    <li {% if request.path == url_for('lend') %}class="active"{% endif %}>
-                        <a href="{{ url_for('lend') }}">Business solution</a></li>
+                    <li {% if request.path == url_for('future') %}class="active"{% endif %}>
+                        <a href="{{ url_for('future') }}">Business solution</a></li>
                     <li {% if request.path == url_for('AboutUs') %}class="active"{% endif %}>
                         <a href="{{ url_for('AboutUs') }}">Company</a></li>
                     <!-- <li {% if request.path == url_for('help') %}class="active"{% endif %}>

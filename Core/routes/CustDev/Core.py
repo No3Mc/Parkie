@@ -306,13 +306,13 @@ def login():
         return redirect(url_for('index'))
 
     username = request.form['username']
-    password = request.form['password']
+    password = request.form['password'].encode('utf-8')  # encode password to bytes
 
     user = user_collection.find_one({'username': username})
     admin = admin_collection.find_one({'username': username})
     guest = guest_collection.find_one({'username': username})  # Check guest collection
 
-    if user and bcrypt.checkpw(password.encode('utf-8'), user['password']):
+    if user and bcrypt.checkpw(password, user['password']):  # compare encoded passwords
         print('Login successful for user:', username)
         user_obj = User(user)
         profile_icon_url = user.get('profile_icon_url')
@@ -322,7 +322,7 @@ def login():
         # Set the profile icon URL in the current_user object
         current_user.set_profile_icon_url(profile_icon_url)
         return redirect(url_for('index'))
-    elif admin and bcrypt.checkpw(password.encode('utf-8'), admin['password'].encode('utf-8')):
+    elif admin and bcrypt.checkpw(password, admin['password'].encode('utf-8')):  # compare encoded passwords
         print('Login successful for admin:', username)
         admin_obj = User(admin)
         profile_icon_url = admin.get('profile_icon_url')

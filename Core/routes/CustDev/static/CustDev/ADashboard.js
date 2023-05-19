@@ -5,10 +5,10 @@ const dafaqBtn = document.getElementById('dafaq-btn');
 
 const iframeContainer = document.getElementById('iframe-container');
 
-botBtn.addEventListener('click', () => {
-	iframeContainer.innerHTML = '<iframe src="/bawt"></iframe>';
-	iframeContainer.style.display = 'block';
-});
+// botBtn.addEventListener('click', () => {
+// 	iframeContainer.innerHTML = '<iframe src="/bawt"></iframe>';
+// 	iframeContainer.style.display = 'block';
+// });
 
 custsBtn.addEventListener('click', () => {
 	iframeContainer.innerHTML = '<iframe src="/MngCusts"></iframe>';
@@ -20,10 +20,10 @@ promoBtn.addEventListener('click', () => {
 	iframeContainer.style.display = 'block';
 });
 
-dafaqBtn.addEventListener('click', () => {
-	iframeContainer.innerHTML = '<iframe src="/help"></iframe>';
-	iframeContainer.style.display = 'block';
-});
+// dafaqBtn.addEventListener('click', () => {
+// 	iframeContainer.innerHTML = '<iframe src="/help"></iframe>';
+// 	iframeContainer.style.display = 'block';
+// });
 
 
 
