@@ -23,9 +23,9 @@ import time
 # @itsumarsoomro bro link yahan neechay se change kar lena
 
 # Define paths
-template_folder_path = 'd:/parkiee/Core'
+template_folder_path = 'D:/Parkie/Core'
 
-static_folder_path = 'd:/parkiee/Core/routes/CustDev/static'
+static_folder_path = 'D:/Parkie/Core/routes/CustDev/static'
 
 
 

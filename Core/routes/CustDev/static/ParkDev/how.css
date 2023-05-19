@@ -113,12 +113,6 @@ color: #000000;
    }
 }
 
-
-  /* bro(@itsumarsoomro) is ko comment is lie kia hai kuin ke ye keera kar raha tha and main bhool gaya tha
-ke isko comment kar ke apna keera apply kar skta. Waise to name bhei change kar skta tha but html main mein ne pher 
-udhar se .reg-btn kar dia To bro just kuch stuff ki wajah se isko hata dia
-Kuin ke apne sath keera ho raha tha but tumhara code bht next level tha no doubt */
-
 .login-button {
 position: relative;
 }
@@ -162,28 +156,6 @@ height: 100%;
 }
 
 /* login btn */
-/* .log-btn{ */
-/* background-color: white; */
-/* color: #3CAD4F;
-padding: 7px 26px;
-border-radius: 16px;
-border: 1px solid;
-border-color: black; */
-
-
-/* From https://css.glass */
-/* background: rgba(255, 255, 255, 1);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
--webkit-backdrop-filter: blur(20px);
-backdrop-filter: blur(20px);
-border: 1px solid rgb(245, 244, 244);
-
-transition: all 1s;
-} */
-
-
-/* login btn */
 .reg-btn{
 /* background-color: white; */
 color: #3CAD4F;
@@ -205,21 +177,9 @@ transition: all 1s;
 }
 
 .reg-btn:hover{
-/* padding: 5px 30px; */
-/* background-image: url("https://cdn-icons-png.flaticon.com/512/2989/2989981.png"); */
-/* From https://css.glass */
-/* background: rgba(255, 255, 255, 0.83);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(7.9px);
--webkit-backdrop-filter: blur(7.9px);
-border: 1px solid rgba(255, 255, 255, 1); */
-/* background: rgb(245, 241, 241); */
 opacity: 85%;
 border-color: #24AA81;
 }
-
-
 
 /* body */
 .wel{

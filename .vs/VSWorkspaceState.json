@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Core",
+    "\\Core\\routes",
+    "\\Core\\routes\\ClientDev",
+    "\\Core\\routes\\ClientDev\\public"
   ],
   "PreviewInSolutionExplorer": false
 }
