@@ -22,6 +22,13 @@ import time
 # Define paths
 template_folder_path = '/home/thr33/Downloads/Parkie/Core/'
 static_folder_path = '/home/thr33/Downloads/Parkie/Core/routes/CustDev/static'
+
+
+
+
+
+
+
 headerpth = 'routes/CustDev/layout/header.html'
 footerpth = 'routes/CustDev/layout/footer.html'
 loginpth = 'routes/CustDev/layout/login.html'
@@ -40,8 +47,8 @@ guest_db = client['USER_DB']
 guest_collection = guest_db['guests']
 
 
-app = Flask(__name__, template_folder='/home/thr33/Downloads/Parkie/Core/',
-            static_folder='/home/thr33/Downloads/Parkie/Core/routes/CustDev/static')
+app = Flask(__name__, template_folder=template_folder_path,
+            static_folder=static_folder_path)
 
 
 # app = Flask(__name__, template_folder='C:/Users/haide/Downloads/Parkie/Core',
