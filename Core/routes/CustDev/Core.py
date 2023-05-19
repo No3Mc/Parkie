@@ -17,6 +17,16 @@ from VulFaq.VulRep import index as vulrep_index, vulnerability_report as vulrep_
 from Manage.MngProfile import index as mngprofile_index, login as mngprofile_login, edit_user as mngprofile_edit_user
 # import quickemailverification
 import time
+import requests
+from flask_cors import CORS
+from flask_wtf.csrf import CSRFProtect
+from flask import make_response
+import json
+from django.http import HttpResponse
+from flask import render_template, make_response
+
+
+
 
 
 
@@ -26,7 +36,6 @@ import time
 template_folder_path = '/home/thr33/Downloads/Parkie/Core/'
 
 static_folder_path = '/home/thr33/Downloads/Parkie/Core/routes/CustDev/static'
-
 
 
 
@@ -53,6 +62,8 @@ guest_collection = guest_db['guests']
 
 app = Flask(__name__, template_folder=template_folder_path,
             static_folder=static_folder_path)
+CORS(app)
+csrf = CSRFProtect(app)
 
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
 
@@ -105,6 +116,49 @@ class Admin(UserMixin):
 
 
 
+
+@app.after_request
+def add_cors_headers(response):
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8000'  # Replace with the actual origin
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST'
+    return response
+
+
+
+
+@app.route('/send-message', methods=['POST'])
+@csrf.exempt  # Exempt the route from CSRF protection
+def send_message():
+    message = request.form['message']
+
+    # Retrieve the CSRF token from the Flask app's request cookies
+    csrf_token = request.cookies.get('csrf_token')
+
+    # Update the requests headers and data
+    headers = {'Referer': request.host_url, 'Content-Type': 'application/json', 'X-CSRFToken': csrf_token}
+    data = json.dumps({'message': message})
+
+    # Send the AJAX request to the Django bot with the CSRF token in the headers
+    response = requests.post('http://localhost:8000/', headers=headers, data=data)
+
+    if response.status_code == 200:
+        return jsonify({'response': response.text})
+    else:
+        return jsonify({'response': 'Error occurred while sending the message'}), 500
+
+
+
+
+def bot_view(request):
+    response = HttpResponse()
+    response.set_cookie('csrftoken', 'your-csrf-token-value', domain='127.0.0.1', secure=False, samesite='None')
+    response.write('your-bot-html-content')
+    return response
+
+
+
+
 @app.context_processor
 def inject_user():
     return dict(current_user=current_user)
@@ -153,7 +207,16 @@ def rate_limited(ip_address):
 
 @app.route('/')
 def index():
-    return render_template('index.html', header=headerpth, footer=footerpth, login=loginpth)
+    # Create the response
+    response = make_response(render_template('index.html', header=headerpth, footer=footerpth, login=loginpth))
+    
+    # Set the expiration time for the cookie (e.g., 1 year from now)
+    expires = datetime.now() + timedelta(days=365)
+    
+    # Set the cookie
+    response.set_cookie('csrftoken', value='W45vBi330MA8BQ5hNh3Z7PBgZrUDHvE9UO88LXLiMvn8MRo9ERJSGsXUnMjaLT2o', expires=expires, path='/', samesite='Lax')
+
+    return response
 
 @app.route('/main')
 @login_required
@@ -168,18 +231,6 @@ def lend():
 def howto():
     return render_template('routes/ParkDev/Howitworks/How.html', header=headerpth, footer=footerpth, login=loginpth)
 
-# @app.route('/get-header')
-# def get_header():
-#     return render_template('routes/CustDev/layout/header.html')
-#
-# @app.route('/get-footer')
-# def get_footer():
-#     with open('/home/thr33/Downloads/Parkie/Core/routes/CustDev/layout/footer.html', 'r') as file:
-#         footer_content = file.read()
-#     return footer_content
-
-
-# return render_template('/home/thr33/Downloads/Parkie/Core/index.html', header='header.html')
 
 
 @app.route('/add-promo', methods=['POST'])
@@ -193,11 +244,6 @@ def delete_promo_route(promo_id):
 @app.route('/edit-promo/<string:promo_id>', methods=['GET', 'POST'])
 def edit_promo_route(promo_id):
     return edit_promo(promo_id)
-
-
-
-
-
 
 @app.route('/edit_user', methods=['GET', 'POST'])
 def edit_user():
@@ -217,32 +263,17 @@ def vulrep_vulnerability_report_route():
 
 @app.route('/mngprofile_login', methods=['POST'])
 def mngprofile_login():
-    # Login logic goes here
-    # ...
 
-    # Redirect to the desired page after successful login
     return redirect(url_for('MngProfile'))
 
 @app.route('/mngprofile_edit_user', methods=['POST'])
 def mngprofile_edit_user():
-    # Edit user logic goes here
-    # ...
-
-    # Redirect to the desired page after successful edit
     return redirect(url_for('MngProfile'))
-
-
-
-# @app.route('/bawt')
-# def bawt():
-#     return render_template('http://127.0.0.1:8000/')
-
 
 @app.route('/admin_dashboard')
 @login_required
 def admin_dashboard():
     return render_template('routes/CustDev/Dashboards/ADashboard.html', header=headerpth, footer=footerpth, login=loginpth)
-
 
 @app.route('/dashboard')
 def dashboard():
@@ -262,6 +293,9 @@ def MngPromos():
     promos = promos_collection.find()
     return render_template('routes/CustDev/Manage/MngPromos.html', promos=promos)
 
+@app.route('/bawth')
+def bawth():
+    return render_template('http://localhost:8000/')
 
 
 @app.route('/help')

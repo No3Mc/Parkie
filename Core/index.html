@@ -32,12 +32,7 @@
         </button>
 
         <button id="chatBtn" onclick="openChatbot()">Chat</button>
-        <iframe
-            id="chatIframe"
-            class="chat-iframe"
-            src="http://localhost:8000/"
-            frameborder="0"
-            ></iframe>
+        <iframe id="chatIframe" class="chat-iframe" frameborder="0"></iframe>
 
         <!-- hero box -->
         <section class="hero-box">
@@ -190,5 +185,11 @@
         <script>
             const mainPageUrl = "{{ url_for('main') }}";
         </script>
+        <script
+            src="{{ url_for('static', filename='CustDev/chatbot.js') }}"
+            defer
+                ></script>
+
+
     </body>
 </html>
