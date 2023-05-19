@@ -15,7 +15,7 @@ from Manage.MngPromos import add_promo, delete_promo, edit_promo, promos_collect
 from Manage.MngCusts import edit_user_route, delete_user_route
 from VulFaq.VulRep import index as vulrep_index, vulnerability_report as vulrep_vulnerability_report
 from Manage.MngProfile import index as mngprofile_index, login as mngprofile_login, edit_user as mngprofile_edit_user
-import quickemailverification
+# import quickemailverification
 import time
 
 # MongoDB Atlas connection string
