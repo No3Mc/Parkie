@@ -17,16 +17,6 @@ from VulFaq.VulRep import index as vulrep_index, vulnerability_report as vulrep_
 from Manage.MngProfile import index as mngprofile_index, login as mngprofile_login, edit_user as mngprofile_edit_user
 # import quickemailverification
 import time
-import requests
-from flask_cors import CORS
-from flask_wtf.csrf import CSRFProtect
-from flask import make_response
-import json
-from django.http import HttpResponse
-from flask import render_template, make_response
-
-
-
 
 
 
@@ -36,6 +26,7 @@ from flask import render_template, make_response
 template_folder_path = '/home/thr33/Downloads/Parkie/Core/'
 
 static_folder_path = '/home/thr33/Downloads/Parkie/Core/routes/CustDev/static'
+
 
 
 
@@ -62,8 +53,6 @@ guest_collection = guest_db['guests']
 
 app = Flask(__name__, template_folder=template_folder_path,
             static_folder=static_folder_path)
-CORS(app)
-csrf = CSRFProtect(app)
 
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
 
@@ -116,49 +105,6 @@ class Admin(UserMixin):
 
 
 
-
-@app.after_request
-def add_cors_headers(response):
-    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8000'  # Replace with the actual origin
-    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
-    response.headers['Access-Control-Allow-Methods'] = 'GET, POST'
-    return response
-
-
-
-
-@app.route('/send-message', methods=['POST'])
-@csrf.exempt  # Exempt the route from CSRF protection
-def send_message():
-    message = request.form['message']
-
-    # Retrieve the CSRF token from the Flask app's request cookies
-    csrf_token = request.cookies.get('csrf_token')
-
-    # Update the requests headers and data
-    headers = {'Referer': request.host_url, 'Content-Type': 'application/json', 'X-CSRFToken': csrf_token}
-    data = json.dumps({'message': message})
-
-    # Send the AJAX request to the Django bot with the CSRF token in the headers
-    response = requests.post('http://localhost:8000/', headers=headers, data=data)
-
-    if response.status_code == 200:
-        return jsonify({'response': response.text})
-    else:
-        return jsonify({'response': 'Error occurred while sending the message'}), 500
-
-
-
-
-def bot_view(request):
-    response = HttpResponse()
-    response.set_cookie('csrftoken', 'your-csrf-token-value', domain='127.0.0.1', secure=False, samesite='None')
-    response.write('your-bot-html-content')
-    return response
-
-
-
-
 @app.context_processor
 def inject_user():
     return dict(current_user=current_user)
@@ -207,16 +153,7 @@ def rate_limited(ip_address):
 
 @app.route('/')
 def index():
-    # Create the response
-    response = make_response(render_template('index.html', header=headerpth, footer=footerpth, login=loginpth))
-    
-    # Set the expiration time for the cookie (e.g., 1 year from now)
-    expires = datetime.now() + timedelta(days=365)
-    
-    # Set the cookie
-    response.set_cookie('csrftoken', value='W45vBi330MA8BQ5hNh3Z7PBgZrUDHvE9UO88LXLiMvn8MRo9ERJSGsXUnMjaLT2o', expires=expires, path='/', samesite='Lax')
-
-    return response
+    return render_template('index.html', header=headerpth, footer=footerpth, login=loginpth)
 
 @app.route('/main')
 @login_required
