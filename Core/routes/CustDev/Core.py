@@ -19,8 +19,12 @@ from Manage.MngProfile import index as mngprofile_index, login as mngprofile_log
 import time
 
 
+
+# @itsumarsoomro bro link yahan neechay se change kar lena
+
 # Define paths
 template_folder_path = '/home/thr33/Downloads/Parkie/Core/'
+
 static_folder_path = '/home/thr33/Downloads/Parkie/Core/routes/CustDev/static'
 
 
@@ -49,13 +53,6 @@ guest_collection = guest_db['guests']
 
 app = Flask(__name__, template_folder=template_folder_path,
             static_folder=static_folder_path)
-
-
-# app = Flask(__name__, template_folder='C:/Users/haide/Downloads/Parkie/Core',
-#             static_folder='C:/Users/haide/Downloads/Parkie/Core/routes/CustDev/static')
-
-# app = Flask(__name__, template_folder='D:/realParkie/Core/',
-#             static_folder='D:/realParkie/Core/routes/CustDev/static')
 
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
 
