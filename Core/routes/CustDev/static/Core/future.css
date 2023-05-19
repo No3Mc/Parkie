@@ -1,0 +1,46 @@
+body {
+       background-color: #f1f1f1;
+       font-family: Arial, sans-serif;
+       text-align: center;
+     }
+
+     .container {
+       margin-top: 150px;
+     }
+
+     h1 {
+       font-size: 48px;
+       margin-bottom: 20px;
+     }
+
+     p {
+       font-size: 24px;
+       margin-bottom: 40px;
+     }
+
+     .countdown {
+       display: flex;
+       justify-content: center;
+     }
+
+     .countdown div {
+       margin: 0 20px;
+     }
+
+     .countdown span {
+       font-size: 36px;
+     }
+
+     @media (max-width: 768px) {
+       h1 {
+         font-size: 36px;
+       }
+
+       p {
+         font-size: 20px;
+       }
+
+       .countdown span {
+         font-size: 24px;
+       }
+     }

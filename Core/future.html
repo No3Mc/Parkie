@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Coming Soon</title>
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://i.postimg.cc/NMbHx9JP/favicon.png"
+    />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Coming Soon</h1>
+      <p>We're working on something awesome. Stay tuned!</p>
+      <div class="countdown">
+        <div>
+          <span id="days">0</span>
+          <span>Days</span>
+        </div>
+        <div>
+          <span id="hours">0</span>
+          <span>Hours</span>
+        </div>
+        <div>
+          <span id="minutes">0</span>
+          <span>Minutes</span>
+        </div>
+        <div>
+          <span id="seconds">0</span>
+          <span>Seconds</span>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Set the date to countdown to (e.g., the launch date)
+      var countDownDate = new Date("2023-06-01T00:00:00").getTime();
+
+      // Update the countdown every second
+      var countdownInterval = setInterval(function () {
+        // Get the current date and time
+        var now = new Date().getTime();
+
+        // Calculate the remaining time
+        var timeRemaining = countDownDate - now;
+
+        // Calculate days, hours, minutes, and seconds
+        var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor(
+          (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        // Display the remaining time in the HTML elements
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+
+        // If the countdown is finished, clear the interval
+        if (timeRemaining < 0) {
+          clearInterval(countdownInterval);
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>

@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layout/footer.css') }}">
-</head>
-<body>
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='layout/footer.css') }}"
+    />
+  </head>
+  <body>
     <div class="footer">
-        <div class="footer-content">
-            <div class="brand-title"><a href="Index.html">Parkie</a></div>
-            <div class="navbar-links">
-                <ul>
-                    <li><a href="#">Find Parking Spots?</a></li>
-                    <li><a href="{{ url_for('lend') }}">Lend Space</a></li>
-                    <li><a href="{{ url_for('AboutUs') }}">Company</a></li>
-                    <li><a href="{{ url_for('help') }}">Help</a></li>
-                    <li><a href="contact">Contact</a></li>
-                    <!-- I love Multan <3 -->
-                    <!-- Multan – a revered Pakistani city, boasts antique marvels and effervescent culture. -->
-                </ul>
-            </div>
+      <div class="footer-content">
+        <div class="brand-title"><a href="Index.html">Parkie</a></div>
+        <div class="navbar-links">
+          <ul>
+            <li><a href="{{ url_for('howto') }}">How it works</a></li>
+            <li><a href="{{ url_for('lend') }}">Lend Space</a></li>
+            <li><a href="{{ url_for('AboutUs') }}">Company</a></li>
+            <li><a href="contact">Contact</a></li>
+            <!-- I love Multan <3 -->
+            <!-- Multan – a revered Pakistani city, boasts antique marvels and effervescent culture. -->
+          </ul>
         </div>
-        <div class="l-footer">
-            <p class="footer-desc">
-                Parkie is the trading name of Parkie Parking Limited Registered in
-                England, Gateway house Leicester
-            </p>
-        </div>
+      </div>
+      <div class="l-footer">
+        <p class="footer-desc">
+          Parkie is the trading name of Parkie Parking Limited Registered in
+          England, Gateway house Leicester
+        </p>
+      </div>
     </div>
-        <script src="{{ url_for('static', filename='layout/footer.js') }}" defer></script>
-</body>
+    <script
+      src="{{ url_for('static', filename='layout/footer.js') }}"
+      defer
+    ></script>
+  </body>
 </html>
-

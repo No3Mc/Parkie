@@ -83,8 +83,6 @@
     }
   });
   
-// Endpoint to fetch payment history
-// Endpoint to fetch payment history
   // Endpoint to fetch payment history
   app.get('/payment/history', async (req, res) => {
     try {
@@ -141,18 +139,14 @@
         sgMail.setApiKey(process.env.SG_PRIVATE_KEY);
         await sgMail.send(msg);
         
-        // // Update the marker object with the new status
-        // marker.status = 'booked';
-
-        // // Send the updated marker object as the response
-        //  res.json({ marker: marker });
-
-          res.send(`
-              <script>
-              window.parent.postMessage({ action: 'stripeSuccess' }, '*');
-              window.location.href = 'http://localhost:5000/main'; // Redirects to localhost:5000
-              </script>
-              `);
+        res.send(`
+        <script>
+          window.alert("Payment and Booking Successful!!");
+          window.parent.postMessage({ action: 'stripeSuccess' }, '*');
+          window.location.href = 'http://localhost:5000/main'; // Redirects to localhost:5000
+        </script>
+      `);
+      
 
       } else {
         // Marker is already booked, send an error message to the user

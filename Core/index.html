@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8" />
@@ -32,9 +31,8 @@
       />
     </button>
 
-    <button id="chatBtn" onclick="openChatbot()">Chat</button>
-    <iframe id="chatIframe" class="chat-iframe" frameborder="0"></iframe>
-
+    <!-- <button id="chatBtn" onclick="openChatbot()">Chat</button>
+    <iframe id="chatIframe" class="chat-iframe" frameborder="0"></iframe> -->
 
     <!-- hero box -->
     <section class="hero-box">
@@ -75,8 +73,6 @@
           In order to access the button, you need to continue as a guest or log
           in to the system.
         </p>
-        <!-- <button id="log"><a href="#" id="login-link">Login</a></button> -->
-        <!-- <button id="ajnabi"><a href="#" id="guest-link">Continue as Guest</a></button> -->
       </div>
     </div>
 
@@ -111,7 +107,9 @@
             space. It‘s free to list and only takes a few minutes to get up and
             running.
           </p>
-          <a><button class="lend-btn">Learn how to Lend Now</button></a>
+          <a href="{{ url_for('lend') }}"
+            ><button class="lend-btn">Learn how to Lend Now</button></a
+          >
         </div>
         <div class="lend-2">
           <div></div>
@@ -184,7 +182,8 @@
             Maximise yield from underused car parks and vacant land, or
             transform payments with the UK’s favourite parking app.
           </p>
-          <button class="future-btn">Learn more about solutions</button>
+
+          <a><button class="future-btn">Learn more about solutions</button></a>
         </div>
       </div>
     </section>
@@ -196,9 +195,9 @@
     <script>
       const mainPageUrl = "{{ url_for('main') }}";
     </script>
-    <script
+    <!-- <script
       src="{{ url_for('static', filename='CustDev/chatbot.js') }}"
       defer
-    ></script>
+    ></script> -->
   </body>
 </html>

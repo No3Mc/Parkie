@@ -34,8 +34,8 @@
                         <a href="{{ url_for('lend') }}">Business solution</a></li>
                     <li {% if request.path == url_for('AboutUs') %}class="active"{% endif %}>
                         <a href="{{ url_for('AboutUs') }}">Company</a></li>
-                    <li {% if request.path == url_for('help') %}class="active"{% endif %}>
-                        <a href="{{ url_for('help') }}">Help</a></li>
+                    <!-- <li {% if request.path == url_for('help') %}class="active"{% endif %}>
+                        <a href="{{ url_for('help') }}">Help</a></li> -->
                     {% if current_user.is_authenticated %}
                     <li>
                         <a id="history" class="history" href="{{ url_for('history') }}">Histroy <img src="https://i.postimg.cc/kG3H36Nk/history.png" height="15px" width="15px" style="transform: translate(0px, 3.35px);"></a>

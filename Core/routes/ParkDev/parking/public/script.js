@@ -23,7 +23,7 @@ setTimeout(() => {
     }).addTo(map);
 
     const myIcon = L.icon({
-      iconUrl: 'https://i.ibb.co/09HNBnz/my-icon.png',
+      iconUrl: 'https://i.postimg.cc/Z5s5Ksgg/pin.png',
       iconSize: [30, 45],
       iconAnchor: [22, 94],
       popupAnchor: [-3, -76],
