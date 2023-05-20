@@ -255,6 +255,10 @@ def AboutUs():
 def rpg():
     return render_template('routes/CustDev/LogReg/Register.html', header=headerpth, footer=footerpth, login=loginpth)
 
+@app.route('/lendfm')
+def lendfm():
+    return render_template('routes/ClientDev/frame.html', header=headerpth, footer=footerpth, login=loginpth)
+
 
 @app.route('/history')
 def history():

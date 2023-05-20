@@ -4,7 +4,7 @@ const { MongoClient, ObjectId } = require('mongodb');
 const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 8000;
+const port = 4000;
 
 // MongoDB Atlas connection string
 const connectionString = 'mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/Parking?retryWrites=true&w=majority';

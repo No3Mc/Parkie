@@ -1,46 +1,61 @@
 body {
-       background-color: #f1f1f1;
-       font-family: Arial, sans-serif;
-       text-align: center;
-     }
+  background-color: #f1f1f1;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-     .container {
-       margin-top: 150px;
-     }
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 50px; /* Add margin at the bottom */
+}
 
-     h1 {
-       font-size: 48px;
-       margin-bottom: 20px;
-     }
+h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
 
-     p {
-       font-size: 24px;
-       margin-bottom: 40px;
-     }
+p {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
 
-     .countdown {
-       display: flex;
-       justify-content: center;
-     }
+.countdown {
+  display: flex;
+  justify-content: center;
+}
 
-     .countdown div {
-       margin: 0 20px;
-     }
+.countdown div {
+  margin: 0 20px;
+}
 
-     .countdown span {
-       font-size: 36px;
-     }
+.countdown span {
+  font-size: 36px;
+}
 
-     @media (max-width: 768px) {
-       h1 {
-         font-size: 36px;
-       }
+@media (max-width: 768px) {
+  h1 {
+    font-size: 36px;
+  }
 
-       p {
-         font-size: 20px;
-       }
+  p {
+    font-size: 20px;
+  }
 
-       .countdown span {
-         font-size: 24px;
-       }
-     }
+  .countdown span {
+    font-size: 24px;
+  }
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  margin-top: auto; /* Push the footer to the bottom */
+}
+
