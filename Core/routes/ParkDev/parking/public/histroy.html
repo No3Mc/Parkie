@@ -55,12 +55,7 @@
         padding: 10px 20px;
         font-size: 16px;
         cursor: pointer;
-        transition: background 0.3s ease;
         text-decoration: none;
-      }
-
-      button:hover {
-        background: linear-gradient(45deg, #00cec9, #00b894);
       }
 
       #edit-popup {
@@ -101,6 +96,7 @@
         border-radius: 4px;
         border: 1px solid #ddd;
         margin-bottom: 10px;
+        box-sizing: border-box;
       }
 
       #edit-form button[type="submit"] {
@@ -112,11 +108,6 @@
         padding: 10px 20px;
         font-size: 16px;
         cursor: pointer;
-        transition: background 0.3s ease;
-      }
-
-      #edit-form button[type="submit"]:hover {
-        background: linear-gradient(45deg, #00cec9, #00b894);
       }
     </style>
   </head>
@@ -126,7 +117,13 @@
         >Payment Histroy</a
       >
     </button>
-    <h1>Parking History</h1>
+
+    <button>
+      <a style="color: whitesmoke; font-weight: 700" href="bookHistroy.html"
+        >Park Histroy</a
+      >
+    </button>
+    <h1>Parking Dashboard</h1>
     <table id="history-table">
       <thead>
         <tr>
@@ -149,13 +146,13 @@
       <form id="edit-form">
         <input type="hidden" id="edit-slot-id" />
         <label for="edit-name">Name:</label>
-        <input type="text" id="edit-name" required /><br />
+        <input type="text" id="edit-name" maxlength="40" required /><br />
         <label for="edit-email">Email:</label>
-        <input type="email" id="edit-email" required /><br />
+        <input type="email" id="edit-email" maxlength="40" required /><br />
         <label for="edit-carno">Car Number:</label>
-        <input type="text" id="edit-carno" required /><br />
+        <input type="text" id="edit-carno" maxlength="10" required /><br />
         <label for="edit-no">No.:</label>
-        <input type="text" id="edit-no" required /><br />
+        <input type="text" id="edit-no" maxlength="30" required /><br />
         <button type="submit">Save</button>
       </form>
     </div>
@@ -256,6 +253,8 @@
           });
         })
         .catch((error) => console.error(error));
+
+        
     </script>
   </body>
 </html>

@@ -73,6 +73,26 @@
       .back-button:hover {
         background: linear-gradient(45deg, #f3e7e9, #d5dae6);
       }
+
+      .print-button {
+        display: block;
+        text-align: center;
+
+        padding: 10px 20px;
+        background: linear-gradient(45deg, #d5dae6, #f3e7e9);
+        color: #333;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        text-decoration: none;
+        transition: background 0.3s ease;
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      .print-button:hover {
+        background: linear-gradient(45deg, #f3e7e9, #d5dae6);
+      }
     </style>
   </head>
   <body>
@@ -92,8 +112,10 @@
           </tbody>
         </table>
         <a href="histroy.html" class="back-button">Go Back to History</a>
+        <a class="print-button" onclick="printPage()">Print</a>
       </div>
     </div>
+
     <script>
       // Fetch payment history data from the Stripe API
       fetch("/payment/history")
@@ -113,6 +135,10 @@
           });
         })
         .catch((error) => console.error(error));
+
+      function printPage() {
+        window.print();
+      }
     </script>
   </body>
 </html>
