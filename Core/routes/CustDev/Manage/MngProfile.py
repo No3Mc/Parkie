@@ -20,25 +20,7 @@ def index():
         user = users_collection.find_one({'_id': ObjectId(session['user_id'])})
         return render_template('MngProfile.html', user=user, logged_in=True)
 
-@app.route('/login', methods=['POST'])
-def login():
-    username = request.form['username']
-    password = request.form['password']
-    user = users_collection.find_one({'username': username, 'password': password})
-    if user:
-        session['logged_in'] = True
-        session['user_id'] = str(user['_id'])
-        flash('You were logged in', 'success')
-        return redirect(url_for('index'))  # Redirect to the MngProfile route
-    else:
-        flash('Invalid login credentials', 'error')
-    return redirect(url_for('index'))
 
-@app.route('/logout')
-def logout():
-    session.pop('logged_in', None)
-    session.pop('user_id', None)
-    return redirect(url_for('index'))
 
 @app.route('/MngProfile', methods=['GET', 'POST'])
 def MngProfile():
