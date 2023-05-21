@@ -256,6 +256,7 @@ def rpg():
     return render_template('routes/CustDev/LogReg/Register.html', header=headerpth, footer=footerpth, login=loginpth)
 
 @app.route('/lendfm')
+@login_required
 def lendfm():
     return render_template('routes/ClientDev/frame.html', header=headerpth, footer=footerpth, login=loginpth)
 
@@ -368,11 +369,11 @@ def register():
 
     if user_collection.find_one({'username': username}):
         error_message = 'Username already exists'
-        return render_template('routes/CustDev/LogReg/Register.html', header=headerpth, footer=footerpth, error_message=error_message)
+        return render_template('routes/CustDev/LogReg/Register.html', header=headerpth, footer=footerpth, login=loginpth, error_message=error_message)
 
     if user_collection.find_one({'email': email}):
         error_message = 'Email already exists'
-        return render_template('routes/CustDev/LogReg/Register.html', header=headerpth, footer=footerpth, error_message=error_message)
+        return render_template('routes/CustDev/LogReg/Register.html', header=headerpth, footer=footerpth, login=loginpth, error_message=error_message)
 
     if len(username) < 3 or len(username) > 20:
         error_messages.append('Username must be between 3 and 20 characters')

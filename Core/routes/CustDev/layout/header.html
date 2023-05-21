@@ -50,7 +50,7 @@
                     {% if current_user.is_admin %}
                     <img class="profile-icon" src="{{ url_for('static', filename='admin_profile_icon.png') }}" alt="Profile Icon">
                     {% else %}
-                    <img class="profile-icon" src="{{ current_user.profile_icon_url }}" alt="Profile Icon">
+                    <img class="profile-icon" src="{{ url_for('static', filename='profile_icon.jpeg') }}" alt="Profile Icon">
                     {% endif %}
 
 

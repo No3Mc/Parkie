@@ -29,6 +29,7 @@
 
 
 
+
  
       <div class="container">
         <div class="row">
@@ -39,7 +40,8 @@
               Parkie. It's simple, flexible, and secure.
             </p>
             <a href="{{ url_for('lendfm') }}">
-              <button class="btn btn-primary btn-lg"  >Get Started</button>
+                <button class="btn btn-primary btn-lg" id="get-started-btn">Get Started</button>
+
             </a>
           </div>
           <div class="col-lg-6">
@@ -201,5 +203,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- bootstrap js link -->
     {% include footer %}
+        <script
+      src="{{ url_for('static', filename='ClientDev/Lend.js') }}"
+      defer
+    ></script>
   </body>
 </html>
