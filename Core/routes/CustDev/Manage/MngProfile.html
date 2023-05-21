@@ -40,81 +40,16 @@
             <input type="password" id="password" name="password" required
                 oninput="validatePassword(this.value)"><br>
             <span id="passwordWarning" class="warning"></span><br>
-            <button type="submit">Update</button>
+            <button id="submitButton" type="submit">Update</button>
+
         </form>
     </div>
     <footer>
         {% include footer %}
     </footer>
-<script>
-    function validateUsername(username) {
-        var warningElement = document.getElementById('usernameWarning');
-        if (username.length < 3 || username.length > 20) {
-            warningElement.innerText = 'Username must be between 3 and 20 characters';
-        } else {
-            warningElement.innerText = '';
-        }
-    }
-
-    function validateFirstName(firstName) {
-        var warningElement = document.getElementById('firsnWarning');
-        if (firstName.length < 2 || firstName.length > 50) {
-            warningElement.innerText = 'First name must be between 2 and 50 characters';
-        } else {
-            warningElement.innerText = '';
-        }
-    }
-
-    function validateLastName(lastName) {
-        var warningElement = document.getElementById('lasnWarning');
-        if (lastName.length < 2 || lastName.length > 50) {
-            warningElement.innerText = 'Last name must be between 2 and 50 characters';
-        } else {
-            warningElement.innerText = '';
-        }
-    }
-
-    function validateEmail(email) {
-        var warningElement = document.getElementById('emailWarning');
-        if (!email.endsWith('.com') && !email.endsWith('.net') && !email.endsWith('.org')) {
-            warningElement.innerText = 'Email must end with .com, .net, or .org';
-        } else {
-            warningElement.innerText = '';
-        }
-    }
-
-    function validatePhone(phone) {
-        var warningElement = document.getElementById('phoneWarning');
-        if (phone.length < 10 || phone.length > 15) {
-            warningElement.innerText = 'Phone number must be between 10 and 15 characters';
-        } else {
-            warningElement.innerText = '';
-        }
-    }
-
-    function validatePostcode(postcode) {
-        var warningElement = document.getElementById('postcodeWarning');
-        if (postcode.length !== 6) {
-            warningElement.innerText = 'Invalid postcode';
-        } else {
-            warningElement.innerText = '';
-        }
-    }
-
-    function validatePassword(password) {
-        var warningElement = document.getElementById('passwordWarning');
-        if (password.length > 0 && password.length < 8) {
-            warningElement.innerText = 'Password must be at least 8 characters long';
-        } else {
-            warningElement.innerText = '';
-        }
-    }
-
-    function validateForm() {
-
-        alert('Profile was updated successfully.');
-        return true;
-    }
-</script>
+    <script
+      src="{{ url_for('static', filename='CustDev/MngProfile.js') }}"
+      defer
+    ></script>
 </body>
 </html>
