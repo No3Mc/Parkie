@@ -11,13 +11,22 @@
     <body>
         <div class="chat-container">
             <div id="chat-history"></div>
+            <div id="other-content">
+                <!-- Add your other content here -->
+                <h1>Welcome to our Chatbot</h1>
+                <p>We are excited to introduce our new chatbot, currently in beta version.</p>
+                <p>Please feel free to ask any questions or provide feedback.</p>
+               
+                <p>Our chatbot is designed to assist you with various tasks.</p>
+            </div>
             <form>
                 {% csrf_token %}
                 <input type="text" name="message" id="message">
                 <button type="submit" id="send">Send</button>
                 <button type="button" id="clear-chat">Clear chat</button>
-                <button type="button"  onclick="window.location.href='http://127.0.0.1:5000/contact'" id="report-button">Report</button>
+                <button type="button" onclick="window.location.href='http://127.0.0.1:5000/contact'" id="report-button">Report</button>
                 <button type="button" id="speech-to-text"> </button>
+                <p> NOTE: Everything will be recorded and saved</p>
             </form>
         </div>
         <div id="response"></div>
