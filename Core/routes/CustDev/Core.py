@@ -16,8 +16,8 @@ from VulFaq.VulRep import index as vulrep_index, vulnerability_report as vulrep_
 from flask_login import logout_user
 
 # Define paths for template and static files
-template_folder_path = '/home/thr33/Downloads/Parkie/Core'
-static_folder_path = '/home/thr33/Downloads/Parkie/Core/routes/CustDev/static'
+template_folder_path = 'F:\Parkie/Core'
+static_folder_path = 'F:\Parkie/Core/routes/CustDev/static'
 
 headerpth = 'routes/CustDev/layout/header.html'
 footerpth = 'routes/CustDev/layout/footer.html'

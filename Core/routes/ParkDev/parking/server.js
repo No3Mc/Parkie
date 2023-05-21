@@ -112,9 +112,10 @@
     try {
       const client = await MongoClient.connect(uri, { useNewUrlParser: true });
       const markersCollection = client.db("Parking").collection("marker");
-    
+      const bookingsCollection = client.db("Parking").collection("bookings"); // New collection
+  
       const marker = await markersCollection.findOne({ _id: new ObjectId(markerId) });
-    
+  
       if (marker.status === "available") {
         const currentTime = new Date(); // Get the current time
         const updatedMarker = await markersCollection.findOneAndUpdate(
@@ -122,7 +123,19 @@
           { $set: { carno, name, email, no, status: 'booked', time: currentTime } },
           { returnOriginal: false }
         );
-        
+  
+        // Insert booking data into the "bookings" collection
+        const bookingData = {
+          carno,
+          name,
+          email,
+          no,
+          markerId,
+          status: 'booked',
+          time: currentTime
+        };
+        await bookingsCollection.insertOne(bookingData);
+  
         console.log(`Marker ${markerId} has been booked by ${name} (${email})`);
   
         const msg = {
@@ -138,25 +151,24 @@
   
         sgMail.setApiKey(process.env.SG_PRIVATE_KEY);
         await sgMail.send(msg);
-        
+  
         res.send(`
-        <script>
-          window.alert("Payment and Booking Successful!!");
-          window.parent.postMessage({ action: 'stripeSuccess' }, '*');
-          window.location.href = 'http://localhost:5000/main'; // Redirects to localhost:5000
-        </script>
-      `);
-      
-
+          <script>
+            window.alert("Payment and Booking Successful!!");
+            window.parent.postMessage({ action: 'stripeSuccess' }, '*');
+            window.location.href = 'http://localhost:5000/main'; // Redirects to localhost:5000
+          </script>
+        `);
       } else {
         // Marker is already booked, send an error message to the user
         res.status(409).send(`Marker ${markerId} is already booked ⚠️`);
       }
     } catch (err) {
       console.error(err);
-      res.status(500).send(`We are facing unexpected error ⚠️ ${err.message}`);
+      res.status(500).send(`We are facing an unexpected error ⚠️ ${err.message}`);
     }
   });
+  
   
   // getting the parking data
   app.get('/history', (req, res) => {
@@ -175,6 +187,25 @@
     }
   });
   
+  // Serve the bookHistory.html page
+  app.get('/bookHistory', (req, res) => {
+    res.sendFile(__dirname + '/bookHistory.html');
+  });
+
+  // Retrieve booking history data
+  app.get('/bookingData', async (req, res) => {
+    try {
+      const client = await MongoClient.connect(uri, { useNewUrlParser: true });
+      const bookingsCollection = client.db("Parking").collection("bookings");
+
+      const bookings = await bookingsCollection.find().toArray();
+
+      res.json(bookings);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('An error occurred while retrieving booking history.');
+    }
+  });
 
   // cancelling the booking
   app.delete('/history/data/:id', async (req, res) => {

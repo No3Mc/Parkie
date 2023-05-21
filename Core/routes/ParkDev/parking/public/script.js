@@ -44,16 +44,59 @@ markersWithStatus.forEach(marker => {
   const bookButton = document.createElement('button');
   bookButton.textContent = 'Book Now';
 
+  // Modify CSS for bookButton
+  bookButton.style.color = '#1FA637';
+  bookButton.style.fontWeight = '650';
+  bookButton.style.background = 'rgba(255, 255, 255, 0.81)';
+  bookButton.style.borderRadius = '126px';
+  bookButton.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+  bookButton.style.backdropFilter = 'blur(9.2px)';
+  bookButton.style.webkitBackdropFilter = 'blur(9.2px)';
+  bookButton.style.border = '1px solid rgba(255, 255, 255, 1)';
+  bookButton.style.webkitBoxShadow = '10px 10px 66px 2px rgba(171, 171, 171, 1)';
+  bookButton.style.mozBoxShadow = '10px 10px 66px 2px rgba(171, 171, 171, 1)';
+  bookButton.style.boxShadow = '10px 10px 66px 2px rgba(171, 171, 171, 1)';
+  bookButton.style.transition = '1s';
+  bookButton.style.padding = '6px 15px';
+  bookButton.style.cursor = 'pointer';
+  bookButton.style.border = '1px solid black';
+
+  // Add hover effect
+  bookButton.addEventListener('mouseover', function () {
+    bookButton.style.border = '1px solid #1FA637';
+    bookButton.style.color = '#1FA637';
+  });
+
+  bookButton.addEventListener('mouseout', function () {
+    bookButton.style.border = '1px solid black';
+    bookButton.style.color = '#1FA637';
+  });
+
   // click btn to open booking form
   bookButton.addEventListener('click', (event) => {
     const bookingForm = document.createElement('form');
     bookingForm.innerHTML =
-      '<input type="text" id="carno" name="carno" placeholder="Enter your car number" style="border-radius: 12px; padding: 10px 10px; margin: 5px 0px;" required > <br> ' +
-      '<input type="text" id="name" name="name" placeholder="Enter your full name" style="border-radius: 12px; padding: 10px 10px; margin: 5px 0px;" required > <br> ' +
-      '<input type="email" id="email" name="email" placeholder="Enter your email" style="border-radius: 12px; padding: 10px 10px; margin:5px 0px" required> <br> ' +
-      '<input type="number" id="no" name="no" placeholder="Enter your phone number" style="border-radius: 12px; padding: 10px 10px; margin: 5px 0px;" required > <br> ' +
-      '<button type="submit" style="padding: 7px 10px; border-radius: 10px; margin: 5px 0px; cursor: pointer;">Book Now</button>';
+      '<input type="text" maxlength="10" id="carno" name="carno" placeholder="Enter your car number" style="border-radius: 12px; padding: 10px 10px; margin: 5px 0px;" required > <br> ' +
+      '<input type="text" maxlength="40" id="name" name="name" placeholder="Enter your full name" style="border-radius: 12px; padding: 10px 10px; margin: 5px 0px;" required > <br> ' +
+      '<input type="email" maxlength="40" id="email" name="email" placeholder="Enter your email" style="border-radius: 12px; padding: 10px 10px; margin:5px 0px" required> <br> ' +
+      '<input type="tel" maxlength="30" id="no" name="no" placeholder="Enter your phone number" style="border-radius: 12px; padding: 10px 10px; margin: 5px 0px;" required > <br> ' +
+      '<button type="submit"transition: 2s; background-color: white; style="color: #1FA637; border: 1px solid black; padding: 7px 10px; border-radius: 20px; margin: 5px 0px; cursor: pointer;">Book Now</button>';
       
+      // fover effect
+      const bookNowButton = bookingForm.querySelector('button');
+
+      // Add hover effect
+      bookNowButton.addEventListener('mouseover', function () {
+        bookNowButton.style.backgroundColor = '#1FA637';
+        bookNowButton.style.color = 'white';
+      });
+    
+      bookNowButton.addEventListener('mouseout', function () {
+        bookNowButton.style.backgroundColor = 'white';
+        bookNowButton.style.color = '#1FA637';
+      });
+
+
     const bookingFormPopup = L.popup().setContent(bookingForm);
     map.closePopup(markerPopup);
     map.openPopup(bookingFormPopup, L.latLng(marker.lat, marker.long));
