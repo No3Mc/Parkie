@@ -9,26 +9,32 @@
     />
 </head>
 <body>
-     
-    <h1>Manage Profile</h1>
-    <form method="POST" action="{{ url_for('MngProfile') }}">
-        <input type="hidden" name="user_id" value="{{ user['_id'] }}">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="{{ user['username'] }}" required><br>
-        <label for="firsn">First Name:</label>
-        <input type="text" id="firsn" name="firsn" value="{{ user['firsn'] }}" required><br>
-        <label for="lasn">Last Name:</label>
-        <input type="text" id="lasn" name="lasn" value="{{ user['lasn'] }}" required><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="{{ user['email'] }}" required><br>
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone" value="{{ user['phone'] }}" required><br>
-        <label for="postcode">Postcode:</label>
-        <input type="text" id="postcode" name="postcode" value="{{ user['postcode'] }}" required><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-        <button type="submit">Update</button>
-    </form>
+    <header>
+        {% include header %}
+    </header>
+    <div class="container">
+        <h1>Manage Profile</h1>
+        <form method="POST" action="{{ url_for('MngProfile') }}">
+            <input type="hidden" name="user_id" value="{{ user['_id'] }}">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="{{ user['username'] }}" required><br>
+            <label for="firsn">First Name:</label>
+            <input type="text" id="firsn" name="firsn" value="{{ user['firsn'] }}" required><br>
+            <label for="lasn">Last Name:</label>
+            <input type="text" id="lasn" name="lasn" value="{{ user['lasn'] }}" required><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ user['email'] }}" required><br>
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" value="{{ user['phone'] }}" required><br>
+            <label for="postcode">Postcode:</label>
+            <input type="text" id="postcode" name="postcode" value="{{ user['postcode'] }}" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+    <footer>
+        {% include footer %}
+    </footer>
 </body>
 </html>
-

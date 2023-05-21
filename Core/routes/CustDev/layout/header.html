@@ -1,83 +1,89 @@
+<!-- header.html -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Meta Information for the webpage -->
-        <meta charset="utf-8" />
-        <!-- linking files -->
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layout/header.css') }}">
-        <!-- linking font -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <script src="https://www.google.com/recaptcha/api.js?render=6LemluElAAAAAF5iggicTxvvQvSc-xDeVQPn7ejr"></script>
+<head>
+    <!-- Meta Information for the webpage -->
+    <meta charset="utf-8" />
+    <!-- linking files -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layout/header.css') }}">
+    <!-- linking font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LemluElAAAAAF5iggicTxvvQvSc-xDeVQPn7ejr"></script>
 
-        <!-- Fav icon -->
-        <link rel="shortcut icon" type="image/png" href="https://i.postimg.cc/NMbHx9JP/favicon.png" />
-        <title>Parkie - Home</title>
-    </head>
+    <!-- Fav icon -->
+    <link rel="shortcut icon" type="image/png" href="https://i.postimg.cc/NMbHx9JP/favicon.png" />
+    <title>Parkie - Home</title>
+    <style>
+        /* Place your additional styles here */
+        /* ... */
+    </style>
+</head>
 
-    <body>
-        <!-- nav -->
-        <nav class="navbar">
-            <div class="brand-title"><a href="{{ url_for('index') }}">Parkie</a></div>
-            <a href="#" class="toggle-button" title="Toggle Button">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </a>
-            <div class="navbar-links">
-                <ul>
-                    <li {% if request.path == url_for('howto') %}class="active"{% endif %}>
-                        <a href="{{ url_for('howto') }}">How it works?</a>
-                    </li>
-                    <li {% if request.path == url_for('lend') %}class="active"{% endif %}>
-                        <a href="{{ url_for('lend') }}">Lend space</a></li>
-                    <li {% if request.path == url_for('future') %}class="active"{% endif %}>
-                        <a href="{{ url_for('future') }}">Business solution</a></li>
-                    <li {% if request.path == url_for('AboutUs') %}class="active"{% endif %}>
-                        <a href="{{ url_for('AboutUs') }}">Company</a></li>
-                    <!-- <li {% if request.path == url_for('help') %}class="active"{% endif %}>
-                        <a href="{{ url_for('help') }}">Help</a></li> -->
-                    {% if current_user.is_authenticated %}
-                    <li>
-                        <a id="history" class="history" href="{{ url_for('history') }}">Histroy <img src="https://i.postimg.cc/kG3H36Nk/history.png" height="15px" width="15px" style="transform: translate(0px, 3.35px);"></a>
-                    </li>
-                    <li class="profile-dropdown">
+<body>
+    <!-- nav -->
+    <nav class="navbar">
+        <div class="brand-title"><a href="{{ url_for('index') }}">Parkie</a></div>
+        <a href="#" class="toggle-button" title="Toggle Button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+            <ul>
+                <li {% if request.path == url_for('howto') %}class="active"{% endif %}>
+                    <a href="{{ url_for('howto') }}">How it works?</a>
+                </li>
+                <li {% if request.path == url_for('lend') %}class="active"{% endif %}>
+                    <a href="{{ url_for('lend') }}">Lend space</a></li>
+                <li {% if request.path == url_for('future') %}class="active"{% endif %}>
+                    <a href="{{ url_for('future') }}">Business solution</a></li>
+                <li {% if request.path == url_for('AboutUs') %}class="active"{% endif %}>
+                    <a href="{{ url_for('AboutUs') }}">Company</a></li>
+                <!-- <li {% if request.path == url_for('help') %}class="active"{% endif %}>
+                    <a href="{{ url_for('help') }}">Help</a></li> -->
+                {% if current_user.is_authenticated %}
+                <li>
+                    <a id="history" class="history" href="{{ url_for('history') }}">Histroy <img src="https://i.postimg.cc/kG3H36Nk/history.png" height="15px" width="15px" style="transform: translate(0px, 3.35px);"></a>
+                </li>
+                <li class="profile-dropdown">
 
+                    {% if current_user.is_admin %}
+                    <img class="profile-icon" src="{{ url_for('static', filename='admin_profile_icon.png') }}" alt="Profile Icon">
+                    {% else %}
+                    <img class="profile-icon" src="{{ current_user.profile_icon_url }}" alt="Profile Icon">
+                    {% endif %}
+
+
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('logout') }}">Logout</a>
                         {% if current_user.is_admin %}
-                        <img class="profile-icon" src="{{ url_for('static', filename='admin_profile_icon.png') }}" alt="Profile Icon">
+                        <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
                         {% else %}
-                        <img class="profile-icon" src="{{ current_user.profile_icon_url }}" alt="Profile Icon">
+
+                        <a href="{{ url_for('MngProfile') }}">Manage Profile</a>
                         {% endif %}
 
-
-                        <div class="dropdown-content">
-                            <a href="{{ url_for('logout') }}">Logout</a>
-                            {% if current_user.is_admin %}
-                            <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
-                            {% else %}
-
-                            <a href="{{ url_for('MngProfile') }}">Manage Profile</a>
-                            {% endif %}
-
-                        </div>
-                    </li>
-                    {% else %}                   
-                    <li>
-                        <a id="login-button" class="login-button" href="#">Login</a>
-                    </li>
-                    {% if request.path != url_for('rpg') %}
-                    <li>
-                                <div id="recaptcha-container"></div>
-                        <a href="{{ url_for('rpg') }}">
-                            <b class="reg-btn" onclick="submitForm"()>Sign Up</b>
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
-        <p id="login-status"></p>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Add Axios library -->
-        <script src="{{ url_for('static', filename='layout/header.js') }}" defer></script>
-    </body>
+                    </div>
+                </li>
+                {% else %}                   
+                <li>
+                    <a id="login-button" class="login-button" href="#">Login</a>
+                </li>
+                {% if request.path != url_for('rpg') %}
+                <li>
+                    <div id="recaptcha-container"></div>
+                    <a href="{{ url_for('rpg') }}">
+                        <b class="reg-btn" onclick="submitForm()">Sign Up</b>
+                    </a>
+                </li>
+                {% endif %}
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <p id="login-status"></p>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Add Axios library -->
+    <script src="{{ url_for('static', filename='layout/header.js') }}" defer></script>
+</body>
 </html>
+

@@ -197,7 +197,7 @@ def dashboard():
 @app.route('/MngCusts')
 def MngCusts():
     users = user_collection.find()
-    return render_template('routes/CustDev/Manage/MngCusts.html', users=users)
+    return render_template('routes/CustDev/Manage/MngCusts.html',header=headerpth, footer=footerpth, users=users)
 
 
 @app.route('/MngProfile', methods=['GET', 'POST'])
