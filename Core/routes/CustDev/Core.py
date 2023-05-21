@@ -18,7 +18,7 @@ from flask_login import logout_user
 
 template_folder_path = '/home/thr33/Downloads/Parkie/Core'
 static_folder_path = '/home/thr33/Downloads/Parkie/Core/routes/CustDev/static'
-
+#
 # Define paths for template and static files
 # template_folder_path = 'F:\Parkie/Core'
 # static_folder_path = 'F:\Parkie/Core/routes/CustDev/static'

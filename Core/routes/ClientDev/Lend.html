@@ -26,11 +26,6 @@
   </head>
   <body>
     {% include header %} {% include login %}
-
-
-
-
- 
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
@@ -38,13 +33,15 @@
             <p class="lead">
               Earn extra income by renting out your unused parking space on
               Parkie. It's simple, flexible, and secure.
-            </p>
-            <a href="{{ url_for('lendfm') }}">
-                <button class="btn btn-primary btn-lg" id="get-started-btn">Get Started</button>
-
-            </a>
-          </div>
-          <div class="col-lg-6">
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('lendfm') }}">
+            <button class="btn btn-primary btn-lg" id="get-started-btn">Get Started</button>
+          </a>
+          {% else %}
+          <button class="btn btn-primary btn-lg" id="get-started-btn" onclick="showLoginAlert()">Get Started</button>
+          {% endif %}
+        </div>
+        <div class="col-lg-6">
             <!-- <img src="Images/Driveway1.jpg" alt="Driveway" class="header-Driveway1"> -->
             <img
               src="{{ url_for('static', filename='Images/ClientDev/Driveway1.jpg') }}"
@@ -207,5 +204,10 @@
       src="{{ url_for('static', filename='ClientDev/Lend.js') }}"
       defer
     ></script>
+        <script>
+  function showLoginAlert() {
+    alert("You need to login or continue as a guest before proceeding.");
+  }
+</script>
   </body>
 </html>
