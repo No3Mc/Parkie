@@ -1,50 +1,88 @@
 html, body {
-  height: 100%;
-}
-
-body {
   margin: 0;
-  display: flex;
-  flex-direction: column;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%; /* Added height: 100% to make the body full height */
 }
 
+/* Main container */
 .chat-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  max-width: 600px;
+  margin: 0 auto; /* Removed the top margin */
   padding: 20px;
-  overflow: hidden; 
-}
-
-#chat-history {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  overflow-y: auto;
-  max-height: calc(100% - 80px);
-}
-
-.user-message, .bot-message {
-  max-width: 80%;
-  padding: 10px;
-  margin: 10px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  bottom: 20px; /* Positioned the container at the bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+}
+
+/* Chat history */
+#chat-history {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Chat messages */
+.user-message, .bot-message {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 .user-message {
-  background-color: #f1f0f0;
+  background-color: #f2f2f2;
 }
 
 .bot-message {
+  background-color: #e6e6e6;
+}
+
+/* Form styles */
+form {
+  margin-top: 20px;
+}
+
+input[type="text"] {
+  padding: 8px;
+  width: 70%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button {
+  padding: 8px 12px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 3px;
   background-color: #4CAF50;
   color: white;
-  align-self: flex-end;
+  cursor: pointer;
 }
-.ui-autocomplete {
-    position: absolute;
-    top: -150%;
+
+button#clear-chat {
+  background-color: #f44336;
 }
+
+/* Speech-to-text button */
+#speech-to-text {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#speech-to-text::before {
+  content: '\1F3A4';
+  font-size: 20px;
+}
+
+/* Response container */
+#response {
+  margin-top: 20px;
+  font-weight: bold;
+  color: red;
+}
+

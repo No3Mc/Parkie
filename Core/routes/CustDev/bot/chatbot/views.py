@@ -47,7 +47,8 @@ def generate_response(message, return_all=False):
 
     question_fields = [f'Question{i}' for i in range(1, 100)]
 
-    question_regex = re.compile(fr'{message}', re.IGNORECASE)
+    question_regex = re.compile(fr'{re.escape(message)}', re.IGNORECASE)
+
     response_docs = responses.find({'$or': [{field: {'$regex': question_regex}} for field in question_fields]})
 
     matching_responses = []
