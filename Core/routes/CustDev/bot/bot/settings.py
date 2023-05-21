@@ -134,7 +134,7 @@ CORS_ORIGIN_WHITELIST = [
 X_FRAME_OPTIONS = 'ALLOWALL'
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "bot/chatbot/static")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "chatbot/static")]
 # SESSION_SAVE_EVERY_REQUEST = True
 # SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
