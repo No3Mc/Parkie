@@ -1,141 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Parkie - How it works</title>
-    <!-- favicon -->
-    <link
-      rel="shortcut icon"
-      type="image/png"
-      href="https://i.postimg.cc/NMbHx9JP/favicon.png"
-    />
-    <!-- css -->
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='ParkDev/how.css') }}"
-    />
-  </head>
-  <body>
-    {% include header %}
-    <!-- nav -->
-    {% include login %}
-    <!-- body -->
-    <section class="body">
-      <div class="wel">
-        <img
-          class="wel-img1"
-          src="https://i.postimg.cc/PJCFzchn/maps.jpg"
-          alt="map"
-          height="440"
-          width="440"
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Parkie - How it works</title>
+        <!-- favicon -->
+        <link
+        rel="shortcut icon"
+        type="image/png"
+        href="https://i.postimg.cc/NMbHx9JP/favicon.png"
         />
+        <!-- css -->
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <link
+        rel="stylesheet"
+        type="text/css"
+        href="{{ url_for('static', filename='ParkDev/how.css') }}"
+        />
+    </head>
+    <body>
+        {% include header %}
+        <!-- nav -->
+        {% include login %}
+        <!-- body -->
+        <section class="body">
+            <div class="wel">
+                <img
+                class="wel-img1"
+                src="https://i.postimg.cc/PJCFzchn/maps.jpg"
+                alt="map"
+                height="440"
+                width="440"
+                />
+                <div class="wel-des">
+                    <h1>
+                        Never Circles the block again <br />
+                        Book your spot Now!
+                    </h1>
+                    <p>
+                    With Parkie now you can book spots with <br />
+                    ease of your home
+                    </p>
+                    {% if current_user.is_authenticated %}
+                    <button class="wel-btn" onclick="window.location.href='{{ url_for('main') }}'">Book Your Spot Now</button>
+                    {% else %}
+                    <button class="wel-btn" onclick="showLoginAlert()">Book Your Spot Now</button>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="stats">
+                <h4>100%<br />satisfaction rate</h4>
+                <h4>
+                    10 million+ <br />
+                    drivers
+                </h4>
+                <h4>50,000+<br />space owners</h4>
+                <h4>2 million+<br />bookings per year</h4>
+            </div>
+            <div class="rest">
+                <div class="rest-1">
+                    <img
+                    src="https://i.postimg.cc/L5hzdr6C/parking.jpg"
+                    alt="park"
+                    height="350px"
+                    width="300px"
+                    style="border-radius: 12px"
+                    />
+                    <div style="margin-top: 40px">
+                        <h1 style="font-size: 30px">
+                            100% Space <br />
+                            before you leave home
+                        </h1>
+                        <p style="width: 500px">
+                        Our huge network of bookable parking spaces & driveways gets you
+                        closer to where you need to be. By reserving your parking, you’ll
+                        save time & money on all your journeys, whether it’s your daily
+                        commute, an evening gig or a weekend away.
+                        </p>
+                    </div>
+                </div>
+                <div class="rest-2">
+                    <div class="rest2-des">
+                        <h1>The easiest way to book a <br />parking space in 3 steps.</h1>
+                        <br />
+                        <h3>1. Tell us where you’re going</h3>
+                        <p>
+                        Our super smart app will quickly find the best space for you. And
+                        with 100k spaces to choose from, including private driveways, no
+                        one gets you closer.
+                        </p>
+                        <br />
+                        <h3>2. Book guaranteed parking in seconds</h3>
+                        <p>
+                        Scroll through the available spaces and check out reviews &
+                        photos. Then just tap book and relax – parking has never been
+                        simpler.
+                        </p>
+                        <br />
+                        <h3>3. You’re all set</h3>
+                        <p>
+                        Find directions & access instructions and amend your booking if
+                        needed - all through your JustPark account. And, if you need
+                        anything else, our Customer Service team is always there to help.
+                        </p>
+                    </div>
+                    <img
+                    src="https://i.postimg.cc/dts0082F/parkinglot.jpg"
+                    height="600px"
+                    width="600px"
+                    style="border-radius: 12px"
+                    />
+                </div>
+            </div>
 
-        <div class="wel-des">
-          <h1>
-            Never Circles the block again <br />
-            Book your spot Now!
-          </h1>
-          <p>
-            With Parkie now you can book spots with <br />
-            ease of your home
-          </p>
-          <button
-            class="wel-btn"
-            onclick="window.location.href = 'http://localhost:5000/main';"
-          >
-            Book Your Spot Now
-          </button>
-        </div>
-      </div>
-
-      <div class="stats">
-        <h4>100%<br />satisfaction rate</h4>
-        <h4>
-          10 million+ <br />
-          drivers
-        </h4>
-        <h4>50,000+<br />space owners</h4>
-        <h4>2 million+<br />bookings per year</h4>
-      </div>
-
-      <div class="rest">
-        <div class="rest-1">
-          <img
-            src="https://i.postimg.cc/L5hzdr6C/parking.jpg"
-            alt="park"
-            height="350px"
-            width="300px"
-            style="border-radius: 12px"
-          />
-          <div style="margin-top: 40px">
-            <h1 style="font-size: 30px">
-              100% Space <br />
-              before you leave home
-            </h1>
-            <p style="width: 500px">
-              Our huge network of bookable parking spaces & driveways gets you
-              closer to where you need to be. By reserving your parking, you’ll
-              save time & money on all your journeys, whether it’s your daily
-              commute, an evening gig or a weekend away.
-            </p>
-          </div>
-        </div>
-
-        <div class="rest-2">
-          <div class="rest2-des">
-            <h1>The easiest way to book a <br />parking space in 3 steps.</h1>
-
-            <br />
-
-            <h3>1. Tell us where you’re going</h3>
-            <p>
-              Our super smart app will quickly find the best space for you. And
-              with 100k spaces to choose from, including private driveways, no
-              one gets you closer.
-            </p>
-
-            <br />
-
-            <h3>2. Book guaranteed parking in seconds</h3>
-            <p>
-              Scroll through the available spaces and check out reviews &
-              photos. Then just tap book and relax – parking has never been
-              simpler.
-            </p>
-
-            <br />
-
-            <h3>3. You’re all set</h3>
-            <p>
-              Find directions & access instructions and amend your booking if
-              needed - all through your JustPark account. And, if you need
-              anything else, our Customer Service team is always there to help.
-            </p>
-          </div>
-          <img
-            src="https://i.postimg.cc/dts0082F/parkinglot.jpg"
-            height="600px"
-            width="600px"
-            style="border-radius: 12px"
-          />
-        </div>
-      </div>
-
-      <div class="action" style="margin-bottom: 60px">
-        <h1>Parking booked in seconds</h1>
-        <p>Journey are easier with a booked space, just for you</p>
-        <button onclick="window.location.href = 'http://localhost:5000/main';">
-          Find your space
-        </button>
-      </div>
-    </section>
-    <!-- footer -->
-
-    {% include footer %}
-    <script></script>
-  </body>
+            <div class="action" style="margin-bottom: 60px">
+                <h1>Parking booked in seconds</h1>
+                <p>Journey are easier with a booked space, just for you</p>
+                {% if current_user.is_authenticated %}
+                <button onclick="window.location.href='{{ url_for('main') }}'">Find your space</button>
+                {% else %}
+                <button onclick="showLoginAlert()">Find your space</button>
+                {% endif %}
+            </div>
+        </section>
+        {% include footer %}
+        <script>
+            function showLoginAlert() {
+                alert("You need to login or continue as a guest before proceeding.");
+            }
+        </script>
+    </body>
 </html>
