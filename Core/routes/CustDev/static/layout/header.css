@@ -232,4 +232,29 @@ body {
   border-radius: 120px;
   cursor: pointer;
 }
+/* login btn */
+.reg-btn{
+    /* background-color: white; */
+    color: #3CAD4F;
+    padding: 7px 26px;
+    border-radius: 16px;
+    border: 1px solid;
+    border-color: black;
+
+
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgb(245, 244, 244);
+
+    transition: all 1s;
+}
+
+    .reg-btn:hover{
+    opacity: 85%;
+    border-color: #24AA81;
+    }
 
