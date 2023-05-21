@@ -396,7 +396,7 @@ def register():
         error_messages.append('Password must be at least 8 characters long')
 
     if error_messages:
-        return render_template('routes/CustDev/LogReg/Register.html', header=headerpth, footer=footerpth, error_messages=error_messages)
+        return render_template('routes/CustDev/LogReg/Register.html', header=headerpth, footer=footerpth, login=loginpth, error_messages=error_messages)
 
     user_data = {
         'username': username,

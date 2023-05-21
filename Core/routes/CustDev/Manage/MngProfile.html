@@ -2,11 +2,7 @@
 <html>
 <head>
     <title>Manage Profile</title>
-       <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='/CustDev/MngProfile.css') }}"
-    />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/CustDev/MngProfile.css') }}">
 </head>
 <body>
     <header>
@@ -14,27 +10,111 @@
     </header>
     <div class="container">
         <h1>Manage Profile</h1>
-        <form method="POST" action="{{ url_for('MngProfile') }}">
+        <form method="POST" action="{{ url_for('MngProfile') }}" onsubmit="return validateForm()">
             <input type="hidden" name="user_id" value="{{ user['_id'] }}">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" value="{{ user['username'] }}" required><br>
+            <input type="text" id="username" name="username" value="{{ user['username'] }}" required
+                oninput="validateUsername(this.value)"><br>
+            <span id="usernameWarning" class="warning"></span><br>
             <label for="firsn">First Name:</label>
-            <input type="text" id="firsn" name="firsn" value="{{ user['firsn'] }}" required><br>
+            <input type="text" id="firsn" name="firsn" value="{{ user['firsn'] }}" required
+                oninput="validateFirstName(this.value)"><br>
+            <span id="firsnWarning" class="warning"></span><br>
             <label for="lasn">Last Name:</label>
-            <input type="text" id="lasn" name="lasn" value="{{ user['lasn'] }}" required><br>
+            <input type="text" id="lasn" name="lasn" value="{{ user['lasn'] }}" required
+                oninput="validateLastName(this.value)"><br>
+            <span id="lasnWarning" class="warning"></span><br>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="{{ user['email'] }}" required><br>
+            <input type="email" id="email" name="email" value="{{ user['email'] }}" required
+                oninput="validateEmail(this.value)"><br>
+            <span id="emailWarning" class="warning"></span><br>
             <label for="phone">Phone:</label>
-            <input type="text" id="phone" name="phone" value="{{ user['phone'] }}" required><br>
+            <input type="text" id="phone" name="phone" value="{{ user['phone'] }}" required
+                oninput="validatePhone(this.value)"><br>
+            <span id="phoneWarning" class="warning"></span><br>
             <label for="postcode">Postcode:</label>
-            <input type="text" id="postcode" name="postcode" value="{{ user['postcode'] }}" required><br>
+            <input type="text" id="postcode" name="postcode" value="{{ user['postcode'] }}" required
+                oninput="validatePostcode(this.value)"><br>
+            <span id="postcodeWarning" class="warning"></span><br>
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br>
+            <input type="password" id="password" name="password" required
+                oninput="validatePassword(this.value)"><br>
+            <span id="passwordWarning" class="warning"></span><br>
             <button type="submit">Update</button>
         </form>
     </div>
     <footer>
         {% include footer %}
     </footer>
+<script>
+    function validateUsername(username) {
+        var warningElement = document.getElementById('usernameWarning');
+        if (username.length < 3 || username.length > 20) {
+            warningElement.innerText = 'Username must be between 3 and 20 characters';
+        } else {
+            warningElement.innerText = '';
+        }
+    }
+
+    function validateFirstName(firstName) {
+        var warningElement = document.getElementById('firsnWarning');
+        if (firstName.length < 2 || firstName.length > 50) {
+            warningElement.innerText = 'First name must be between 2 and 50 characters';
+        } else {
+            warningElement.innerText = '';
+        }
+    }
+
+    function validateLastName(lastName) {
+        var warningElement = document.getElementById('lasnWarning');
+        if (lastName.length < 2 || lastName.length > 50) {
+            warningElement.innerText = 'Last name must be between 2 and 50 characters';
+        } else {
+            warningElement.innerText = '';
+        }
+    }
+
+    function validateEmail(email) {
+        var warningElement = document.getElementById('emailWarning');
+        if (!email.endsWith('.com') && !email.endsWith('.net') && !email.endsWith('.org')) {
+            warningElement.innerText = 'Email must end with .com, .net, or .org';
+        } else {
+            warningElement.innerText = '';
+        }
+    }
+
+    function validatePhone(phone) {
+        var warningElement = document.getElementById('phoneWarning');
+        if (phone.length < 10 || phone.length > 15) {
+            warningElement.innerText = 'Phone number must be between 10 and 15 characters';
+        } else {
+            warningElement.innerText = '';
+        }
+    }
+
+    function validatePostcode(postcode) {
+        var warningElement = document.getElementById('postcodeWarning');
+        if (postcode.length !== 6) {
+            warningElement.innerText = 'Invalid postcode';
+        } else {
+            warningElement.innerText = '';
+        }
+    }
+
+    function validatePassword(password) {
+        var warningElement = document.getElementById('passwordWarning');
+        if (password.length > 0 && password.length < 8) {
+            warningElement.innerText = 'Password must be at least 8 characters long';
+        } else {
+            warningElement.innerText = '';
+        }
+    }
+
+    function validateForm() {
+
+        alert('Profile was updated successfully.');
+        return true;
+    }
+</script>
 </body>
 </html>
