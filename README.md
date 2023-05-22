@@ -6,15 +6,23 @@ Chamber Of Secrets
 | [Nav](https://github.com/navnoor1) | [P2630965](mailto:P2630965@my365.dmu.ac.uk) | Client Management Component |
 | [Syed](https://github.com/No3Mc) | [P2652259](mailto:syed.naqvi3@my365.dmu.ac.uk) | Customer Managment Component |
 
-Dependancies:
+**Dependancies**
 
-Please ensure the location for `Core.py` template and `static` is correct.
 
-**Core.py** location:
 
-`Parkie/Core/routes/CustDev`
+Please ensure the location for Core.py's `template` and `static` is correct.
 
-[https://github.com/No3Mc/Parkie/blob/main/Core/routes/CustDev/Core.py](https://github.com/No3Mc/Parkie/blob/main/Core/routes/CustDev/Core.py)
+**Core.py** lines location:
+
+Lines that need to be changed in`Parkie/Core/routes/CustDev`
+
+**Template Folder Path**
+
+[https://github.com/No3Mc/Parkie/blob/main/Core/routes/CustDev/Core.py](https://github.com/No3Mc/Parkie/blob/a8cb6cf241d46cd9e1ccc347a8f024bf34c8f74e/Core/routes/CustDev/Core.py#L19)
+
+**Static Folder Path**
+
+[https://github.com/No3Mc/Parkie/blob/main/Core/routes/CustDev/Core.py](https://github.com/No3Mc/Parkie/blob/a8cb6cf241d46cd9e1ccc347a8f024bf34c8f74e/Core/routes/CustDev/Core.py#L20)
 
 In order to run everything, please run the `start.bat` after changing the location of `Core.py`.
 
