@@ -8,28 +8,41 @@ Chamber Of Secrets
 
 Dependancies:
 
+Please ensure the location for `Core.py` template and `static` is correct.
+
+**Core.py** location:
+
+`Parkie/Core/routes/CustDev`
+
+[https://github.com/No3Mc/Parkie/blob/main/Core/routes/CustDev/Core.py](https://github.com/No3Mc/Parkie/blob/main/Core/routes/CustDev/Core.py)
+
+In order to run everything, please run the `start.bat` after changing the location of `Core.py`.
+
+**start.bat** location:
+
+`Parkie/Core/`
+
+[https://github.com/No3Mc/Parkie/blob/main/Core/Start.bat](https://github.com/No3Mc/Parkie/blob/main/Core/Start.bat)
 
 
-Please ensure the location for Core.py template and static is correct.
 
-Core.py location:
-
-Parkie/Core/routes/CustDev
-
-https://github.com/No3Mc/Parkie/blob/main/Core/routes/CustDev/Core.py
-
-In order to run everything please run the start.bat after changing the location of Core.py.
-
-start.bat location:
-
-Parkie/Core/
-
-https://github.com/No3Mc/Parkie/blob/main/Core/Start.bat
-
+<details>
+  <summary>Proof for Our APIs and Accounts Terminated</summary>
+(This is why we had to remove functionalities)
+ 
 ![image](https://github.com/No3Mc/Parkie/assets/41834061/6655cbde-72f9-449f-a380-86624d5bf3bb)
 ![image](https://github.com/No3Mc/Parkie/assets/41834061/81ab3967-b583-43b8-9b2d-1f4be66eade3)
 ![image](https://github.com/No3Mc/Parkie/assets/41834061/b6fdf4ab-d730-4934-a585-285dfb58b9fb)
 ![image](https://github.com/No3Mc/Parkie/assets/41834061/551044ab-7750-4d95-9699-04e6ea0570f7)
+
+</details>
+
+
+
+<details>
+  <summary>Proof of our old Repo</summary>
+
+
 
 ![Screenshot from 2023-05-22 15-06-35](https://github.com/No3Mc/Parkie/assets/41834061/b0c56d82-c119-4c70-ade5-088e1325dd83)
 ![Screenshot from 2023-05-22 15-07-28](https://github.com/No3Mc/Parkie/assets/41834061/3f888a85-daef-4a4b-a6c4-73efb229a1ca)
@@ -59,3 +72,4 @@ https://github.com/No3Mc/Parkie/blob/main/Core/Start.bat
 ![Screenshot from 2023-05-22 15-26-31](https://github.com/No3Mc/Parkie/assets/41834061/32022b15-a1c3-4d64-9e8f-737118d9e800)
 ![Screenshot from 2023-05-22 15-27-09](https://github.com/No3Mc/Parkie/assets/41834061/07b8ff81-c72f-42b3-991a-8e82faffddc0)
 
+</details>
