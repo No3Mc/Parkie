@@ -21,3 +21,21 @@ In order to run everything please run the start.bat after changing the location 
 start.bat location:
 
 Parkie/Core/
+
+
+![Screenshot from 2023-05-22 15-06-35](https://github.com/No3Mc/Parkie/assets/41834061/b0c56d82-c119-4c70-ade5-088e1325dd83)
+![Screenshot from 2023-05-22 15-07-28](https://github.com/No3Mc/Parkie/assets/41834061/3f888a85-daef-4a4b-a6c4-73efb229a1ca)
+![Screenshot from 2023-05-22 15-07-53](https://github.com/No3Mc/Parkie/assets/41834061/457e14f9-8a7c-4a3f-96cb-82c99d0dc4e2)
+![Screenshot from 2023-05-22 15-08-35](https://github.com/No3Mc/Parkie/assets/41834061/250662a3-4fb3-457b-a8a4-e5556428a142)
+![Screenshot from 2023-05-22 15-11-27](https://github.com/No3Mc/Parkie/assets/41834061/809c7b90-6705-4e2a-a350-b583cfb313a6)
+![Screenshot from 2023-05-22 15-11-39](https://github.com/No3Mc/Parkie/assets/41834061/c3d5beb2-06fa-4c66-88c1-b2750d24e33b)
+![Screenshot from 2023-05-22 15-11-48](https://github.com/No3Mc/Parkie/assets/41834061/541054de-377f-4ff2-b171-0f093bbfd72e)
+![Screenshot from 2023-05-22 15-12-01](https://github.com/No3Mc/Parkie/assets/41834061/40bd1f45-adbd-4716-90fc-3e891ec00fac)
+![Screenshot from 2023-05-22 15-12-29](https://github.com/No3Mc/Parkie/assets/41834061/cb55b521-7b07-4f36-a2aa-e319a80e958a)
+![Screenshot from 2023-05-22 15-12-59](https://github.com/No3Mc/Parkie/assets/41834061/2ba4f22d-ffe4-45c1-80a3-117f399012d0)
+![Screenshot from 2023-05-22 15-13-13](https://github.com/No3Mc/Parkie/assets/41834061/40532318-cab3-491d-977f-4c84de0b20ad)
+![Screenshot from 2023-05-22 15-13-25](https://github.com/No3Mc/Parkie/assets/41834061/a72c8494-fa9b-41d0-b349-527db6af2ef8)
+![Screenshot from 2023-05-22 15-13-47](https://github.com/No3Mc/Parkie/assets/41834061/ce3b2602-f5d5-452f-bc32-a7fa70b0370f)
+![Screenshot from 2023-05-22 15-14-22](https://github.com/No3Mc/Parkie/assets/41834061/cfc098cb-7195-4a0e-a59b-c70f3c05f5df)
+![Screenshot from 2023-05-22 15-14-39](https://github.com/No3Mc/Parkie/assets/41834061/440a4ea6-17d7-4aed-b0ac-1d7fb9b80ee5)
+![Screenshot from 2023-05-22 15-15-10](https://github.com/No3Mc/Parkie/assets/41834061/cb9abeac-0ff1-4ac5-9e2b-b7ce97b520ae)
