@@ -16,11 +16,15 @@ Core.py location:
 
 Parkie/Core/routes/CustDev
 
+https://github.com/No3Mc/Parkie/blob/main/Core/routes/CustDev/Core.py
+
 In order to run everything please run the start.bat after changing the location of Core.py.
 
 start.bat location:
 
 Parkie/Core/
+
+https://github.com/No3Mc/Parkie/blob/main/Core/Start.bat
 
 ![image](https://github.com/No3Mc/Parkie/assets/41834061/6655cbde-72f9-449f-a380-86624d5bf3bb)
 ![image](https://github.com/No3Mc/Parkie/assets/41834061/81ab3967-b583-43b8-9b2d-1f4be66eade3)
