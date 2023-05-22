@@ -1,59 +1,84 @@
-        body {
-            background-color: #f0f5f0;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+        /* VulRep.css */
 
-        h1 {
-            color: #22543d;
-            font-size: 28px;
-            margin: 20px 0;
-            text-align: center;
-        }
+/* Global Styles */
 
-        form {
-            background-color: #ffffff;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin: 20px auto;
-            max-width: 400px;
-            padding: 20px;
-        }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-        label {
-            color: #22543d;
-            display: block;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+h1 {
+  margin-top: 20px;
+  text-align: center;
+}
 
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            border: 1px solid #d2d2d2;
-            border-radius: 4px;
-            box-sizing: border-box;
-            padding: 8px;
-            width: 100%;
-        }
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
 
-        input[type="submit"] {
-            background-color: #22543d;
-            border: none;
-            border-radius: 4px;
-            color: #ffffff;
-            cursor: pointer;
-            font-size: 16px;
-            padding: 10px 20px;
-            width: 100%;
-        }
+label {
+  display: block;
+  margin-bottom: 8px;
+}
 
-        input[type="submit"]:hover {
-            background-color: #1b3d29;
-        }
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  resize: vertical;
+}
 
-        #message {
-            color: #22543d;
-            text-align: center;
-        }
+input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+#message {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Header and Footer Styles */
+
+header,
+footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 600px) {
+  form {
+    max-width: 100%;
+  }
+}
+
