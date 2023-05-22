@@ -6,7 +6,7 @@ Chamber Of Secrets
 | [Nav](https://github.com/navnoor1) | [P2630965](mailto:P2630965@my365.dmu.ac.uk) | Client Management Component |
 | [Syed](https://github.com/No3Mc) | [P2652259](mailto:syed.naqvi3@my365.dmu.ac.uk) | Customer Managment Component |
 
-**Dependancies**
+**Dependancies:**
 
     pip install pymongo flask bcrypt flask_login flask_mail google-cloud-storage django django-cors-headers spacy
     python -m spacy download en_core_web_sm
