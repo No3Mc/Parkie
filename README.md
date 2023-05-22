@@ -22,6 +22,10 @@ start.bat location:
 
 Parkie/Core/
 
+![image](https://github.com/No3Mc/Parkie/assets/41834061/6655cbde-72f9-449f-a380-86624d5bf3bb)
+![image](https://github.com/No3Mc/Parkie/assets/41834061/81ab3967-b583-43b8-9b2d-1f4be66eade3)
+![image](https://github.com/No3Mc/Parkie/assets/41834061/b6fdf4ab-d730-4934-a585-285dfb58b9fb)
+![image](https://github.com/No3Mc/Parkie/assets/41834061/551044ab-7750-4d95-9699-04e6ea0570f7)
 
 ![Screenshot from 2023-05-22 15-06-35](https://github.com/No3Mc/Parkie/assets/41834061/b0c56d82-c119-4c70-ade5-088e1325dd83)
 ![Screenshot from 2023-05-22 15-07-28](https://github.com/No3Mc/Parkie/assets/41834061/3f888a85-daef-4a4b-a6c4-73efb229a1ca)
