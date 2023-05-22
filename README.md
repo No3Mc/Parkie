@@ -8,7 +8,9 @@ Chamber Of Secrets
 
 **Dependancies**
 
-    pip install pymongo flask bcrypt flask_login flask_mail google-cloud-storage
+    pip install pymongo flask bcrypt flask_login flask_mail google-cloud-storage django django-cors-headers spacy
+    python -m spacy download en_core_web_sm
+
 
 
 Please ensure the location for Core.py's `template` and `static` is correct.
