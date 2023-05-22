@@ -8,6 +8,7 @@ Chamber Of Secrets
 
 **Dependancies**
 
+    pip install pymongo flask bcrypt flask_login flask_mail google-cloud-storage
 
 
 Please ensure the location for Core.py's `template` and `static` is correct.
