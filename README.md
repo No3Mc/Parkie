@@ -12,7 +12,7 @@ Core.py location:
 
 Parkie/Core/routes/CustDev
 
-In order to run everything please run the start.bat.
+In order to run everything please run the start.bat after changing the location of Core.py.
 
 start.bat location:
 
