@@ -6,6 +6,10 @@ Chamber Of Secrets
 | [Nav](https://github.com/navnoor1) | [P2630965](mailto:P2630965@my365.dmu.ac.uk) | Client Management Component |
 | [Syed](https://github.com/No3Mc) | [P2652259](mailto:syed.naqvi3@my365.dmu.ac.uk) | Customer Managment Component |
 
+Dependancies:
+
+
+
 Please ensure the location for Core.py template and static is correct.
 
 Core.py location:
