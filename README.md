@@ -8,20 +8,12 @@ Chamber Of Secrets
 
 
 
+[Main](https://github.com/No3Mc/Parkie/assets/41834061/e7bec382-1dce-4bca-972a-1b59f35505f4)
 
+[Parking](https://github.com/No3Mc/Parkie/assets/41834061/e8e10f59-eef6-4287-a28e-73a27400b76a)
 
-https://github.com/No3Mc/Parkies/assets/41834061/761698f5-3135-4947-bcaa-7cfbdc9a4055
+[Profiles](https://github.com/No3Mc/Parkie/assets/41834061/7f89b14d-15ca-4d19-b666-c0ceac94987c)
 
-
-
-
-
-
-https://github.com/No3Mc/Parkies/assets/41834061/494e373d-2ee3-4b7f-8434-9f5d45244e52
-
-
-
-https://github.com/No3Mc/Parkies/assets/41834061/38936a12-4b6f-4ceb-bddf-b1d189a41d20
 
 
 
@@ -61,6 +53,9 @@ In order to run everything, please run the `start.bat` after changing the locati
   <summary>Proof for Our APIs and Accounts Terminated</summary>
 (This is why we had to remove functionalities)
  
+
+
+
 ![image](https://github.com/No3Mc/Parkie/assets/41834061/6655cbde-72f9-449f-a380-86624d5bf3bb)
 ![image](https://github.com/No3Mc/Parkie/assets/41834061/81ab3967-b583-43b8-9b2d-1f4be66eade3)
 ![image](https://github.com/No3Mc/Parkie/assets/41834061/b6fdf4ab-d730-4934-a585-285dfb58b9fb)
