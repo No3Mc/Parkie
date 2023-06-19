@@ -56,13 +56,11 @@ In order to run everything, please run the `start.bat` after changing the locati
   <summary>Proof for Our APIs and Accounts Terminated</summary>
 (This is why we had to remove functionalities)
  
+![image](https://github.com/No3Mc/Parkie/assets/41834061/9139b12d-ac94-4f8a-a1a9-d12603850224)
+![image](https://github.com/No3Mc/Parkie/assets/41834061/9cc79bbb-9aac-4360-81f6-a95315376ccc)
+![image](https://github.com/No3Mc/Parkie/assets/41834061/f1d16904-eadd-42c2-b006-aa988782b6c4)
+![image](https://github.com/No3Mc/Parkie/assets/41834061/71bcf416-6a39-40ce-a6bc-43da10aed210)
 
-
-
-![image](https://github.com/No3Mc/Parkie/assets/41834061/6655cbde-72f9-449f-a380-86624d5bf3bb)
-![image](https://github.com/No3Mc/Parkie/assets/41834061/81ab3967-b583-43b8-9b2d-1f4be66eade3)
-![image](https://github.com/No3Mc/Parkie/assets/41834061/b6fdf4ab-d730-4934-a585-285dfb58b9fb)
-![image](https://github.com/No3Mc/Parkie/assets/41834061/551044ab-7750-4d95-9699-04e6ea0570f7)
 
 </details>
 
