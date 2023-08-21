@@ -21,6 +21,6 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "jest": "^29.6.2"
+    "jest": "^29.6.3"
   }
 }
