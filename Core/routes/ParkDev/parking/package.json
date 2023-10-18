@@ -11,7 +11,7 @@
     "http-proxy-middleware": "^2.0.6",
     "jsdom": "^21.1.1",
     "leaflet": "^1.9.3",
-    "mongodb": "^4.2.2",
+    "mongodb": "^4.17.0",
     "nodemon": "^2.0.22",
     "paypal-rest-sdk": "^1.8.1",
     "python-shell": "^5.0.0",
