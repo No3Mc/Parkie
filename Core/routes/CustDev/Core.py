@@ -15,10 +15,13 @@ from Manage.MngCusts import edit_user_route, delete_user_route
 from VulFaq.VulRep import index as vulrep_index, vulnerability_report as vulrep_vulnerability_report
 from flask_login import logout_user
 
+#Blowfish symmetric key block cipher
 
 template_folder_path = '/home/thr33/Downloads/Parkie/Core'
 static_folder_path = '/home/thr33/Downloads/Parkie/Core/routes/CustDev/static'
-#
+
+
+
 # Define paths for template and static files
 # template_folder_path = 'F:\Parkie/Core'
 # static_folder_path = 'F:\Parkie/Core/routes/CustDev/static'
