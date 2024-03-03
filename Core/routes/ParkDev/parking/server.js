@@ -10,6 +10,7 @@
   const port = 3000;
   const uri = "mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/Parking?retryWrites=true&w=majority";
 
+  const { encode } = require('html-entities');
   const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, 
     max: 100 
@@ -112,24 +113,18 @@
     });      
 
   // booking 
-  const { encode } = require('html-entities');
-
   app.get('/book', limiter , async (req, res) => {
     const { carno, name, email, no, markerId } = req.query;
     
-    // Validate markerId to ensure it's a valid ObjectId
-    if (!ObjectId.isValid(markerId)) {
-      return res.status(400).send('Invalid markerId');
-    }
-  
     try {
       const client = await MongoClient.connect(uri, { useNewUrlParser: true });
       const markersCollection = client.db("Parking").collection("marker");
       const bookingsCollection = client.db("Parking").collection("bookings"); // New collection
   
+      // Use query parameters to prevent potential SQL injection
       const marker = await markersCollection.findOne({ _id: new ObjectId(markerId) });
-  
-      if (marker.status === "available") {
+    
+      if (marker && marker.status === "available") {
         const currentTime = new Date(); // Get the current time
         const updatedMarker = await markersCollection.findOneAndUpdate(
           { _id: new ObjectId(markerId) },
@@ -173,15 +168,15 @@
           </script>
         `);
       } else {
-        // Marker is already booked, send an error message to the user
-        const errorMessage = encode(`Marker ${markerId} is already booked ⚠️`);
+        // Marker is already booked or not found, send an error message to the user
+        const errorMessage = encode(`Marker ${markerId} is not available for booking ⚠️`);
         res.status(409).send(errorMessage);
       }
     } catch (err) {
       console.error(err);
       res.status(500).send(`We are facing an unexpected error ⚠️ ${err.message}`);
     }
-  });  
+  });
   
   
   
