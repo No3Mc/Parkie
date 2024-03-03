@@ -10,6 +10,11 @@
   const port = 3000;
   const uri = "mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/Parking?retryWrites=true&w=majority";
 
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, 
+    max: 100 
+  });
+
   // middle ware
   app.use(express.static('public'));
   app.use(express.json())
@@ -284,19 +289,19 @@
       const markersCollection = client.db("Parking").collection("marker");
       const markerId = req.params.id;
       const { name, email, carno, no } = req.body;
-
+  
       const marker = await markersCollection.findOne({ _id: new ObjectId(markerId) });
-
+  
       if (!marker) {
         res.status(404).json({ message: "Marker not found ⚠️" });
         return;
       }
-
+  
       if (marker.status !== 'booked') {
         res.status(409).json({ message: "Cannot update. Marker is not booked ⚠️" });
         return;
       }
-
+  
       const filter = { _id: new ObjectId(markerId) };
       const update = {
         $set: {
@@ -306,13 +311,13 @@
           no: no
         }
       };
-
+  
       await markersCollection.updateOne(filter, update);
-
+  
       // Send update email using SendGrid
       const sgMail = require('@sendgrid/mail');
       sgMail.setApiKey(process.env.SG_PRIVATE_KEY);
-
+  
       const msg = {
         to: email,
         from: { name: 'Parkie', email: 'parkie.parking@gmail.com' },
@@ -323,9 +328,9 @@
           email: email
         }
       };
-
+  
       await sgMail.send(msg);
-
+  
       res.sendStatus(204);
     } catch (err) {
       console.error(err);
@@ -333,11 +338,6 @@
     }
   });
 
-  
-  const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, 
-    max: 100 
-  });
   
   app.use('/updateMarkerStatus', limiter);
    // updating the marker status automatically after time
