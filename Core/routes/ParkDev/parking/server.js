@@ -106,6 +106,8 @@
     });      
 
   // booking 
+  const { encode } = require('html-entities');
+
   app.get('/book', async (req, res) => {
     const { carno, name, email, no, markerId } = req.query;
     
@@ -161,13 +163,15 @@
         `);
       } else {
         // Marker is already booked, send an error message to the user
-        res.status(409).send(`Marker ${markerId} is already booked ⚠️`);
+        const errorMessage = encode(`Marker ${markerId} is already booked ⚠️`);
+        res.status(409).send(errorMessage);
       }
     } catch (err) {
       console.error(err);
       res.status(500).send(`We are facing an unexpected error ⚠️ ${err.message}`);
     }
   });
+  
   
   
   // getting the parking data
