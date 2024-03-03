@@ -112,6 +112,11 @@
   app.get('/book', async (req, res) => {
     const { carno, name, email, no, markerId } = req.query;
     
+    // Validate markerId to ensure it's a valid ObjectId
+    if (!ObjectId.isValid(markerId)) {
+      return res.status(400).send('Invalid markerId');
+    }
+  
     try {
       const client = await MongoClient.connect(uri, { useNewUrlParser: true });
       const markersCollection = client.db("Parking").collection("marker");
@@ -171,7 +176,7 @@
       console.error(err);
       res.status(500).send(`We are facing an unexpected error ⚠️ ${err.message}`);
     }
-  });
+  });  
   
   
   
