@@ -297,17 +297,17 @@
         return;
       }
   
-      await markersCollection.updateOne(
-        { _id: new ObjectId(markerId) },
-        {
-          $set: {
-            name: name,
-            email: email,
-            carno: carno,
-            no: no
-          }
+      const filter = { _id: new ObjectId(markerId) };
+      const update = {
+        $set: {
+          name: name,
+          email: email,
+          carno: carno,
+          no: no
         }
-      );
+      };
+  
+      await markersCollection.updateOne(filter, update);
   
       // Send update email using SendGrid
       const sgMail = require('@sendgrid/mail');
@@ -332,6 +332,7 @@
       res.status(500).send(`We are facing an unexpected error ⚠️ ${err.message}`);
     }
   });
+  
   const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, 
     max: 100 
