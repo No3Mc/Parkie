@@ -1,6 +1,7 @@
   require("dotenv").config()
 
   const express = require('express');
+  const rateLimit = require("express-rate-limit");
   const { MongoClient, ObjectId } = require('mongodb');
   const { readFile } = require('fs/promises');
   const sgMail = require('@sendgrid/mail')
@@ -326,7 +327,12 @@
       res.status(500).send(`We are facing an unexpected error ⚠️ ${err.message}`);
     }
   });
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, 
+    max: 100 
+  });
   
+  app.use('/updateMarkerStatus', limiter);
    // updating the marker status automatically after time
   app.post('/updateMarkerStatus', async (req, res) => {
     try {
