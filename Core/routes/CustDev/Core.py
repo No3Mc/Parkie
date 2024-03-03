@@ -391,7 +391,7 @@ def register():
     if len(lasn) < 2 or len(lasn) > 50:
         error_messages.append('Last name must be between 2 and 50 characters')
 
-    if not re.match(r'^[^\s@]+@[^\s@]+\.[^\s@]+$', email):
+    if not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email):
         error_messages.append('Invalid email address')
 
     if len(phone) < 10 or len(phone) > 15:
