@@ -67,5 +67,5 @@ def edit_promo(promo_id):
         return redirect(url_for('MngPromos', message=message))
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5005)
+    app.run(debug=False, port=5005)
 
