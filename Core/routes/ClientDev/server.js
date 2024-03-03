@@ -1,4 +1,5 @@
 const express = require('express');
+const rateLimit = require("express-rate-limit");
 const mongodb = require('mongodb');
 const { MongoClient, ObjectId } = require('mongodb');
 const path = require('path');
@@ -10,6 +11,11 @@ const port = 4000;
 const connectionString = 'mongodb+srv://No3Mc:DJ2vCcF7llVDO2Ly@cluster0.cxtyi36.mongodb.net/Parking?retryWrites=true&w=majority';
 const client = new MongoClient(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, 
+  max: 100 
+});
+
 // Middleware
 app.use(bodyParser.json());
 app.use(express.json());
@@ -18,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // // Define the route for /book endpoint
-app.post('/book', async (req, res) => {
+app.post('/book', limiter , async (req, res) => {
   try {
     // Extract the form data from the request body
     const { lat, long, ...formData } = req.body;
@@ -50,7 +56,7 @@ app.post('/book', async (req, res) => {
 });
 
 // lending histroy
-app.get('/history', async (req, res) => {
+app.get('/history', limiter , async (req, res) => {
   try {
     // Connect to the MongoDB Atlas
     await client.connect();
@@ -70,7 +76,7 @@ app.get('/history', async (req, res) => {
 });
 
 // Edit a lending entry
-app.put('/lending/:id', async (req, res) => {
+app.put('/lending/:id', limiter , async (req, res) => {
   try {
     const lendingId = req.params.id;
     const updatedLending = req.body;
@@ -99,7 +105,7 @@ app.put('/lending/:id', async (req, res) => {
 });
 
 // Delete a lending entry
-app.delete('/lending/:id', async (req, res) => {
+app.delete('/lending/:id', limiter , async (req, res) => {
   try {
     const lendingId = req.params.id;
 
