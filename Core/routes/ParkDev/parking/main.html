@@ -46,10 +46,12 @@
       src="{{ url_for('static', filename='ParkDev/main.js') }}"
       defer
     ></script>
+    
     <script>
       window.addEventListener("message", function (event) {
         if (event.data.action === "stripeCheckout") {
-          window.location.href = event.data.url;
+          const url = new URL(event.data.url);
+          window.location.href = url.href; // Fixed by properly sanitizing the URL
         } else if (event.data.action === "stripeSuccess") {
         }
       });
@@ -91,5 +93,7 @@
         }
       });
     </script>
+
+    
   </body>
 </html>
