@@ -101,6 +101,9 @@ app.put('/lending/:id', limiter , async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'An error occurred' });
+  } finally {
+    // Close the database connection
+    await client.close();
   }
 });
 
