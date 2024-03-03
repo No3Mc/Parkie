@@ -40,7 +40,7 @@
   ])
 
   // stripe checkout
-  app.post('/create-checkout-session', async (req, res) => {
+  app.post('/create-checkout-session', limiter , async (req, res) => {
     const { carno, name, email, no, markerId } = req.body;
     try{
       const client = await MongoClient.connect(uri, { useNewUrlParser: true });
@@ -109,7 +109,7 @@
   // booking 
   const { encode } = require('html-entities');
 
-  app.get('/book', async (req, res) => {
+  app.get('/book', limiter , async (req, res) => {
     const { carno, name, email, no, markerId } = req.query;
     
     // Validate markerId to ensure it's a valid ObjectId
@@ -181,11 +181,11 @@
   
   
   // getting the parking data
-  app.get('/history', (req, res) => {
+  app.get('/history', limiter , (req, res) => {
     res.sendFile(__dirname + '/history.html');
   });
   
-  app.get('/history/data', async (req, res) => {
+  app.get('/history/data', limiter , async (req, res) => {
     try {
       const client = await MongoClient.connect(uri, { useNewUrlParser: true });
       const markersCollection = client.db("Parking").collection("marker");
@@ -198,12 +198,12 @@
   });
   
   // Serve the bookHistory.html page
-  app.get('/bookHistory', (req, res) => {
+  app.get('/bookHistory', limiter , (req, res) => {
     res.sendFile(__dirname + '/bookHistory.html');
   });
 
   // Retrieve booking history data
-  app.get('/bookingData', async (req, res) => {
+  app.get('/bookingData', limiter , async (req, res) => {
     try {
       const client = await MongoClient.connect(uri, { useNewUrlParser: true });
       const bookingsCollection = client.db("Parking").collection("bookings");
@@ -218,7 +218,7 @@
   });
 
   // cancelling the booking
-  app.delete('/history/data/:id', async (req, res) => {
+  app.delete('/history/data/:id', limiter , async (req, res) => {
     try {
       const client = await MongoClient.connect(uri, { useNewUrlParser: true });
       const markersCollection = client.db("Parking").collection("marker");
@@ -278,25 +278,25 @@
   });
   
   // update the booking from booking page popup
-  app.put('/history/data/:id', async (req, res) => {
+  app.put('/history/data/:id', limiter, async (req, res) => {
     try {
       const client = await MongoClient.connect(uri, { useNewUrlParser: true });
       const markersCollection = client.db("Parking").collection("marker");
       const markerId = req.params.id;
       const { name, email, carno, no } = req.body;
-  
+
       const marker = await markersCollection.findOne({ _id: new ObjectId(markerId) });
-  
+
       if (!marker) {
         res.status(404).json({ message: "Marker not found ⚠️" });
         return;
       }
-  
+
       if (marker.status !== 'booked') {
         res.status(409).json({ message: "Cannot update. Marker is not booked ⚠️" });
         return;
       }
-  
+
       const filter = { _id: new ObjectId(markerId) };
       const update = {
         $set: {
@@ -306,13 +306,13 @@
           no: no
         }
       };
-  
+
       await markersCollection.updateOne(filter, update);
-  
+
       // Send update email using SendGrid
       const sgMail = require('@sendgrid/mail');
       sgMail.setApiKey(process.env.SG_PRIVATE_KEY);
-  
+
       const msg = {
         to: email,
         from: { name: 'Parkie', email: 'parkie.parking@gmail.com' },
@@ -323,15 +323,16 @@
           email: email
         }
       };
-  
+
       await sgMail.send(msg);
-  
+
       res.sendStatus(204);
     } catch (err) {
       console.error(err);
       res.status(500).send(`We are facing an unexpected error ⚠️ ${err.message}`);
     }
   });
+
   
   const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, 
@@ -340,7 +341,7 @@
   
   app.use('/updateMarkerStatus', limiter);
    // updating the marker status automatically after time
-  app.post('/updateMarkerStatus', async (req, res) => {
+  app.post('/updateMarkerStatus', limiter , async (req, res) => {
     try {
       // Connect to the MongoDB Atlas cluster
       const client = await MongoClient.connect(uri, { useNewUrlParser: true });
